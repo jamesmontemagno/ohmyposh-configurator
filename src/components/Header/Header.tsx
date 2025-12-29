@@ -83,7 +83,7 @@ export function Header() {
         </div>
 
         <a
-          href="https://ohmyposh.dev"
+          href="https://ohmyposh.dev/docs"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
