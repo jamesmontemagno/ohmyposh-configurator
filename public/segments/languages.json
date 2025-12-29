@@ -4,181 +4,259 @@
     "name": ".NET",
     "description": "Displays .NET SDK version",
     "icon": "Circle",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#512BD4",
+    "previewText": ".NET 9.0.0"
   },
   {
     "type": "clojure",
     "name": "Clojure",
     "description": "Displays Clojure version",
     "icon": "Sparkles",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#5881D8",
+    "previewText": "1.11.1"
   },
   {
     "type": "crystal",
     "name": "Crystal",
     "description": "Displays Crystal version",
     "icon": "Hexagon",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000000",
+    "previewText": "1.10.1"
   },
   {
     "type": "dart",
     "name": "Dart",
     "description": "Displays Dart version",
     "icon": "Target",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0175C2",
+    "previewText": "3.2.0"
   },
   {
     "type": "elixir",
     "name": "Elixir",
     "description": "Displays Elixir version",
     "icon": "Droplet",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4B275F",
+    "previewText": "1.15.7"
   },
   {
     "type": "fortran",
     "name": "Fortran",
     "description": "Displays Fortran version",
     "icon": "Hash",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#734F96",
+    "previewText": "gfortran 13.2"
   },
   {
     "type": "go",
     "name": "Go",
     "description": "Displays Go version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#00ADD8",
+    "previewText": "1.21.5"
   },
   {
     "type": "haskell",
     "name": "Haskell",
     "description": "Displays Haskell (GHC) version",
     "icon": "Lambda",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#5E5086",
+    "previewText": "GHC 9.8.1"
   },
   {
     "type": "java",
     "name": "Java",
     "description": "Displays Java version",
     "icon": "Coffee",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#E76F00",
+    "previewText": "OpenJDK 21"
   },
   {
     "type": "julia",
     "name": "Julia",
     "description": "Displays Julia version",
     "icon": "Circle",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#9558B2",
+    "previewText": "1.10.0"
   },
   {
     "type": "kotlin",
     "name": "Kotlin",
     "description": "Displays Kotlin version",
     "icon": "Circle",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#7F52FF",
+    "previewText": "1.9.21"
   },
   {
     "type": "lua",
     "name": "Lua",
     "description": "Displays Lua version",
     "icon": "Moon",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000080",
+    "previewText": "5.4.6"
   },
   {
     "type": "mojo",
     "name": "Mojo",
     "description": "Displays Mojo version",
     "icon": "Flame",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FF6B35",
+    "previewText": "0.6.0"
   },
   {
     "type": "nim",
     "name": "Nim",
     "description": "Displays Nim version",
     "icon": "Crown",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FFE953",
+    "previewText": "2.0.0"
   },
   {
     "type": "node",
     "name": "Node.js",
     "description": "Displays Node.js version",
     "icon": "Circle",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#6CC24A",
+    "previewText": "v20.10.0"
   },
   {
     "type": "ocaml",
     "name": "OCaml",
     "description": "Displays OCaml version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#EE6A1A",
+    "previewText": "5.1.0"
   },
   {
     "type": "perl",
     "name": "Perl",
     "description": "Displays Perl version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0073A1",
+    "previewText": "v5.38.0"
   },
   {
     "type": "php",
     "name": "PHP",
     "description": "Displays PHP version",
-    "icon": "\ud83d\udc18",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🐘",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#777BB3",
+    "previewText": "8.3.0"
   },
   {
     "type": "python",
     "name": "Python",
     "description": "Displays Python version and virtual env",
     "icon": "Snake",
-    "defaultTemplate": " {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} "
+    "defaultTemplate": " {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#3776AB",
+    "previewText": "🐍 venv 3.12.0"
   },
   {
     "type": "r",
     "name": "R",
     "description": "Displays R version",
-    "icon": "\ud83d\udcc8",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "📈",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#276DC3",
+    "previewText": "4.3.2"
   },
   {
     "type": "ruby",
     "name": "Ruby",
     "description": "Displays Ruby version",
     "icon": "Gem",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#CC342D",
+    "previewText": "💎 3.3.0"
   },
   {
     "type": "rust",
     "name": "Rust",
     "description": "Displays Rust version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#CE412B",
+    "previewText": "1.75.0"
   },
   {
     "type": "swift",
     "name": "Swift",
     "description": "Displays Swift version",
-    "icon": "\ud83d\udc26",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🐦",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#F05138",
+    "previewText": "5.9.2"
   },
   {
     "type": "v",
     "name": "V",
     "description": "Displays V version",
     "icon": "Diamond",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#5D87BF",
+    "previewText": "0.4.3"
   },
   {
     "type": "vala",
     "name": "Vala",
     "description": "Displays Vala version",
     "icon": "Diamond",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#A56DE2",
+    "previewText": "0.56.14"
   },
   {
     "type": "zig",
     "name": "Zig",
     "description": "Displays Zig version",
     "icon": "Zap",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#F7A41D",
+    "previewText": "0.11.0"
   }
 ]

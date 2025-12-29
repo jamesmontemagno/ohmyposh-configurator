@@ -156,6 +156,19 @@ export function Canvas() {
   const moveSegment = useConfigStore((state) => state.moveSegment);
   const [activeSegment, setActiveSegment] = useState<Segment | null>(null);
 
+  const handleRemoveBlock = (blockId: string) => {
+    const block = config.blocks.find(b => b.id === blockId);
+    const segmentCount = block?.segments.length || 0;
+    
+    const message = segmentCount > 0
+      ? `Are you sure you want to delete this block? It contains ${segmentCount} segment${segmentCount !== 1 ? 's' : ''}.`
+      : 'Are you sure you want to delete this block?';
+    
+    if (window.confirm(message)) {
+      removeBlock(blockId);
+    }
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -251,7 +264,7 @@ export function Canvas() {
                     selectBlock(block.id);
                   }
                 }}
-                onRemove={() => removeBlock(block.id)}
+                onRemove={() => handleRemoveBlock(block.id)}
               />
             ))}
 

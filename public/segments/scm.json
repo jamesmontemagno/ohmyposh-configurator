@@ -4,55 +4,79 @@
     "name": "Fossil",
     "description": "Displays Fossil repository information",
     "icon": "Bone",
-    "defaultTemplate": " {{ .Branch }} "
+    "defaultTemplate": " {{ .Branch }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#556270",
+    "previewText": "trunk"
   },
   {
     "type": "git",
     "name": "Git",
     "description": "Displays Git repository information",
     "icon": "GitMerge",
-    "defaultTemplate": " {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} "
+    "defaultTemplate": " {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#98C379",
+    "previewText": "main ✓"
   },
   {
     "type": "gitversion",
     "name": "GitVersion",
     "description": "Displays GitVersion semantic version",
     "icon": "Tag",
-    "defaultTemplate": " {{ .Major }}.{{ .Minor }}.{{ .Patch }} "
+    "defaultTemplate": " {{ .Major }}.{{ .Minor }}.{{ .Patch }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4EC9B0",
+    "previewText": "1.2.3"
   },
   {
     "type": "jujutsu",
     "name": "Jujutsu",
     "description": "Displays Jujutsu repository information",
     "icon": "Shirt",
-    "defaultTemplate": " {{ .ChangeId }} "
+    "defaultTemplate": " {{ .ChangeId }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#9B59B6",
+    "previewText": "qpvuntsm"
   },
   {
     "type": "mercurial",
     "name": "Mercurial",
     "description": "Displays Mercurial repository information",
     "icon": "CircleDot",
-    "defaultTemplate": " {{ .Branch }} "
+    "defaultTemplate": " {{ .Branch }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8FAA54",
+    "previewText": "default"
   },
   {
     "type": "plastic",
     "name": "Plastic SCM",
     "description": "Displays Plastic SCM repository information",
     "icon": "Wrench",
-    "defaultTemplate": " {{ .Selector }} "
+    "defaultTemplate": " {{ .Selector }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#2C8EBB",
+    "previewText": "main@myrepo"
   },
   {
     "type": "sapling",
     "name": "Sapling",
     "description": "Displays Sapling repository information",
     "icon": "Sprout",
-    "defaultTemplate": " {{ .Bookmark }} "
+    "defaultTemplate": " {{ .Bookmark }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#6FC13E",
+    "previewText": "main"
   },
   {
     "type": "svn",
     "name": "SVN",
     "description": "Displays Subversion repository information",
     "icon": "FolderOpen",
-    "defaultTemplate": " {{ .Branch }} "
+    "defaultTemplate": " {{ .Branch }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#809CC9",
+    "previewText": "trunk"
   }
 ]

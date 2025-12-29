@@ -3,210 +3,300 @@
     "type": "angular",
     "name": "Angular",
     "description": "Displays Angular CLI version",
-    "icon": "\ud83c\udd70\ufe0f",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🅰️",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#DD0031",
+    "previewText": "@angular/cli 17.0.0"
   },
   {
     "type": "argocd",
     "name": "Argo CD",
     "description": "Displays Argo CD context",
-    "icon": "\ud83d\udc19",
-    "defaultTemplate": " {{ .Context }} "
+    "icon": "🐙",
+    "defaultTemplate": " {{ .Context }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#EF7B4D",
+    "previewText": "🐳 production"
   },
   {
     "type": "aurelia",
     "name": "Aurelia",
     "description": "Displays Aurelia version",
     "icon": "Sparkles",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#ED2B88",
+    "previewText": "2.0.0"
   },
   {
     "type": "bazel",
     "name": "Bazel",
     "description": "Displays Bazel version",
-    "icon": "\ud83c\udfd7\ufe0f",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🏗️",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#43A047",
+    "previewText": "7.0.0"
   },
   {
     "type": "buf",
     "name": "Buf",
     "description": "Displays Buf CLI version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#1E88E5",
+    "previewText": "1.28.1"
   },
   {
     "type": "bun",
     "name": "Bun",
     "description": "Displays Bun version",
-    "icon": "\ud83c\udf5e",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🍞",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FBF0DF",
+    "previewText": "1.0.20"
   },
   {
     "type": "claude",
     "name": "Claude Code",
     "description": "Displays Claude Code status",
-    "icon": "\ud83e\udd16",
-    "defaultTemplate": " claude "
+    "icon": "🤖",
+    "defaultTemplate": " claude ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#D97757",
+    "previewText": "🤖 claude"
   },
   {
     "type": "cmake",
     "name": "CMake",
     "description": "Displays CMake version",
-    "icon": "\ud83d\udd28",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🔨",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#064F8C",
+    "previewText": "3.28.0"
   },
   {
     "type": "deno",
     "name": "Deno",
     "description": "Displays Deno version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000000",
+    "previewText": "1.39.0"
   },
   {
     "type": "docker",
     "name": "Docker",
     "description": "Displays Docker context",
-    "icon": "\ud83d\udc33",
-    "defaultTemplate": " {{ .Context }} "
+    "icon": "🐳",
+    "defaultTemplate": " {{ .Context }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#2496ED",
+    "previewText": "🐳 default"
   },
   {
     "type": "firebase",
     "name": "Firebase",
     "description": "Displays Firebase project",
     "icon": "Flame",
-    "defaultTemplate": " {{ .Project }} "
+    "defaultTemplate": " {{ .Project }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FFA611",
+    "previewText": "🔥 my-app"
   },
   {
     "type": "flutter",
     "name": "Flutter",
     "description": "Displays Flutter version",
-    "icon": "\ud83d\udc99",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "💙",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#02569B",
+    "previewText": "💙 3.16.0"
   },
   {
     "type": "copilot",
     "name": "GitHub Copilot",
     "description": "Displays GitHub Copilot status",
-    "icon": "\ud83e\udd16",
-    "defaultTemplate": " copilot "
+    "icon": "🤖",
+    "defaultTemplate": " copilot ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8957E5",
+    "previewText": "🤖 copilot"
   },
   {
     "type": "helm",
     "name": "Helm",
     "description": "Displays Helm version",
     "icon": "Ship",
-    "defaultTemplate": " {{ .Version }} "
+    "defaultTemplate": " {{ .Version }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0F1689",
+    "previewText": "⚓ v3.13.3"
   },
   {
     "type": "mvn",
     "name": "Maven",
     "description": "Displays Maven version",
-    "icon": "\ud83e\udeb6",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🪶",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#C71A36",
+    "previewText": "🪣 3.9.6"
   },
   {
     "type": "nbgv",
     "name": "NBGV",
     "description": "Displays Nerdbank.GitVersioning version",
     "icon": "Tag",
-    "defaultTemplate": " {{ .Version }} "
+    "defaultTemplate": " {{ .Version }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4EC9B0",
+    "previewText": "3.6.133"
   },
   {
     "type": "nix-shell",
     "name": "Nix Shell",
     "description": "Displays Nix shell status",
-    "icon": "\u2744\ufe0f",
-    "defaultTemplate": " {{ .Name }} "
+    "icon": "❄️",
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#5277C3",
+    "previewText": "❄️ devenv"
   },
   {
     "type": "npm",
     "name": "NPM",
     "description": "Displays NPM version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#CB3837",
+    "previewText": "10.2.5"
   },
   {
     "type": "nx",
     "name": "Nx",
     "description": "Displays Nx CLI version",
     "icon": "Diamond",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#143055",
+    "previewText": "17.2.0"
   },
   {
     "type": "pnpm",
     "name": "PNPM",
     "description": "Displays PNPM version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#F9AD00",
+    "previewText": "8.12.1"
   },
   {
     "type": "quasar",
     "name": "Quasar",
     "description": "Displays Quasar version",
-    "icon": "\ud83c\udf1f",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🌟",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#1976D2",
+    "previewText": "🌟 2.13.0"
   },
   {
     "type": "react",
     "name": "React",
     "description": "Displays React version",
     "icon": "Atom",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#61DAFB",
+    "previewText": "⚛️ 18.2.0"
   },
   {
     "type": "svelte",
     "name": "Svelte",
     "description": "Displays Svelte version",
     "icon": "Flame",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FF3E00",
+    "previewText": "🔥 4.2.8"
   },
   {
     "type": "talosctl",
     "name": "Talosctl",
     "description": "Displays Talos context",
     "icon": "Wrench",
-    "defaultTemplate": " {{ .Context }} "
+    "defaultTemplate": " {{ .Context }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FF6A00",
+    "previewText": "1.6.0"
   },
   {
     "type": "tauri",
     "name": "Tauri",
     "description": "Displays Tauri version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FFC131",
+    "previewText": "1.5.4"
   },
   {
     "type": "ui5tooling",
     "name": "UI5 Tooling",
     "description": "Displays UI5 tooling version",
     "icon": "Wrench",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0A6ED1",
+    "previewText": "3.7.1"
   },
   {
     "type": "umbraco",
     "name": "Umbraco",
     "description": "Displays Umbraco version",
     "icon": "Umbrella",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#3544B1",
+    "previewText": "☂️ 13.0.0"
   },
   {
     "type": "unity",
     "name": "Unity",
     "description": "Displays Unity version",
-    "icon": "\ud83c\udfae",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🎮",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000000",
+    "previewText": "🎮 2023.2.0"
   },
   {
     "type": "xmake",
     "name": "XMake",
     "description": "Displays XMake version",
     "icon": "Wrench",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#48B9C7",
+    "previewText": "2.8.5"
   },
   {
     "type": "yarn",
     "name": "Yarn",
     "description": "Displays Yarn version",
-    "icon": "\ud83e\uddf6",
-    "defaultTemplate": " {{ .Full }} "
+    "icon": "🧶",
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#2C8EBB",
+    "previewText": "🧶 4.0.2"
   }
 ]

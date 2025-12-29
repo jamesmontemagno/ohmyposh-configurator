@@ -219,4 +219,5 @@ export interface SegmentMetadata {
   defaultOptions?: Record<string, unknown>;
   defaultBackground?: string;
   defaultForeground?: string;
+  previewText?: string;
 }

@@ -26,6 +26,9 @@ function SegmentItem({ segment, onAdd }: SegmentItemProps) {
       <DynamicIcon name={segment.icon} size={16} className="text-gray-400" />
       <div className="flex-1 min-w-0">
         <div className="text-sm text-gray-200 truncate">{segment.name}</div>
+        {segment.previewText && (
+          <div className="text-xs text-gray-500 font-mono truncate">{segment.previewText}</div>
+        )}
       </div>
       <button
         className="text-xs px-1.5 py-0.5 bg-[#0f3460] text-gray-300 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#1a4a7a]"

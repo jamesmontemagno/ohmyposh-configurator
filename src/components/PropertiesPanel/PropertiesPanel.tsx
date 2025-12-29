@@ -444,8 +444,9 @@ export function PropertiesPanel() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-3">
+        <GlobalSettings />
         {selectedBlockId && <BlockProperties />}
-        {selectedSegmentId ? <SegmentProperties /> : <GlobalSettings />}
+        {selectedSegmentId && <SegmentProperties />}
       </div>
     </div>
   );
@@ -454,20 +455,30 @@ export function PropertiesPanel() {
 function GlobalSettings() {
   const config = useConfigStore((state) => state.config);
   const updateGlobalConfig = useConfigStore((state) => state.updateGlobalConfig);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const handleUpdate = (updates: Partial<OhMyPoshConfig>) => {
     updateGlobalConfig(updates);
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2 pb-2 border-b border-[#0f3460]">
-        <Globe size={20} className="text-gray-400" />
-        <div>
-          <h3 className="text-sm font-semibold text-gray-200">Global Settings</h3>
-          <p className="text-xs text-gray-500">Configuration-wide options</p>
+    <div className="space-y-4 p-4 bg-[#1a1a2e] rounded-lg mb-4">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full flex items-center justify-between hover:text-white transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <Globe size={20} className="text-gray-400" />
+          <div className="text-left">
+            <h3 className="text-sm font-semibold text-gray-200">Global Settings</h3>
+            <p className="text-xs text-gray-500">Configuration-wide options</p>
+          </div>
         </div>
-      </div>
+        <span className="text-gray-400">{isExpanded ? '▼' : '▶'}</span>
+      </button>
+
+      {isExpanded && (
+        <div className="space-y-4 pt-2 border-t border-[#0f3460]">
 
       {/* Console Title Template */}
       <div>
@@ -582,10 +593,8 @@ function GlobalSettings() {
           Enable cursor positioning
         </label>
       </div>
-
-      <p className="text-xs text-gray-500 pt-2 border-t border-[#0f3460]">
-        Select a segment to edit its properties
-      </p>
+        </div>
+      )}
     </div>
   );
 }

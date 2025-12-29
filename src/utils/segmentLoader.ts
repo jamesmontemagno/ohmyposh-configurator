@@ -10,6 +10,9 @@ interface SegmentJSON {
   description: string;
   icon: string;
   defaultTemplate: string;
+  defaultForeground?: string;
+  defaultBackground?: string;
+  previewText?: string;
 }
 
 // Cache for loaded segments
@@ -57,12 +60,17 @@ export async function loadSegmentCategory(category: SegmentCategory): Promise<Se
     const segments: SegmentJSON[] = await response.json();
     
     // Transform JSON to SegmentMetadata with colors
-    const segmentMetadata: SegmentMetadata[] = segments.map(segment => ({
-      ...segment,
-      type: segment.type as any, // Type will be validated by Oh My Posh
-      category,
-      ...getSegmentColors(segment.type, category),
-    }));
+    const segmentMetadata: SegmentMetadata[] = segments.map(segment => {
+      const colors = getSegmentColors(segment.type, category);
+      return {
+        ...segment,
+        type: segment.type as any, // Type will be validated by Oh My Posh
+        category,
+        // Use colors from JSON if provided, otherwise fall back to color scheme
+        defaultBackground: segment.defaultBackground || colors.background,
+        defaultForeground: segment.defaultForeground || colors.foreground,
+      };
+    });
 
     // Cache the result
     segmentCache.set(category, segmentMetadata);

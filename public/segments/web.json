@@ -4,48 +4,69 @@
     "name": "Brewfather",
     "description": "Displays Brewfather batch status",
     "icon": "Beer",
-    "defaultTemplate": " {{ .StatusIcon }} {{ .Recipe.Name }} "
+    "defaultTemplate": " {{ .StatusIcon }} {{ .Recipe.Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#D78C14",
+    "previewText": "🍺 IPA Batch"
   },
   {
     "type": "carbonintensity",
     "name": "Carbon Intensity",
     "description": "Displays carbon intensity data",
     "icon": "GitBranch",
-    "defaultTemplate": " {{ .Actual.Index }} "
+    "defaultTemplate": " {{ .Actual.Index }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4CAF50",
+    "previewText": "Low"
   },
   {
     "type": "http",
     "name": "HTTP",
     "description": "Makes HTTP requests and displays response",
     "icon": "\ud83d\udd17",
-    "defaultTemplate": " {{ .Body }} "
+    "defaultTemplate": " {{ .Body }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0288D1",
+    "previewText": "API Response"
   },
   {
     "type": "ipify",
     "name": "IP Address",
     "description": "Displays external IP address",
     "icon": "Globe",
-    "defaultTemplate": " {{ .IP }} "
+    "defaultTemplate": " {{ .IP }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#00897B",
+    "previewText": "192.168.1.100"
   },
   {
     "type": "wakatime",
     "name": "WakaTime",
     "description": "Displays WakaTime coding time",
     "icon": "Timer",
-    "defaultTemplate": " {{ secondsRound .CumulativeTotal.Seconds }} "
+    "defaultTemplate": " {{ secondsRound .CumulativeTotal.Seconds }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000000",
+    "previewText": "3h 24m"
   },
   {
     "type": "owm",
     "name": "Weather",
     "description": "Displays weather from OpenWeatherMap",
     "icon": "\ud83c\udf24\ufe0f",
-    "defaultTemplate": " {{ .Weather }} {{ .Temperature }}{{ .UnitIcon }} "
+    "defaultTemplate": " {{ .Weather }} {{ .Temperature }}{{ .UnitIcon }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#1E88E5",
+    "previewText": "☀️ 72°F"
   },
   {
     "type": "winreg",
     "name": "Windows Registry",
     "description": "Reads Windows registry values",
     "icon": "\ud83e\ude9f",
-    "defaultTemplate": " {{ .Value }} "
+    "defaultTemplate": " {{ .Value }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0078D4",
+    "previewText": "RegistryValue"
   }
 ]

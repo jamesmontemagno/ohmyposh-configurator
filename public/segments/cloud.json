@@ -4,83 +4,119 @@
     "name": "AWS",
     "description": "Displays AWS profile and region",
     "icon": "Cloud",
-    "defaultTemplate": " {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
+    "defaultTemplate": " {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FF9900",
+    "previewText": "default@us-east-1"
   },
   {
     "type": "az",
     "name": "Azure",
     "description": "Displays Azure CLI subscription",
     "icon": "Diamond",
-    "defaultTemplate": " {{ .Name }} "
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0078D4",
+    "previewText": "My Subscription"
   },
   {
     "type": "azd",
     "name": "Azure Developer CLI",
     "description": "Displays Azure Developer CLI context",
     "icon": "Diamond",
-    "defaultTemplate": " {{ .Name }} "
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#00BCF2",
+    "previewText": "my-app-env"
   },
   {
     "type": "azfunc",
     "name": "Azure Functions",
     "description": "Displays Azure Functions CLI version",
     "icon": "Zap",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0062AD",
+    "previewText": "4.0.5"
   },
   {
     "type": "cf",
     "name": "Cloud Foundry",
     "description": "Displays Cloud Foundry CLI version",
     "icon": "Cloud",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0C9DD1",
+    "previewText": "8.7.0"
   },
   {
     "type": "cftarget",
     "name": "Cloud Foundry Target",
     "description": "Displays Cloud Foundry target info",
     "icon": "Target",
-    "defaultTemplate": " {{ .Org }}/{{ .Space }} "
+    "defaultTemplate": " {{ .Org }}/{{ .Space }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0C9DD1",
+    "previewText": "myorg/prod"
   },
   {
     "type": "gcp",
     "name": "Google Cloud",
     "description": "Displays GCP project and account",
     "icon": "\ud83c\udf29\ufe0f",
-    "defaultTemplate": " {{ .Project }} "
+    "defaultTemplate": " {{ .Project }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4285F4",
+    "previewText": "my-project-123"
   },
   {
     "type": "kubectl",
     "name": "Kubernetes",
     "description": "Displays Kubernetes context",
     "icon": "Settings",
-    "defaultTemplate": " {{ .Context }}{{ if .Namespace }}::{{ .Namespace }}{{ end }} "
+    "defaultTemplate": " {{ .Context }}{{ if .Namespace }}::{{ .Namespace }}{{ end }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#326CE5",
+    "previewText": "prod-cluster::default"
   },
   {
     "type": "pulumi",
     "name": "Pulumi",
     "description": "Displays Pulumi stack information",
     "icon": "\ud83c\udf9b\ufe0f",
-    "defaultTemplate": " {{ .Stack }} "
+    "defaultTemplate": " {{ .Stack }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8A3391",
+    "previewText": "dev"
   },
   {
     "type": "cds",
     "name": "SAP CDS",
     "description": "Displays SAP CDS version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Full }} "
+    "defaultTemplate": " {{ .Full }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0FAAFF",
+    "previewText": "7.5.2"
   },
   {
     "type": "sitecore",
     "name": "Sitecore",
     "description": "Displays Sitecore environment",
     "icon": "Globe",
-    "defaultTemplate": " {{ .Name }} "
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#EB1F1F",
+    "previewText": "Production"
   },
   {
     "type": "terraform",
     "name": "Terraform",
     "description": "Displays Terraform workspace",
     "icon": "\ud83c\udfd7\ufe0f",
-    "defaultTemplate": " {{ .WorkspaceName }} "
+    "defaultTemplate": " {{ .WorkspaceName }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#7B42BC",
+    "previewText": "production"
   }
 ]

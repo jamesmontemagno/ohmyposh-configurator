@@ -4,20 +4,29 @@
     "name": "Nightscout",
     "description": "Displays Nightscout glucose data",
     "icon": "Syringe",
-    "defaultTemplate": " {{ .Sgv }}{{ .TrendIcon }} "
+    "defaultTemplate": " {{ .Sgv }}{{ .TrendIcon }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#E74C3C",
+    "previewText": "120↗"
   },
   {
     "type": "strava",
     "name": "Strava",
     "description": "Displays Strava activity data",
     "icon": "PersonStanding",
-    "defaultTemplate": " {{ .Ago }} "
+    "defaultTemplate": " {{ .Ago }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#FC4C02",
+    "previewText": "2h ago"
   },
   {
     "type": "withings",
     "name": "Withings",
     "description": "Displays Withings activity data",
     "icon": "Heart",
-    "defaultTemplate": " {{ .Steps }} "
+    "defaultTemplate": " {{ .Steps }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#03DAC6",
+    "previewText": "8,542"
   }
 ]

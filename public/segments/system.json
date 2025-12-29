@@ -4,97 +4,139 @@
     "name": "Battery",
     "description": "Displays battery status and percentage",
     "icon": "Battery",
-    "defaultTemplate": " {{ .Icon }}{{ .Percentage }}% "
+    "defaultTemplate": " {{ .Icon }}{{ .Percentage }}% ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#f36943",
+    "previewText": "🔋85%"
   },
   {
     "type": "connection",
     "name": "Connection",
     "description": "Displays network connection info",
     "icon": "Globe",
-    "defaultTemplate": " {{ .Name }} "
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#40c4ff",
+    "previewText": "WiFi"
   },
   {
     "type": "executiontime",
     "name": "Execution Time",
     "description": "Displays last command execution time",
     "icon": "Timer",
-    "defaultTemplate": " {{ .FormattedMs }} "
+    "defaultTemplate": " {{ .FormattedMs }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8800dd",
+    "previewText": "2.3s"
   },
   {
     "type": "os",
     "name": "Operating System",
     "description": "Displays the current operating system",
     "icon": "Monitor",
-    "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+    "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#546E7A",
+    "previewText": "🪟"
   },
   {
     "type": "path",
     "name": "Path",
     "description": "Displays the current working directory",
     "icon": "Folder",
-    "defaultTemplate": " {{ .Path }} "
+    "defaultTemplate": " {{ .Path }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#61AFEF",
+    "previewText": "~/projects/app"
   },
   {
     "type": "project",
     "name": "Project",
     "description": "Displays project name and version",
     "icon": "Package",
-    "defaultTemplate": " {{ .Name }} {{ .Version }} "
+    "defaultTemplate": " {{ .Name }} {{ .Version }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#7E57C2",
+    "previewText": "my-app 1.0.0"
   },
   {
     "type": "root",
     "name": "Root",
     "description": "Indicates if running as root/admin",
     "icon": "Zap",
-    "defaultTemplate": " \u26a1 "
+    "defaultTemplate": " \u26a1 ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#ffcc00",
+    "previewText": "⚡"
   },
   {
     "type": "session",
     "name": "Session",
     "description": "Displays user and host information",
     "icon": "User",
-    "defaultTemplate": " {{ .UserName }}@{{ .HostName }} "
+    "defaultTemplate": " {{ .UserName }}@{{ .HostName }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#c678dd",
+    "previewText": "user@laptop"
   },
   {
     "type": "shell",
     "name": "Shell",
     "description": "Displays the current shell name",
     "icon": "Terminal",
-    "defaultTemplate": " {{ .Name }} "
+    "defaultTemplate": " {{ .Name }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0077c2",
+    "previewText": "pwsh"
   },
   {
     "type": "status",
     "name": "Status",
     "description": "Displays exit code of last command",
     "icon": "CheckCircle",
-    "defaultTemplate": " {{ .String }} "
+    "defaultTemplate": " {{ .String }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#00897b",
+    "previewText": "✓"
   },
   {
     "type": "sysinfo",
     "name": "System Info",
     "description": "Displays system information (CPU, memory)",
     "icon": "BarChart",
-    "defaultTemplate": " {{ round .PhysicalPercentUsed .Precision }}% "
+    "defaultTemplate": " {{ round .PhysicalPercentUsed .Precision }}% ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#e91e63",
+    "previewText": "42%"
   },
   {
     "type": "text",
     "name": "Text",
     "description": "Displays custom static text",
     "icon": "FileText",
-    "defaultTemplate": " hello "
+    "defaultTemplate": " hello ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#546E7A",
+    "previewText": "hello"
   },
   {
     "type": "time",
     "name": "Time",
     "description": "Displays current date/time",
     "icon": "Clock",
-    "defaultTemplate": " {{ .CurrentDate | date \"15:04:05\" }} "
+    "defaultTemplate": " {{ .CurrentDate | date \"15:04:05\" }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#2e9599",
+    "previewText": "14:32:15"
   },
   {
     "type": "upgrade",
     "name": "Upgrade",
     "description": "Shows if Oh My Posh update is available",
     "icon": "ArrowUp",
-    "defaultTemplate": " {{ .Version }} "
+    "defaultTemplate": " {{ .Version }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#4CAF50",
+    "previewText": "v2.0.1"
   }
 ]
