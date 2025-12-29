@@ -4,10 +4,12 @@ import { Canvas } from './components/Canvas';
 import { PropertiesPanel } from './components/PropertiesPanel';
 import { PreviewPanel } from './components/PreviewPanel';
 import { ExportBar } from './components/ExportBar';
+import { ScreenSizeWarning } from './components/ScreenSizeWarning';
 
 function App() {
   return (
     <div className="flex flex-col h-screen bg-[#0f0f23]">
+      <ScreenSizeWarning />
       {/* Header */}
       <Header />
 
