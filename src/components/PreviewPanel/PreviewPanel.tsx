@@ -1,7 +1,7 @@
 import { Sun, Moon } from 'lucide-react';
 import { useConfigStore } from '../../store/configStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
-import type { Block, Segment } from '../../types/ohmyposh';
+import type { Block, Segment, SegmentStyle } from '../../types/ohmyposh';
 import { DynamicIcon } from '../DynamicIcon';
 
 // Mock data for preview
@@ -45,13 +45,17 @@ interface SegmentPreviewProps {
   nextBackground?: string;
   blockLeadingDiamond?: string;
   blockTrailingDiamond?: string;
+  prevStyle?: SegmentStyle;
 }
 
-function SegmentPreview({ segment, nextBackground, blockLeadingDiamond, blockTrailingDiamond }: SegmentPreviewProps) {
+function SegmentPreview({ segment, nextBackground, blockLeadingDiamond, blockTrailingDiamond, prevStyle }: SegmentPreviewProps) {
   const metadata = useSegmentMetadata(segment.type);
   const text = getPreviewText(segment, metadata);
   const bg = segment.background || '#61AFEF';
   const fg = segment.foreground || '#ffffff';
+
+  // Add negative margin if previous segment was powerline
+  const marginClass = prevStyle === 'powerline' ? '-ml-[2px]' : '';
 
   if (segment.style === 'powerline') {
     const powerlineSymbol = segment.powerline_symbol || DEFAULT_POWERLINE_SYMBOL;
@@ -60,7 +64,7 @@ function SegmentPreview({ segment, nextBackground, blockLeadingDiamond, blockTra
     const symbolBg = nextBackground || 'transparent';
     
     return (
-      <span className="inline-flex items-stretch -mr-[2px]">
+      <span className={`inline-flex items-stretch -mr-[2px] ${marginClass}`}>
         <span
           style={{ backgroundColor: bg, color: fg }}
           className="px-2 py-1 inline-flex items-center gap-1.5"
@@ -88,7 +92,7 @@ function SegmentPreview({ segment, nextBackground, blockLeadingDiamond, blockTra
     const trailingDiamond = segment.trailing_diamond || blockTrailingDiamond || DEFAULT_TRAILING_DIAMOND;
     
     return (
-      <span className="inline-flex items-stretch -mx-[2px]">
+      <span className={`inline-flex items-stretch -mx-[2px] ${marginClass}`}>
         {/* Leading diamond */}
         <span 
           className="nerd-font-symbol inline-flex items-center"
@@ -124,7 +128,7 @@ function SegmentPreview({ segment, nextBackground, blockLeadingDiamond, blockTra
   return (
     <span
       style={{ backgroundColor: bg, color: fg }}
-      className="px-2 py-1 rounded inline-flex items-center gap-1.5"
+      className={`px-2 py-1 rounded inline-flex items-center gap-1.5 ${marginClass}`}
     >
       {metadata?.icon && <DynamicIcon name={metadata.icon} size={14} />}
       <span>{text}</span>
@@ -154,6 +158,7 @@ function BlockPreview({ block }: BlockPreviewProps) {
           nextBackground={index < block.segments.length - 1 ? block.segments[index + 1].background : undefined}
           blockLeadingDiamond={block.leading_diamond}
           blockTrailingDiamond={block.trailing_diamond}
+          prevStyle={index > 0 ? block.segments[index - 1].style : undefined}
         />
       ))}
     </div>
