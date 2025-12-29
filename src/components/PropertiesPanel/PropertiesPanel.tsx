@@ -1,6 +1,6 @@
 import { Settings, Palette, Code, Sliders } from 'lucide-react';
 import { useConfigStore, getSelectedSegment, findBlockForSegment } from '../../store/configStore';
-import { getSegmentMetadata } from '../../utils/segmentLoader';
+import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import type { Segment, SegmentStyle, Block, BlockType, BlockAlignment } from '../../types/ohmyposh';
 
 const segmentStyles: { value: SegmentStyle; label: string }[] = [
@@ -47,6 +47,7 @@ function SegmentProperties() {
 
   const segment = getSelectedSegment(config, selectedSegmentId);
   const block = segment ? findBlockForSegment(config, segment.id) : undefined;
+  const metadata = useSegmentMetadata(segment?.type || '');
 
   if (!segment || !block) {
     return (
@@ -56,8 +57,6 @@ function SegmentProperties() {
       </div>
     );
   }
-
-  const metadata = getSegmentMetadata(segment.type);
 
   const handleUpdate = (updates: Partial<Segment>) => {
     updateSegment(block.id, segment.id, updates);

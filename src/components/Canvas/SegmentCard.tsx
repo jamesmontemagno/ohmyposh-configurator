@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { X, GripVertical } from 'lucide-react';
 import type { Segment } from '../../types/ohmyposh';
-import { getSegmentMetadata } from '../../utils/segmentLoader';
+import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import { DynamicIcon } from '../DynamicIcon';
 
 interface SegmentCardProps {
@@ -20,7 +20,7 @@ export function SegmentCard({
   onRemove,
   isDragging,
 }: SegmentCardProps) {
-  const metadata = getSegmentMetadata(segment.type);
+  const metadata = useSegmentMetadata(segment.type);
 
   return (
     <div

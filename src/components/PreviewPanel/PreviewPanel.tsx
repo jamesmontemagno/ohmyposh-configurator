@@ -1,6 +1,6 @@
 import { Sun, Moon } from 'lucide-react';
 import { useConfigStore } from '../../store/configStore';
-import { getSegmentMetadata } from '../../utils/segmentLoader';
+import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import type { Block, Segment } from '../../types/ohmyposh';
 import { DynamicIcon } from '../DynamicIcon';
 
@@ -25,9 +25,7 @@ const mockData: Record<string, string> = {
   terraform: 'production',
 };
 
-function getPreviewText(segment: Segment): string {
-  const metadata = getSegmentMetadata(segment.type);
-  
+function getPreviewText(segment: Segment, metadata?: { name: string }): string {
   // Try to use mock data
   if (mockData[segment.type]) {
     return mockData[segment.type];
@@ -45,8 +43,8 @@ interface SegmentPreviewProps {
 }
 
 function SegmentPreview({ segment, isLast }: SegmentPreviewProps) {
-  const text = getPreviewText(segment);
-  const metadata = getSegmentMetadata(segment.type);
+  const metadata = useSegmentMetadata(segment.type);
+  const text = getPreviewText(segment, metadata);
   const bg = segment.background || '#61AFEF';
   const fg = segment.foreground || '#ffffff';
 

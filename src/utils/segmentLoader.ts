@@ -15,6 +15,30 @@ interface SegmentJSON {
 // Cache for loaded segments
 const segmentCache = new Map<SegmentCategory, SegmentMetadata[]>();
 
+// Track loading state and subscribers
+let isLoaded = false;
+const subscribers = new Set<() => void>();
+
+/**
+ * Subscribe to segment loading completion
+ * Returns an unsubscribe function
+ */
+export function subscribeToSegmentLoad(callback: () => void): () => void {
+  subscribers.add(callback);
+  // If already loaded, call immediately
+  if (isLoaded) {
+    callback();
+  }
+  return () => subscribers.delete(callback);
+}
+
+/**
+ * Notify all subscribers that segments have been loaded
+ */
+function notifySubscribers(): void {
+  subscribers.forEach(callback => callback());
+}
+
 /**
  * Load segments for a specific category from JSON file
  */
@@ -58,17 +82,23 @@ export async function loadAllSegments(): Promise<SegmentMetadata[]> {
     SEGMENT_CATEGORIES.map(category => loadSegmentCategory(category))
   );
   
+  isLoaded = true;
+  notifySubscribers();
+  
   return allSegments.flat();
 }
 
 /**
  * Preload all segment categories in parallel
  */
-export function preloadSegments(): void {
-  // Fire and forget - loads all segments into cache
-  loadAllSegments().catch(error => {
-    console.error('Error preloading segments:', error);
-  });
+export function preloadSegments(): Promise<SegmentMetadata[]> {
+  // Return existing promise if already loading
+  if (isLoaded) {
+    return Promise.resolve(Array.from(segmentCache.values()).flat());
+  }
+  
+  // Start loading and return promise
+  return loadAllSegments();
 }
 
 /**
@@ -103,4 +133,11 @@ export function getSegmentMetadata(type: string): SegmentMetadata | undefined {
  */
 export function getSegmentsByCategory(category: string): SegmentMetadata[] {
   return segmentCache.get(category as SegmentCategory) || [];
+}
+
+/**
+ * Check if segments are loaded
+ */
+export function areSegmentsLoaded(): boolean {
+  return isLoaded;
 }

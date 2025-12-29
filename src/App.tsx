@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Header } from './components/Header';
 import { SegmentPicker } from './components/SegmentPicker';
 import { Canvas } from './components/Canvas';
@@ -5,8 +6,14 @@ import { PropertiesPanel } from './components/PropertiesPanel';
 import { PreviewPanel } from './components/PreviewPanel';
 import { ExportBar } from './components/ExportBar';
 import { ScreenSizeWarning } from './components/ScreenSizeWarning';
+import { preloadSegments } from './utils/segmentLoader';
 
 function App() {
+  // Preload all segments on app mount for better UX
+  useEffect(() => {
+    preloadSegments();
+  }, []);
+
   return (
     <div className="flex flex-col h-screen bg-[#0f0f23]">
       <ScreenSizeWarning />
