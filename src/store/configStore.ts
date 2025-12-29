@@ -16,6 +16,7 @@ interface ConfigState {
   // Actions
   setConfig: (config: OhMyPoshConfig) => void;
   resetConfig: () => void;
+  updateGlobalConfig: (updates: Partial<OhMyPoshConfig>) => void;
 
   // Block actions
   addBlock: (block?: Partial<Block>) => void;
@@ -107,6 +108,14 @@ export const useConfigStore = create<ConfigState>()(
           selectedBlockId: null,
           selectedSegmentId: null,
         }),
+
+      updateGlobalConfig: (updates) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            ...updates,
+          },
+        })),
 
       addBlock: (block) =>
         set((state) => ({

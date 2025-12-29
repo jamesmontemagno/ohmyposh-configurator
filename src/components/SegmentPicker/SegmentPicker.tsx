@@ -82,6 +82,7 @@ export function SegmentPicker() {
   const [segmentsByCategory, setSegmentsByCategory] = useState<Record<string, SegmentMetadata[]>>({});
   const [isLoading, setIsLoading] = useState(true);
   const config = useConfigStore((state) => state.config);
+  const selectedBlockId = useConfigStore((state) => state.selectedBlockId);
   const addSegment = useConfigStore((state) => state.addSegment);
 
   // Load segments on mount
@@ -126,8 +127,8 @@ export function SegmentPicker() {
   }, [searchQuery, allSegments]);
 
   const handleAddSegment = (metadata: SegmentMetadata) => {
-    // Find the first block to add to, or create one if none exist
-    const targetBlock = config.blocks[0];
+    // Add to the selected block, or the first block if none selected
+    const targetBlock = config.blocks.find((b) => b.id === selectedBlockId) || config.blocks[0];
     if (!targetBlock) return;
 
     const newSegment: Segment = {
