@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Nerd Font for powerline symbols - using a CDN-hosted version */
+@font-face {
+  font-family: 'Symbols Nerd Font';
+  src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.5;
@@ -22,4 +31,14 @@ body {
 #root {
   width: 100%;
   height: 100vh;
+}
+
+/* Nerd Font symbol styling for preview */
+.nerd-font-symbol {
+  font-family: 'Symbols Nerd Font', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
+  font-size: 1.4em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
 }

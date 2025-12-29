@@ -17,7 +17,7 @@
           {
             "type": "path",
             "style": "plain",
-            "foreground": "#26C6DA",
+            "foreground": "#61AFEF",
             "template": "{{ .Path }} ",
             "properties": {
               "style": "folder"
@@ -26,15 +26,15 @@
           {
             "type": "git",
             "style": "plain",
-            "foreground": "#B388FF",
+            "foreground": "#98C379",
             "template": "on \ue725 {{ .HEAD }} "
           },
           {
             "type": "status",
             "style": "plain",
-            "foreground": "#ffffff",
+            "foreground": "#56B6C2",
             "foreground_templates": [
-              "{{ if gt .Code 0 }}#FF5252{{ end }}"
+              "{{ if gt .Code 0 }}#E06C75{{ end }}"
             ],
             "template": "{{ if gt .Code 0 }}✗{{ else }}✓{{ end }} ",
             "properties": {

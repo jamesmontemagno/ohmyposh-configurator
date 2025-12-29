@@ -40,7 +40,7 @@
             "style": "powerline",
             "powerline_symbol": "\ue0b0",
             "foreground": "#ffffff",
-            "background": "#95e1d3",
+            "background": "#3fb8af",
             "template": " \ue725 {{ .HEAD }} "
           }
         ]

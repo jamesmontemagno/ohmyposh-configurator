@@ -40,14 +40,14 @@
             "style": "powerline",
             "powerline_symbol": "\ue0b0",
             "foreground": "#ffffff",
-            "background": "#95ffa4",
+            "background": "#4eca6a",
             "foreground_templates": [
               "{{ if or (.Working.Changed) (.Staging.Changed) }}#000000{{ end }}",
               "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}",
               "{{ if gt .Ahead 0 }}#ffffff{{ end }}"
             ],
             "background_templates": [
-              "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffeb95{{ end }}",
+              "{{ if or (.Working.Changed) (.Staging.Changed) }}#f4d03f{{ end }}",
               "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}",
               "{{ if gt .Ahead 0 }}#89d1dc{{ end }}"
             ],

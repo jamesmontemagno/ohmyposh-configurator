@@ -28,7 +28,7 @@ export function SegmentCard({
         isDragging
           ? 'opacity-90 shadow-lg scale-105'
           : isSelected
-          ? 'ring-2 ring-[#e94560]'
+          ? 'ring-[3px] ring-[#e94560]'
           : 'hover:ring-1 hover:ring-gray-500'
       }`}
       style={{
