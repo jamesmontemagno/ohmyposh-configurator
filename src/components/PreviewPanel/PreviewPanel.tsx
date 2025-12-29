@@ -30,8 +30,13 @@ const DEFAULT_POWERLINE_SYMBOL = '\ue0b0';
 const DEFAULT_LEADING_DIAMOND = '\ue0b6';
 const DEFAULT_TRAILING_DIAMOND = '\ue0b4';
 
-function getPreviewText(segment: Segment, metadata?: { name: string }): string {
-  // Try to use mock data
+function getPreviewText(segment: Segment, metadata?: { name: string; previewText?: string }): string {
+  // First priority: use previewText from metadata if available
+  if (metadata?.previewText) {
+    return metadata.previewText;
+  }
+  
+  // Second priority: try to use mock data
   if (mockData[segment.type]) {
     return mockData[segment.type];
   }
