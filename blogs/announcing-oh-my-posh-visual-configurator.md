@@ -2,7 +2,7 @@
 
 If you've ever spent way too much time digging through JSON files trying to get your terminal prompt *just right*, this post is for you. I'm incredibly excited to share something I've been working on: the **Oh My Posh Visual Configurator**—a web-based drag-and-drop builder that makes creating beautiful terminal prompts actually fun (yes, really!).
 
-![Oh My Posh Configurator Main Interface](https://github.com/user-attachments/assets/86ee9e8d-7e4a-403a-9bf1-bd50b657b9d2)
+![Oh My Posh Configurator Main Interface](images/main-interface.png)
 *The main interface showing the segment picker, configuration canvas, and live preview*
 
 ## The Problem We All Know Too Well
@@ -38,11 +38,14 @@ The left sidebar gives you access to every segment Oh My Posh supports, organize
 - **CLI Tools**: NPM, Yarn, Angular, React, Flutter
 - **And more**: Music players, health trackers, weather widgets
 
+![Segment Categories](images/segments-expanded.png)
+*The Languages category expanded showing 26+ programming language segments*
+
 #### 🖱️ Drag-and-Drop Interface
 
 Just click a segment to add it to your prompt, or drag it exactly where you want it. Reordering is as simple as dragging segments around. Want to move that Git status before your path? Just drag it there!
 
-![Properties Panel](https://github.com/user-attachments/assets/6a644ff7-e698-4306-8d8a-60a92a52928c)
+![Properties Panel](images/properties-panel.png)
 *Click any segment to customize its colors, style, and template*
 
 #### ⚡ Live Preview
@@ -66,10 +69,16 @@ Already have an Oh My Posh config? Import it! The configurator supports JSON, YA
 
 One of my favorite features is **community sharing**. Found the perfect configuration? Share it with everyone!
 
+![Theme Library](images/sample-configs-dialog.png)
+*Browse official samples and community-contributed themes*
+
 1. Click the **Share** button in the header
 2. Fill in your theme details—name, description, tags
 3. Submit your configuration
 4. Your theme appears in the Community collection for others to use
+
+![Share Configuration Dialog](images/share-dialog.png)
+*Easy-to-use sharing dialog with step-by-step instructions*
 
 This means you can browse themes created by other developers, try them instantly in the configurator, and tweak them to match your style. The community grows together!
 
@@ -156,6 +165,9 @@ Not sure where to begin? We've included 6 professional sample configurations:
 - **Full Featured**: All the bells and whistles
 - **Powerline Classic**: Traditional powerline style
 - **Diamond Style**: Rounded segment separators
+
+![Community Themes](images/community-themes.png)
+*Community-contributed themes available in the Theme Library*
 
 Load any of these from the Sample Picker and customize from there!
 
