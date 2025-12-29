@@ -1,0 +1,16 @@
+/* TEAM */
+Creator: James Montemagno
+Site: https://github.com/jamesmontemagno
+Twitter: @jamesmontemagno
+Location: USA
+
+/* THANKS */
+Oh My Posh: Jan De Dobbeleer
+Site: https://ohmyposh.dev
+
+/* SITE */
+Last update: 2025/12/29
+Standards: HTML5, CSS3, JavaScript ES2020
+Components: React 19, TypeScript, Vite, Tailwind CSS
+Software: Visual Studio Code, GitHub Copilot
+Fonts: Fira Code

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0f3460;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-gradient)"/>
+  
+  <!-- Terminal window -->
+  <rect x="150" y="150" width="900" height="330" rx="12" fill="#1a1a2e" stroke="#0f3460" stroke-width="2"/>
+  
+  <!-- Terminal header -->
+  <rect x="150" y="150" width="900" height="40" rx="12" fill="#0f3460"/>
+  <circle cx="175" cy="170" r="6" fill="#e94560"/>
+  <circle cx="195" cy="170" r="6" fill="#f39c12"/>
+  <circle cx="215" cy="170" r="6" fill="#2ecc71"/>
+  
+  <!-- Prompt simulation -->
+  <text x="180" y="235" font-family="monospace" font-size="28" font-weight="600" fill="#e94560">$</text>
+  <text x="210" y="235" font-family="monospace" font-size="28" fill="#ffffff">oh-my-posh</text>
+  
+  <!-- Segments preview -->
+  <rect x="180" y="260" width="140" height="40" fill="#0f3460"/>
+  <text x="195" y="285" font-family="monospace" font-size="20" fill="#ffffff">~/dev</text>
+  
+  <path d="M 320 260 L 335 280 L 320 300 Z" fill="#e94560"/>
+  <rect x="320" y="260" width="160" height="40" fill="#e94560"/>
+  <text x="335" y="285" font-family="monospace" font-size="20" fill="#ffffff">main ✓</text>
+  
+  <path d="M 480 260 L 495 280 L 480 300 Z" fill="#2ecc71"/>
+  <rect x="480" y="260" width="120" height="40" fill="#2ecc71"/>
+  <text x="495" y="285" font-family="monospace" font-size="20" fill="#ffffff">node</text>
+  
+  <!-- Title -->
+  <text x="600" y="380" font-family="system-ui, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle">Oh My Posh</text>
+  <text x="600" y="430" font-family="system-ui, sans-serif" font-size="36" fill="#e94560" text-anchor="middle">Visual Configurator</text>
+</svg>

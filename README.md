@@ -1,19 +1,39 @@
-# Oh My Posh Visual Configuration Builder
+# Oh My Posh Visual Configurator ✨
 
-A web-based visual configuration tool for creating [Oh My Posh](https://ohmyposh.dev/) shell prompt themes.
+<div align="center">
 
-![Oh My Posh Configurator](https://img.shields.io/badge/Oh%20My%20Posh-Configurator-e94560)
+![Oh My Posh Configurator](https://img.shields.io/badge/Oh%20My%20Posh-Visual%20Configurator-e94560?style=for-the-badge)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://jamesmontemagno.github.io/ohmyposh-configurator/)
 
-## Features
+**Design beautiful terminal prompts without touching configuration files**
 
-- 🎨 **Visual Segment Picker**: Browse and select from 80+ available segments organized by category
-- 🖱️ **Drag-and-Drop**: Easily reorder segments within blocks
-- 🎛️ **Properties Panel**: Configure segment styles, colors, and templates
-- 👁️ **Live Preview**: See your prompt changes in real-time with dark/light background toggle
-- 📦 **Multi-format Export**: Export your configuration as JSON, YAML, or TOML
-- 💾 **Auto-save**: Your work is automatically saved to browser local storage
+[🚀 Launch App](https://jamesmontemagno.github.io/ohmyposh-configurator/) • [📖 Documentation](https://ohmyposh.dev/docs/) • [💬 Discussions](https://github.com/jamesmontemagno/ohmyposh-configurator/discussions)
 
-## Segment Categories
+</div>
+
+---
+
+## 🎯 What is Oh My Posh Configurator?
+
+The **Oh My Posh Visual Configurator** is a modern, intuitive web application that lets you design and customize your terminal prompt visually. No more manual JSON editing or trial-and-error configuration—just drag, drop, customize, and export!
+
+Perfect for developers, DevOps engineers, and anyone who wants a beautiful, informative terminal prompt for PowerShell, Bash, Zsh, Fish, or any shell supported by [Oh My Posh](https://ohmyposh.dev/).
+
+## ✨ Features
+
+- 🎨 **103+ Segments**: Browse comprehensive segment library organized in 8 categories
+- 🖱️ **Drag & Drop Interface**: Intuitive visual editor with real-time updates
+- ⚡ **Live Preview**: See your prompt instantly with sample data and powerline/diamond styles
+- 🎛️ **Full Customization**: Configure colors, templates, styles, and alignment
+- 📦 **Import & Export**: Support for JSON, YAML, and TOML formats
+- 💾 **Auto-Save**: Never lose your work with automatic browser storage
+- 🎯 **Sample Configs**: Start quickly with 6 pre-built professional templates
+- 🌐 **100% Client-Side**: Your configurations never leave your browser
+- 📱 **Responsive Design**: Works on desktop, tablet, and mobile devices
+- 🎨 **Smart Color Schemes**: Category-based default colors for quick setup
+
+## 🗂️ Segment Categories
 
 - **System**: Path, OS, Shell, Session, Battery, Time, Execution Time, Status, and more
 - **Version Control**: Git, Mercurial, SVN, Fossil, Plastic SCM, Sapling, Jujutsu
@@ -24,13 +44,15 @@ A web-based visual configuration tool for creating [Oh My Posh](https://ohmyposh
 - **Music**: Spotify, YouTube Music, Last.fm
 - **Health**: Nightscout, Strava, Withings
 
-## Getting Started
+## 🚀 Getting Started
 
-### Online
+### 🌐 Use Online (Recommended)
 
-Visit the hosted version at: [https://jamesmontemagno.github.io/ohmyposh-configurator/](https://jamesmontemagno.github.io/ohmyposh-configurator/)
+No installation required! Visit the hosted version:
 
-### Local Development
+**👉 [https://jamesmontemagno.github.io/ohmyposh-configurator/](https://jamesmontemagno.github.io/ohmyposh-configurator/)**
+
+### 💻 Local Development
 
 ```bash
 # Clone the repository
@@ -47,14 +69,35 @@ npm run dev
 npm run build
 ```
 
-## Usage
+## 📖 Usage
 
-1. **Add Segments**: Click on segments in the left sidebar or drag them to a block
-2. **Configure**: Click on a segment to edit its properties (style, colors, template)
-3. **Preview**: See your changes reflected instantly in the preview panel
-4. **Export**: Choose your format (JSON, YAML, TOML) and download your configuration
+### Quick Start Guide
 
-## Using Your Configuration
+1. **🎯 Choose a Starting Point**
+   - Start from scratch, or
+   - Load a sample configuration, or
+   - Import your existing Oh My Posh config
+
+2. **➕ Add Segments**
+   - Browse categories in the left sidebar
+   - Click segments to add them to your prompt
+   - Or drag them directly to desired positions
+
+3. **🎨 Customize**
+   - Click any segment to edit properties
+   - Adjust colors, styles, and templates
+   - Configure powerline, diamond, or plain styles
+
+4. **👀 Preview**
+   - See changes instantly in the preview panel
+   - Toggle between dark and light backgrounds
+   - View powerline arrows and diamond shapes
+
+5. **💾 Export**
+   - Choose your format: JSON, YAML, or TOML
+   - Download and use with Oh My Posh
+
+### 🔧 Using Your Configuration
 
 After downloading your configuration file, follow the [Oh My Posh installation guide](https://ohmyposh.dev/docs/installation/customize) to use it with your shell:
 
@@ -69,17 +112,31 @@ eval "$(oh-my-posh init bash --config ~/your-theme.json)"
 eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 ```
 
-## Technology Stack
+## 🛠️ Technology Stack
 
-- **Framework**: React 19
-- **Build Tool**: Vite
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Drag & Drop**: @dnd-kit
-- **State Management**: Zustand
-- **Icons**: Lucide React
+- **⚛️ Framework**: React 19 with TypeScript
+- **⚡ Build Tool**: Vite 6.4
+- **🎨 Styling**: Tailwind CSS 4.1
+- **🖱️ Drag & Drop**: @dnd-kit
+- **💾 State Management**: Zustand with persistence
+- **🎯 Icons**: Lucide React (500+ icons)
+- **📝 Config Parsing**: js-yaml, @iarna/toml
 
-## Documentation
+## 🔍 SEO & Sharing
+
+This project includes comprehensive SEO optimization:
+- ✅ Structured data (JSON-LD) for search engines
+- ✅ Open Graph tags for rich social media previews
+- ✅ Twitter Card support
+- ✅ PWA manifest for "Add to Home Screen"
+- ✅ Sitemap and robots.txt
+- ✅ Semantic HTML with proper meta tags
+
+## 🌟 Keywords
+
+`oh my posh`, `terminal customization`, `shell prompt`, `powerline`, `prompt theme`, `terminal theme`, `powershell prompt`, `zsh theme`, `bash prompt`, `terminal configurator`, `visual editor`, `drag and drop`, `oh-my-posh builder`, `prompt generator`
+
+## 📚 Documentation
 
 - [Oh My Posh Documentation](https://ohmyposh.dev/docs/)
 - [Configuration Overview](https://ohmyposh.dev/docs/configuration/overview)
