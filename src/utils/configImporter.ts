@@ -108,6 +108,8 @@ function normalizeConfig(config: any): OhMyPoshConfig {
       trailing_diamond: block.trailing_diamond,
       overflow: block.overflow,
       filler: block.filler,
+      force: block.force,
+      index: block.index,
       segments: normalizedSegments,
     };
   });

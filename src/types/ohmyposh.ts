@@ -149,6 +149,8 @@ export interface Block {
   trailing_diamond?: string;
   overflow?: 'break' | 'hide';
   filler?: string;
+  force?: boolean;
+  index?: number;
   segments: Segment[];
 }
 

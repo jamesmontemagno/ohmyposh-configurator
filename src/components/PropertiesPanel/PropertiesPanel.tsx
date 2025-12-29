@@ -233,6 +233,40 @@ function BlockProperties() {
         </div>
       )}
 
+      {block.alignment === 'right' && (
+        <div>
+          <label className="text-xs text-gray-400">Overflow</label>
+          <select
+            value={block.overflow || ''}
+            onChange={(e) => handleUpdate({ overflow: e.target.value as 'break' | 'hide' | undefined || undefined })}
+            className="w-full mt-1 px-2 py-1.5 text-sm bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+          >
+            <option value="">Default (same line)</option>
+            <option value="break">Break to new line</option>
+            <option value="hide">Hide</option>
+          </select>
+          <p className="text-xs text-gray-500 mt-1">
+            Behavior when right block overflows left block
+          </p>
+        </div>
+      )}
+
+      {block.alignment === 'right' && (
+        <div>
+          <label className="text-xs text-gray-400">Filler</label>
+          <input
+            type="text"
+            value={block.filler || ''}
+            onChange={(e) => handleUpdate({ filler: e.target.value || undefined })}
+            placeholder="e.g., . or -"
+            className="w-full mt-1 px-2 py-1.5 text-sm bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            Character(s) to fill space between left and right blocks
+          </p>
+        </div>
+      )}
+
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
@@ -242,8 +276,64 @@ function BlockProperties() {
           className="rounded bg-[#0f0f23] border-[#0f3460]"
         />
         <label htmlFor="newline" className="text-xs text-gray-300">
-          Add newline after block
+          Start on new line
         </label>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id="force"
+          checked={block.force || false}
+          onChange={(e) => handleUpdate({ force: e.target.checked })}
+          className="rounded bg-[#0f0f23] border-[#0f3460]"
+        />
+        <label htmlFor="force" className="text-xs text-gray-300">
+          Force render (even if all segments empty)
+        </label>
+      </div>
+
+      <div>
+        <label className="text-xs text-gray-400">Leading Diamond</label>
+        <input
+          type="text"
+          value={block.leading_diamond || ''}
+          onChange={(e) => handleUpdate({ leading_diamond: e.target.value || undefined })}
+          placeholder="e.g., "
+          className="w-full mt-1 px-2 py-1.5 text-sm bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Leading diamond for the first segment in the block
+        </p>
+      </div>
+
+      <div>
+        <label className="text-xs text-gray-400">Trailing Diamond</label>
+        <input
+          type="text"
+          value={block.trailing_diamond || ''}
+          onChange={(e) => handleUpdate({ trailing_diamond: e.target.value || undefined })}
+          placeholder="e.g., "
+          className="w-full mt-1 px-2 py-1.5 text-sm bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Trailing diamond for the last segment in the block
+        </p>
+      </div>
+
+      <div>
+        <label className="text-xs text-gray-400">Index (for extends)</label>
+        <input
+          type="number"
+          min="1"
+          value={block.index || ''}
+          onChange={(e) => handleUpdate({ index: e.target.value ? parseInt(e.target.value, 10) : undefined })}
+          placeholder="1-based index"
+          className="w-full mt-1 px-2 py-1.5 text-sm bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+        />
+        <p className="text-xs text-gray-500 mt-1">
+          Used to override specific blocks in a base config
+        </p>
       </div>
     </div>
   );
