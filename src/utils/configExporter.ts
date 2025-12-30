@@ -32,10 +32,70 @@ function cleanBlock(block: Block): CleanedBlock {
 }
 
 export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
-  return {
-    ...config,
-    blocks: config.blocks.map(cleanBlock),
-  };
+  // Ensure global settings are always at the top in a consistent order
+  const {
+    blocks,
+    $schema,
+    version,
+    final_space,
+    console_title_template,
+    terminal_background,
+    accent_color,
+    enable_cursor_positioning,
+    shell_integration,
+    pwd,
+    tooltips,
+    transient_prompt,
+    valid_line,
+    error_line,
+    secondary_prompt,
+    debug_prompt,
+    palette,
+    palettes,
+    cycle,
+    var: configVar,
+    maps,
+  } = config;
+
+  // Build the cleaned config with explicit ordering
+  const cleanedConfig: any = {};
+
+  // Always add schema (default to official Oh My Posh schema)
+  cleanedConfig.$schema = $schema || 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json';
+  
+  // Add version (default to 2)
+  cleanedConfig.version = version !== undefined ? version : 2;
+
+  // Add global settings in a logical order (only if explicitly set)
+  if (final_space !== undefined) cleanedConfig.final_space = final_space;
+  if (console_title_template) cleanedConfig.console_title_template = console_title_template;
+  if (terminal_background) cleanedConfig.terminal_background = terminal_background;
+  if (accent_color) cleanedConfig.accent_color = accent_color;
+  if (enable_cursor_positioning) cleanedConfig.enable_cursor_positioning = enable_cursor_positioning;
+  if (shell_integration) cleanedConfig.shell_integration = shell_integration;
+  if (pwd) cleanedConfig.pwd = pwd;
+
+  // Add blocks (required)
+  cleanedConfig.blocks = blocks.map(cleanBlock);
+
+  // Add optional prompts and tooltips
+  if (tooltips && tooltips.length > 0) cleanedConfig.tooltips = tooltips;
+  if (transient_prompt) cleanedConfig.transient_prompt = transient_prompt;
+  if (valid_line) cleanedConfig.valid_line = valid_line;
+  if (error_line) cleanedConfig.error_line = error_line;
+  if (secondary_prompt) cleanedConfig.secondary_prompt = secondary_prompt;
+  if (debug_prompt) cleanedConfig.debug_prompt = debug_prompt;
+
+  // Add theme customization
+  if (palette) cleanedConfig.palette = palette;
+  if (palettes) cleanedConfig.palettes = palettes;
+  if (cycle) cleanedConfig.cycle = cycle;
+
+  // Add variables and maps
+  if (configVar) cleanedConfig.var = configVar;
+  if (maps) cleanedConfig.maps = maps;
+
+  return cleanedConfig as CleanedConfig;
 }
 
 export function exportToJson(config: OhMyPoshConfig): string {
