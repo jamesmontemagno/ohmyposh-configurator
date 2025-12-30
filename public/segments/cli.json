@@ -280,6 +280,16 @@
     "previewText": "🎮 2023.2.0"
   },
   {
+    "type": "winget",
+    "name": "WinGet",
+    "description": "Displays available Windows package updates",
+    "icon": "Download",
+    "defaultTemplate": " {{ .UpdateCount }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#0078D4",
+    "previewText": " 3"
+  },
+  {
     "type": "xmake",
     "name": "XMake",
     "description": "Displays XMake version",
