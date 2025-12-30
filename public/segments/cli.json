@@ -284,10 +284,10 @@
     "name": "WinGet",
     "description": "Displays available Windows package updates",
     "icon": "Package",
-    "defaultTemplate": " {{ .UpdateCount }} ",
+    "defaultTemplate": " \uf409 {{ .UpdateCount }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0078D4",
-    "previewText": "📦 3"
+    "previewText": "⬇️ 3"
   },
   {
     "type": "xmake",
