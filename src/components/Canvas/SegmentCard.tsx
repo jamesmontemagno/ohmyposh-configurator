@@ -32,8 +32,9 @@ export function SegmentCard({
           : 'hover:ring-1 hover:ring-gray-500'
       }`}
       style={{
-        backgroundColor: segment.background || '#61AFEF',
+        backgroundColor: segment.background || 'transparent',
         color: segment.foreground || '#ffffff',
+        border: !segment.background ? '1px solid rgba(255,255,255,0.2)' : 'none',
       }}
       onClick={(e) => {
         e.stopPropagation();
