@@ -20,6 +20,7 @@ function SegmentItem({ segment, onAdd }: SegmentItemProps) {
         e.dataTransfer.setData('segment-type', segment.type);
         e.dataTransfer.effectAllowed = 'copy';
       }}
+      title={`${segment.name}\n\n${segment.description}`}
     >
       <NerdIcon icon="ui-grip-vertical" size={14} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" />
       <NerdIcon icon={segment.icon} size={16} className="text-gray-400" />

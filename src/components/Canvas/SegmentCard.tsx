@@ -39,6 +39,7 @@ export function SegmentCard({
         e.stopPropagation();
         onSelect();
       }}
+      title={metadata ? `${metadata.name}\n\n${metadata.description}` : segment.type}
     >
       <NerdIcon icon="ui-grip-vertical" size={14} className="opacity-50 cursor-grab" />
       {metadata?.icon ? (
