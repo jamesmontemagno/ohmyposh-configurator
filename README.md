@@ -22,10 +22,11 @@ Perfect for developers, DevOps engineers, and anyone who wants a beautiful, info
 
 ## ✨ Features
 
-- 🎨 **103+ Segments**: Browse comprehensive segment library organized in 8 categories
+- 🎨 **103+ Segments**: Browse comprehensive segment library organized in 8 categories with detailed properties and options
 - 🖱️ **Drag & Drop Interface**: Intuitive visual editor with real-time updates
 - ⚡ **Live Preview**: See your prompt instantly with sample data and powerline/diamond styles
-- 🎛️ **Full Customization**: Configure colors, templates, styles, and alignment
+- 🎛️ **Full Customization**: Configure colors, templates, styles, and alignment with inline documentation
+- 📚 **Segment Documentation**: Built-in properties and options reference for every segment
 - 📦 **Import & Export**: Support for JSON, YAML, and TOML formats
 - 💾 **Auto-Save**: Never lose your work with automatic browser storage
 - 🎯 **Sample Configs**: Start quickly with 6 pre-built professional templates
@@ -133,34 +134,54 @@ eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 - **⚛️ Framework**: React 19 with TypeScript
 - **⚡ Build Tool**: Vite 6.4
 - **🎨 Styling**: Tailwind CSS 4.1
-- **🖱️ Drag & Drop**: @dnd-kit
-- **💾 State Management**: Zustand with persistence
-- **🎯 Icons**: Lucide React (500+ icons)
+- **🖱️ Drag & Drop**: @dnd-kit (sortable lists and cross-container support)
+- **💾 State Management**: Zustand with localStorage persistence
+- **🎯 Icons**: Lucide React (500+ icons) + Custom Nerd Font icons (200+)
 - **📝 Config Parsing**: js-yaml, @iarna/toml
-- **📦 Segment Loading**: Dynamic JSON-based lazy loading
+- **📦 Segment Loading**: Dynamic JSON-based lazy loading with caching
 
 ## 🏗️ Project Structure
 
 ```
 ├── public/
 │   ├── configs/          # Sample and community configurations
-│   └── segments/         # Segment metadata organized by category
-│       ├── system.json   # System-related segments
-│       ├── scm.json      # Version control segments
-│       ├── languages.json # Programming language segments
-│       ├── cloud.json    # Cloud provider segments
-│       ├── cli.json      # CLI tool segments
-│       ├── web.json      # Web-related segments
-│       ├── music.json    # Music player segments
-│       ├── health.json   # Health tracker segments
+│   │   ├── samples/      # 6 pre-built professional templates
+│   │   │   └── manifest.json  # Sample configs metadata
+│   │   └── community/    # User-contributed themes
+│   │       └── manifest.json  # Community configs metadata
+│   └── segments/         # Segment metadata organized by category (103+ segments)
+│       ├── system.json   # 14 system segments (path, battery, time, etc.)
+│       ├── scm.json      # 8 version control segments (git, svn, etc.)
+│       ├── languages.json # 26 programming language segments
+│       ├── cloud.json    # 12 cloud provider segments
+│       ├── cli.json      # 30 CLI tool segments
+│       ├── web.json      # 7 web-related segments
+│       ├── music.json    # 3 music player segments
+│       ├── health.json   # 3 health tracker segments
 │       └── README.md     # Documentation for adding segments
 ├── src/
-│   ├── components/       # React components
-│   ├── data/            # Configuration data
-│   ├── store/           # Zustand state management
-│   ├── types/           # TypeScript type definitions
-│   └── utils/           # Utility functions including segmentLoader
+│   ├── components/       # React components (11 component folders)
+│   │   ├── Canvas/       # Drag-and-drop prompt builder
+│   │   ├── SegmentPicker/ # Category browser with segments
+│   │   ├── PropertiesPanel/ # Segment properties and options editor
+│   │   ├── PreviewPanel/ # Live prompt preview
+│   │   └── ...
+│   ├── data/            # Configuration data and color schemes
+│   ├── store/           # Zustand state management with persistence
+│   ├── types/           # TypeScript type definitions (SegmentMetadata, etc.)
+│   ├── utils/           # Utility functions
+│   │   ├── segmentLoader.ts  # Dynamic segment loading with caching
+│   │   ├── configExporter.ts # Export to JSON/YAML/TOML
+│   │   └── unicode.ts   # Unicode escape handling
+│   └── constants/       # Nerd Font icons and other constants
+├── docs/                # Comprehensive documentation
+│   ├── config-migration-guide.md  # Guide for config structure updates
+│   ├── segment-json-migration.md  # Segment refactoring documentation
+│   ├── quick-reference.md         # Quick reference for contributors
+│   └── nerd-font-icons-reference.md # 200+ icon documentation
 └── scripts/             # Build and validation scripts
+    ├── validate-configs.js        # Config validation tool
+    └── README.md                  # Scripts documentation
 ```
 
 ### Adding New Segments
@@ -168,8 +189,35 @@ eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 Segments are now stored in separate JSON files by category in `public/segments/`. This makes it easy to add or modify segments without touching the codebase:
 
 1. Open the appropriate category file (e.g., `public/segments/languages.json`)
-2. Add your segment with type, name, description, icon, and defaultTemplate
-3. Segments are loaded dynamically on demand for better performance
+2. Add your segment with the following structure:
+   ```json
+   {
+     "type": "segment-type",
+     "name": "Display Name",
+     "description": "Brief description",
+     "icon": "LucideIconName",
+     "defaultTemplate": " {{ .Property }} ",
+     "properties": [
+       {
+         "name": ".Property",
+         "type": "string",
+         "description": "Description of this template variable"
+       }
+     ],
+     "options": [
+       {
+         "name": "option_name",
+         "type": "boolean",
+         "default": true,
+         "description": "What this option does"
+       }
+     ]
+   }
+   ```
+3. **Properties** are template variables available in `{{ }}` templates (e.g., `.Full`, `.Path`)
+4. **Options** are segment configuration settings (e.g., `home_enabled`, `fetch_version`)
+5. Segments are loaded dynamically on demand for better performance
+6. Colors are applied automatically from category-based color schemes
 
 See [public/segments/README.md](public/segments/README.md) for detailed instructions.
 
@@ -189,10 +237,22 @@ This project includes comprehensive SEO optimization:
 
 ## 📚 Documentation
 
+### User Documentation
 - [Oh My Posh Documentation](https://ohmyposh.dev/docs/)
 - [Configuration Overview](https://ohmyposh.dev/docs/configuration/overview)
 - [Segment Reference](https://ohmyposh.dev/docs/configuration/segment)
 - [Template Syntax](https://ohmyposh.dev/docs/configuration/templates)
+
+### Developer Documentation
+- [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute themes and code
+- [docs/architecture.md](docs/architecture.md) - Complete architecture and technical overview
+- [docs/quick-reference.md](docs/quick-reference.md) - Quick reference for config structure
+- [docs/config-migration-guide.md](docs/config-migration-guide.md) - Migrate old config format
+- [docs/segment-json-migration.md](docs/segment-json-migration.md) - Segment refactoring details
+- [docs/nerd-font-icons-reference.md](docs/nerd-font-icons-reference.md) - 200+ Nerd Font icons
+- [docs/config-structure-update-summary.md](docs/config-structure-update-summary.md) - Config structure changes
+- [public/segments/README.md](public/segments/README.md) - How to add new segments
+- [scripts/README.md](scripts/README.md) - Validation scripts documentation
 
 ## Contributing
 

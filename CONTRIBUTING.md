@@ -65,6 +65,7 @@ Your configuration file should contain **only** the Oh My Posh configuration (no
 - Config files contain **ONLY** the Oh My Posh configuration
 - Do **NOT** include `id`, `name`, `description`, `icon`, `author`, or `tags` fields in the config file
 - These metadata fields belong in the `manifest.json` file only
+- Each segment can have `properties` (template variables) and `options` (configuration settings)
 
 #### Updating the Manifest
 
@@ -173,6 +174,42 @@ The validation script automatically runs on all pull requests via GitHub Actions
 - Write meaningful commit messages
 - Add comments for complex logic
 - Keep components focused and reusable
+
+### Adding New Segments
+
+If you're adding a new segment type to the configurator:
+
+1. Add the segment to the appropriate JSON file in `public/segments/` (e.g., `languages.json`)
+2. Include all required fields:
+   ```json
+   {
+     "type": "segment-type",
+     "name": "Display Name", 
+     "description": "Brief description",
+     "icon": "LucideIconName",
+     "defaultTemplate": " {{ .Property }} ",
+     "properties": [
+       {
+         "name": ".Property",
+         "type": "string",
+         "description": "What this template variable represents"
+       }
+     ],
+     "options": [
+       {
+         "name": "option_name",
+         "type": "boolean",
+         "default": true,
+         "description": "What this configuration option does"
+       }
+     ]
+   }
+   ```
+3. **Properties** define template variables users can use in `{{ }}` templates
+4. **Options** define configuration settings for the segment's behavior
+5. Keep segments alphabetized by name within each category file
+6. Test the segment in the configurator to ensure it displays and exports correctly
+7. See [public/segments/README.md](public/segments/README.md) for more details
 
 ## Community Guidelines
 
