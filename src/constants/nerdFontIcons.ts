@@ -167,7 +167,7 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'symbol-beer': { id: 'symbol-beer', name: 'Beer', code: 'F0FC', char: '\uf0fc', category: 'Symbols & Objects', aliases: ['Beer', 'brew', 'drink'], description: 'Beer or brewing' },
   'symbol-gamepad': { id: 'symbol-gamepad', name: 'Gamepad', code: 'F11B', char: '\uf11b', category: 'Symbols & Objects', aliases: ['Gamepad', 'game', 'gaming'], description: 'Gaming controller' },
   'symbol-umbrella': { id: 'symbol-umbrella', name: 'Umbrella', code: 'F0E9', char: '\uf0e9', category: 'Symbols & Objects', aliases: ['Umbrella', 'protection'], description: 'Umbrella or protection' },
-  'symbol-atom': { id: 'symbol-atom', name: 'Atom', code: 'F5D2', char: '\uf5d2', category: 'Symbols & Objects', aliases: ['Atom', 'science', 'pulsar'], description: 'Atom or science' },
+  'symbol-atom': { id: 'symbol-atom', name: 'Atom', code: 'E764', char: '\ue764', category: 'Symbols & Objects', aliases: ['Atom', 'science', 'pulsar'], description: 'Atom or science' },
 
   // === NATURE & WEATHER ===
   'nature-sprout': { id: 'nature-sprout', name: 'Sprout', code: 'F4D8', char: '\uf4d8', category: 'Nature & Weather', aliases: ['Sprout', 'seedling', 'plant'], description: 'Sprout or seedling' },
@@ -206,8 +206,7 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'fw-aurelia': { id: 'fw-aurelia', name: 'Aurelia', code: 'EAC4', char: '\ueac4', category: 'Development', aliases: ['Aurelia', 'aurelia'], description: 'Aurelia framework' },
   'lang-c': { id: 'lang-c', name: 'C', code: 'E61E', char: '\ue61e', category: 'Development', aliases: ['C', 'clang'], description: 'C language' },
   'lang-cpp': { id: 'lang-cpp', name: 'C++', code: 'E61D', char: '\ue61d', category: 'Development', aliases: ['Cpp', 'C++', 'cplusplus'], description: 'C++ language' },
-  'lang-gleam': { id: 'lang-gleam', name: 'Gleam', code: 'E6FA', char: '\ue6fa', category: 'Development', aliases: ['Gleam', 'gleam'], description: 'Gleam language' },
-  
+
   // === CLOUD & INFRASTRUCTURE ADDITIONS ===
   'cloud-nix': { id: 'cloud-nix', name: 'NixOS', code: 'F313', char: '\uf313', category: 'Cloud & Infrastructure', aliases: ['NixOS', 'Nix', 'nix'], description: 'NixOS/Nix package manager' },
   'cloud-azure-devops': { id: 'cloud-azure-devops', name: 'Azure DevOps', code: 'EBE8', char: '\uebe8', category: 'Cloud & Infrastructure', aliases: ['AzureDevOps', 'devops'], description: 'Azure DevOps' },
