@@ -71,7 +71,8 @@ export function getPreviewText(
     const segmentMockData = getMockDataForSegment(segment.type);
     
     // Handle nested properties (any depth) like .Working.Changed or .Premium.Percent.Gauge
-    result = result.replace(/\{\{\s*\.([.\w]+)\s*\}\}/g, (_match, path) => {
+    // Also handle method calls with parentheses like .Premium.Percent.Gauge()
+    result = result.replace(/\{\{\s*\.([.\w]+)(\(\))?\s*\}\}/g, (_match, path) => {
       const keys = path.split('.');
       let value: any = segmentMockData;
       
