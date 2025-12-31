@@ -879,11 +879,11 @@
     "type": "copilot",
     "name": "GitHub Copilot",
     "description": "Displays GitHub Copilot status and usage",
-    "icon": "vcs-github",
+    "icon": "ai-copilot",
     "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8957E5",
-    "previewText": " \uec1e ██░░░",
+    "previewText": " 🤖 ██░░░",
     "properties": [
       {
         "name": ".Premium.Used",
