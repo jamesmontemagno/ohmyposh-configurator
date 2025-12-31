@@ -18,6 +18,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const timeoutRef = useRef<number | null>(null);
   const setConfig = useConfigStore((state) => state.setConfig);
 
   // Reset to initial method when dialog opens
@@ -26,8 +27,18 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       setActiveMethod(initialMethod);
       setError('');
       setSuccess(false);
+      setPastedConfig('');
     }
   }, [isOpen, initialMethod]);
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleFileClick = () => {
     fileInputRef.current?.click();
@@ -44,7 +55,8 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       setConfig(importedConfig);
       
       setSuccess(true);
-      setTimeout(() => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
         setSuccess(false);
         onClose();
       }, 1500);
@@ -71,7 +83,8 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       setConfig(importedConfig);
       
       setSuccess(true);
-      setTimeout(() => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
         setSuccess(false);
         setPastedConfig('');
         onClose();
