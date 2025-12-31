@@ -22,7 +22,7 @@ export const mockData: Record<string, any> = {
   BranchStatus: '↑2',
   Behind: 0,
   Ahead: 2,
-  UpstreamIcon: '',
+  UpstreamIcon: '\ue0a0', // GitHub icon
   UpstreamGone: false,
   Working: { 
     Changed: false, 
@@ -61,7 +61,7 @@ export const mockData: Record<string, any> = {
   
   // Language specific
   Venv: 'venv',
-  PackageManagerIcon: '',
+  PackageManagerIcon: '\ue71e', // NPM icon
   PackageManagerName: 'npm',
   Mismatch: false,
   Expected: '',
@@ -121,7 +121,7 @@ export const mockData: Record<string, any> = {
   State: { String: 'Charging' },
   Current: 50.5,
   Percentage: 85,
-  Icon: '🔋',
+  Icon: '\uf240', // Battery icon
   
   // OS
   WSL: false,
@@ -173,12 +173,12 @@ export const mockData: Record<string, any> = {
   Status: 'playing',
   Artist: 'Artist Name',
   Track: 'Song Title',
-  MusicIcon: '🎵',
+  MusicIcon: '\uf001', // Music note icon
   Ago: '5m',
   
   // Health segments
   Sgv: 120,
-  TrendIcon: '↗',
+  TrendIcon: '\uf062', // Up arrow icon
   Weight: 70.5,
   Steps: 8542,
   SleepHours: '7.5',
@@ -186,13 +186,13 @@ export const mockData: Record<string, any> = {
   // Web segments
   IP: '192.168.1.100',
   Body: { status: 'ok', data: 'response' },
-  Weather: '☀️',
+  Weather: '\uf185', // Sun icon
   Temperature: 72,
   UnitIcon: '°F',
   Value: 'RegistryValue',
   
   // Brewfather
-  StatusIcon: '🍺',
+  StatusIcon: '\uf0fc', // Beer icon
   Recipe: { Name: 'IPA' },
   BatchName: 'Batch #42',
   MeasuredAbv: 6.5,
