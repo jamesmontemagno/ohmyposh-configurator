@@ -49,7 +49,7 @@ interface ConfigState {
 
 const defaultConfig: OhMyPoshConfig = {
   $schema: 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json',
-  version: 2,
+  version: 4,
   final_space: true,
   blocks: [
     {
