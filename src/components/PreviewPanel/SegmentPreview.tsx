@@ -57,7 +57,7 @@ export function SegmentPreview({
         {/* Powerline symbol - only show if current segment has background */}
         {hasBackground && (
           <span 
-            className="nerd-font-symbol -ml-[2px] inline-flex items-center"
+            className="powerline-symbol -ml-[2px] inline-flex items-stretch"
             style={{
               color: bg,
               backgroundColor: symbolBg,
@@ -80,7 +80,7 @@ export function SegmentPreview({
         {/* Leading diamond - only show if explicitly set */}
         {leadingDiamond && (
           <span 
-            className="nerd-font-symbol inline-flex items-center -mr-[2px]"
+            className="powerline-symbol inline-flex items-stretch -mr-[2px]"
             style={{
               color: hasBackground ? bg : fg,
               backgroundColor: 'transparent',
@@ -105,7 +105,7 @@ export function SegmentPreview({
         {/* Trailing diamond - only show if explicitly set */}
         {trailingDiamond && (
           <span 
-            className="nerd-font-symbol inline-flex items-center -ml-[2px]"
+            className="powerline-symbol inline-flex items-stretch -ml-[2px]"
             style={{
               color: hasBackground ? bg : fg,
               backgroundColor: 'transparent',

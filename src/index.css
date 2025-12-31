@@ -42,3 +42,13 @@ body {
   align-items: center;
   vertical-align: middle;
 }
+
+/* Powerline symbols that need to fill segment height */
+.powerline-symbol {
+  font-family: 'Symbols Nerd Font', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
+  font-size: 1.75em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
