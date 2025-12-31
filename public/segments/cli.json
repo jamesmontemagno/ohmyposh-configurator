@@ -831,7 +831,7 @@
     "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8957E5",
-    "previewText": " \uec1e ████░",
+    "previewText": " \uec1e ██░░░",
     "properties": [
       {
         "name": ".Premium.Used",
@@ -918,7 +918,7 @@
       {
         "name": ".Percent.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ████░) to show remaining capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ████░) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
       },
       {
         "name": ".Percent.String",
@@ -928,7 +928,7 @@
       {
         "name": ".Remaining.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ░░░░░) to show used capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ░████) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
       }
     ],
     "options": [

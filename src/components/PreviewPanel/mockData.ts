@@ -152,11 +152,11 @@ export const mockData: Record<string, any> = {
     Used: 45,
     Limit: 100,
     Percent: { 
-      Gauge: '████░',
+      Gauge: '██░░░',
       String: '45'
     },
     Remaining: { 
-      Gauge: '░░░░░',
+      Gauge: '░░███',
       String: '55'
     },
     Unlimited: false
@@ -165,11 +165,11 @@ export const mockData: Record<string, any> = {
     Used: 500,
     Limit: 1000,
     Percent: { 
-      Gauge: '█████',
+      Gauge: '███░░',
       String: '50'
     },
     Remaining: { 
-      Gauge: '░░░░░',
+      Gauge: '░░███',
       String: '50'
     },
     Unlimited: false
@@ -182,7 +182,7 @@ export const mockData: Record<string, any> = {
       String: '40'
     },
     Remaining: { 
-      Gauge: '░░░░█',
+      Gauge: '░░░██',
       String: '60'
     },
     Unlimited: false

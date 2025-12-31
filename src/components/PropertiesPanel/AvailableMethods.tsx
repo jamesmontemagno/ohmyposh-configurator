@@ -26,9 +26,9 @@ export function AvailableMethods({ methods }: AvailableMethodsProps) {
       {isExpanded && (
         <div className="px-2 pb-2 max-h-64 overflow-y-auto">
           <div className="space-y-1.5">
-            {methods.map((method, index) => (
+            {methods.map((method) => (
               <div
-                key={index}
+                key={method.name}
                 className="p-2 bg-[#1a1a2e] rounded border border-[#0f3460] hover:border-[#e94560]/30 transition-colors group"
               >
                 <div className="flex items-start gap-2">
