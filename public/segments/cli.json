@@ -460,13 +460,65 @@
       },
       {
         "name": ".TokenUsagePercent",
-        "type": "Percentage",
+        "type": "int",
         "description": "Percentage of context window used (0-100)"
       },
       {
         "name": ".FormattedCost",
         "type": "string",
         "description": "Formatted cost string"
+      },
+      {
+        "name": ".FormattedTokens",
+        "type": "string",
+        "description": "Human-readable token count (e.g., '1.2K')"
+      },
+      {
+        "name": ".Cost.TotalCostUSD",
+        "type": "float",
+        "description": "Session cost in USD"
+      },
+      {
+        "name": ".Cost.TotalDurationMS",
+        "type": "int",
+        "description": "Session duration in milliseconds"
+      },
+      {
+        "name": ".ContextWindow.TotalInputTokens",
+        "type": "int",
+        "description": "Total input tokens used in session"
+      },
+      {
+        "name": ".ContextWindow.TotalOutputTokens",
+        "type": "int",
+        "description": "Total output tokens used in session"
+      },
+      {
+        "name": ".ContextWindow.ContextWindowSize",
+        "type": "int",
+        "description": "Maximum context window size for the model"
+      },
+      {
+        "name": ".Workspace.CurrentDir",
+        "type": "string",
+        "description": "Current working directory"
+      },
+      {
+        "name": ".Workspace.ProjectDir",
+        "type": "string",
+        "description": "Project root directory"
+      }
+    ],
+    "methods": [
+      {
+        "name": ".TokenUsagePercent.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ▰▰▰▰▱) to show context window usage"
+      },
+      {
+        "name": ".TokenUsagePercent.String",
+        "returnType": "string",
+        "description": "Returns the numeric percentage value as a string (e.g., '75')"
       }
     ]
   },

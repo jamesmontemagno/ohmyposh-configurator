@@ -273,6 +273,7 @@ export function getPreviewText(
     owm: `${mockData.Weather} ${mockData.Temperature}${mockData.UnitIcon}`,
     brewfather: `${mockData.StatusIcon} ${mockData.Recipe.Name}`,
     carbonintensity: mockData.Actual.Index,
+    claude: `🤖 ${mockData.Model.DisplayName} ${mockData.TokenUsagePercent.Gauge}`,
     copilot: mockData.Premium.Percent.Gauge,
     winget: `${mockData.UpdateCount} updates`,
     os: '🪟',

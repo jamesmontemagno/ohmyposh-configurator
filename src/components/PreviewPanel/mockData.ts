@@ -466,7 +466,25 @@ export const segmentTypeOverrides: Record<string, Record<string, any>> = {
   claude: {
     SessionID: 'session-123',
     Model: { ID: 'claude-3.5-sonnet', DisplayName: 'Claude 3.5 Sonnet' },
-    FormattedCost: '$0.15'
+    TokenUsagePercent: {
+      Gauge: '▰▰▰▱▱',
+      String: '65'
+    },
+    FormattedCost: '$0.15',
+    FormattedTokens: '1.2K',
+    Cost: {
+      TotalCostUSD: 0.15,
+      TotalDurationMS: 45000
+    },
+    ContextWindow: {
+      TotalInputTokens: 800,
+      TotalOutputTokens: 400,
+      ContextWindowSize: 200000
+    },
+    Workspace: {
+      CurrentDir: '~/projects/my-app',
+      ProjectDir: '~/projects/my-app'
+    }
   },
   copilot: {
     Premium: { Percent: { Gauge: '████░' } }
