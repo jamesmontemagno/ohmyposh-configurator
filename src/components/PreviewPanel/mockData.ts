@@ -151,20 +151,40 @@ export const mockData: Record<string, any> = {
   Premium: { 
     Used: 45,
     Limit: 100,
-    Percent: { Gauge: '████░' },
-    Remaining: { Gauge: '░░░░░' },
+    Percent: { 
+      Gauge: '██░░░',
+      String: '45'
+    },
+    Remaining: { 
+      Gauge: '░░███',
+      String: '55'
+    },
     Unlimited: false
   },
   Inline: {
     Used: 500,
     Limit: 1000,
-    Percent: { Gauge: '█████' },
+    Percent: { 
+      Gauge: '███░░',
+      String: '50'
+    },
+    Remaining: { 
+      Gauge: '░░███',
+      String: '50'
+    },
     Unlimited: false
   },
   Chat: {
     Used: 20,
     Limit: 50,
-    Percent: { Gauge: '██░░░' },
+    Percent: { 
+      Gauge: '██░░░',
+      String: '40'
+    },
+    Remaining: { 
+      Gauge: '░░░██',
+      String: '60'
+    },
     Unlimited: false
   },
   BillingCycleEnd: '2025-01-15',
@@ -446,7 +466,25 @@ export const segmentTypeOverrides: Record<string, Record<string, any>> = {
   claude: {
     SessionID: 'session-123',
     Model: { ID: 'claude-3.5-sonnet', DisplayName: 'Claude 3.5 Sonnet' },
-    FormattedCost: '$0.15'
+    TokenUsagePercent: {
+      Gauge: '▰▰▰▱▱',
+      String: '65'
+    },
+    FormattedCost: '$0.15',
+    FormattedTokens: '1.2K',
+    Cost: {
+      TotalCostUSD: 0.15,
+      TotalDurationMS: 45000
+    },
+    ContextWindow: {
+      TotalInputTokens: 800,
+      TotalOutputTokens: 400,
+      ContextWindowSize: 200000
+    },
+    Workspace: {
+      CurrentDir: '~/projects/my-app',
+      ProjectDir: '~/projects/my-app'
+    }
   },
   copilot: {
     Premium: { Percent: { Gauge: '████░' } }

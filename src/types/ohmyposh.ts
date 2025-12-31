@@ -221,12 +221,19 @@ export interface SegmentMetadata {
   defaultForeground?: string;
   previewText?: string;
   properties?: SegmentProperty[];
+  methods?: SegmentMethod[];
   options?: SegmentOption[];
 }
 
 export interface SegmentProperty {
   name: string;
   type: string;
+  description: string;
+}
+
+export interface SegmentMethod {
+  name: string;
+  returnType: string;
   description: string;
 }
 
