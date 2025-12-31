@@ -4,10 +4,10 @@
     "name": ".NET",
     "description": "Displays .NET SDK version",
     "icon": "lang-csharp",
-    "defaultTemplate": "{{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultTemplate": "\uee0d {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#512BD4",
-    "previewText": ".NET 9.0.0",
+    "previewText": ".NET 10.0.101",
     "properties": [
       {
         "name": ".Full",

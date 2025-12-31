@@ -500,6 +500,9 @@ export const segmentTypeOverrides: Record<string, Record<string, any>> = {
   bazel: {
     Full: '7.0.0',
     Icon: '\ue63a'
+  },
+  dotnet: {
+    Full: '10.0.101'
   }
 };
 
