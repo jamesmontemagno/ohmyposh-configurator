@@ -151,20 +151,40 @@ export const mockData: Record<string, any> = {
   Premium: { 
     Used: 45,
     Limit: 100,
-    Percent: { Gauge: '████░' },
-    Remaining: { Gauge: '░░░░░' },
+    Percent: { 
+      Gauge: '████░',
+      String: '45'
+    },
+    Remaining: { 
+      Gauge: '░░░░░',
+      String: '55'
+    },
     Unlimited: false
   },
   Inline: {
     Used: 500,
     Limit: 1000,
-    Percent: { Gauge: '█████' },
+    Percent: { 
+      Gauge: '█████',
+      String: '50'
+    },
+    Remaining: { 
+      Gauge: '░░░░░',
+      String: '50'
+    },
     Unlimited: false
   },
   Chat: {
     Used: 20,
     Limit: 50,
-    Percent: { Gauge: '██░░░' },
+    Percent: { 
+      Gauge: '██░░░',
+      String: '40'
+    },
+    Remaining: { 
+      Gauge: '░░░░█',
+      String: '60'
+    },
     Unlimited: false
   },
   BillingCycleEnd: '2025-01-15',
