@@ -460,13 +460,65 @@
       },
       {
         "name": ".TokenUsagePercent",
-        "type": "Percentage",
+        "type": "int",
         "description": "Percentage of context window used (0-100)"
       },
       {
         "name": ".FormattedCost",
         "type": "string",
         "description": "Formatted cost string"
+      },
+      {
+        "name": ".FormattedTokens",
+        "type": "string",
+        "description": "Human-readable token count (e.g., '1.2K')"
+      },
+      {
+        "name": ".Cost.TotalCostUSD",
+        "type": "float",
+        "description": "Session cost in USD"
+      },
+      {
+        "name": ".Cost.TotalDurationMS",
+        "type": "int",
+        "description": "Session duration in milliseconds"
+      },
+      {
+        "name": ".ContextWindow.TotalInputTokens",
+        "type": "int",
+        "description": "Total input tokens used in session"
+      },
+      {
+        "name": ".ContextWindow.TotalOutputTokens",
+        "type": "int",
+        "description": "Total output tokens used in session"
+      },
+      {
+        "name": ".ContextWindow.ContextWindowSize",
+        "type": "int",
+        "description": "Maximum context window size for the model"
+      },
+      {
+        "name": ".Workspace.CurrentDir",
+        "type": "string",
+        "description": "Current working directory"
+      },
+      {
+        "name": ".Workspace.ProjectDir",
+        "type": "string",
+        "description": "Project root directory"
+      }
+    ],
+    "methods": [
+      {
+        "name": ".TokenUsagePercent.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ▰▰▰▰▱) to show context window usage"
+      },
+      {
+        "name": ".TokenUsagePercent.String",
+        "returnType": "string",
+        "description": "Returns the numeric percentage value as a string (e.g., '75')"
       }
     ]
   },
@@ -828,25 +880,107 @@
     "name": "GitHub Copilot",
     "description": "Displays GitHub Copilot status and usage",
     "icon": "vcs-github",
-    "defaultTemplate": " \uec1e  {{ .Premium.Percent.Gauge }} ",
+    "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8957E5",
-    "previewText": " \uec1e  ████░ ",
+    "previewText": " \uec1e ██░░░",
     "properties": [
       {
+        "name": ".Premium.Used",
+        "type": "int",
+        "description": "Number of premium interactions used"
+      },
+      {
+        "name": ".Premium.Limit",
+        "type": "int",
+        "description": "Total premium interactions available"
+      },
+      {
         "name": ".Premium.Percent",
-        "type": "Percentage",
-        "description": "Percentage of premium quota used"
+        "type": "int",
+        "description": "Percentage of premium quota used (0-100)"
+      },
+      {
+        "name": ".Premium.Remaining",
+        "type": "int",
+        "description": "Percentage of premium quota remaining (0-100)"
+      },
+      {
+        "name": ".Premium.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited premium quota"
+      },
+      {
+        "name": ".Inline.Used",
+        "type": "int",
+        "description": "Number of inline completions used"
+      },
+      {
+        "name": ".Inline.Limit",
+        "type": "int",
+        "description": "Total inline completions available"
       },
       {
         "name": ".Inline.Percent",
-        "type": "Percentage",
-        "description": "Percentage of inline quota used"
+        "type": "int",
+        "description": "Percentage of inline quota used (0-100)"
+      },
+      {
+        "name": ".Inline.Remaining",
+        "type": "int",
+        "description": "Percentage of inline quota remaining (0-100)"
+      },
+      {
+        "name": ".Inline.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited inline quota"
+      },
+      {
+        "name": ".Chat.Used",
+        "type": "int",
+        "description": "Number of chat interactions used"
+      },
+      {
+        "name": ".Chat.Limit",
+        "type": "int",
+        "description": "Total chat interactions available"
       },
       {
         "name": ".Chat.Percent",
-        "type": "Percentage",
-        "description": "Percentage of chat quota used"
+        "type": "int",
+        "description": "Percentage of chat quota used (0-100)"
+      },
+      {
+        "name": ".Chat.Remaining",
+        "type": "int",
+        "description": "Percentage of chat quota remaining (0-100)"
+      },
+      {
+        "name": ".Chat.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited chat quota"
+      },
+      {
+        "name": ".BillingCycleEnd",
+        "type": "string",
+        "description": "End date of current billing cycle"
+      }
+    ],
+    "methods": [
+      {
+        "name": ".Percent.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ████░) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+      },
+      {
+        "name": ".Percent.String",
+        "returnType": "string",
+        "description": "Returns the numeric percentage value as a string (e.g., '75'). Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+      },
+      {
+        "name": ".Remaining.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., ░████) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
       }
     ],
     "options": [

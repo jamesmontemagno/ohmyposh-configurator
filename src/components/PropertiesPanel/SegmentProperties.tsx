@@ -6,6 +6,7 @@ import { POWERLINE_SYMBOLS, LEADING_DIAMOND_SYMBOLS, TRAILING_DIAMOND_SYMBOLS } 
 import { ColorInput } from './ColorInput';
 import { SymbolPicker } from './SymbolPicker';
 import { AvailableProperties } from './AvailableProperties';
+import { AvailableMethods } from './AvailableMethods';
 import { AvailableOptions } from './AvailableOptions';
 import { SegmentOptionsEditor } from './SegmentOptionsEditor';
 import { NerdFontPicker } from './NerdFontPicker';
@@ -161,6 +162,11 @@ export function SegmentProperties() {
         {/* Available Properties */}
         {metadata?.properties && metadata.properties.length > 0 && (
           <AvailableProperties properties={metadata.properties} />
+        )}
+        
+        {/* Available Methods */}
+        {metadata?.methods && metadata.methods.length > 0 && (
+          <AvailableMethods methods={metadata.methods} />
         )}
       </div>
 

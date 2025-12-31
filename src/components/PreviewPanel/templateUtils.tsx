@@ -71,7 +71,8 @@ export function getPreviewText(
     const segmentMockData = getMockDataForSegment(segment.type);
     
     // Handle nested properties (any depth) like .Working.Changed or .Premium.Percent.Gauge
-    result = result.replace(/\{\{\s*\.([.\w]+)\s*\}\}/g, (_match, path) => {
+    // Also handle method calls with parentheses like .Premium.Percent.Gauge()
+    result = result.replace(/\{\{\s*\.([.\w]+)(\(\))?\s*\}\}/g, (_match, path) => {
       const keys = path.split('.');
       let value: any = segmentMockData;
       
@@ -272,6 +273,7 @@ export function getPreviewText(
     owm: `${mockData.Weather} ${mockData.Temperature}${mockData.UnitIcon}`,
     brewfather: `${mockData.StatusIcon} ${mockData.Recipe.Name}`,
     carbonintensity: mockData.Actual.Index,
+    claude: `🤖 ${mockData.Model.DisplayName} ${mockData.TokenUsagePercent.Gauge}`,
     copilot: mockData.Premium.Percent.Gauge,
     winget: `${mockData.UpdateCount} updates`,
     os: '🪟',
