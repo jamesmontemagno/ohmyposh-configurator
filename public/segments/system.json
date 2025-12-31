@@ -147,7 +147,7 @@
     "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#546E7A",
-    "previewText": "🪟",
+    "previewText": "🍎",
     "properties": [
       {
         "name": ".Icon",
@@ -610,7 +610,7 @@
     "name": "Status",
     "description": "Displays exit code of last command",
     "icon": "status-check-circle",
-    "defaultTemplate": " {{ .String }} ",
+    "defaultTemplate": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00897b",
     "previewText": "✓",
