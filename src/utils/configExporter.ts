@@ -63,8 +63,8 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   // Always add schema (default to official Oh My Posh schema)
   cleanedConfig.$schema = $schema || 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json';
   
-  // Add version (default to 3)
-  cleanedConfig.version = version !== undefined ? version : 3;
+  // Add version (default to 4)
+  cleanedConfig.version = version !== undefined ? version : 4;
 
   // Add global settings in a logical order (only if explicitly set)
   if (final_space !== undefined) cleanedConfig.final_space = final_space;
