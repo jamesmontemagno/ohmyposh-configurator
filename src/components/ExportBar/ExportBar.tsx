@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { exportConfig, downloadConfig, copyToClipboard } from '../../utils/configExporter';
-import { importConfig } from '../../utils/configImporter';
+import { ImportDialog } from '../ImportDialog';
 import { SubmitConfigDialog } from '../SubmitConfigDialog';
 import type { ExportFormat } from '../../types/ohmyposh';
 
@@ -14,13 +14,26 @@ const formatOptions: { value: ExportFormat; label: string; iconName: string }[] 
 
 export function ExportBar() {
   const config = useConfigStore((state) => state.config);
-  const setConfig = useConfigStore((state) => state.setConfig);
   const exportFormat = useConfigStore((state) => state.exportFormat);
   const setExportFormat = useConfigStore((state) => state.setExportFormat);
   const [copied, setCopied] = useState(false);
   const [showCode, setShowCode] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showImportDialog, setShowImportDialog] = useState(false);
+  const [importMethod, setImportMethod] = useState<'file' | 'paste'>('file');
+  const [showImportDropdown, setShowImportDropdown] = useState(false);
+  const importDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (importDropdownRef.current && !importDropdownRef.current.contains(event.target as Node)) {
+        setShowImportDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleCopy = async () => {
     const content = exportConfig(config, exportFormat);
@@ -33,44 +46,16 @@ export function ExportBar() {
     downloadConfig(config, exportFormat);
   };
 
-  const handleImportClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const text = await file.text();
-      const importedConfig = importConfig(text, file.name);
-      setConfig(importedConfig);
-      
-      // Show success message
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
-      
-      // Reset file input
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-    } catch (error) {
-      console.error('Failed to import config:', error);
-      alert(`Failed to import configuration: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
+  const handleImportOptionClick = (method: 'file' | 'paste') => {
+    setImportMethod(method);
+    setShowImportDropdown(false);
+    setShowImportDialog(true);
   };
 
   const configContent = showCode ? exportConfig(config, exportFormat) : '';
 
   return (
     <div className="bg-[#16213e] border-t border-[#0f3460] relative">
-      {/* Success notification */}
-      {showSuccess && (
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full mb-2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium z-50 transition-opacity duration-300">
-          ✓ Configuration imported successfully
-        </div>
-      )}
-      
       <div className="flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-300">Export Format:</span>
@@ -92,22 +77,36 @@ export function ExportBar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".json,.yaml,.yml,.toml"
-            onChange={handleFileChange}
-            className="hidden"
-          />
-          
-          <button
-            onClick={handleImportClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
-            title="Import configuration from file"
-          >
-            <NerdIcon icon="action-upload" size={16} />
-            <span>Import</span>
-          </button>
+          <div className="relative" ref={importDropdownRef}>
+            <button
+              onClick={() => setShowImportDropdown(!showImportDropdown)}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+              title="Import configuration"
+            >
+              <NerdIcon icon="action-upload" size={16} />
+              <span>Import</span>
+              <NerdIcon icon="ui-chevron-down" size={14} className={`transition-transform ${showImportDropdown ? 'rotate-180' : ''}`} />
+            </button>
+            
+            {showImportDropdown && (
+              <div className="absolute right-0 bottom-full mb-2 w-56 bg-[#1a1a2e] border border-[#0f3460] rounded-lg shadow-xl py-1 z-50">
+                <button
+                  onClick={() => handleImportOptionClick('file')}
+                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
+                >
+                  <NerdIcon icon="fileJson" size={16} />
+                  <span>Import from File</span>
+                </button>
+                <button
+                  onClick={() => handleImportOptionClick('paste')}
+                  className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
+                >
+                  <NerdIcon icon="fileCode" size={16} />
+                  <span>Paste Configuration</span>
+                </button>
+              </div>
+            )}
+          </div>
 
           <SubmitConfigDialog />
 
@@ -144,6 +143,12 @@ export function ExportBar() {
           </pre>
         </div>
       )}
+
+      <ImportDialog 
+        isOpen={showImportDialog} 
+        onClose={() => setShowImportDialog(false)} 
+        initialMethod={importMethod}
+      />
     </div>
   );
 }
