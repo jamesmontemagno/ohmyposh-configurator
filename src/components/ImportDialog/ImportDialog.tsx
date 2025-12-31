@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { importConfig } from '../../utils/configImporter';
@@ -8,16 +8,26 @@ type ImportMethod = 'file' | 'paste';
 interface ImportDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMethod?: ImportMethod;
 }
 
-export function ImportDialog({ isOpen, onClose }: ImportDialogProps) {
-  const [activeMethod, setActiveMethod] = useState<ImportMethod>('file');
+export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: ImportDialogProps) {
+  const [activeMethod, setActiveMethod] = useState<ImportMethod>(initialMethod);
   const [pastedConfig, setPastedConfig] = useState('');
   const [format, setFormat] = useState<'json' | 'yaml' | 'toml'>('json');
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const setConfig = useConfigStore((state) => state.setConfig);
+
+  // Reset to initial method when dialog opens
+  useEffect(() => {
+    if (isOpen) {
+      setActiveMethod(initialMethod);
+      setError('');
+      setSuccess(false);
+    }
+  }, [isOpen, initialMethod]);
 
   const handleFileClick = () => {
     fileInputRef.current?.click();

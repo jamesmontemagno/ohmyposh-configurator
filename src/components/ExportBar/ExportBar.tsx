@@ -19,6 +19,7 @@ export function ExportBar() {
   const [copied, setCopied] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
+  const [importMethod, setImportMethod] = useState<'file' | 'paste'>('file');
   const [showImportDropdown, setShowImportDropdown] = useState(false);
   const importDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +46,8 @@ export function ExportBar() {
     downloadConfig(config, exportFormat);
   };
 
-  const handleImportOptionClick = () => {
+  const handleImportOptionClick = (method: 'file' | 'paste') => {
+    setImportMethod(method);
     setShowImportDropdown(false);
     setShowImportDialog(true);
   };
@@ -89,14 +91,14 @@ export function ExportBar() {
             {showImportDropdown && (
               <div className="absolute right-0 bottom-full mb-2 w-56 bg-[#1a1a2e] border border-[#0f3460] rounded-lg shadow-xl py-1 z-50">
                 <button
-                  onClick={handleImportOptionClick}
+                  onClick={() => handleImportOptionClick('file')}
                   className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
                 >
                   <NerdIcon icon="fileJson" size={16} />
                   <span>Import from File</span>
                 </button>
                 <button
-                  onClick={handleImportOptionClick}
+                  onClick={() => handleImportOptionClick('paste')}
                   className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
                 >
                   <NerdIcon icon="fileCode" size={16} />
@@ -142,7 +144,11 @@ export function ExportBar() {
         </div>
       )}
 
-      <ImportDialog isOpen={showImportDialog} onClose={() => setShowImportDialog(false)} />
+      <ImportDialog 
+        isOpen={showImportDialog} 
+        onClose={() => setShowImportDialog(false)} 
+        initialMethod={importMethod}
+      />
     </div>
   );
 }
