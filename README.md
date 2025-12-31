@@ -245,6 +245,7 @@ This project includes comprehensive SEO optimization:
 
 ### Developer Documentation
 - [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute themes and code
+- [docs/architecture.md](docs/architecture.md) - Complete architecture and technical overview
 - [docs/quick-reference.md](docs/quick-reference.md) - Quick reference for config structure
 - [docs/config-migration-guide.md](docs/config-migration-guide.md) - Migrate old config format
 - [docs/segment-json-migration.md](docs/segment-json-migration.md) - Segment refactoring details
