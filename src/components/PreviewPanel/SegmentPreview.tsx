@@ -70,13 +70,14 @@ export function SegmentPreview({
     );
   }
 
-  if (segment.style === 'diamond') {
+  if (segment.style === 'diamond' || segment.style === 'accordion') {
     // Only use diamonds if explicitly set (don't use defaults)
     const leadingDiamond = segment.leading_diamond || blockLeadingDiamond;
     const trailingDiamond = segment.trailing_diamond || blockTrailingDiamond;
+    const isAccordion = segment.style === 'accordion';
     
     return (
-      <span className={`inline-flex items-stretch ${marginClass}`}>
+      <span className={`inline-flex items-stretch ${marginClass}`} title={isAccordion ? 'Accordion segment (expands/collapses in terminal)' : undefined}>
         {/* Leading diamond - only show if explicitly set */}
         {leadingDiamond && (
           <span 
@@ -101,6 +102,10 @@ export function SegmentPreview({
         >
           {!useMockData && metadata?.icon && <NerdIcon icon={metadata.icon} size={14} />}
           <span className="nerd-font-symbol whitespace-pre">{renderedText}</span>
+          {/* Accordion indicator */}
+          {isAccordion && (
+            <span className="text-[10px] opacity-60" title="Accordion: expands on segment activation">⟷</span>
+          )}
         </span>
         {/* Trailing diamond - only show if explicitly set */}
         {trailingDiamond && (
@@ -118,7 +123,7 @@ export function SegmentPreview({
     );
   }
 
-  // Plain or accordion style
+  // Plain style
   return (
     <span
       style={{ 
