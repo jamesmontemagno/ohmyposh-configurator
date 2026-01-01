@@ -6,6 +6,7 @@ import { PropertiesPanel } from './components/PropertiesPanel';
 import { PreviewPanel } from './components/PreviewPanel';
 import { ExportBar } from './components/ExportBar';
 import { ScreenSizeWarning } from './components/ScreenSizeWarning';
+import { OnboardingTutorial } from './components/OnboardingTutorial';
 import { preloadSegments } from './utils/segmentLoader';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen bg-[#0f0f23]">
       <ScreenSizeWarning />
+      <OnboardingTutorial />
       {/* Header */}
       <Header />
 
