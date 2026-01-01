@@ -245,6 +245,77 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   // === ADDITIONAL UTILITY ICONS ===
   'status-bolt': { id: 'status-bolt', name: 'Bolt', code: 'F0E7', char: '\uf0e7', category: 'Symbols & Objects', aliases: ['Bolt', 'lightning', 'power', 'root'], description: 'Power or lightning bolt' },
   'status-sudo': { id: 'status-sudo', name: 'Sudo', code: 'F09C', char: '\uf09c', category: 'Symbols & Objects', aliases: ['Sudo', 'unlock', 'admin'], description: 'Admin or superuser' },
+
+  // === COMMONLY USED OH MY POSH ICONS ===
+  // Powerline Symbols (most common)
+  'powerline-right-filled': { id: 'powerline-right-filled', name: 'Powerline Right Filled', code: 'E0B0', char: '\ue0b0', category: 'Powerline', aliases: ['powerline', 'separator', 'chevron'], description: 'Powerline right filled triangle' },
+  'powerline-left-filled': { id: 'powerline-left-filled', name: 'Powerline Left Filled', code: 'E0B2', char: '\ue0b2', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline left filled triangle' },
+  'powerline-right-outline': { id: 'powerline-right-outline', name: 'Powerline Right Outline', code: 'E0B1', char: '\ue0b1', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline right outline triangle' },
+  'powerline-left-outline': { id: 'powerline-left-outline', name: 'Powerline Left Outline', code: 'E0B3', char: '\ue0b3', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline left outline triangle' },
+  'powerline-branch': { id: 'powerline-branch', name: 'Git Branch', code: 'E0A0', char: '\ue0a0', category: 'Powerline', aliases: ['branch', 'git'], description: 'Git branch icon' },
+  'powerline-lock': { id: 'powerline-lock', name: 'Lock', code: 'E0A2', char: '\ue0a2', category: 'Powerline', aliases: ['lock', 'readonly'], description: 'Lock icon' },
+  'powerline-leftangle-separator': { id: 'powerline-leftangle-separator', name: 'Left Angle Separator', code: 'E0B4', char: '\ue0b4', category: 'Powerline', aliases: ['separator', 'diamond'], description: 'Left angle separator' },
+  'powerline-rightangle-separator': { id: 'powerline-rightangle-separator', name: 'Right Angle Separator', code: 'E0B6', char: '\ue0b6', category: 'Powerline', aliases: ['separator', 'diamond'], description: 'Right angle separator' },
+  'powerline-filled-rightangle': { id: 'powerline-filled-rightangle', name: 'Filled Right Angle', code: 'E0D0', char: '\ue0d0', category: 'Powerline', aliases: ['separator'], description: 'Filled right angle' },
+  'powerline-filled-leftangle': { id: 'powerline-filled-leftangle', name: 'Filled Left Angle', code: 'E0D2', char: '\ue0d2', category: 'Powerline', aliases: ['separator'], description: 'Filled left angle' },
+
+  // Git SCM icons commonly used in themes
+  'git-commit': { id: 'git-commit', name: 'Git Commit', code: 'F417', char: '\uf417', category: 'Development', aliases: ['commit', 'git'], description: 'Git commit' },
+  'git-compare': { id: 'git-compare', name: 'Git Compare', code: 'F0AC', char: '\uf0ac', category: 'Development', aliases: ['compare', 'diff'], description: 'Git compare branches' },
+  'git-merge': { id: 'git-merge', name: 'Git Merge', code: 'F419', char: '\uf419', category: 'Development', aliases: ['merge', 'git'], description: 'Git merge' },
+  'git-pull-request': { id: 'git-pull-request', name: 'Pull Request', code: 'F3D4', char: '\uf3d4', category: 'Development', aliases: ['pr', 'pull'], description: 'Pull request' },
+  'git-branch-delete': { id: 'git-branch-delete', name: 'Branch Delete', code: 'F46E', char: '\uf46e', category: 'Development', aliases: ['delete', 'remove'], description: 'Delete git branch' },
+
+  // Language icons that appear frequently (note: most already exist above, only new ones added)
+  'lang-php-alt': { id: 'lang-php-alt', name: 'PHP Alt', code: 'F81E', char: '\uf81e', category: 'Development', aliases: ['PHP', 'php', 'elephant'], description: 'PHP language alternative icon' },
+
+  // Package managers - already exist above, no need to duplicate
+
+  // Container & Docker
+  'tool-docker-alt': { id: 'tool-docker-alt', name: 'Docker Alt', code: 'F308', char: '\uf308', category: 'Development', aliases: ['docker', 'container'], description: 'Docker alternative icon' },
+
+  // Cloud provider icons
+  'cloud-aws-alt': { id: 'cloud-aws-alt', name: 'AWS Alt', code: 'E7AD', char: '\ue7ad', category: 'Cloud & Infrastructure', aliases: ['aws', 'amazon'], description: 'AWS alternative icon' },
+  'cloud-azure-alt': { id: 'cloud-azure-alt', name: 'Azure Alt', code: 'EBD8', char: '\uebd8', category: 'Cloud & Infrastructure', aliases: ['azure', 'microsoft'], description: 'Azure alternative icon' },
+
+  // Terminal & System icons
+  'term-zsh': { id: 'term-zsh', name: 'Zsh', code: 'E795', char: '\ue795', category: 'Development', aliases: ['zsh', 'shell'], description: 'Zsh shell' },
+  'term-bash': { id: 'term-bash', name: 'Bash', code: 'EACC', char: '\ueacc', category: 'Development', aliases: ['bash', 'shell'], description: 'Bash shell' },
+  'term-powershell': { id: 'term-powershell', name: 'PowerShell', code: 'E683', char: '\ue683', category: 'Development', aliases: ['powershell', 'pwsh'], description: 'PowerShell' },
+
+  // Status & State icons
+  'status-sync': { id: 'status-sync', name: 'Sync', code: 'F021', char: '\uf021', category: 'Symbols & Objects', aliases: ['sync', 'refresh'], description: 'Sync or refresh' },
+  'status-time': { id: 'status-time', name: 'Time', code: 'F017', char: '\uf017', category: 'Symbols & Objects', aliases: ['time', 'clock', 'duration'], description: 'Time or duration' },
+  'status-calendar': { id: 'status-calendar', name: 'Calendar', code: 'F073', char: '\uf073', category: 'Symbols & Objects', aliases: ['calendar', 'date'], description: 'Calendar or date' },
+  'status-location': { id: 'status-location', name: 'Location', code: 'F041', char: '\uf041', category: 'Symbols & Objects', aliases: ['location', 'pin', 'marker'], description: 'Location or marker' },
+  'status-history': { id: 'status-history', name: 'History', code: 'F1DA', char: '\uf1da', category: 'Symbols & Objects', aliases: ['history', 'undo'], description: 'History' },
+
+  // File system icons
+  'file-zip': { id: 'file-zip', name: 'Zip Archive', code: 'F410', char: '\uf410', category: 'Files & Folders', aliases: ['zip', 'archive', 'compress'], description: 'Zip file' },
+  'file-config': { id: 'file-config', name: 'Config', code: 'E615', char: '\ue615', category: 'Files & Folders', aliases: ['config', 'settings'], description: 'Configuration file' },
+  'file-binary': { id: 'file-binary', name: 'Binary', code: 'F471', char: '\uf471', category: 'Files & Folders', aliases: ['binary', 'exe'], description: 'Binary executable' },
+  'file-symlink': { id: 'file-symlink', name: 'Symlink', code: 'F481', char: '\uf481', category: 'Files & Folders', aliases: ['symlink', 'link'], description: 'Symbolic link' },
+
+  // Network & Communication
+  'network-wifi': { id: 'network-wifi', name: 'WiFi', code: 'F1EB', char: '\uf1eb', category: 'Symbols & Objects', aliases: ['wifi', 'network', 'wireless'], description: 'WiFi network' },
+  'network-signal': { id: 'network-signal', name: 'Signal', code: 'F012', char: '\uf012', category: 'Symbols & Objects', aliases: ['signal', 'connection'], description: 'Network signal' },
+  'network-server': { id: 'network-server', name: 'Server', code: 'F233', char: '\uf233', category: 'Symbols & Objects', aliases: ['server', 'host'], description: 'Server' },
+
+  // Additional utilities
+  'util-filter': { id: 'util-filter', name: 'Filter', code: 'F0B0', char: '\uf0b0', category: 'Symbols & Objects', aliases: ['filter', 'funnel'], description: 'Filter' },
+  'util-sort': { id: 'util-sort', name: 'Sort', code: 'F0DC', char: '\uf0dc', category: 'Symbols & Objects', aliases: ['sort', 'order'], description: 'Sort' },
+  'util-magic': { id: 'util-magic', name: 'Magic', code: 'F0D0', char: '\uf0d0', category: 'Symbols & Objects', aliases: ['magic', 'wand'], description: 'Magic wand' },
+  'util-shield': { id: 'util-shield', name: 'Shield', code: 'F132', char: '\uf132', category: 'Symbols & Objects', aliases: ['shield', 'security', 'protection'], description: 'Shield or security' },
+  'util-crown': { id: 'util-crown', name: 'Crown', code: 'F521', char: '\uf521', category: 'Symbols & Objects', aliases: ['crown', 'premium'], description: 'Crown or premium' },
+  
+  // Music & Media
+  'media-play': { id: 'media-play', name: 'Play', code: 'F04B', char: '\uf04b', category: 'Symbols & Objects', aliases: ['play', 'start'], description: 'Play button' },
+  'media-pause': { id: 'media-pause', name: 'Pause', code: 'F04C', char: '\uf04c', category: 'Symbols & Objects', aliases: ['pause', 'stop'], description: 'Pause button' },
+  'media-music': { id: 'media-music', name: 'Music', code: 'F001', char: '\uf001', category: 'Symbols & Objects', aliases: ['music', 'note'], description: 'Music note' },
+  'media-headphones': { id: 'media-headphones', name: 'Headphones', code: 'F025', char: '\uf025', category: 'Symbols & Objects', aliases: ['headphones', 'audio'], description: 'Headphones' },
+
+  // OS-specific icons that appear in themes (many already exist, adding missing ones)
+  'os-rocky': { id: 'os-rocky', name: 'Rocky Linux', code: 'F32B', char: '\uf32b', category: 'Cloud & Infrastructure', aliases: ['rocky', 'linux'], description: 'Rocky Linux' },
 };
 
 // Export as array for backward compatibility

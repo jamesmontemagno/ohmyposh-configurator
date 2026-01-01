@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
-/* Nerd Font for powerline symbols - using a CDN-hosted version */
+/* Nerd Font subset - optimized for app performance (WOFF2 + TTF + CDN fallback) */
 @font-face {
   font-family: 'Symbols Nerd Font';
-  src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+  src: url('/ohmyposh-configurator/fonts/nerd-symbols-subset.woff2') format('woff2'),
+       url('/ohmyposh-configurator/fonts/nerd-symbols-subset.ttf') format('truetype'),
+       url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
