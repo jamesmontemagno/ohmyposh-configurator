@@ -32,7 +32,7 @@
   "id": "my-theme",
   "name": "My Theme",
   "description": "A brief description",
-  "icon": "Star",
+  "icon": "misc-star",
   "author": "Your Name",
   "tags": ["minimal", "developer"],
   "file": "my-theme.json"
@@ -47,7 +47,7 @@
   "id": "my-theme",
   "name": "My Theme",
   "description": "A brief description",
-  "icon": "Star",
+  "icon": "misc-star",
   "author": "Your Name",
   "tags": ["minimal", "developer"],
   "config": {

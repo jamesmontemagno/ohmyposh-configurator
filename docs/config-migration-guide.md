@@ -46,7 +46,7 @@ Configuration files contained both metadata and the Oh My Posh config wrapped to
       "id": "my-theme",
       "name": "My Theme",
       "description": "A cool theme",
-      "icon": "Star",
+      "icon": "misc-star",
       "author": "Your Name",
       "tags": ["minimal", "developer"],
       "file": "my-theme.json"
@@ -109,7 +109,7 @@ Add or update the entry in `manifest.json`:
       "id": "my-theme",
       "name": "My Theme",
       "description": "A cool theme",
-      "icon": "Star",
+      "icon": "misc-star",
       "author": "Your Name",
       "tags": ["minimal", "developer"],
       "file": "my-theme.json"

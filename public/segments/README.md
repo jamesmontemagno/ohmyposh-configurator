@@ -24,7 +24,7 @@ Each segment in the JSON files has the following structure:
   "type": "segment-type",
   "name": "Display Name",
   "description": "Brief description of what this segment does",
-  "icon": "LucideIconName",
+  "icon": "lang-python",
   "defaultTemplate": " {{ .TemplateProperty }} ",
   "properties": [
     {
@@ -49,7 +49,7 @@ Each segment in the JSON files has the following structure:
 - **type**: The Oh My Posh segment type (must match official segment types)
 - **name**: Human-readable display name shown in the UI
 - **description**: Brief explanation of what the segment does
-- **icon**: Lucide React icon name for visual representation
+- **icon**: [Nerd Font icon ID](../../docs/nerd-font-icons-reference.md) for visual representation
 - **defaultTemplate**: Default template string using Oh My Posh template syntax
 - **properties** (optional): Array of template variables available for use in `{{ }}` templates
   - Shows users what data they can display in their templates
@@ -69,7 +69,7 @@ To add a new segment:
 4. Add `properties` array listing all template variables available in Oh My Posh
 5. Add `options` array listing all configuration settings from Oh My Posh documentation
 6. Keep segments alphabetized by name within each file
-7. Use a Lucide React icon name for the `icon` field (see [Lucide Icons](https://lucide.dev/icons/))
+7. Use a [Nerd Font icon ID](../../docs/nerd-font-icons-reference.md) for the `icon` field
 8. Test in the configurator to verify proper display and functionality
 
 ### Example
@@ -81,7 +81,7 @@ Here's a complete example with properties and options:
   "type": "python",
   "name": "Python",
   "description": "Displays the current Python version",
-  "icon": "Code2",
+  "icon": "lang-python",
   "defaultTemplate": " {{ .Full }} ",
   "properties": [
     {

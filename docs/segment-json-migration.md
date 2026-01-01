@@ -88,7 +88,7 @@ const gitMetadata = getSegmentMetadata('git');
      "type": "segment-type",
      "name": "Display Name",
      "description": "Brief description",
-     "icon": "LucideIconName",
+     "icon": "lang-python",
      "defaultTemplate": " {{ .Property }} "
    }
    ```

@@ -2,7 +2,7 @@
   {
     "type": "dotnet",
     "name": ".NET",
-    "description": "Displays .NET SDK version",
+    "description": "Displays the current .NET SDK version and support status",
     "icon": "lang-csharp",
     "defaultTemplate": "\uee0d {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -72,7 +72,7 @@
   {
     "type": "clojure",
     "name": "Clojure",
-    "description": "Displays Clojure version",
+    "description": "Displays the current Clojure version when in a Clojure project",
     "icon": "lang-clojure",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -157,7 +157,7 @@
   {
     "type": "crystal",
     "name": "Crystal",
-    "description": "Displays Crystal version",
+    "description": "Displays the current Crystal version when in a Crystal project",
     "icon": "lang-crystal",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -242,7 +242,7 @@
   {
     "type": "dart",
     "name": "Dart",
-    "description": "Displays Dart version",
+    "description": "Displays the current Dart version when in a Dart project",
     "icon": "lang-dart",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -327,7 +327,7 @@
   {
     "type": "elixir",
     "name": "Elixir",
-    "description": "Displays Elixir version",
+    "description": "Displays the current Elixir version when in an Elixir project",
     "icon": "lang-elixir",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -412,7 +412,7 @@
   {
     "type": "fortran",
     "name": "Fortran",
-    "description": "Displays Fortran version",
+    "description": "Displays the current Fortran version when in a Fortran project",
     "icon": "lang-fortran",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -497,7 +497,7 @@
   {
     "type": "go",
     "name": "Go",
-    "description": "Displays Go version",
+    "description": "Displays the current Go version when in a Go project",
     "icon": "lang-go",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -582,7 +582,7 @@
   {
     "type": "haskell",
     "name": "Haskell",
-    "description": "Displays Haskell (GHC) version",
+    "description": "Displays the current Haskell (GHC) version when in a Haskell project",
     "icon": "lang-haskell",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -667,7 +667,7 @@
   {
     "type": "java",
     "name": "Java",
-    "description": "Displays Java version",
+    "description": "Displays the current Java version when in a Java project",
     "icon": "lang-java",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -752,7 +752,7 @@
   {
     "type": "julia",
     "name": "Julia",
-    "description": "Displays Julia version",
+    "description": "Displays the current Julia version when in a Julia project",
     "icon": "lang-julia",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -837,7 +837,7 @@
   {
     "type": "kotlin",
     "name": "Kotlin",
-    "description": "Displays Kotlin version",
+    "description": "Displays the current Kotlin version when in a Kotlin project",
     "icon": "lang-kotlin",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -922,7 +922,7 @@
   {
     "type": "lua",
     "name": "Lua",
-    "description": "Displays Lua version",
+    "description": "Displays the current Lua version when in a Lua project",
     "icon": "lang-lua",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1007,7 +1007,7 @@
   {
     "type": "mojo",
     "name": "Mojo",
-    "description": "Displays Mojo version",
+    "description": "Displays the current Mojo version and virtual environment",
     "icon": "symbol-flame",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1099,7 +1099,7 @@
   {
     "type": "nim",
     "name": "Nim",
-    "description": "Displays Nim version",
+    "description": "Displays the current Nim version when in a Nim project",
     "icon": "symbol-crown",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1184,7 +1184,7 @@
   {
     "type": "node",
     "name": "Node.js",
-    "description": "Displays Node.js version",
+    "description": "Displays the current Node.js version and active package manager",
     "icon": "lang-nodejs",
     "defaultTemplate": "{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
     "defaultForeground": "#ffffff",
@@ -1279,7 +1279,7 @@
   {
     "type": "ocaml",
     "name": "OCaml",
-    "description": "Displays OCaml version",
+    "description": "Displays the current OCaml version when in an OCaml project",
     "icon": "lang-ocaml",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1364,7 +1364,7 @@
   {
     "type": "perl",
     "name": "Perl",
-    "description": "Displays Perl version",
+    "description": "Displays the current Perl version when in a Perl project",
     "icon": "lang-perl",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1449,7 +1449,7 @@
   {
     "type": "php",
     "name": "PHP",
-    "description": "Displays PHP version",
+    "description": "Displays the current PHP version when in a PHP project",
     "icon": "lang-php",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1534,7 +1534,7 @@
   {
     "type": "python",
     "name": "Python",
-    "description": "Displays Python version and virtual env",
+    "description": "Displays the current Python version and active virtual environment",
     "icon": "lang-python",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -1631,7 +1631,7 @@
   {
     "type": "r",
     "name": "R",
-    "description": "Displays R version",
+    "description": "Displays the current R version when in an R project",
     "icon": "lang-r",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1716,7 +1716,7 @@
   {
     "type": "ruby",
     "name": "Ruby",
-    "description": "Displays Ruby version",
+    "description": "Displays the current Ruby version when in a Ruby project",
     "icon": "lang-ruby",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1781,7 +1781,7 @@
   {
     "type": "rust",
     "name": "Rust",
-    "description": "Displays Rust version",
+    "description": "Displays the current Rust version when in a Rust project",
     "icon": "lang-rust",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -1851,7 +1851,7 @@
   {
     "type": "swift",
     "name": "Swift",
-    "description": "Displays Swift version",
+    "description": "Displays the current Swift version when in a Swift project",
     "icon": "lang-swift",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1936,7 +1936,7 @@
   {
     "type": "v",
     "name": "V",
-    "description": "Displays V version",
+    "description": "Displays the current V version when in a V project",
     "icon": "lang-v",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -2021,7 +2021,7 @@
   {
     "type": "vala",
     "name": "Vala",
-    "description": "Displays Vala version",
+    "description": "Displays the current Vala version when in a Vala project",
     "icon": "lang-vala",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -2106,7 +2106,7 @@
   {
     "type": "zig",
     "name": "Zig",
-    "description": "Displays Zig version",
+    "description": "Displays the current Zig version when in a Zig project",
     "icon": "lang-zig",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",

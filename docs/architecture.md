@@ -13,7 +13,7 @@ The Oh My Posh Visual Configurator is a modern React application that provides a
 - **Styling**: Tailwind CSS 4.1 for utility-first styling
 - **State Management**: Zustand with localStorage persistence
 - **Drag & Drop**: @dnd-kit for intuitive segment arrangement
-- **Icons**: Lucide React (500+ icons) + Custom Nerd Font integration (200+ icons)
+- **Icons**: Custom Nerd Font icon library (200+ icons) with unique IDs
 - **Config Formats**: Support for JSON, YAML, and TOML via js-yaml and @iarna/toml
 
 ### Data Flow Architecture
@@ -108,7 +108,7 @@ interface SegmentMetadata {
   type: string;              // Oh My Posh segment type
   name: string;              // Display name in UI
   description: string;       // Brief description
-  icon: string;              // Lucide icon name
+  icon: string;              // Nerd Font icon ID
   defaultTemplate: string;   // Default template string
   
   // Template variables (red in UI)
@@ -163,7 +163,7 @@ Contains configuration metadata:
       "id": "my-theme",
       "name": "My Theme",
       "description": "Brief description",
-      "icon": "Star",
+      "icon": "misc-star",
       "author": "Author Name",
       "tags": ["minimal", "developer"],
       "file": "my-theme.json"
@@ -274,8 +274,7 @@ const segmentColorOverrides = {
 
 - **NerdIcon** (`src/components/NerdIcon.tsx`)
   - Unified icon component
-  - Supports both Lucide icons and Nerd Font characters
-  - 200+ custom Nerd Font icons mapped
+  - Supports 200+ custom Nerd Font icons mapped by unique ID
   - Automatic fallback handling
 
 ## Build and Deployment
@@ -323,12 +322,6 @@ Runs automatically on PRs via GitHub Actions.
 
 ## Icon System
 
-### Lucide Icons
-- 500+ icons from Lucide React
-- Used for UI controls and most segments
-- Tree-shakeable and optimized
-
-### Nerd Font Icons
 **Location**: `src/constants/nerdFontIcons.ts`
 
 - 200+ custom mapped Nerd Font characters
@@ -447,7 +440,7 @@ Potential areas for expansion:
 
 **Segment not displaying**:
 - Check segment JSON syntax
-- Verify icon name is valid Lucide icon
+- Verify icon ID is valid Nerd Font icon ID
 - Ensure segment type matches Oh My Posh documentation
 
 **Export fails**:
@@ -467,7 +460,6 @@ Potential areas for expansion:
 - [Zustand Documentation](https://docs.pmnd.rs/zustand/)
 - [Vite Documentation](https://vitejs.dev/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/)
-- [Lucide Icons](https://lucide.dev/)
 - [Nerd Fonts](https://www.nerdfonts.com/)
 
 ---

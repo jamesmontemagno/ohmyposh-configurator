@@ -21,6 +21,10 @@ export function SegmentCard({
 }: SegmentCardProps) {
   const metadata = useSegmentMetadata(segment.type);
 
+  const tooltipText = metadata?.name && metadata?.description 
+    ? `${metadata.name}\n\n${metadata.description}` 
+    : metadata?.name || segment.type;
+
   return (
     <div
       className={`flex items-center gap-1.5 px-2 py-1.5 rounded cursor-pointer transition-all ${
@@ -39,6 +43,7 @@ export function SegmentCard({
         e.stopPropagation();
         onSelect();
       }}
+      title={tooltipText}
     >
       <NerdIcon icon="ui-grip-vertical" size={14} className="opacity-50 cursor-grab" />
       {metadata?.icon ? (

@@ -58,7 +58,7 @@ export function SegmentProperties() {
       {/* Style Section */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <NerdIcon icon="sliders" size={14} className="text-gray-400" />
+          <NerdIcon icon="tool-sliders" size={14} className="text-gray-400" />
           <span className="text-xs font-medium text-gray-300">Style</span>
         </div>
         <select

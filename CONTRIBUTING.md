@@ -94,7 +94,7 @@ Add your configuration's **metadata** to `public/configs/community/manifest.json
 - `id`: Lowercase, hyphenated unique identifier matching your filename (e.g., `my-theme-name`)
 - `name`: Display name for your theme
 - `description`: Brief description (1-2 sentences recommended)
-- `icon`: [Lucide icon name](https://lucide.dev/icons/) (e.g., `Star`, `Code2`, `Rocket`)
+- `icon`: [Nerd Font icon ID](docs/nerd-font-icons-reference.md) (e.g., `misc-star`, `ui-code`, `misc-rocket`)
 - `author`: Your name or GitHub username
 - `tags`: Array of relevant tags (e.g., `["minimal", "developer", "python"]`)
 - `file`: The filename of your config JSON file
@@ -186,7 +186,7 @@ If you're adding a new segment type to the configurator:
      "type": "segment-type",
      "name": "Display Name", 
      "description": "Brief description",
-     "icon": "LucideIconName",
+     "icon": "lang-python",
      "defaultTemplate": " {{ .Property }} ",
      "properties": [
        {

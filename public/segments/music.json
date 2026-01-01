@@ -2,7 +2,7 @@
   {
     "type": "lastfm",
     "name": "Last.fm",
-    "description": "Displays Last.fm now playing",
+    "description": "Displays the track currently being scrobbled to Last.fm",
     "icon": "service-lastfm",
     "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",
@@ -60,7 +60,7 @@
   {
     "type": "spotify",
     "name": "Spotify",
-    "description": "Displays currently playing Spotify track",
+    "description": "Displays the track currently playing on Spotify",
     "icon": "service-spotify",
     "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",
@@ -142,7 +142,7 @@
   {
     "type": "ytm",
     "name": "YouTube Music",
-    "description": "Displays YouTube Music Desktop App status",
+    "description": "Displays the track currently playing in the YouTube Music Desktop App",
     "icon": "service-youtube",
     "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",

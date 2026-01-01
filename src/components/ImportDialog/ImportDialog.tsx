@@ -133,7 +133,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
                 : 'border-transparent text-gray-400 hover:text-gray-300'
             }`}
           >
-            <NerdIcon icon="fileJson" size={16} />
+            <NerdIcon icon="file-json" size={16} />
             <span className="font-medium">Import from File</span>
           </button>
           <button
@@ -147,7 +147,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
                 : 'border-transparent text-gray-400 hover:text-gray-300'
             }`}
           >
-            <NerdIcon icon="fileCode" size={16} />
+            <NerdIcon icon="file-code" size={16} />
             <span className="font-medium">Paste Configuration</span>
           </button>
         </div>

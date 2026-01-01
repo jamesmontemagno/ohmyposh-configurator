@@ -2,7 +2,7 @@
   {
     "type": "battery",
     "name": "Battery",
-    "description": "Displays battery status and percentage",
+    "description": "Displays the current battery status, percentage, and charging state.",
     "icon": "misc-battery",
     "defaultTemplate": "{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}",
     "defaultForeground": "#ffffff",
@@ -55,7 +55,7 @@
   {
     "type": "connection",
     "name": "Connection",
-    "description": "Displays network connection info",
+    "description": "Displays network connection information, such as the active Wi-Fi SSID or Ethernet status.",
     "icon": "ui-globe",
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
@@ -92,7 +92,7 @@
   {
     "type": "executiontime",
     "name": "Execution Time",
-    "description": "Displays last command execution time",
+    "description": "Displays the duration of the last command execution if it exceeds a specified threshold.",
     "icon": "misc-clock",
     "defaultTemplate": " {{ .FormattedMs }} ",
     "defaultForeground": "#ffffff",
@@ -142,7 +142,7 @@
   {
     "type": "os",
     "name": "Operating System",
-    "description": "Displays the current operating system",
+    "description": "Displays an icon or name representing the current operating system and distribution.",
     "icon": "ui-monitor",
     "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
     "defaultForeground": "#ffffff",
@@ -263,7 +263,7 @@
   {
     "type": "path",
     "name": "Path",
-    "description": "Displays the current working directory",
+    "description": "Displays the current working directory with support for various shortening and styling options.",
     "icon": "folder-closed",
     "defaultTemplate": "{{ .Path }}",
     "defaultForeground": "#ffffff",
@@ -443,7 +443,7 @@
   {
     "type": "project",
     "name": "Project",
-    "description": "Displays project name and version",
+    "description": "Displays the name and version of the current project by detecting common project files (e.g., package.json).",
     "icon": "file-package",
     "defaultTemplate": " {{ .Name }} {{ .Version }} ",
     "defaultForeground": "#ffffff",
@@ -508,7 +508,7 @@
   {
     "type": "root",
     "name": "Root",
-    "description": "Indicates if running as root/admin",
+    "description": "Displays an indicator when the shell is running with root or administrator privileges.",
     "icon": "status-bolt",
     "defaultTemplate": " ⚡ ",
     "defaultForeground": "#ffffff",
@@ -519,7 +519,7 @@
   {
     "type": "session",
     "name": "Session",
-    "description": "Displays user and host information",
+    "description": "Displays the current user and host information, with optional indicators for SSH sessions.",
     "icon": "ui-users",
     "defaultTemplate": " {{ .UserName }}@{{ .HostName }} ",
     "defaultForeground": "#ffffff",
@@ -578,7 +578,7 @@
   {
     "type": "shell",
     "name": "Shell",
-    "description": "Displays the current shell name",
+    "description": "Displays the name and version of the current shell (e.g., pwsh, zsh, fish).",
     "icon": "dev-terminal",
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
@@ -608,7 +608,7 @@
   {
     "type": "status",
     "name": "Status",
-    "description": "Displays exit code of last command",
+    "description": "Displays the exit code or status of the last executed command.",
     "icon": "status-check-circle",
     "defaultTemplate": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071{{ end }} ",
     "defaultForeground": "#ffffff",
@@ -655,7 +655,7 @@
   {
     "type": "sysinfo",
     "name": "System Info",
-    "description": "Displays system information (CPU, memory)",
+    "description": "Displays real-time system resource usage, such as CPU load or memory consumption.",
     "icon": "misc-chart",
     "defaultTemplate": " {{ round .PhysicalPercentUsed .Precision }}% ",
     "defaultForeground": "#ffffff",
@@ -685,7 +685,7 @@
   {
     "type": "text",
     "name": "Text",
-    "description": "Displays custom static text",
+    "description": "Displays a custom static string or template-based text.",
     "icon": "file-text",
     "defaultTemplate": " hello ",
     "defaultForeground": "#ffffff",
@@ -696,7 +696,7 @@
   {
     "type": "time",
     "name": "Time",
-    "description": "Displays current date/time",
+    "description": "Displays the current date and time in a customizable format.",
     "icon": "misc-clock",
     "defaultTemplate": "{{ .CurrentDate | date .Format }}",
     "defaultForeground": "#ffffff",
@@ -726,7 +726,7 @@
   {
     "type": "upgrade",
     "name": "Upgrade",
-    "description": "Shows if Oh My Posh update is available",
+    "description": "Displays a notification when a newer version of Oh My Posh is available for download.",
     "icon": "ui-arrow-up",
     "defaultTemplate": " {{ .Version }} ",
     "defaultForeground": "#ffffff",

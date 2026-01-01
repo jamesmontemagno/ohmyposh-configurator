@@ -2,7 +2,7 @@
   {
     "type": "nightscout",
     "name": "Nightscout",
-    "description": "Displays Nightscout glucose data",
+    "description": "Displays real-time glucose data and trends from your Nightscout instance",
     "icon": "health-heartbeat",
     "defaultTemplate": " {{ .Sgv }}{{ .TrendIcon }} ",
     "defaultForeground": "#ffffff",
@@ -50,7 +50,7 @@
   {
     "type": "strava",
     "name": "Strava",
-    "description": "Displays Strava activity data",
+    "description": "Displays your latest activity data and time since last workout from Strava",
     "icon": "health-running",
     "defaultTemplate": " {{ .Ago }} ",
     "defaultForeground": "#ffffff",
@@ -104,7 +104,7 @@
   {
     "type": "withings",
     "name": "Withings",
-    "description": "Displays Withings activity data",
+    "description": "Displays your latest weight and step count data from Withings",
     "icon": "health-heartbeat",
     "defaultTemplate": " {{ .Steps }} ",
     "defaultForeground": "#ffffff",
