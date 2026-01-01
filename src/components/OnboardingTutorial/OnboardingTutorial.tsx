@@ -76,25 +76,25 @@ export function OnboardingTutorial() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-xl w-full p-6 relative">
+      <div className="bg-[#1a1a2e] border border-[#0f3460] rounded-lg shadow-xl max-w-xl w-full p-6 relative">
         <button
           onClick={handleSkip}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-200 transition-colors"
           aria-label="Skip tutorial"
         >
           <NerdIcon icon="ui-close" size={20} />
         </button>
 
         <div className="flex items-start gap-4 mb-6">
-          <div className="bg-blue-100 rounded-full p-3 flex-shrink-0">
-            <NerdIcon icon={step.icon} size={32} className="text-blue-600" />
+          <div className="bg-[#e94560]/20 rounded-full p-3 flex-shrink-0">
+            <NerdIcon icon={step.icon} size={32} className="text-[#e94560]" />
           </div>
 
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-900 mb-3">
+            <h2 className="text-2xl font-bold text-white mb-3">
               {step.title}
             </h2>
-            <p className="text-gray-600 text-base leading-relaxed">
+            <p className="text-gray-300 text-base leading-relaxed">
               {step.description}
             </p>
           </div>
@@ -107,10 +107,10 @@ export function OnboardingTutorial() {
               key={index}
               className={`h-2 rounded-full transition-all ${
                 index === currentStep
-                  ? 'w-8 bg-blue-600'
+                  ? 'w-8 bg-[#e94560]'
                   : index < currentStep
-                  ? 'w-2 bg-blue-400'
-                  : 'w-2 bg-gray-300'
+                  ? 'w-2 bg-[#e94560]/60'
+                  : 'w-2 bg-[#0f3460]'
               }`}
             />
           ))}
@@ -118,7 +118,7 @@ export function OnboardingTutorial() {
 
         {/* Step counter */}
         <div className="text-center mb-4">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-400">
             Step {currentStep + 1} of {tutorialSteps.length}
           </span>
         </div>
@@ -127,7 +127,7 @@ export function OnboardingTutorial() {
         <div className="flex items-center justify-between gap-3">
           <button
             onClick={handleSkip}
-            className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+            className="px-4 py-2 text-gray-400 hover:text-gray-200 font-medium transition-colors"
           >
             Skip Tutorial
           </button>
@@ -136,14 +136,14 @@ export function OnboardingTutorial() {
             {!isFirstStep && (
               <button
                 onClick={handlePrevious}
-                className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded transition-colors"
+                className="px-4 py-2 bg-[#0f3460] hover:bg-[#1a4a7a] text-gray-200 font-medium rounded transition-colors"
               >
                 Previous
               </button>
             )}
             <button
               onClick={handleNext}
-              className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded transition-colors"
+              className="px-6 py-2 bg-[#e94560] hover:bg-[#d63850] text-white font-medium rounded transition-colors"
             >
               {isLastStep ? 'Get Started!' : 'Next'}
             </button>
