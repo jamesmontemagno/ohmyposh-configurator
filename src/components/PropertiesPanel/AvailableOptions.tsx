@@ -3,7 +3,7 @@ import { NerdIcon } from '../NerdIcon';
 import { useClipboard } from '../../hooks/useClipboard';
 
 interface AvailableOptionsProps {
-  options: Array<{ name: string; type: string; default?: any; values?: string[]; description: string }>;
+  options: Array<{ name: string; type: string; default?: unknown; values?: string[]; description: string }>;
 }
 
 export function AvailableOptions({ options }: AvailableOptionsProps) {

@@ -1,4 +1,4 @@
-import type { SegmentMetadata } from '../types/ohmyposh';
+import type { SegmentMetadata, SegmentType } from '../types/ohmyposh';
 import { getSegmentColors } from '../data/colorSchemes';
 
 const SEGMENT_CATEGORIES = ['system', 'scm', 'languages', 'cloud', 'cli', 'web', 'music', 'health'] as const;
@@ -64,7 +64,7 @@ export async function loadSegmentCategory(category: SegmentCategory): Promise<Se
       const colors = getSegmentColors(segment.type, category);
       return {
         ...segment,
-        type: segment.type as any, // Type will be validated by Oh My Posh
+        type: segment.type as SegmentType, // Type will be validated by Oh My Posh
         category,
         // Use colors from JSON if provided, otherwise fall back to color scheme
         defaultBackground: segment.defaultBackground || colors.background,

@@ -75,9 +75,17 @@ Use [src/utils/unicode.ts](src/utils/unicode.ts) functions:
 ### Drag and Drop
 Uses @dnd-kit. Canvas handles cross-block segment moves. Segments identified by `id` field. `EmptyBlockDropzone` for empty blocks.
 
+## Best Practices & Linting
+
+- **React Hooks**: Avoid using `useEffect` to synchronize state with props or reset state. Use conditional rendering with `key` props to reset components, or lazy state initialization.
+- **Type Safety**: Avoid `any` at all costs. Use `unknown` for external data and cast to specific interfaces.
+- **Unused Variables**: Prefix intentional unused variables with `_` (e.g., `const [_unused, value] = ...`).
+- **CI Enforcement**: The GitHub Actions CI pipeline enforces zero linting errors and successful builds.
+
 ## Testing Changes
 
 1. Run `npm run dev` and test in browser
 2. Validate configs: `npm run validate`
 3. Test export in all formats (JSON/YAML/TOML)
 4. Verify preview renders correctly with powerline symbols
+5. **Mandatory**: Run `npm run lint` and `npm run build` to ensure CI will pass.

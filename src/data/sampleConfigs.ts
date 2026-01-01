@@ -14,7 +14,7 @@ export interface SampleConfig {
       segments: Array<{
         type: string;
         style: string;
-        [key: string]: any;
+        [key: string]: unknown;
       }>;
     }>;
   };
@@ -594,7 +594,7 @@ export function loadSampleConfig(sampleId: string): OhMyPoshConfig | null {
       segments: block.segments.map((segment) => ({
         ...segment,
         id: generateId(),
-      })) as any,
-    })) as any,
+      })),
+    })),
   } as OhMyPoshConfig;
 }

@@ -27,7 +27,7 @@ export type ConfigFile = Omit<OhMyPoshConfig, 'blocks'> & {
     segments: Array<{
       type: string;
       style: string;
-      [key: string]: any;
+      [key: string]: unknown;
     }>;
   }>;
 };
@@ -88,8 +88,8 @@ export async function loadConfig(
       segments: block.segments.map((segment) => ({
         ...segment,
         id: generateId(),
-      })) as any,
-    })) as any,
+      })),
+    })),
   } as OhMyPoshConfig;
 }
 

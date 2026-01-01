@@ -58,7 +58,7 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   } = config;
 
   // Build the cleaned config with explicit ordering
-  const cleanedConfig: any = {};
+  const cleanedConfig: Partial<CleanedConfig> = {};
 
   // Always add schema (default to official Oh My Posh schema)
   cleanedConfig.$schema = $schema || 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json';

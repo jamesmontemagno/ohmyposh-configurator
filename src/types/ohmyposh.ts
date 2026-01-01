@@ -240,7 +240,7 @@ export interface SegmentMethod {
 export interface SegmentOption {
   name: string;
   type: string;
-  default?: any;
+  default?: unknown;
   values?: string[];
   description: string;
 }

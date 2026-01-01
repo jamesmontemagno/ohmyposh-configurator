@@ -68,12 +68,14 @@ export function getPreviewText(
     }
     
     // Get segment-specific mock data (handles .Icon differently for music vs battery vs os)
-    const segmentMockData = getMockDataForSegment(segment.type);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const segmentMockData = getMockDataForSegment(segment.type) as Record<string, any>;
     
     // Handle nested properties (any depth) like .Working.Changed or .Premium.Percent.Gauge
     // Also handle method calls with parentheses like .Premium.Percent.Gauge()
     result = result.replace(/\{\{\s*\.([.\w]+)(\(\))?\s*\}\}/g, (_match, path) => {
       const keys = path.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -90,6 +92,7 @@ export function getPreviewText(
     // Handle "if not" conditions - {{ if not .Error }}
     result = result.replace(/\{\{\s*if\s+not\s+\.([.\w]+)\s*\}\}(.*?)(\{\{\s*end\s*\}\}|$)/gs, (_match, prop, content) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -108,6 +111,7 @@ export function getPreviewText(
     // Handle conditional statements with else - {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}
     result = result.replace(/\{\{\s*if\s+\.([.\w]+)\s*\}\}(.*?)\{\{\s*else\s*\}\}(.*?)\{\{\s*end\s*\}\}/gs, (_match, prop, trueContent, falseContent) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -126,6 +130,7 @@ export function getPreviewText(
     // Handle simple conditional statements - {{ if .Venv }}{{ .Venv }} {{ end }}
     result = result.replace(/\{\{\s*if\s+\.([.\w]+)\s*\}\}(.*?)\{\{\s*end\s*\}\}/gs, (_match, prop, content) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -145,6 +150,7 @@ export function getPreviewText(
     result = result.replace(/\{\{\s*if\s+and\s+\(\.([.\w]+)\)\s+\(\.([.\w]+)\)\s*\}\}(.*?)\{\{\s*end\s*\}\}/gs, (_match, prop1, prop2, content) => {
       const getValue = (prop: string) => {
         const keys = prop.split('.');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let value: any = segmentMockData;
         for (const key of keys) {
           if (value && typeof value === 'object' && key in value) {
@@ -164,6 +170,7 @@ export function getPreviewText(
     // Handle "ne" (not equal) conditions - {{ if ne .Status "stopped" }}
     result = result.replace(/\{\{\s*if\s+ne\s+\.([.\w]+)\s+"([^"]*)"\s*\}\}(.*?)\{\{\s*end\s*\}\}/gs, (_match, prop, compareValue, content) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -184,12 +191,13 @@ export function getPreviewText(
     result = result.replace(/\{\{\s*end\s*\}\}/g, '');
     
     // Handle date formatting
-    result = result.replace(/\{\{\s*\.CurrentDate\s*\|\s*date\s+\.Format\s*\}\}/g, segmentMockData.CurrentDate);
-    result = result.replace(/\{\{\s*\.CurrentDate\s*\|\s*date\s+"([^"]+)"\s*\}\}/g, segmentMockData.CurrentDate);
+    result = result.replace(/\{\{\s*\.CurrentDate\s*\|\s*date\s+\.Format\s*\}\}/g, segmentMockData.CurrentDate as string);
+    result = result.replace(/\{\{\s*\.CurrentDate\s*\|\s*date\s+"([^"]+)"\s*\}\}/g, segmentMockData.CurrentDate as string);
     
     // Handle round function - {{ round .PhysicalPercentUsed .Precision }}
     result = result.replace(/\{\{\s*round\s+\.([.\w]+)(?:\s+\.Precision)?\s*\}\}/g, (_match, prop) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -206,6 +214,7 @@ export function getPreviewText(
     // Handle secondsRound function for WakaTime - {{ secondsRound .CumulativeTotal.Seconds }}
     result = result.replace(/\{\{\s*secondsRound\s+\.([.\w]+)\s*\}\}/g, (_match, prop) => {
       const keys = prop.split('.');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let value: any = segmentMockData;
       
       for (const key of keys) {
@@ -238,7 +247,7 @@ export function getPreviewText(
   
   // Third priority: generate preview based on segment type
   const typeMap: Record<string, string> = {
-    path: mockData.Path,
+    path: mockData.Path as string,
     git: `${mockData.HEAD} ${mockData.BranchStatus}`,
     node: 'v20.10.0',
     python: '3.11.0',
@@ -247,41 +256,46 @@ export function getPreviewText(
     dotnet: '8.0.0',
     java: '17.0.0',
     azfunc: 'v4.0',
-    az: mockData.Name,
-    azd: mockData.DefaultEnvironment,
+    az: mockData.Name as string,
+    azd: mockData.DefaultEnvironment as string,
     aws: `${mockData.Profile}@${mockData.Region}`,
-    gcp: mockData.Project,
-    docker: mockData.Context,
+    gcp: mockData.Project as string,
+    docker: mockData.Context as string,
     kubectl: `${mockData.Context}::${mockData.Namespace}`,
-    time: mockData.CurrentDate,
+    time: mockData.CurrentDate as string,
     session: `${mockData.UserName}@${mockData.HostName}`,
-    executiontime: mockData.FormattedMs,
+    executiontime: mockData.FormattedMs as string,
     status: '❯',
     battery: `${mockData.Icon}${mockData.Percentage}%`,
-    terraform: mockData.WorkspaceName,
-    pulumi: mockData.Stack,
-    firebase: mockData.Project,
+    terraform: mockData.WorkspaceName as string,
+    pulumi: mockData.Stack as string,
+    firebase: mockData.Project as string,
     helm: 'Helm 3.13.3',
     spotify: `${mockData.MusicIcon}${mockData.Artist} - ${mockData.Track}`,
     lastfm: `${mockData.MusicIcon}${mockData.Artist} - ${mockData.Track}`,
     ytm: `${mockData.MusicIcon}${mockData.Artist} - ${mockData.Track}`,
     nightscout: `${mockData.Sgv}${mockData.TrendIcon}`,
-    strava: mockData.Ago,
+    strava: mockData.Ago as string,
     withings: `${mockData.Steps} steps`,
-    ipify: mockData.IP,
-    wakatime: mockData.CumulativeTotal.Text,
+    ipify: mockData.IP as string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    wakatime: (mockData.CumulativeTotal as any).Text,
     owm: `${mockData.Weather} ${mockData.Temperature}${mockData.UnitIcon}`,
-    brewfather: `${mockData.StatusIcon} ${mockData.Recipe.Name}`,
-    carbonintensity: mockData.Actual.Index,
-    claude: `🤖 ${mockData.Model.DisplayName} ${mockData.TokenUsagePercent.Gauge}`,
-    copilot: mockData.Premium.Percent.Gauge,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    brewfather: `${mockData.StatusIcon} ${(mockData.Recipe as any).Name}`,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    carbonintensity: (mockData.Actual as any).Index,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    claude: `🤖 ${(mockData.Model as any).DisplayName} ${(mockData.TokenUsagePercent as any).Gauge}`,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    copilot: (mockData.Premium as any).Percent.Gauge,
     winget: `${mockData.UpdateCount} updates`,
     os: '🪟',
     shell: 'pwsh',
     project: `${mockData.Name} ${mockData.ProjectVersion}`,
     sysinfo: `${mockData.PhysicalPercentUsed}%`,
-    upgrade: mockData.Latest,
-    connection: mockData.Type,
+    upgrade: mockData.Latest as string,
+    connection: mockData.Type as string,
     root: '⚡',
     text: 'hello',
   };

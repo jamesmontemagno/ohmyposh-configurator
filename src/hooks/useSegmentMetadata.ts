@@ -16,11 +16,6 @@ export function useSegmentMetadata(type: string): SegmentMetadata | undefined {
       setMetadata(getSegmentMetadata(type));
     });
 
-    // Update metadata if segments are already loaded
-    if (areSegmentsLoaded()) {
-      setMetadata(getSegmentMetadata(type));
-    }
-
     return unsubscribe;
   }, [type]);
 

@@ -5,8 +5,8 @@ import type { Segment } from '../../types/ohmyposh';
 
 interface SegmentOptionsEditorProps {
   segment: Segment;
-  availableOptions: Array<{ name: string; type: string; default?: any; values?: string[]; description: string }>;
-  onUpdate: (options: Record<string, any>) => void;
+  availableOptions: Array<{ name: string; type: string; default?: unknown; values?: string[]; description: string }>;
+  onUpdate: (options: Record<string, unknown>) => void;
 }
 
 export function SegmentOptionsEditor({ segment, availableOptions, onUpdate }: SegmentOptionsEditorProps) {
@@ -19,7 +19,7 @@ export function SegmentOptionsEditor({ segment, availableOptions, onUpdate }: Se
   // Get options that haven't been added yet
   const availableToAdd = availableOptions.filter(opt => !(opt.name in currentOptions));
 
-  const handleOptionChange = (optionName: string, value: any) => {
+  const handleOptionChange = (optionName: string, value: unknown) => {
     const updated = { ...currentOptions, [optionName]: value };
     onUpdate(updated);
   };
@@ -76,7 +76,7 @@ export function SegmentOptionsEditor({ segment, availableOptions, onUpdate }: Se
     if (optionMeta.type === 'enum' && optionMeta.values) {
       return (
         <select
-          value={typeof value === 'string' ? value : (optionMeta.default || '')}
+          value={typeof value === 'string' ? value : ((optionMeta.default as string) || '')}
           onChange={(e) => handleOptionChange(optionName, e.target.value)}
           className="flex-1 px-2 py-1 text-xs bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#06d6a0]"
         >
@@ -108,7 +108,7 @@ export function SegmentOptionsEditor({ segment, availableOptions, onUpdate }: Se
             try {
               const parsed = JSON.parse(e.target.value);
               handleOptionChange(optionName, parsed);
-            } catch (err) {
+            } catch {
               // Invalid JSON, ignore
             }
           }}
