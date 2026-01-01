@@ -2,7 +2,7 @@
   {
     "type": "aws",
     "name": "AWS",
-    "description": "Displays AWS profile and region",
+    "description": "Displays the currently active AWS profile and region",
     "icon": "cloud-aws",
     "defaultTemplate": "{{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -32,7 +32,7 @@
   {
     "type": "az",
     "name": "Azure",
-    "description": "Displays Azure CLI subscription",
+    "description": "Displays the current Azure CLI subscription name and ID",
     "icon": "cloud-azure",
     "defaultTemplate": "{{ .Name }}",
     "defaultForeground": "#ffffff",
@@ -72,7 +72,7 @@
   {
     "type": "azd",
     "name": "Azure Developer CLI",
-    "description": "Displays Azure Developer CLI context",
+    "description": "Displays the current Azure Developer CLI environment name",
     "icon": "cloud-azure",
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
@@ -89,7 +89,7 @@
   {
     "type": "azfunc",
     "name": "Azure Functions",
-    "description": "Displays Azure Functions CLI version",
+    "description": "Displays the current Azure Functions CLI version",
     "icon": "cloud-azure",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -152,7 +152,7 @@
   {
     "type": "cf",
     "name": "Cloud Foundry",
-    "description": "Displays Cloud Foundry CLI version",
+    "description": "Displays the current Cloud Foundry CLI version",
     "icon": "cloud-generic",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -220,7 +220,7 @@
   {
     "type": "cftarget",
     "name": "Cloud Foundry Target",
-    "description": "Displays Cloud Foundry target info",
+    "description": "Displays the current Cloud Foundry organization and space",
     "icon": "cloud-generic",
     "defaultTemplate": " {{ .Org }}/{{ .Space }} ",
     "defaultForeground": "#ffffff",
@@ -254,7 +254,7 @@
   {
     "type": "gcp",
     "name": "Google Cloud",
-    "description": "Displays GCP project and account",
+    "description": "Displays the currently active Google Cloud Platform project and account",
     "icon": "cloud-gcp",
     "defaultTemplate": " {{ .Project }} ",
     "defaultForeground": "#ffffff",
@@ -276,7 +276,7 @@
   {
     "type": "kubectl",
     "name": "Kubernetes",
-    "description": "Displays Kubernetes context",
+    "description": "Displays the current Kubernetes context and namespace",
     "icon": "cloud-kubernetes",
     "defaultTemplate": "{{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -312,7 +312,7 @@
   {
     "type": "pulumi",
     "name": "Pulumi",
-    "description": "Displays Pulumi stack information",
+    "description": "Displays the current Pulumi stack and logged-in user",
     "icon": "cloud-pulumi",
     "defaultTemplate": " {{ .Stack }} ",
     "defaultForeground": "#ffffff",
@@ -342,7 +342,7 @@
   {
     "type": "cds",
     "name": "SAP CDS",
-    "description": "Displays SAP CDS version",
+    "description": "Displays the current SAP Cloud Development SDK version",
     "icon": "dev-server",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -415,7 +415,7 @@
   {
     "type": "sitecore",
     "name": "Sitecore",
-    "description": "Displays Sitecore environment",
+    "description": "Displays the current Sitecore environment name",
     "icon": "dev-server",
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
@@ -444,7 +444,7 @@
   {
     "type": "terraform",
     "name": "Terraform",
-    "description": "Displays Terraform workspace",
+    "description": "Displays the currently active Terraform workspace",
     "icon": "cloud-terraform",
     "defaultTemplate": " {{ .WorkspaceName }} ",
     "defaultForeground": "#ffffff",

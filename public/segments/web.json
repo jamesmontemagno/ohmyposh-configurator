@@ -2,7 +2,7 @@
   {
     "type": "brewfather",
     "name": "Brewfather",
-    "description": "Displays Brewfather batch status",
+    "description": "Displays the current status and recipe name of a Brewfather batch.",
     "icon": "symbol-beer",
     "defaultTemplate": " {{ .StatusIcon }} {{ .Recipe.Name }} ",
     "defaultForeground": "#ffffff",
@@ -61,7 +61,7 @@
   {
     "type": "carbonintensity",
     "name": "Carbon Intensity",
-    "description": "Displays carbon intensity data",
+    "description": "Displays real-time carbon intensity data and trends for the UK power grid.",
     "icon": "env-carbon",
     "defaultTemplate": " {{ .Actual.Index }} ",
     "defaultForeground": "#ffffff",
@@ -103,7 +103,7 @@
   {
     "type": "http",
     "name": "HTTP",
-    "description": "Makes HTTP requests and displays response",
+    "description": "Performs a custom HTTP request and displays the parsed JSON response body.",
     "icon": "ui-globe",
     "defaultTemplate": " {{ .Body }} ",
     "defaultForeground": "#ffffff",
@@ -146,7 +146,7 @@
   {
     "type": "ipify",
     "name": "IP Address",
-    "description": "Displays external IP address",
+    "description": "Displays your current external IP address as retrieved from a lookup service.",
     "icon": "ui-globe",
     "defaultTemplate": " {{ .IP }} ",
     "defaultForeground": "#ffffff",
@@ -183,7 +183,7 @@
   {
     "type": "wakatime",
     "name": "WakaTime",
-    "description": "Displays WakaTime coding time",
+    "description": "Displays your total coding time for the current day as tracked by WakaTime.",
     "icon": "misc-clock",
     "defaultTemplate": " {{ secondsRound .CumulativeTotal.Seconds }} ",
     "defaultForeground": "#ffffff",
@@ -231,7 +231,7 @@
   {
     "type": "owm",
     "name": "Weather",
-    "description": "Displays weather from OpenWeatherMap",
+    "description": "Displays the current weather conditions and temperature from OpenWeatherMap.",
     "icon": "cloud-generic",
     "defaultTemplate": " {{ .Weather }} {{ .Temperature }}{{ .UnitIcon }} ",
     "defaultForeground": "#ffffff",
@@ -295,7 +295,7 @@
   {
     "type": "winreg",
     "name": "Windows Registry",
-    "description": "Reads Windows registry values",
+    "description": "Reads and displays a specific value from the Windows Registry.",
     "icon": "os-windows",
     "defaultTemplate": " {{ .Value }} ",
     "defaultForeground": "#ffffff",

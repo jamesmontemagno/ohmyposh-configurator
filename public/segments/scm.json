@@ -2,7 +2,7 @@
   {
     "type": "fossil",
     "name": "Fossil",
-    "description": "Displays Fossil repository information",
+    "description": "Displays Fossil repository information, including the current branch and status.",
     "icon": "vcs-fossil",
     "defaultTemplate": " {{ .Branch }} ",
     "defaultForeground": "#ffffff",
@@ -32,7 +32,7 @@
   {
     "type": "git",
     "name": "Git",
-    "description": "Displays Git repository information",
+    "description": "Displays Git repository information, including branch name, status, and upstream synchronization.",
     "icon": "vcs-git-merge",
     "defaultTemplate": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -291,7 +291,7 @@
   {
     "type": "gitversion",
     "name": "GitVersion",
-    "description": "Displays GitVersion semantic version",
+    "description": "Displays the semantic version of the current Git repository as determined by GitVersion.",
     "icon": "vcs-tag",
     "defaultTemplate": " {{ .Major }}.{{ .Minor }}.{{ .Patch }} ",
     "defaultForeground": "#ffffff",
@@ -326,7 +326,7 @@
   {
     "type": "jujutsu",
     "name": "Jujutsu",
-    "description": "Displays Jujutsu repository information",
+    "description": "Displays Jujutsu (jj) repository information, including the current change ID and status.",
     "icon": "vcs-git-branch",
     "defaultTemplate": " {{ .ChangeId }} ",
     "defaultForeground": "#ffffff",
@@ -387,7 +387,7 @@
   {
     "type": "mercurial",
     "name": "Mercurial",
-    "description": "Displays Mercurial repository information",
+    "description": "Displays Mercurial (hg) repository information, including the current branch and status.",
     "icon": "vcs-mercurial",
     "defaultTemplate": " {{ .Branch }} ",
     "defaultForeground": "#ffffff",
@@ -424,7 +424,7 @@
   {
     "type": "plastic",
     "name": "Plastic SCM",
-    "description": "Displays Plastic SCM repository information",
+    "description": "Displays Plastic SCM repository information, including the current selector and workspace status.",
     "icon": "vcs-git-merge",
     "defaultTemplate": " {{ .Selector }} ",
     "defaultForeground": "#ffffff",
@@ -490,7 +490,7 @@
   {
     "type": "sapling",
     "name": "Sapling",
-    "description": "Displays Sapling repository information",
+    "description": "Displays Sapling repository information, including the current bookmark and commit hash.",
     "icon": "vcs-sapling",
     "defaultTemplate": " {{ .Bookmark }} ",
     "defaultForeground": "#ffffff",
@@ -532,7 +532,7 @@
   {
     "type": "svn",
     "name": "SVN",
-    "description": "Displays Subversion repository information",
+    "description": "Displays Subversion (SVN) repository information, including the current branch and revision.",
     "icon": "vcs-subversion",
     "defaultTemplate": " {{ .Branch }} ",
     "defaultForeground": "#ffffff",

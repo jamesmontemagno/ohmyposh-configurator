@@ -2,7 +2,7 @@
   {
     "type": "angular",
     "name": "Angular",
-    "description": "Displays Angular CLI version",
+    "description": "Displays the current Angular CLI version when in an Angular project",
     "icon": "fw-angular",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
@@ -92,7 +92,7 @@
   {
     "type": "argocd",
     "name": "Argo CD",
-    "description": "Displays Argo CD context",
+    "description": "Displays the current Argo CD context, server, and user information",
     "icon": "devops-argocd",
     "defaultTemplate": " {{ .Context }} ",
     "defaultForeground": "#ffffff",
@@ -119,7 +119,7 @@
   {
     "type": "aurelia",
     "name": "Aurelia",
-    "description": "Displays Aurelia version",
+    "description": "Displays the current Aurelia version when in an Aurelia project",
     "icon": "fw-aurelia",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -187,7 +187,7 @@
   {
     "type": "bazel",
     "name": "Bazel",
-    "description": "Displays Bazel version",
+    "description": "Displays the current Bazel version when in a Bazel project",
     "icon": "tool-bazel",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -260,7 +260,7 @@
   {
     "type": "buf",
     "name": "Buf",
-    "description": "Displays Buf CLI version",
+    "description": "Displays the current Buf CLI version when in a Buf project",
     "icon": "tool-buf",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -328,7 +328,7 @@
   {
     "type": "bun",
     "name": "Bun",
-    "description": "Displays Bun version",
+    "description": "Displays the current Bun version when in a Bun project",
     "icon": "lang-bun",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -436,7 +436,7 @@
   {
     "type": "claude",
     "name": "Claude Code",
-    "description": "Displays Claude Code status",
+    "description": "Displays the current Claude Code session status, model, and token usage",
     "icon": "ai-robot",
     "defaultTemplate": " \udb82\udfc9 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
     "defaultForeground": "#ffffff",
@@ -525,7 +525,7 @@
   {
     "type": "cmake",
     "name": "CMake",
-    "description": "Displays CMake version",
+    "description": "Displays the current CMake version when in a CMake project",
     "icon": "tool-cmake",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -633,7 +633,7 @@
   {
     "type": "deno",
     "name": "Deno",
-    "description": "Displays Deno version",
+    "description": "Displays the current Deno version when in a Deno project",
     "icon": "pkg-deno",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -718,7 +718,7 @@
   {
     "type": "docker",
     "name": "Docker",
-    "description": "Displays Docker context",
+    "description": "Displays the current Docker context and active environment",
     "icon": "cloud-docker",
     "defaultTemplate": " {{ .Context }}",
     "defaultForeground": "#ffffff",
@@ -765,7 +765,7 @@
   {
     "type": "firebase",
     "name": "Firebase",
-    "description": "Displays Firebase project",
+    "description": "Displays the currently active Firebase project",
     "icon": "db-firebase",
     "defaultTemplate": "{{ .Project }}",
     "defaultForeground": "#ffffff",
@@ -782,7 +782,7 @@
   {
     "type": "flutter",
     "name": "Flutter",
-    "description": "Displays Flutter version",
+    "description": "Displays the current Flutter version when in a Flutter project",
     "icon": "fw-flutter",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -878,7 +878,7 @@
   {
     "type": "copilot",
     "name": "GitHub Copilot",
-    "description": "Displays GitHub Copilot status and usage",
+    "description": "Displays GitHub Copilot status, including premium, inline, and chat usage quotas",
     "icon": "vcs-github",
     "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }}",
     "defaultForeground": "#ffffff",
@@ -995,7 +995,7 @@
   {
     "type": "helm",
     "name": "Helm",
-    "description": "Displays Helm version",
+    "description": "Displays the current Helm CLI version",
     "icon": "tool-helm",
     "defaultTemplate": " Helm {{ .Version }}",
     "defaultForeground": "#ffffff",
@@ -1012,7 +1012,7 @@
   {
     "type": "mvn",
     "name": "Maven",
-    "description": "Displays Maven version",
+    "description": "Displays the current Maven version when in a Maven project",
     "icon": "tool-maven",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1119,7 +1119,7 @@
   {
     "type": "nbgv",
     "name": "NBGV",
-    "description": "Displays Nerdbank.GitVersioning version",
+    "description": "Displays the current version from Nerdbank.GitVersioning",
     "icon": "vcs-git-branch",
     "defaultTemplate": " {{ .Version }} ",
     "defaultForeground": "#ffffff",
@@ -1141,7 +1141,7 @@
   {
     "type": "nix-shell",
     "name": "Nix Shell",
-    "description": "Displays Nix shell status",
+    "description": "Displays the current Nix shell status and environment name",
     "icon": "cloud-nix",
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
@@ -1158,7 +1158,7 @@
   {
     "type": "npm",
     "name": "NPM",
-    "description": "Displays NPM version",
+    "description": "Displays the current NPM version when in a Node.js project",
     "icon": "pkg-npm",
     "defaultTemplate": " {{.Full}}",
     "defaultForeground": "#ffffff",
@@ -1266,7 +1266,7 @@
   {
     "type": "nx",
     "name": "Nx",
-    "description": "Displays Nx CLI version",
+    "description": "Displays the current Nx CLI version when in an Nx workspace",
     "icon": "file-package",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1334,7 +1334,7 @@
   {
     "type": "pnpm",
     "name": "PNPM",
-    "description": "Displays PNPM version",
+    "description": "Displays the current PNPM version when in a Node.js project",
     "icon": "pkg-pnpm",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1442,7 +1442,7 @@
   {
     "type": "quasar",
     "name": "Quasar",
-    "description": "Displays Quasar version",
+    "description": "Displays the current Quasar version when in a Quasar project",
     "icon": "tool-quasar",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1510,7 +1510,7 @@
   {
     "type": "react",
     "name": "React",
-    "description": "Displays React version",
+    "description": "Displays the current React version when in a React project",
     "icon": "fw-react",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1578,7 +1578,7 @@
   {
     "type": "svelte",
     "name": "Svelte",
-    "description": "Displays Svelte version",
+    "description": "Displays the current Svelte version when in a Svelte project",
     "icon": "fw-svelte",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1646,7 +1646,7 @@
   {
     "type": "talosctl",
     "name": "Talosctl",
-    "description": "Displays Talos context",
+    "description": "Displays the current Talos context",
     "icon": "cloud-kubernetes",
     "defaultTemplate": " {{ .Context }} ",
     "defaultForeground": "#ffffff",
@@ -1663,7 +1663,7 @@
   {
     "type": "tauri",
     "name": "Tauri",
-    "description": "Displays Tauri version",
+    "description": "Displays the current Tauri version when in a Tauri project",
     "icon": "fw-tauri",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1731,7 +1731,7 @@
   {
     "type": "ui5tooling",
     "name": "UI5 Tooling",
-    "description": "Displays UI5 tooling version",
+    "description": "Displays the current UI5 tooling version when in a UI5 project",
     "icon": "tool-wrench",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1799,7 +1799,7 @@
   {
     "type": "umbraco",
     "name": "Umbraco",
-    "description": "Displays Umbraco version",
+    "description": "Displays the current Umbraco version when in an Umbraco project",
     "icon": "tool-umbraco",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1821,7 +1821,7 @@
   {
     "type": "unity",
     "name": "Unity",
-    "description": "Displays Unity version",
+    "description": "Displays the current Unity and C# versions when in a Unity project",
     "icon": "tool-unity",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1843,7 +1843,7 @@
   {
     "type": "winget",
     "name": "WinGet",
-    "description": "Displays available Windows package updates",
+    "description": "Displays the number of available Windows package updates via WinGet",
     "icon": "action-download",
     "defaultTemplate": " {{ .UpdateCount }} ",
     "defaultForeground": "#ffffff",
@@ -1860,7 +1860,7 @@
   {
     "type": "xmake",
     "name": "XMake",
-    "description": "Displays XMake version",
+    "description": "Displays the current XMake version when in an XMake project",
     "icon": "tool-wrench",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
@@ -1923,7 +1923,7 @@
   {
     "type": "yarn",
     "name": "Yarn",
-    "description": "Displays Yarn version",
+    "description": "Displays the current Yarn version when in a Node.js project",
     "icon": "pkg-yarn",
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
