@@ -15,7 +15,11 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["development", "utilities", "productivity"],
+  "categories": [
+    "development",
+    "utilities",
+    "productivity"
+  ],
   "screenshots": [
     {
       "src": "/ohmyposh-configurator/og-image.svg",

@@ -7,7 +7,7 @@
     "defaultTemplate": " {{ .Sgv }}{{ .TrendIcon }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#E74C3C",
-    "previewText": "120↗",
+    "previewText": "120\u2197",
     "properties": [
       {
         "name": ".Sgv",

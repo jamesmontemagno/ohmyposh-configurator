@@ -68,9 +68,22 @@ npm install
 # Start development server
 npm run dev
 
-# Build for production
+# Build for production (includes JSON minification)
 npm run build
+
+# Preview production build locally
+npm run preview
 ```
+
+### 🔧 Development Scripts
+
+- `npm run dev`: Start Vite development server
+- `npm run build`: Build for production and minify all JSON assets
+- `npm run preview`: Serve the production build from `dist/`
+- `npm run minify`: Manually minify JSON files in the `public/` directory
+- `npm run format:json`: Expand/format JSON files in `public/` for easier editing
+- `npm run validate`: Validate all configuration files and manifests
+- `npm run lint`: Run ESLint check
 
 ## 📖 Usage
 
@@ -138,7 +151,13 @@ eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 - **💾 State Management**: Zustand with localStorage persistence
 - **🎯 Icons**: Custom Nerd Font icon library (200+ icons) with unique IDs
 - **📝 Config Parsing**: js-yaml, @iarna/toml
-- **📦 Segment Loading**: Dynamic JSON-based lazy loading with caching
+- **📦 Data Loading**: Dynamic JSON-based lazy loading with request-deduplication and caching
+
+## ⚡ Performance & Optimization
+
+- **JSON Minification**: All JSON metadata and configuration files are automatically minified during the production build to reduce payload size.
+- **Smart Caching**: The application implements a request-deduplication and caching layer for all JSON assets. Each file is fetched exactly once, even if requested by multiple components simultaneously.
+- **Lazy Loading**: Segment metadata is loaded on-demand by category, keeping the initial bundle size small.
 
 ## 🏗️ Project Structure
 

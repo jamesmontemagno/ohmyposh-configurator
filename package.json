@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/minify-json.js dist",
+    "minify": "node scripts/minify-json.js public",
+    "format:json": "node scripts/format-json.js public",
     "lint": "eslint .",
     "preview": "vite preview",
     "validate": "node scripts/validate-configs.js"

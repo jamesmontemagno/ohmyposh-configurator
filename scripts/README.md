@@ -114,3 +114,31 @@ The validation will automatically run on your PR via GitHub Actions.
 
 **Metadata in config file (deprecated):**
 If you see errors about unexpected fields like `id`, `name`, or `description` in your config file, these fields should be moved to `manifest.json` instead. Config files should contain only the Oh My Posh configuration.
+
+## minify-json.js
+
+Minifies JSON files by removing all whitespace and indentation.
+
+### Usage:
+
+```bash
+# Minify files in dist/ (default)
+node scripts/minify-json.js dist
+
+# Minify files in public/
+npm run minify
+```
+
+## format-json.js
+
+Formats JSON files with 2-space indentation for human readability.
+
+### Usage:
+
+```bash
+# Format files in public/ (default)
+npm run format:json
+
+# Format files in another directory
+node scripts/format-json.js some-dir
+```

@@ -34,10 +34,10 @@
     "name": "Git",
     "description": "Displays Git repository information, including branch name, status, and upstream synchronization.",
     "icon": "vcs-git-merge",
-    "defaultTemplate": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}",
+    "defaultTemplate": "{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#98C379",
-    "previewText": "main ✓",
+    "previewText": "main \u2713",
     "properties": [
       {
         "name": ".RepoName",
@@ -117,25 +117,25 @@
       {
         "name": "branch_gone_icon",
         "type": "string",
-        "default": "≢",
+        "default": "\u2262",
         "description": "Icon for gone upstream branch"
       },
       {
         "name": "branch_identical_icon",
         "type": "string",
-        "default": "≡",
+        "default": "\u2261",
         "description": "Icon when local and remote are identical"
       },
       {
         "name": "branch_ahead_icon",
         "type": "string",
-        "default": "↑",
+        "default": "\u2191",
         "description": "Icon for commits ahead of remote"
       },
       {
         "name": "branch_behind_icon",
         "type": "string",
-        "default": "↓",
+        "default": "\u2193",
         "description": "Icon for commits behind remote"
       },
       {
@@ -177,7 +177,7 @@
       {
         "name": "tag_icon",
         "type": "string",
-        "default": "笠",
+        "default": "\u7b20",
         "description": "Icon for tag reference"
       },
       {
@@ -367,7 +367,7 @@
       {
         "name": "ahead_icon",
         "type": "string",
-        "default": "⇡",
+        "default": "\u21e1",
         "description": "Icon/character between bookmark and ahead counter"
       },
       {

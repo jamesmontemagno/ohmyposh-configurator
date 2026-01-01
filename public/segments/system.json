@@ -7,7 +7,7 @@
     "defaultTemplate": "{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#f36943",
-    "previewText": "🔋85%",
+    "previewText": "\ud83d\udd0b85%",
     "properties": [
       {
         "name": ".Percentage",
@@ -147,7 +147,7 @@
     "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#546E7A",
-    "previewText": "🍎",
+    "previewText": "\ud83c\udf4e",
     "properties": [
       {
         "name": ".Icon",
@@ -510,10 +510,10 @@
     "name": "Root",
     "description": "Displays an indicator when the shell is running with root or administrator privileges.",
     "icon": "status-bolt",
-    "defaultTemplate": " ⚡ ",
+    "defaultTemplate": " \u26a1 ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#ffcc00",
-    "previewText": "⚡",
+    "previewText": "\u26a1",
     "properties": []
   },
   {
@@ -546,7 +546,7 @@
       {
         "name": "ssh_icon",
         "type": "string",
-        "default": "📡",
+        "default": "\ud83d\udce1",
         "description": "Icon for SSH connections"
       },
       {
@@ -613,7 +613,7 @@
     "defaultTemplate": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00897b",
-    "previewText": "✓",
+    "previewText": "\u2713",
     "properties": [
       {
         "name": ".Code",
