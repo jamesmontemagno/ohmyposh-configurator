@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import type { ConfigMetadata } from '../../utils/configLoader';
@@ -13,13 +13,6 @@ export function SamplePicker() {
   const [communityConfigs, setCommunityConfigs] = useState<ConfigMetadata[]>([]);
   const [loading, setLoading] = useState(true);
   const setConfig = useConfigStore((state) => state.setConfig);
-
-  // Load configs when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      loadConfigs();
-    }
-  }, [isOpen]);
 
   const loadConfigs = async () => {
     setLoading(true);
@@ -43,7 +36,10 @@ export function SamplePicker() {
     <>
       {/* Trigger Button */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          loadConfigs();
+        }}
         className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
         title="Load Sample Configuration"
       >

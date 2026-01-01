@@ -10,7 +10,7 @@ import { generateId } from '../store/configStore';
 export function importConfig(content: string, filename: string): OhMyPoshConfig {
   const extension = filename.split('.').pop()?.toLowerCase();
   
-  let parsedConfig: any;
+  let parsedConfig: unknown;
   
   try {
     switch (extension) {
@@ -37,14 +37,15 @@ export function importConfig(content: string, filename: string): OhMyPoshConfig 
   }
 
   // Validate and normalize the config
-  return normalizeConfig(parsedConfig);
+  return normalizeConfig(parsedConfig as Record<string, unknown>);
 }
 
 /**
  * Normalizes and validates an Oh My Posh config object
  * Adds required IDs for drag-and-drop functionality
  */
-function normalizeConfig(config: any): OhMyPoshConfig {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
   if (!config || typeof config !== 'object') {
     throw new Error('Invalid configuration: not an object');
   }
@@ -54,6 +55,7 @@ function normalizeConfig(config: any): OhMyPoshConfig {
   }
 
   // Normalize blocks and segments by adding IDs
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const normalizedBlocks = config.blocks.map((block: any) => {
     if (!block || typeof block !== 'object') {
       throw new Error('Invalid block in configuration');
@@ -64,6 +66,7 @@ function normalizeConfig(config: any): OhMyPoshConfig {
     }
 
     // Add IDs to segments if missing
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const normalizedSegments = block.segments.map((segment: any): Segment => {
       if (!segment || typeof segment !== 'object') {
         throw new Error('Invalid segment in configuration');

@@ -144,11 +144,13 @@ export function ExportBar() {
         </div>
       )}
 
-      <ImportDialog 
-        isOpen={showImportDialog} 
-        onClose={() => setShowImportDialog(false)} 
-        initialMethod={importMethod}
-      />
+      {showImportDialog && (
+        <ImportDialog 
+          isOpen={showImportDialog} 
+          onClose={() => setShowImportDialog(false)} 
+          initialMethod={importMethod}
+        />
+      )}
     </div>
   );
 }

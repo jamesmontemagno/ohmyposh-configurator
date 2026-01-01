@@ -1,5 +1,5 @@
 // Mock data for preview - comprehensive data based on segment properties
-export const mockData: Record<string, any> = {
+export const mockData: Record<string, unknown> = {
   // Path segments
   Path: '~/dev/my-app',
   Folder: 'my-app',
@@ -316,7 +316,7 @@ export const mockData: Record<string, any> = {
 
 // Segment-type-specific overrides for properties that have different meanings per segment
 // This ensures each segment shows contextually appropriate preview data
-export const segmentTypeOverrides: Record<string, Record<string, any>> = {
+export const segmentTypeOverrides: Record<string, Record<string, unknown>> = {
   // === MUSIC SEGMENTS ===
   spotify: { 
     Icon: '\uf001',           // Music note
@@ -507,7 +507,7 @@ export const segmentTypeOverrides: Record<string, Record<string, any>> = {
 };
 
 // Helper to get mock data with segment-specific overrides
-export function getMockDataForSegment(segmentType: string): Record<string, any> {
+export function getMockDataForSegment(segmentType: string): Record<string, unknown> {
   const overrides = segmentTypeOverrides[segmentType];
   if (overrides) {
     return { ...mockData, ...overrides };

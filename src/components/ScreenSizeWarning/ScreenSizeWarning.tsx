@@ -3,16 +3,11 @@ import { NerdIcon } from '../NerdIcon';
 
 export function ScreenSizeWarning() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [isDismissed, setIsDismissed] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(() => {
+    return localStorage.getItem('screenSizeWarningDismissed') === 'true';
+  });
 
   useEffect(() => {
-    // Check if user has already dismissed the warning
-    const dismissed = localStorage.getItem('screenSizeWarningDismissed');
-    if (dismissed) {
-      setIsDismissed(true);
-      return;
-    }
-
     const checkScreenSize = () => {
       // Show warning for screens smaller than 1024px (Tailwind's lg breakpoint)
       setIsSmallScreen(window.innerWidth < 1024);

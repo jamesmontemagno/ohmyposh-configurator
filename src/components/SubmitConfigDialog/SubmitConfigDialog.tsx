@@ -25,9 +25,11 @@ export function SubmitConfigDialog() {
   const handleCopyConfig = () => {
     const configData = {
       ...config,
-      blocks: config.blocks.map(({ id, ...block }) => ({
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      blocks: config.blocks.map(({ id: _id, ...block }) => ({
         ...block,
-        segments: block.segments.map(({ id: segId, ...segment }) => segment),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        segments: block.segments.map(({ id: _segId, ...segment }) => segment),
       })),
     };
 

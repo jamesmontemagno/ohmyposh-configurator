@@ -21,16 +21,6 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
   const timeoutRef = useRef<number | null>(null);
   const setConfig = useConfigStore((state) => state.setConfig);
 
-  // Reset to initial method when dialog opens
-  useEffect(() => {
-    if (isOpen) {
-      setActiveMethod(initialMethod);
-      setError('');
-      setSuccess(false);
-      setPastedConfig('');
-    }
-  }, [isOpen, initialMethod]);
-
   // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
