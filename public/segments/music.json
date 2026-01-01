@@ -4,10 +4,10 @@
     "name": "Last.fm",
     "description": "Displays the track currently being scrobbled to Last.fm",
     "icon": "service-lastfm",
-    "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+    "defaultTemplate": "  {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D51007",
-    "previewText": "\ud83c\udfb5 Radiohead - Paranoid Android",
+    "previewText": "🎵 Radiohead - Paranoid Android",
     "properties": [
       {
         "name": ".Status",
@@ -62,10 +62,10 @@
     "name": "Spotify",
     "description": "Displays the track currently playing on Spotify",
     "icon": "service-spotify",
-    "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+    "defaultTemplate": "  {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1DB954",
-    "previewText": "\ud83c\udfb5 The Beatles - Come Together",
+    "previewText": "🎵 The Beatles - Come Together",
     "properties": [
       {
         "name": ".Status",
@@ -144,10 +144,10 @@
     "name": "YouTube Music",
     "description": "Displays the track currently playing in the YouTube Music Desktop App",
     "icon": "service-youtube",
-    "defaultTemplate": " {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+    "defaultTemplate": "  {{ .Icon }}{{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF0000",
-    "previewText": "\ud83c\udfb5 Daft Punk - One More Time",
+    "previewText": "🎵 Daft Punk - One More Time",
     "properties": [
       {
         "name": ".Status",
