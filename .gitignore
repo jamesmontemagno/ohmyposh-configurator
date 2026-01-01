@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Original Nerd Font (we only commit the subset)
+public/fonts/SymbolsNerdFontMono-Regular.ttf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

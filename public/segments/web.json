@@ -7,7 +7,7 @@
     "defaultTemplate": " {{ .StatusIcon }} {{ .Recipe.Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D78C14",
-    "previewText": "🍺 IPA Batch",
+    "previewText": "\ud83c\udf7a IPA Batch",
     "properties": [
       {
         "name": ".Status",
@@ -236,7 +236,7 @@
     "defaultTemplate": " {{ .Weather }} {{ .Temperature }}{{ .UnitIcon }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1E88E5",
-    "previewText": "☀️ 72°F",
+    "previewText": "\u2600\ufe0f 72\u00b0F",
     "properties": [
       {
         "name": ".Weather",

@@ -1,0 +1,7 @@
+# Run icon validation when segment JSON files are modified
+CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E 'public/segments/.*\.json$|public/configs/.*\.json$' || true)
+
+if [ -n "$CHANGED_FILES" ]; then
+  echo "📝 Segment or config files changed, running icon validation..."
+  npm run validate-icons
+fi

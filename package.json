@@ -5,10 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/minify-json.js dist",
+    "minify": "node scripts/minify-json.js public",
+    "format:json": "node scripts/format-json.js public",
     "lint": "eslint .",
     "preview": "vite preview",
-    "validate": "node scripts/validate-configs.js"
+    "validate": "node scripts/validate-configs.js && node scripts/validate-icons.js",
+    "validate-icons": "node scripts/validate-icons.js",
+    "generate-font-subset": "node scripts/generate-font-subset.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -33,6 +38,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^6.4.1"

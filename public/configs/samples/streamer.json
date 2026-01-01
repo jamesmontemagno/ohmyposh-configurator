@@ -1,75 +1,75 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
-    "final_space": true,
-    "blocks": [
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "segments": [
-          {
-            "type": "time",
-            "style": "diamond",
-            "foreground": "#ffffff",
-            "background": "#ff6b6b",
-            "leading_diamond": "\ue0b6",
-            "trailing_diamond": "\ue0b0",
-            "template": " \uf017 {{ .CurrentDate | date \"15:04\" }} "
-          },
-          {
-            "type": "path",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#4ecdc4",
-            "template": " \uf07c {{ .Path }} ",
-            "options": {
-              "style": "folder",
-              "max_depth": 2
-            }
-          },
-          {
-            "type": "git",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#3fb8af",
-            "template": " \ue725 {{ .HEAD }} "
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "time",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#ff6b6b",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b0",
+          "template": " \uf017 {{ .CurrentDate | date \"15:04\" }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#4ecdc4",
+          "template": " \uf07c {{ .Path }} ",
+          "options": {
+            "style": "folder",
+            "max_depth": 2
           }
-        ]
-      },
-      {
-        "type": "prompt",
-        "alignment": "right",
-        "segments": [
-          {
-            "type": "spotify",
-            "style": "diamond",
-            "foreground": "#ffffff",
-            "background": "#1DB954",
-            "leading_diamond": "\ue0b2",
-            "trailing_diamond": "\ue0b4",
-            "template": " \uf1bc {{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
-            "options": {
-              "playing_icon": "\uf04b ",
-              "paused_icon": "\uf04c ",
-              "stopped_icon": "\uf04d "
-            }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#3fb8af",
+          "template": " \ue725 {{ .HEAD }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "spotify",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#1DB954",
+          "leading_diamond": "\ue0b2",
+          "trailing_diamond": "\ue0b4",
+          "template": " \uf1bc {{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
+          "options": {
+            "playing_icon": "\uf04b ",
+            "paused_icon": "\uf04c ",
+            "stopped_icon": "\uf04d "
           }
-        ]
-      },
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "type": "text",
-            "style": "plain",
-            "foreground": "#e4f9f5",
-            "template": "➜ "
-          }
-        ]
-      }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#e4f9f5",
+          "template": "\u279c "
+        }
+      ]
+    }
   ]
 }

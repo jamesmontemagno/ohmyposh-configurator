@@ -1,85 +1,85 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
-    "final_space": true,
-    "blocks": [
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "segments": [
-          {
-            "type": "os",
-            "style": "diamond",
-            "foreground": "#ffffff",
-            "background": "#003544",
-            "leading_diamond": "\ue0b6",
-            "trailing_diamond": "\ue0b0",
-            "template": " {{ .Icon }} "
-          },
-          {
-            "type": "path",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#0077b6",
-            "template": " \uf07c {{ .Path }} ",
-            "options": {
-              "style": "folder",
-              "max_depth": 3
-            }
-          },
-          {
-            "type": "git",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#00b4d8",
-            "template": " \ue725 {{ .HEAD }} "
-          },
-          {
-            "type": "aws",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#FF9900",
-            "template": " \uf270 {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
-          },
-          {
-            "type": "kubectl",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#326CE5",
-            "template": " \ufd31 {{ .Context }}{{ if .Namespace }}::{{ .Namespace }}{{ end }} "
-          },
-          {
-            "type": "docker",
-            "style": "powerline",
-            "powerline_symbol": "\ue0b0",
-            "foreground": "#ffffff",
-            "background": "#2496ED",
-            "template": " \uf308 {{ .Context }} "
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#003544",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b0",
+          "template": " {{ .Icon }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#0077b6",
+          "template": " \uf07c {{ .Path }} ",
+          "options": {
+            "style": "folder",
+            "max_depth": 3
           }
-        ]
-      },
-      {
-        "type": "prompt",
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "type": "status",
-            "style": "plain",
-            "foreground": "#00d9ff",
-            "foreground_templates": [
-              "{{ if gt .Code 0 }}#ff6b9d{{ end }}"
-            ],
-            "template": "❯ ",
-            "options": {
-              "always_enabled": true
-            }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#00b4d8",
+          "template": " \ue725 {{ .HEAD }} "
+        },
+        {
+          "type": "aws",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#FF9900",
+          "template": " \uf270 {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
+        },
+        {
+          "type": "kubectl",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#326CE5",
+          "template": " \ufd31 {{ .Context }}{{ if .Namespace }}::{{ .Namespace }}{{ end }} "
+        },
+        {
+          "type": "docker",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#2496ED",
+          "template": " \uf308 {{ .Context }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "#00d9ff",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#ff6b9d{{ end }}"
+          ],
+          "template": "\u276f ",
+          "options": {
+            "always_enabled": true
           }
-        ]
-      }
+        }
+      ]
+    }
   ]
 }

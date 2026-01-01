@@ -94,10 +94,42 @@ Add your configuration's **metadata** to `public/configs/community/manifest.json
 - `id`: Lowercase, hyphenated unique identifier matching your filename (e.g., `my-theme-name`)
 - `name`: Display name for your theme
 - `description`: Brief description (1-2 sentences recommended)
-- `icon`: [Nerd Font icon ID](docs/nerd-font-icons-reference.md) (e.g., `misc-star`, `ui-code`, `misc-rocket`)
+- `icon`: [Nerd Font icon ID](docs/nerd-font-icons-reference.md) (e.g., `misc-star`, `ui-code`, `misc-rocket`) - **must use format `category-name`**
 - `author`: Your name or GitHub username
 - `tags`: Array of relevant tags (e.g., `["minimal", "developer", "python"]`)
 - `file`: The filename of your config JSON file
+
+#### Icon Usage Guidelines
+
+**Important:** All icon references must use valid icon IDs from [docs/nerd-font-icons-reference.md](docs/nerd-font-icons-reference.md).
+
+**Icon ID Format:**
+- Icon IDs use the format `category-name` (e.g., `misc-star`, `lang-python`, `ui-code`)
+- **NOT** just the name (e.g., ~~`Star`~~, ~~`Python`~~)
+
+**Finding Icon IDs:**
+1. Browse the complete list in [docs/nerd-font-icons-reference.md](docs/nerd-font-icons-reference.md)
+2. Use the icon picker in the configurator's "Submit Config" dialog
+3. Search by category:
+   - `ui-*` - UI elements (chevrons, arrows, etc.)
+   - `lang-*` - Programming languages
+   - `fw-*` - Frameworks
+   - `vcs-*` - Version control
+   - `cloud-*` - Cloud services
+   - `misc-*` - Miscellaneous icons
+
+**Validation:**
+- Icon references are automatically validated in CI and pre-commit hooks
+- Invalid icon IDs will cause build failures
+- Only icons from `nerdFontIcons.ts` are allowed to keep the font subset optimized
+
+**Example:**
+```json
+{
+  "icon": "misc-star",  // ✅ Correct
+  "icon": "Star"        // ❌ Wrong - will fail validation
+}
+```
 
 ### 2. Report Bugs
 
@@ -147,7 +179,31 @@ npm run build
 
 # Validate configuration files
 npm run validate
+
+# Validate icon references
+npm run validate-icons
+
+# Generate optimized font subset (requires fonttools)
+npm run generate-font-subset
 ```
+
+#### Prerequisites for Font Work
+
+If you're working on features that require regenerating the font subset:
+
+1. **Install Python 3.x** (if not already installed)
+2. **Install fonttools:**
+   ```bash
+   # macOS/Linux
+   pip3 install fonttools brotli
+   
+   # Windows
+   pip install fonttools brotli
+   
+   # Or using conda
+   conda install -c conda-forge fonttools brotli
+   ```
+3. See [docs/font-subset-process.md](docs/font-subset-process.md) for detailed information
 
 #### Testing Your Configuration
 
@@ -166,6 +222,8 @@ The validation script automatically runs on all pull requests via GitHub Actions
 - ✅ No duplicate IDs in manifest
 - ✅ All files referenced in manifest exist
 - ✅ Config files contain pure Oh My Posh configuration (no metadata wrapper)
+- ✅ All icon references use valid IDs from `nerdFontIcons.ts`
+- ✅ No hardcoded unicode characters outside of known powerline symbols
 
 ## Code Style Guidelines
 

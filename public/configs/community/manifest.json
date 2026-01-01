@@ -8,7 +8,13 @@
       "description": "Perfect for .NET developers working with Azure cloud services, featuring Azure CLI, .NET SDK, Docker, and Git integration",
       "icon": "cloud-generic",
       "author": "James Montemagno",
-      "tags": ["dotnet", "azure", "cloud", "developer", "csharp"],
+      "tags": [
+        "dotnet",
+        "azure",
+        "cloud",
+        "developer",
+        "csharp"
+      ],
       "file": "dotnet-azure-developer.json"
     },
     {
@@ -17,7 +23,12 @@
       "description": "Kayla Cinnamon's mod of the original 1_shell theme including the WinGet and GitHub Copilot segments. Already includes Git integration",
       "icon": "ui-code",
       "author": "Kayla Cinnamon",
-      "tags": ["developer", "copilot", "winget", "git"],
+      "tags": [
+        "developer",
+        "copilot",
+        "winget",
+        "git"
+      ],
       "file": "cinnamon-1_shell.json"
     }
   ]

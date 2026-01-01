@@ -97,7 +97,7 @@
     "defaultTemplate": " {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#EF7B4D",
-    "previewText": "🐳 production",
+    "previewText": "\ud83d\udc33 production",
     "properties": [
       {
         "name": ".Name",
@@ -441,7 +441,7 @@
     "defaultTemplate": " \udb82\udfc9 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D97757",
-    "previewText": "🤖 claude ",
+    "previewText": "\ud83e\udd16 claude ",
     "properties": [
       {
         "name": ".SessionID",
@@ -513,7 +513,7 @@
       {
         "name": ".TokenUsagePercent.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ▰▰▰▰▱) to show context window usage"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u25b0\u25b0\u25b0\u25b0\u25b1) to show context window usage"
       },
       {
         "name": ".TokenUsagePercent.String",
@@ -720,10 +720,10 @@
     "name": "Docker",
     "description": "Displays the current Docker context and active environment",
     "icon": "cloud-docker",
-    "defaultTemplate": " {{ .Context }}",
+    "defaultTemplate": "\uf308 {{ .Context }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2496ED",
-    "previewText": "🐳 default",
+    "previewText": "\ud83d\udc33 default",
     "properties": [
       {
         "name": ".Context",
@@ -770,7 +770,7 @@
     "defaultTemplate": "{{ .Project }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FFA611",
-    "previewText": "🔥 my-app",
+    "previewText": "\ud83d\udd25 my-app",
     "properties": [
       {
         "name": ".Project",
@@ -787,7 +787,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#02569B",
-    "previewText": "💙 3.16.0",
+    "previewText": "\ud83d\udc99 3.16.0",
     "properties": [
       {
         "name": ".Full",
@@ -883,7 +883,7 @@
     "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8957E5",
-    "previewText": " 🤖 ██░░░",
+    "previewText": " \ud83e\udd16 \u2588\u2588\u2591\u2591\u2591",
     "properties": [
       {
         "name": ".Premium.Used",
@@ -970,7 +970,7 @@
       {
         "name": ".Percent.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ████░) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u2588\u2588\u2588\u2588\u2591) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
       },
       {
         "name": ".Percent.String",
@@ -980,7 +980,7 @@
       {
         "name": ".Remaining.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ░████) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u2591\u2588\u2588\u2588\u2588) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
       }
     ],
     "options": [
@@ -1000,7 +1000,7 @@
     "defaultTemplate": " Helm {{ .Version }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0F1689",
-    "previewText": "⚓ v3.13.3",
+    "previewText": "\u2693 v3.13.3",
     "properties": [
       {
         "name": ".Version",
@@ -1017,7 +1017,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#C71A36",
-    "previewText": "🪣 3.9.6",
+    "previewText": "\ud83e\udea3 3.9.6",
     "properties": [
       {
         "name": ".Full",
@@ -1146,7 +1146,7 @@
     "defaultTemplate": " {{ .Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5277C3",
-    "previewText": "❄️ devenv",
+    "previewText": "\u2744\ufe0f devenv",
     "properties": [
       {
         "name": ".Type",
@@ -1160,7 +1160,7 @@
     "name": "NPM",
     "description": "Displays the current NPM version when in a Node.js project",
     "icon": "pkg-npm",
-    "defaultTemplate": " {{.Full}}",
+    "defaultTemplate": "\ue71e {{.Full}}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CB3837",
     "previewText": "10.2.5",
@@ -1447,7 +1447,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1976D2",
-    "previewText": "🌟 2.13.0",
+    "previewText": "\ud83c\udf1f 2.13.0",
     "properties": [
       {
         "name": ".Full",
@@ -1515,7 +1515,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#61DAFB",
-    "previewText": "⚛️ 18.2.0",
+    "previewText": "\u269b\ufe0f 18.2.0",
     "properties": [
       {
         "name": ".Full",
@@ -1583,7 +1583,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF3E00",
-    "previewText": "🔥 4.2.8",
+    "previewText": "\ud83d\udd25 4.2.8",
     "properties": [
       {
         "name": ".Full",
@@ -1804,7 +1804,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3544B1",
-    "previewText": "☂️ 13.0.0",
+    "previewText": "\u2602\ufe0f 13.0.0",
     "properties": [
       {
         "name": ".Modern",
@@ -1826,7 +1826,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000000",
-    "previewText": "🎮 2023.2.0",
+    "previewText": "\ud83c\udfae 2023.2.0",
     "properties": [
       {
         "name": ".UnityVersion",
@@ -1928,7 +1928,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2C8EBB",
-    "previewText": "🧶 4.0.2",
+    "previewText": "\ud83e\uddf6 4.0.2",
     "properties": [
       {
         "name": ".Full",

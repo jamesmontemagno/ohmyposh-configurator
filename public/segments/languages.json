@@ -4,7 +4,7 @@
     "name": ".NET",
     "description": "Displays the current .NET SDK version and support status",
     "icon": "lang-csharp",
-    "defaultTemplate": "\uee0d {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultTemplate": "\uee0d {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#512BD4",
     "previewText": ".NET 10.0.101",
@@ -1539,7 +1539,7 @@
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3776AB",
-    "previewText": "🐍 venv 3.12.0",
+    "previewText": "\ud83d\udc0d venv 3.12.0",
     "properties": [
       {
         "name": ".Venv",
@@ -1721,7 +1721,7 @@
     "defaultTemplate": " {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CC342D",
-    "previewText": "💎 3.3.0",
+    "previewText": "\ud83d\udc8e 3.3.0",
     "properties": [
       {
         "name": ".Full",

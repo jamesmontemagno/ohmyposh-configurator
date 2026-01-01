@@ -34,20 +34,43 @@ export type ConfigFile = Omit<OhMyPoshConfig, 'blocks'> & {
 
 const BASE_PATH = import.meta.env.BASE_URL || '/';
 
+// Cache for manifests and config files
+const manifestCache = new Map<string, ConfigManifest>();
+const manifestPromises = new Map<string, Promise<ConfigManifest>>();
+const configFileCache = new Map<string, ConfigFile>();
+const configFilePromises = new Map<string, Promise<ConfigFile | null>>();
+
 /**
  * Fetch configs manifest from a category (samples or community)
  */
 export async function fetchConfigManifest(category: 'samples' | 'community'): Promise<ConfigManifest> {
-  try {
-    const response = await fetch(`${BASE_PATH}configs/${category}/manifest.json`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${category} manifest`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(`Error loading ${category} manifest:`, error);
-    return { version: '1.0.0', lastUpdated: new Date().toISOString(), configs: [] };
+  if (manifestCache.has(category)) {
+    return manifestCache.get(category)!;
   }
+
+  if (manifestPromises.has(category)) {
+    return manifestPromises.get(category)!;
+  }
+
+  const promise = (async () => {
+    try {
+      const response = await fetch(`${BASE_PATH}configs/${category}/manifest.json`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch ${category} manifest`);
+      }
+      const data = await response.json();
+      manifestCache.set(category, data);
+      manifestPromises.delete(category);
+      return data;
+    } catch (error) {
+      console.error(`Error loading ${category} manifest:`, error);
+      manifestPromises.delete(category);
+      return { version: '1.0.0', lastUpdated: new Date().toISOString(), configs: [] };
+    }
+  })();
+
+  manifestPromises.set(category, promise);
+  return promise;
 }
 
 /**
@@ -57,16 +80,35 @@ export async function fetchConfigFile(
   category: 'samples' | 'community',
   filename: string
 ): Promise<ConfigFile | null> {
-  try {
-    const response = await fetch(`${BASE_PATH}configs/${category}/${filename}`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch config file: ${filename}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(`Error loading config file ${filename}:`, error);
-    return null;
+  const cacheKey = `${category}/${filename}`;
+  
+  if (configFileCache.has(cacheKey)) {
+    return configFileCache.get(cacheKey)!;
   }
+
+  if (configFilePromises.has(cacheKey)) {
+    return configFilePromises.get(cacheKey)!;
+  }
+
+  const promise = (async () => {
+    try {
+      const response = await fetch(`${BASE_PATH}configs/${category}/${filename}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch config file: ${filename}`);
+      }
+      const data = await response.json();
+      configFileCache.set(cacheKey, data);
+      configFilePromises.delete(cacheKey);
+      return data;
+    } catch (error) {
+      console.error(`Error loading config file ${filename}:`, error);
+      configFilePromises.delete(cacheKey);
+      return null;
+    }
+  })();
+
+  configFilePromises.set(cacheKey, promise);
+  return promise;
 }
 
 /**

@@ -15,8 +15,9 @@ interface SegmentJSON {
   previewText?: string;
 }
 
-// Cache for loaded segments
+// Cache for loaded segments and loading promises
 const segmentCache = new Map<SegmentCategory, SegmentMetadata[]>();
+const loadingPromises = new Map<SegmentCategory, Promise<SegmentMetadata[]>>();
 
 // Track loading state and subscribers
 let isLoaded = false;
@@ -51,35 +52,47 @@ export async function loadSegmentCategory(category: SegmentCategory): Promise<Se
     return segmentCache.get(category)!;
   }
 
-  try {
-    const response = await fetch(`/ohmyposh-configurator/segments/${category}.json`);
-    if (!response.ok) {
-      throw new Error(`Failed to load ${category} segments: ${response.statusText}`);
-    }
-
-    const segments: SegmentJSON[] = await response.json();
-    
-    // Transform JSON to SegmentMetadata with colors
-    const segmentMetadata: SegmentMetadata[] = segments.map(segment => {
-      const colors = getSegmentColors(segment.type, category);
-      return {
-        ...segment,
-        type: segment.type as SegmentType, // Type will be validated by Oh My Posh
-        category,
-        // Use colors from JSON if provided, otherwise fall back to color scheme
-        defaultBackground: segment.defaultBackground || colors.background,
-        defaultForeground: segment.defaultForeground || colors.foreground,
-      };
-    });
-
-    // Cache the result
-    segmentCache.set(category, segmentMetadata);
-    
-    return segmentMetadata;
-  } catch (error) {
-    console.error(`Error loading ${category} segments:`, error);
-    return [];
+  // Return existing promise if already loading
+  if (loadingPromises.has(category)) {
+    return loadingPromises.get(category)!;
   }
+
+  const loadPromise = (async () => {
+    try {
+      const response = await fetch(`/ohmyposh-configurator/segments/${category}.json`);
+      if (!response.ok) {
+        throw new Error(`Failed to load ${category} segments: ${response.statusText}`);
+      }
+
+      const segments: SegmentJSON[] = await response.json();
+      
+      // Transform JSON to SegmentMetadata with colors
+      const segmentMetadata: SegmentMetadata[] = segments.map(segment => {
+        const colors = getSegmentColors(segment.type, category);
+        return {
+          ...segment,
+          type: segment.type as SegmentType, // Type will be validated by Oh My Posh
+          category,
+          // Use colors from JSON if provided, otherwise fall back to color scheme
+          defaultBackground: segment.defaultBackground || colors.background,
+          defaultForeground: segment.defaultForeground || colors.foreground,
+        };
+      });
+
+      // Cache the result and remove the promise
+      segmentCache.set(category, segmentMetadata);
+      loadingPromises.delete(category);
+      
+      return segmentMetadata;
+    } catch (error) {
+      console.error(`Error loading ${category} segments:`, error);
+      loadingPromises.delete(category);
+      return [];
+    }
+  })();
+
+  loadingPromises.set(category, loadPromise);
+  return loadPromise;
 }
 
 /**

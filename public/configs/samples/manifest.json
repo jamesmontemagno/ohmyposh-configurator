@@ -8,7 +8,12 @@
       "description": "Complete setup for software developers with Git, language versions, and execution time",
       "icon": "ui-code",
       "author": "Oh My Posh Configurator",
-      "tags": ["developer", "git", "languages", "complete"],
+      "tags": [
+        "developer",
+        "git",
+        "languages",
+        "complete"
+      ],
       "file": "developer-pro.json"
     },
     {
@@ -17,7 +22,12 @@
       "description": "Clean and colorful prompt perfect for streaming with music and time info",
       "icon": "misc-video",
       "author": "Oh My Posh Configurator",
-      "tags": ["streaming", "music", "minimal", "colorful"],
+      "tags": [
+        "streaming",
+        "music",
+        "minimal",
+        "colorful"
+      ],
       "file": "streamer.json"
     },
     {
@@ -26,7 +36,12 @@
       "description": "Simple and fast prompt with just the essentials",
       "icon": "weather-stormy",
       "author": "Oh My Posh Configurator",
-      "tags": ["minimal", "fast", "simple", "clean"],
+      "tags": [
+        "minimal",
+        "fast",
+        "simple",
+        "clean"
+      ],
       "file": "minimal.json"
     },
     {
@@ -35,7 +50,13 @@
       "description": "Focused on cloud services with AWS, Azure, Kubernetes, and Docker info",
       "icon": "cloud-generic",
       "author": "Oh My Posh Configurator",
-      "tags": ["cloud", "aws", "kubernetes", "docker", "devops"],
+      "tags": [
+        "cloud",
+        "aws",
+        "kubernetes",
+        "docker",
+        "devops"
+      ],
       "file": "cloud-engineer.json"
     },
     {
@@ -44,7 +65,13 @@
       "description": "Comprehensive setup for full-stack developers with frontend and backend tools",
       "icon": "misc-rocket",
       "author": "Oh My Posh Configurator",
-      "tags": ["full-stack", "react", "node", "python", "dotnet"],
+      "tags": [
+        "full-stack",
+        "react",
+        "node",
+        "python",
+        "dotnet"
+      ],
       "file": "full-stack.json"
     },
     {
@@ -53,7 +80,13 @@
       "description": "Optimized for data science work with Python, R, and Julia",
       "icon": "misc-chart",
       "author": "Oh My Posh Configurator",
-      "tags": ["data-science", "python", "r", "julia", "analytics"],
+      "tags": [
+        "data-science",
+        "python",
+        "r",
+        "julia",
+        "analytics"
+      ],
       "file": "data-scientist.json"
     }
   ]
