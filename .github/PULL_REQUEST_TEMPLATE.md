@@ -15,8 +15,9 @@ Please ensure you have completed the following:
 - [ ] Created a new JSON file in `public/configs/community/` with a descriptive filename
 - [ ] Updated `public/configs/community/manifest.json` to include your configuration
 - [ ] Tested that your configuration loads correctly in the app
-- [ ] Used a valid [Lucide icon name](https://lucide.dev/icons/) for the `icon` field
+- [ ] Used a valid [Nerd Font icon ID](docs/nerd-font-icons-reference.md) for the `icon` field
 - [ ] Provided appropriate tags that describe your configuration
+- [ ] Ran `npm run validate` and all checks passed
 - [ ] Followed the structure outlined in [CONTRIBUTING.md](../CONTRIBUTING.md)
 - [ ] Configuration is your original work or properly attributed
 

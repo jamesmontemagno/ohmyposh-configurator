@@ -136,7 +136,7 @@ eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 - **🎨 Styling**: Tailwind CSS 4.1
 - **🖱️ Drag & Drop**: @dnd-kit (sortable lists and cross-container support)
 - **💾 State Management**: Zustand with localStorage persistence
-- **🎯 Icons**: Lucide React (500+ icons) + Custom Nerd Font icons (200+)
+- **🎯 Icons**: Custom Nerd Font icon library (200+ icons) with unique IDs
 - **📝 Config Parsing**: js-yaml, @iarna/toml
 - **📦 Segment Loading**: Dynamic JSON-based lazy loading with caching
 
@@ -195,7 +195,7 @@ Segments are now stored in separate JSON files by category in `public/segments/`
      "type": "segment-type",
      "name": "Display Name",
      "description": "Brief description",
-     "icon": "LucideIconName",
+     "icon": "lang-python",
      "defaultTemplate": " {{ .Property }} ",
      "properties": [
        {

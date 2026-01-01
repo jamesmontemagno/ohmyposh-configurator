@@ -40,7 +40,7 @@ npm run lint         # ESLint check
 
 ### Components
 - Located in [src/components/](src/components/), each major component has its own folder with `index.ts` re-export
-- Use `NerdIcon` component for all icons (wraps Lucide + custom Nerd Font icons)
+- Use `NerdIcon` component for all icons (uses custom Nerd Font icons with unique IDs)
 - Tailwind CSS with project colors: `#0f0f23` (bg-dark), `#1a1a2e` (bg-panel), `#0f3460` (borders), `#e94560` (accent)
 
 ### Types

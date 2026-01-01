@@ -7,9 +7,9 @@ import { SubmitConfigDialog } from '../SubmitConfigDialog';
 import type { ExportFormat } from '../../types/ohmyposh';
 
 const formatOptions: { value: ExportFormat; label: string; iconName: string }[] = [
-  { value: 'json', label: 'JSON', iconName: 'fileJson' },
-  { value: 'yaml', label: 'YAML', iconName: 'fileCode' },
-  { value: 'toml', label: 'TOML', iconName: 'fileCode' },
+  { value: 'json', label: 'JSON', iconName: 'file-json' },
+  { value: 'yaml', label: 'YAML', iconName: 'file-code' },
+  { value: 'toml', label: 'TOML', iconName: 'file-code' },
 ];
 
 export function ExportBar() {
@@ -94,14 +94,14 @@ export function ExportBar() {
                   onClick={() => handleImportOptionClick('file')}
                   className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
                 >
-                  <NerdIcon icon="fileJson" size={16} />
+                  <NerdIcon icon="file-json" size={16} />
                   <span>Import from File</span>
                 </button>
                 <button
                   onClick={() => handleImportOptionClick('paste')}
                   className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors text-left"
                 >
-                  <NerdIcon icon="fileCode" size={16} />
+                  <NerdIcon icon="file-code" size={16} />
                   <span>Paste Configuration</span>
                 </button>
               </div>
