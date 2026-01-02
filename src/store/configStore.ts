@@ -62,7 +62,7 @@ const defaultConfig: OhMyPoshConfig = {
           powerline_symbol: '\ue0b0',
           foreground: '#ffffff',
           background: '#61AFEF',
-          template: ' {{ .Path }} ',
+          template: ' \uf07c {{ .Path }} ',
           options: {
             style: 'folder',
           },
@@ -74,7 +74,7 @@ const defaultConfig: OhMyPoshConfig = {
           powerline_symbol: '\ue0b0',
           foreground: '#ffffff',
           background: '#98C379',
-          template: ' {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
+          template: ' \ue725 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
         },
       ],
     },
