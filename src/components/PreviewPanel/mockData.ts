@@ -319,19 +319,19 @@ export const mockData: Record<string, unknown> = {
 export const segmentTypeOverrides: Record<string, Record<string, unknown>> = {
   // === MUSIC SEGMENTS ===
   spotify: { 
-    Icon: '\uf001',           // Music note
+    Icon: '\uf1bc',           // Music note
     Status: 'playing',
     Artist: 'The Beatles',
     Track: 'Come Together'
   },
   lastfm: { 
-    Icon: '\uf001',           // Music note
+    Icon: '\uf202',           // Music note
     Status: 'playing',
     Artist: 'Radiohead',
     Track: 'Paranoid Android'
   },
   ytm: { 
-    Icon: '\uf001',           // Music note
+    Icon: '\uf16a',           // Music note
     Status: 'playing',
     Artist: 'Daft Punk',
     Track: 'One More Time'
@@ -412,7 +412,7 @@ export const segmentTypeOverrides: Record<string, Record<string, unknown>> = {
   },
   strava: {
     Ago: '5m',
-    Icon: '\uf70c'            // Running icon
+    Icon: '\uef0c'            // Running icon
   },
   withings: {
     Steps: 8542,

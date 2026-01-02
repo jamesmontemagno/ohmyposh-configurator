@@ -12,7 +12,6 @@ interface ConfigState {
   selectedSegmentId: string | null;
   exportFormat: ExportFormat;
   previewBackground: 'dark' | 'light';
-  previewMode: 'preview' | 'mock'; // Toggle between preview data and mock template data
 
   // Actions
   setConfig: (config: OhMyPoshConfig) => void;
@@ -44,7 +43,6 @@ interface ConfigState {
 
   // Preview
   setPreviewBackground: (bg: 'dark' | 'light') => void;
-  setPreviewMode: (mode: 'preview' | 'mock') => void;
 }
 
 const defaultConfig: OhMyPoshConfig = {
@@ -64,7 +62,7 @@ const defaultConfig: OhMyPoshConfig = {
           powerline_symbol: '\ue0b0',
           foreground: '#ffffff',
           background: '#61AFEF',
-          template: ' {{ .Path }} ',
+          template: ' \uf07c {{ .Path }} ',
           options: {
             style: 'folder',
           },
@@ -76,7 +74,7 @@ const defaultConfig: OhMyPoshConfig = {
           powerline_symbol: '\ue0b0',
           foreground: '#ffffff',
           background: '#98C379',
-          template: ' {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
+          template: ' \ue725 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
         },
       ],
     },
@@ -91,7 +89,6 @@ export const useConfigStore = create<ConfigState>()(
       selectedSegmentId: null,
       exportFormat: 'json',
       previewBackground: 'dark',
-      previewMode: 'preview', // Default to preview mode
 
       setConfig: (config) => set({ config }),
 
@@ -266,8 +263,6 @@ export const useConfigStore = create<ConfigState>()(
       setExportFormat: (format) => set({ exportFormat: format }),
 
       setPreviewBackground: (bg) => set({ previewBackground: bg }),
-      
-      setPreviewMode: (mode) => set({ previewMode: mode }),
     }),
     {
       name: 'ohmyposh-config',

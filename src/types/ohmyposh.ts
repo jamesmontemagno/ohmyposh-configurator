@@ -105,6 +105,7 @@ export type SegmentType =
   | 'v'
   | 'vala'
   | 'wakatime'
+  | 'winget'
   | 'winreg'
   | 'withings'
   | 'xmake'

@@ -6,14 +6,11 @@ export function PreviewPanel() {
   const config = useConfigStore((state) => state.config);
   const previewBackground = useConfigStore((state) => state.previewBackground);
   const setPreviewBackground = useConfigStore((state) => state.setPreviewBackground);
-  const previewMode = useConfigStore((state) => state.previewMode);
-  const setPreviewMode = useConfigStore((state) => state.setPreviewMode);
 
   // Use terminal_background from config if set, otherwise use preview background preference
   const bgColor = config.terminal_background || (previewBackground === 'dark' ? '#1e1e1e' : '#ffffff');
   const textColor = previewBackground === 'dark' ? '#cccccc' : '#333333';
   const finalSpace = config.final_space ?? true;
-  const useMockData = previewMode === 'mock';
 
   return (
     <div className="bg-[#16213e] border-t border-[#0f3460]">
@@ -28,33 +25,6 @@ export function PreviewPanel() {
           )}
         </div>
         <div className="flex items-center gap-4">
-          {/* Preview Mode Toggle */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500">Mode:</span>
-            <button
-              onClick={() => setPreviewMode('preview')}
-              className={`px-2 py-1 rounded text-xs transition-colors ${
-                previewMode === 'preview'
-                  ? 'bg-[#0f3460] text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-              title="Mock Preview Data - Show configured segment data"
-            >
-              Mock Preview
-            </button>
-            <button
-              onClick={() => setPreviewMode('mock')}
-              className={`px-2 py-1 rounded text-xs transition-colors ${
-                previewMode === 'mock'
-                  ? 'bg-[#0f3460] text-white'
-                  : 'text-gray-400 hover:text-white'
-              }`}
-              title="Try to use Template - Show templates with realistic data"
-            >
-              Use Template
-            </button>
-          </div>
-          
           {/* Background Toggle */}
           <div className="flex items-center gap-2">
             <span className="text-xs text-gray-500">Background:</span>
@@ -97,7 +67,7 @@ export function PreviewPanel() {
         <div className="space-y-2">
           {config.blocks.map((block, index) => (
             <div key={block.id}>
-              <BlockPreview block={block} useMockData={useMockData} />
+              <BlockPreview block={block} />
               {block.newline && index < config.blocks.length - 1 && <br />}
             </div>
           ))}
