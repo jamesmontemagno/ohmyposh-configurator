@@ -240,7 +240,7 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'os-apple': { id: 'os-apple', name: 'Apple', code: 'F302', char: '\uf302', category: 'Cloud & Infrastructure', aliases: ['Apple', 'macos', 'osx'], description: 'macOS/Apple' },
 
   // === ENVIRONMENT & SUSTAINABILITY ===
-  'env-carbon': { id: 'env-carbon', name: 'Carbon', code: 'E788', char: '\ue788', category: 'Miscellaneous', aliases: ['Carbon', 'carbon', 'co2', 'environment'], description: 'Carbon or environmental footprint' },
+  'env-carbon': { id: 'env-carbon', name: 'Carbon', code: 'F06C', char: '\uf06c', category: 'Miscellaneous', aliases: ['Carbon', 'carbon', 'co2', 'environment'], description: 'Carbon or environmental footprint' },
 
   // === ADDITIONAL UTILITY ICONS ===
   'status-bolt': { id: 'status-bolt', name: 'Bolt', code: 'F0E7', char: '\uf0e7', category: 'Symbols & Objects', aliases: ['Bolt', 'lightning', 'power', 'root'], description: 'Power or lightning bolt' },
