@@ -3,10 +3,9 @@ import { SegmentPreview } from './SegmentPreview';
 
 interface BlockPreviewProps {
   block: Block;
-  useMockData?: boolean;
 }
 
-export function BlockPreview({ block, useMockData = false }: BlockPreviewProps) {
+export function BlockPreview({ block }: BlockPreviewProps) {
   if (block.segments.length === 0) {
     return null;
   }
@@ -25,7 +24,6 @@ export function BlockPreview({ block, useMockData = false }: BlockPreviewProps) 
           blockLeadingDiamond={block.leading_diamond}
           blockTrailingDiamond={block.trailing_diamond}
           prevStyle={index > 0 ? block.segments[index - 1].style : undefined}
-          useMockData={useMockData}
         />
       ))}
     </div>

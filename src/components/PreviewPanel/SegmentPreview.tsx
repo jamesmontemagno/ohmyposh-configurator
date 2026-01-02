@@ -1,6 +1,5 @@
 import type { Segment, SegmentStyle } from '../../types/ohmyposh';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
-import { NerdIcon } from '../NerdIcon';
 import { parseInlineColors, getPreviewText } from './templateUtils';
 
 const DEFAULT_POWERLINE_SYMBOL = '\ue0b0';
@@ -11,7 +10,6 @@ interface SegmentPreviewProps {
   blockLeadingDiamond?: string;
   blockTrailingDiamond?: string;
   prevStyle?: SegmentStyle;
-  useMockData?: boolean;
 }
 
 export function SegmentPreview({ 
@@ -20,10 +18,9 @@ export function SegmentPreview({
   blockLeadingDiamond, 
   blockTrailingDiamond, 
   prevStyle, 
-  useMockData = false 
 }: SegmentPreviewProps) {
   const metadata = useSegmentMetadata(segment.type);
-  const text = getPreviewText(segment, metadata, useMockData);
+  const text = getPreviewText(segment, metadata, true); // Always use template-based preview
   const bg = segment.background || 'transparent';
   const fg = segment.foreground || '#ffffff';
   const hasBackground = !!segment.background;
@@ -51,7 +48,6 @@ export function SegmentPreview({
           }}
           className="px-2 py-1 inline-flex items-center gap-1.5"
         >
-          {!useMockData && metadata?.icon && <NerdIcon icon={metadata.icon} size={14} />}
           <span className="nerd-font-symbol whitespace-pre">{renderedText}</span>
         </span>
         {/* Powerline symbol - only show if current segment has background */}
@@ -100,7 +96,6 @@ export function SegmentPreview({
           }}
           className={`px-2 py-1 inline-flex items-center gap-1.5 ${leadingDiamond ? '-ml-[2px]' : ''} ${trailingDiamond ? '-mr-[2px]' : ''}`}
         >
-          {!useMockData && metadata?.icon && <NerdIcon icon={metadata.icon} size={14} />}
           <span className="nerd-font-symbol whitespace-pre">{renderedText}</span>
           {/* Accordion indicator */}
           {isAccordion && (
@@ -133,7 +128,6 @@ export function SegmentPreview({
       }}
       className={`px-2 py-1 rounded inline-flex items-center gap-1.5 ${marginClass}`}
     >
-      {!useMockData && metadata?.icon && <NerdIcon icon={metadata.icon} size={14} />}
       <span className="nerd-font-symbol whitespace-pre">{renderedText}</span>
     </span>
   );
