@@ -152,14 +152,29 @@ function extractUnicodeFromString(str, unicodePoints) {
 }
 
 /**
- * Get powerline symbols that must be included
+ * Get powerline symbols that must be included (all 19 from symbols.ts)
  */
 function getPowerlineSymbols() {
   return new Set([
-    0xe0b0, // Right-pointing triangle
-    0xe0b2, // Leading diamond
-    0xe0b4, // Trailing diamond
-    0xe0b6, // Alternative diamond
+    0xe0b0, // Left Hard Divider
+    0xe0b1, // Left Soft Divider
+    0xe0b2, // Right Hard Divider
+    0xe0b3, // Right Soft Divider
+    0xe0b4, // Right Half Circle Thick
+    0xe0b5, // Right Half Circle Thin
+    0xe0b6, // Left Half Circle Thick
+    0xe0b7, // Left Half Circle Thin
+    0xe0bc, // Upper Left Triangle
+    0xe0be, // Upper Right Triangle
+    0xe0c0, // Flame Thick
+    0xe0c2, // Flame Thick Mirrored
+    0xe0c4, // Pixelated Squares Small
+    0xe0c6, // Pixelated Squares Big
+    0xe0c8, // Ice Waveform
+    0xe0cc, // Honeycomb
+    0xe0ce, // Lego Separator
+    0xe0d2, // Trapezoid Top Bottom
+    0xe0d4, // Trapezoid Top Bottom Mirrored
   ]);
 }
 
@@ -288,7 +303,12 @@ function main() {
   // Extract unicode from templates
   console.log(`${colors.cyan}🔍 Scanning segment templates for hardcoded unicode...${colors.reset}`);
   const templateUnicodePoints = extractTemplateUnicodePoints(join(rootDir, 'public/segments'));
-  console.log(`${colors.green}✓${colors.reset} Found ${templateUnicodePoints.size} hardcoded unicode characters\n`);
+  console.log(`${colors.green}✓${colors.reset} Found ${templateUnicodePoints.size} hardcoded unicode characters in segments\n`);
+  
+  // Extract unicode from config files
+  console.log(`${colors.cyan}🔍 Scanning config files for hardcoded unicode...${colors.reset}`);
+  const configUnicodePoints = extractTemplateUnicodePoints(join(rootDir, 'public/configs'));
+  console.log(`${colors.green}✓${colors.reset} Found ${configUnicodePoints.size} hardcoded unicode characters in configs\n`);
   
   // Add powerline symbols
   console.log(`${colors.cyan}➕ Adding powerline symbols...${colors.reset}`);
@@ -299,6 +319,7 @@ function main() {
   const allUnicodePoints = new Set([
     ...iconUnicodePoints,
     ...templateUnicodePoints,
+    ...configUnicodePoints,
     ...powerlineSymbols,
   ]);
   
