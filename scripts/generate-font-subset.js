@@ -152,18 +152,6 @@ function extractUnicodeFromString(str, unicodePoints) {
 }
 
 /**
- * Get powerline symbols that must be included
- */
-function getPowerlineSymbols() {
-  return new Set([
-    0xe0b0, // Right-pointing triangle
-    0xe0b2, // Leading diamond
-    0xe0b4, // Trailing diamond
-    0xe0b6, // Alternative diamond
-  ]);
-}
-
-/**
  * Download the Nerd Font if not present
  */
 function downloadNerdFont() {
@@ -288,18 +276,18 @@ function main() {
   // Extract unicode from templates
   console.log(`${colors.cyan}🔍 Scanning segment templates for hardcoded unicode...${colors.reset}`);
   const templateUnicodePoints = extractTemplateUnicodePoints(join(rootDir, 'public/segments'));
-  console.log(`${colors.green}✓${colors.reset} Found ${templateUnicodePoints.size} hardcoded unicode characters\n`);
+  console.log(`${colors.green}✓${colors.reset} Found ${templateUnicodePoints.size} hardcoded unicode characters in segments\n`);
   
-  // Add powerline symbols
-  console.log(`${colors.cyan}➕ Adding powerline symbols...${colors.reset}`);
-  const powerlineSymbols = getPowerlineSymbols();
-  console.log(`${colors.green}✓${colors.reset} Added ${powerlineSymbols.size} powerline symbols\n`);
+  // Extract unicode from config files
+  console.log(`${colors.cyan}🔍 Scanning config files for hardcoded unicode...${colors.reset}`);
+  const configUnicodePoints = extractTemplateUnicodePoints(join(rootDir, 'public/configs'));
+  console.log(`${colors.green}✓${colors.reset} Found ${configUnicodePoints.size} hardcoded unicode characters in configs\n`);
   
-  // Combine all unicode points
+  // Combine all unicode points (powerline symbols already included in iconUnicodePoints)
   const allUnicodePoints = new Set([
     ...iconUnicodePoints,
     ...templateUnicodePoints,
-    ...powerlineSymbols,
+    ...configUnicodePoints,
   ]);
   
   console.log(`${colors.blue}📊 Total unique glyphs: ${allUnicodePoints.size}${colors.reset}\n`);
