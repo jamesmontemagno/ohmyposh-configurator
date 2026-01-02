@@ -4,7 +4,7 @@
     "name": "Fossil",
     "description": "Displays Fossil repository information, including the current branch and status.",
     "icon": "vcs-fossil",
-    "defaultTemplate": " \ue796 {{ .Branch }} ",
+    "defaultTemplate": " \\ue796 {{ .Branch }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#556270",
     "previewText": "trunk",
@@ -34,10 +34,10 @@
     "name": "Git",
     "description": "Displays Git repository information, including branch name, status, and upstream synchronization.",
     "icon": "vcs-git-merge",
-    "defaultTemplate": " \ue725 {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+    "defaultTemplate": " \\ue725 {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \\uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \\uf046 {{ .Staging.String }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#98C379",
-    "previewText": "main \u2713",
+    "previewText": "main ✓",
     "properties": [
       {
         "name": ".RepoName",
@@ -117,25 +117,25 @@
       {
         "name": "branch_gone_icon",
         "type": "string",
-        "default": "\u2262",
+        "default": "≢",
         "description": "Icon for gone upstream branch"
       },
       {
         "name": "branch_identical_icon",
         "type": "string",
-        "default": "\u2261",
+        "default": "≡",
         "description": "Icon when local and remote are identical"
       },
       {
         "name": "branch_ahead_icon",
         "type": "string",
-        "default": "\u2191",
+        "default": "↑",
         "description": "Icon for commits ahead of remote"
       },
       {
         "name": "branch_behind_icon",
         "type": "string",
-        "default": "\u2193",
+        "default": "↓",
         "description": "Icon for commits behind remote"
       },
       {
@@ -177,7 +177,7 @@
       {
         "name": "tag_icon",
         "type": "string",
-        "default": "\u7b20",
+        "default": "笠",
         "description": "Icon for tag reference"
       },
       {
@@ -293,7 +293,7 @@
     "name": "GitVersion",
     "description": "Displays the semantic version of the current Git repository as determined by GitVersion.",
     "icon": "vcs-tag",
-    "defaultTemplate": " \uf412 {{ .Major }}.{{ .Minor }}.{{ .Patch }} ",
+    "defaultTemplate": " \\uf412 {{ .Major }}.{{ .Minor }}.{{ .Patch }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#4EC9B0",
     "previewText": "1.2.3",
@@ -328,7 +328,7 @@
     "name": "Jujutsu",
     "description": "Displays Jujutsu (jj) repository information, including the current change ID and status.",
     "icon": "vcs-git-branch",
-    "defaultTemplate": " \ue725 {{ .ChangeId }} ",
+    "defaultTemplate": " \\ue725 {{ .ChangeId }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#9B59B6",
     "previewText": "qpvuntsm",
@@ -367,7 +367,7 @@
       {
         "name": "ahead_icon",
         "type": "string",
-        "default": "\u21e1",
+        "default": "⇡",
         "description": "Icon/character between bookmark and ahead counter"
       },
       {
@@ -389,7 +389,7 @@
     "name": "Mercurial",
     "description": "Displays Mercurial (hg) repository information, including the current branch and status.",
     "icon": "vcs-mercurial",
-    "defaultTemplate": " \uf223 {{ .Branch }} ",
+    "defaultTemplate": " \\uf223 {{ .Branch }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8FAA54",
     "previewText": "default",
@@ -426,7 +426,7 @@
     "name": "Plastic SCM",
     "description": "Displays Plastic SCM repository information, including the current selector and workspace status.",
     "icon": "vcs-git-merge",
-    "defaultTemplate": " \ue725 {{ .Selector }} ",
+    "defaultTemplate": " \\ue725 {{ .Selector }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2C8EBB",
     "previewText": "main@myrepo",
@@ -492,7 +492,7 @@
     "name": "Sapling",
     "description": "Displays Sapling repository information, including the current bookmark and commit hash.",
     "icon": "vcs-sapling",
-    "defaultTemplate": " \uf126 {{ .Bookmark }} ",
+    "defaultTemplate": " \\uf126 {{ .Bookmark }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#6FC13E",
     "previewText": "main",
@@ -534,7 +534,7 @@
     "name": "SVN",
     "description": "Displays Subversion (SVN) repository information, including the current branch and revision.",
     "icon": "vcs-subversion",
-    "defaultTemplate": " \uf1bb {{ .Branch }} ",
+    "defaultTemplate": " \\uf1bb {{ .Branch }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#809CC9",
     "previewText": "trunk",
