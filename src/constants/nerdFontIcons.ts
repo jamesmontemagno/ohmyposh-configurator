@@ -247,17 +247,30 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'status-sudo': { id: 'status-sudo', name: 'Sudo', code: 'F09C', char: '\uf09c', category: 'Symbols & Objects', aliases: ['Sudo', 'unlock', 'admin'], description: 'Admin or superuser' },
 
   // === COMMONLY USED OH MY POSH ICONS ===
-  // Powerline Symbols (most common)
-  'powerline-right-filled': { id: 'powerline-right-filled', name: 'Powerline Right Filled', code: 'E0B0', char: '\ue0b0', category: 'Powerline', aliases: ['powerline', 'separator', 'chevron'], description: 'Powerline right filled triangle' },
-  'powerline-left-filled': { id: 'powerline-left-filled', name: 'Powerline Left Filled', code: 'E0B2', char: '\ue0b2', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline left filled triangle' },
-  'powerline-right-outline': { id: 'powerline-right-outline', name: 'Powerline Right Outline', code: 'E0B1', char: '\ue0b1', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline right outline triangle' },
-  'powerline-left-outline': { id: 'powerline-left-outline', name: 'Powerline Left Outline', code: 'E0B3', char: '\ue0b3', category: 'Powerline', aliases: ['powerline', 'separator'], description: 'Powerline left outline triangle' },
+  // Powerline Symbols (complete set - all 19 symbols from symbols.ts)
+  'powerline-e0b0': { id: 'powerline-e0b0', name: 'Left Hard Divider', code: 'E0B0', char: '\ue0b0', category: 'Powerline', aliases: ['powerline', 'separator', 'right-filled'], description: 'Left Hard Divider' },
+  'powerline-e0b1': { id: 'powerline-e0b1', name: 'Left Soft Divider', code: 'E0B1', char: '\ue0b1', category: 'Powerline', aliases: ['powerline', 'separator', 'right-outline'], description: 'Left Soft Divider' },
+  'powerline-e0b2': { id: 'powerline-e0b2', name: 'Right Hard Divider', code: 'E0B2', char: '\ue0b2', category: 'Powerline', aliases: ['powerline', 'separator', 'left-filled'], description: 'Right Hard Divider' },
+  'powerline-e0b3': { id: 'powerline-e0b3', name: 'Right Soft Divider', code: 'E0B3', char: '\ue0b3', category: 'Powerline', aliases: ['powerline', 'separator', 'left-outline'], description: 'Right Soft Divider' },
+  'powerline-e0b4': { id: 'powerline-e0b4', name: 'Right Half Circle Thick', code: 'E0B4', char: '\ue0b4', category: 'Powerline', aliases: ['powerline', 'separator', 'circle-thick'], description: 'Right Half Circle Thick' },
+  'powerline-e0b5': { id: 'powerline-e0b5', name: 'Right Half Circle Thin', code: 'E0B5', char: '\ue0b5', category: 'Powerline', aliases: ['powerline', 'separator', 'circle-thin'], description: 'Right Half Circle Thin' },
+  'powerline-e0b6': { id: 'powerline-e0b6', name: 'Left Half Circle Thick', code: 'E0B6', char: '\ue0b6', category: 'Powerline', aliases: ['powerline', 'separator', 'circle-thick'], description: 'Left Half Circle Thick' },
+  'powerline-e0b7': { id: 'powerline-e0b7', name: 'Left Half Circle Thin', code: 'E0B7', char: '\ue0b7', category: 'Powerline', aliases: ['powerline', 'separator', 'circle-thin'], description: 'Left Half Circle Thin' },
+  'powerline-e0bc': { id: 'powerline-e0bc', name: 'Upper Left Triangle', code: 'E0BC', char: '\ue0bc', category: 'Powerline', aliases: ['powerline', 'separator', 'triangle'], description: 'Upper Left Triangle' },
+  'powerline-e0be': { id: 'powerline-e0be', name: 'Upper Right Triangle', code: 'E0BE', char: '\ue0be', category: 'Powerline', aliases: ['powerline', 'separator', 'triangle'], description: 'Upper Right Triangle' },
+  'powerline-e0c0': { id: 'powerline-e0c0', name: 'Flame Thick', code: 'E0C0', char: '\ue0c0', category: 'Powerline', aliases: ['powerline', 'separator', 'flame'], description: 'Flame Thick' },
+  'powerline-e0c2': { id: 'powerline-e0c2', name: 'Flame Thick Mirrored', code: 'E0C2', char: '\ue0c2', category: 'Powerline', aliases: ['powerline', 'separator', 'flame'], description: 'Flame Thick Mirrored' },
+  'powerline-e0c4': { id: 'powerline-e0c4', name: 'Pixelated Squares Small', code: 'E0C4', char: '\ue0c4', category: 'Powerline', aliases: ['powerline', 'separator', 'pixel'], description: 'Pixelated Squares Small' },
+  'powerline-e0c6': { id: 'powerline-e0c6', name: 'Pixelated Squares Big', code: 'E0C6', char: '\ue0c6', category: 'Powerline', aliases: ['powerline', 'separator', 'pixel'], description: 'Pixelated Squares Big' },
+  'powerline-e0c8': { id: 'powerline-e0c8', name: 'Ice Waveform', code: 'E0C8', char: '\ue0c8', category: 'Powerline', aliases: ['powerline', 'separator', 'wave'], description: 'Ice Waveform' },
+  'powerline-e0cc': { id: 'powerline-e0cc', name: 'Honeycomb', code: 'E0CC', char: '\ue0cc', category: 'Powerline', aliases: ['powerline', 'separator', 'hex'], description: 'Honeycomb' },
+  'powerline-e0ce': { id: 'powerline-e0ce', name: 'Lego Separator', code: 'E0CE', char: '\ue0ce', category: 'Powerline', aliases: ['powerline', 'separator', 'lego'], description: 'Lego Separator' },
+  'powerline-e0d2': { id: 'powerline-e0d2', name: 'Trapezoid Top Bottom', code: 'E0D2', char: '\ue0d2', category: 'Powerline', aliases: ['powerline', 'separator', 'trapezoid'], description: 'Trapezoid Top Bottom' },
+  'powerline-e0d4': { id: 'powerline-e0d4', name: 'Trapezoid Top Bottom Mirrored', code: 'E0D4', char: '\ue0d4', category: 'Powerline', aliases: ['powerline', 'separator', 'trapezoid'], description: 'Trapezoid Top Bottom Mirrored' },
+  
+  // Legacy aliases for backward compatibility
   'powerline-branch': { id: 'powerline-branch', name: 'Git Branch', code: 'E0A0', char: '\ue0a0', category: 'Powerline', aliases: ['branch', 'git'], description: 'Git branch icon' },
   'powerline-lock': { id: 'powerline-lock', name: 'Lock', code: 'E0A2', char: '\ue0a2', category: 'Powerline', aliases: ['lock', 'readonly'], description: 'Lock icon' },
-  'powerline-leftangle-separator': { id: 'powerline-leftangle-separator', name: 'Left Angle Separator', code: 'E0B4', char: '\ue0b4', category: 'Powerline', aliases: ['separator', 'diamond'], description: 'Left angle separator' },
-  'powerline-rightangle-separator': { id: 'powerline-rightangle-separator', name: 'Right Angle Separator', code: 'E0B6', char: '\ue0b6', category: 'Powerline', aliases: ['separator', 'diamond'], description: 'Right angle separator' },
-  'powerline-filled-rightangle': { id: 'powerline-filled-rightangle', name: 'Filled Right Angle', code: 'E0D0', char: '\ue0d0', category: 'Powerline', aliases: ['separator'], description: 'Filled right angle' },
-  'powerline-filled-leftangle': { id: 'powerline-filled-leftangle', name: 'Filled Left Angle', code: 'E0D2', char: '\ue0d2', category: 'Powerline', aliases: ['separator'], description: 'Filled left angle' },
 
   // Git SCM icons commonly used in themes
   'git-commit': { id: 'git-commit', name: 'Git Commit', code: 'F417', char: '\uf417', category: 'Development', aliases: ['commit', 'git'], description: 'Git commit' },
