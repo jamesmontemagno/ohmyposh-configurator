@@ -78,6 +78,16 @@ export function Header() {
                 <NerdIcon icon="vcs-github" size={16} />
                 <span>Configurator</span>
               </a>
+              <a
+                href="https://github.com/jamesmontemagno/ohmyposh-configurator/blob/main/CHANGELOG.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors"
+                onClick={() => setShowGitHubDropdown(false)}
+              >
+                <NerdIcon icon="misc-file-code" size={16} />
+                <span>Changelog</span>
+              </a>
             </div>
           )}
         </div>
