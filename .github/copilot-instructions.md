@@ -89,3 +89,17 @@ Uses @dnd-kit. Canvas handles cross-block segment moves. Segments identified by 
 3. Test export in all formats (JSON/YAML/TOML)
 4. Verify preview renders correctly with powerline symbols
 5. **Mandatory**: Run `npm run lint` and `npm run build` to ensure CI will pass.
+
+## Changelog Maintenance
+
+When implementing features, bug fixes, or making significant changes:
+
+1. **Update CHANGELOG.md**: Add entries under the current date section (or create a new date section if needed)
+2. **Categorize Changes**: Use appropriate sections:
+   - **Added**: New features, components, or capabilities
+   - **Changed**: Modifications to existing functionality
+   - **Fixed**: Bug fixes and corrections
+   - **Removed**: Deprecated or removed features
+3. **Be Descriptive**: Write clear, user-facing descriptions of what changed and why it matters
+4. **Link PRs**: Reference pull request numbers when applicable (e.g., `(#123)`)
+5. **Update Before PR**: Ensure CHANGELOG.md is updated as part of the same commit/PR that introduces the change

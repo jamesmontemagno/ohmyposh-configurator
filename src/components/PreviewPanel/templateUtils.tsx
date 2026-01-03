@@ -2,23 +2,35 @@ import type { ReactNode } from 'react';
 import type { Segment } from '../../types/ohmyposh';
 import { mockData, getMockDataForSegment } from './mockData';
 
-// Parse inline color codes from Oh My Posh templates
+// Parse inline color codes and HTML formatting from Oh My Posh templates
 // Format: <#hexcolor>text</> or </>text (to reset)
+// HTML: <b>bold</b>, <i>italic</i>, <u>underline</u>, <s>strikethrough</s>
 export function parseInlineColors(text: string, defaultColor: string): ReactNode[] {
   const parts: ReactNode[] = [];
-  // Match color start tags <#RRGGBB> or color end tags </>
-  const tagRegex = /<#([0-9a-fA-F]{6})>|<\/>/g;
+  // Match color start tags <#RRGGBB>, color end tags </>, or HTML formatting tags
+  const tagRegex = /<#([0-9a-fA-F]{6})>|<\/>|<(b|i|u|s|strike)>|<\/(b|i|u|s|strike)>/g;
   let lastIndex = 0;
   let match;
   let currentColor = defaultColor;
+  const styleStack: { bold?: boolean; italic?: boolean; underline?: boolean; strikethrough?: boolean } = {};
 
   while ((match = tagRegex.exec(text)) !== null) {
-    // Add text before the tag with current color
+    // Add text before the tag with current styles
     if (match.index > lastIndex) {
       const beforeText = text.substring(lastIndex, match.index);
       if (beforeText) {
+        const style: React.CSSProperties = { color: currentColor };
+        if (styleStack.bold) style.fontWeight = 'bold';
+        if (styleStack.italic) style.fontStyle = 'italic';
+        
+        // Combine text decorations if multiple are active
+        const decorations: string[] = [];
+        if (styleStack.underline) decorations.push('underline');
+        if (styleStack.strikethrough) decorations.push('line-through');
+        if (decorations.length > 0) style.textDecoration = decorations.join(' ');
+        
         parts.push(
-          <span key={`text-${lastIndex}`} style={{ color: currentColor }}>
+          <span key={`text-${lastIndex}`} style={style}>
             {beforeText}
           </span>
         );
@@ -28,9 +40,23 @@ export function parseInlineColors(text: string, defaultColor: string): ReactNode
     if (match[1]) {
       // Color start tag found - set new color
       currentColor = `#${match[1]}`;
-    } else {
+    } else if (match[0] === '</>') {
       // Color end tag </> - reset to default color
       currentColor = defaultColor;
+    } else if (match[2]) {
+      // HTML formatting opening tag
+      const tag = match[2];
+      if (tag === 'b') styleStack.bold = true;
+      else if (tag === 'i') styleStack.italic = true;
+      else if (tag === 'u') styleStack.underline = true;
+      else if (tag === 's' || tag === 'strike') styleStack.strikethrough = true;
+    } else if (match[3]) {
+      // HTML formatting closing tag
+      const tag = match[3];
+      if (tag === 'b') delete styleStack.bold;
+      else if (tag === 'i') delete styleStack.italic;
+      else if (tag === 'u') delete styleStack.underline;
+      else if (tag === 's' || tag === 'strike') delete styleStack.strikethrough;
     }
 
     lastIndex = tagRegex.lastIndex;
@@ -40,8 +66,18 @@ export function parseInlineColors(text: string, defaultColor: string): ReactNode
   if (lastIndex < text.length) {
     const remainingText = text.substring(lastIndex);
     if (remainingText) {
+      const style: React.CSSProperties = { color: currentColor };
+      if (styleStack.bold) style.fontWeight = 'bold';
+      if (styleStack.italic) style.fontStyle = 'italic';
+      
+      // Combine text decorations if multiple are active
+      const decorations: string[] = [];
+      if (styleStack.underline) decorations.push('underline');
+      if (styleStack.strikethrough) decorations.push('line-through');
+      if (decorations.length > 0) style.textDecoration = decorations.join(' ');
+      
       parts.push(
-        <span key={`text-${lastIndex}`} style={{ color: currentColor }}>
+        <span key={`text-${lastIndex}`} style={style}>
           {remainingText}
         </span>
       );

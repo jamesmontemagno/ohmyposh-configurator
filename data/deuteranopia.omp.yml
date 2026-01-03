@@ -1,0 +1,282 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+version: 4
+upgrade:
+  auto: false
+  notice: false
+
+palette:
+  black: "#262B44"
+  blue: "#4B95E9"
+  green: "#59C9A5"
+  orange: "#F07623"
+  red: "#D81E5B"
+  white: "#E0DEF4"
+  yellow: "#ffe14c"
+
+  prompt-color: "#ffe14c"
+  path-color: "#ffe14c"
+  network-id-color: "#f5cead"
+  shell-color: "#f5cead"
+  entry-color: "#cccccc"
+  transient-color: "#cccccc"
+  transient-clock-color: "#cccccc"
+  transient-path-color: "#cccccc"
+  transient-prompt-color: "#cccccc"
+  transient-error-color: "#cccccc"
+  transient-error-code-color: "#cccccc"
+  git-repo-color: "#f5cead"
+  git-info-color: "#f5cead"
+  tool-info-color: "#f5cead"
+  docker-host-color: "#f5cead"
+  duration-color: "#cccccc"
+  battery-charge-color: "#cccccc"
+  battery-low-color: "#cccccc"
+  error-color: "#ff5f5f"
+  error-code-color: "#cccccc"
+
+  shell: "#6a1ce3"
+  shell-root: "#a41645"
+  network-id: "#f5cead"
+  path: "#001070"
+  git-repo: "#333c3e"
+  git-info: "#0c695d"
+  tool-info: "#f5cead"
+  docker-host: "#0C695D"
+  battery-charge: "#0C695D"
+  battery-low: "#ff5f5f"
+
+blocks:
+  - type: prompt
+    alignment: left
+    # newline: false
+    segments:
+      # - type: command
+      #   name: WslWinPwd
+      #   style: plain
+      #   template: '{{ if .WSL }}{{ printf "\x1b]9;9;%s\x1b\\" .Output }}{{ end }}'
+      #   options:
+      #     interpret: false
+      #     command: "wslpath -w ."
+      #     display_error: false
+      #   cache:
+      #     strategy: folder
+      - type: shell
+        leading_diamond: 
+        options:
+          mapped_shell_names:
+            bash: 󱆃
+            fish: 󰈺
+            nu: ν
+            pwsh: 
+            cmd: 
+            zsh: 
+            # This is for export
+            shell: "$"
+        template: "{{ .Name }} "
+        foreground: p:shell-color
+        background: p:shell
+        background_templates:
+          - '{{if .Root}}p:shell-root{{end}}'
+        style: diamond
+      - type: session
+        style: powerline
+        powerline_symbol: ""
+        template: '{{ if .SSHSession }}{{ url (print  .UserName "@" .HostName ) ( print  "ssh://" .UserName "@" .HostName ) }} {{ end }}'
+        foreground: p:network-id-color
+        background: p:shell
+        background_templates:
+          - '{{if .Root}}p:shell-root{{end}}'
+        templates_logic: first_match
+      - type: git
+        options:
+          branch_icon: " "
+          fetch_upstream_icon: true
+          fetch_status: true
+          ignore_submodules:
+            "*": "all"
+        #   style: folder
+        template: ' {{ url ( print .UpstreamIcon " " .RepoName ) .UpstreamURL }} '
+        foreground: p:git-repo-color
+        background: p:git-repo
+        powerline_symbol: 
+        style: powerline
+      - type: path
+        options:
+          style: agnoster_full
+          folder_separator_icon: /
+          home_icon: 
+          mapped_locations:
+            C:/: " C:"
+            C:/Program Files/Git: /
+            D:/: " D:"
+            E:/: " E:"
+            F:/: " F:"
+            G:/: " G:"
+            U:/: " U:"
+            /mnt/c/: " C:"
+            /mnt/d/: " D:"
+            /mnt/e/: " E:"
+            /mnt/f/: " F:"
+            /mnt/g/: " G:"
+            /mnt/u/: " U:"
+
+        templates:
+          - >-
+            {{ if and (.Segments.Contains "Git") .Segments.Git.RepoName (not (.Segments.Contains "Session")) }}
+            <b>{{ path (or (.Format (trimPrefix .Segments.Git.Dir .PWD)) "/") .Location }}</b>
+            {{ end }}
+          - >-
+            {{ if and (.Segments.Contains "Git") .Segments.Git.RepoName .Segments.Session.SSHSession }}
+            <b>{{ .Format (trimPrefix .Segments.Git.Dir .PWD) }}</b>
+            {{ end }}
+          # - >-
+          #   {{ if and .Segments.Git.RepoName (trimPrefix .Segments.Git.Dir .PWD) (not .Segments.Session.SSHSession) }}
+          #   <b>{{ path ( .Format (trimPrefix .Segments.Git.Dir .PWD) ) .Location }}</b>
+          #   {{ end }}
+          # - >-
+          #   {{ if and .Segments.Git.RepoName (trimPrefix .Segments.Git.Dir .PWD) .Segments.Session.SSHSession }}
+          #   <b>{{ .Format (trimPrefix .Segments.Git.Dir .PWD) }}</b>
+          #   {{ end }}
+          - >-
+            {{ if and (not (.Segments.Contains "Git") ) .Segments.Session.SSHSession }}
+            <b>{{ .Format .Path }}</b>
+            {{ end }}
+        template: >-
+          {{ if not (or (.Segments.Contains "Git") (.Segments.Contains "Session")) }}
+          <b>{{ path (.Format .Path) .Location }}</b>
+          {{ end }}
+        templates_logic: first_match
+        foreground: p:path-color
+        powerline_symbol: 
+        background: p:path
+        style: powerline
+      - type: text
+        templates:
+          - " {{ .Segments.Git.HEAD }}{{if .Segments.Git.BranchStatus }} {{ .Segments.Git.BranchStatus }}{{ end }}{{ if .Segments.Git.Working.Changed }}  {{ .Segments.Git.Working.String }}{{ end }}{{ if .Segments.Git.Staging.Changed }}  {{ .Segments.Git.Staging.String }}{{ end }} {{ trunc 8 .Segments.Git.Commit.Sha }} "
+        template: " "
+        templates_logic: first_match
+        foreground: p:git-info-color
+        background: p:git-info
+        # powerline_symbol: 
+        # style: powerline
+        style: diamond
+        powerline_symbol: 
+        # leading_diamond: 
+        trailing_diamond: 
+      - options:
+          style: austin
+          threshold: 2000
+        template: " \uf520 {{ .FormattedMs }}"
+        type: executiontime
+        style: plain
+  - type: rprompt
+    segments:
+      - options:
+          display_mode: files
+          fetch_package_manager: false
+          home_enabled: false
+        template: " "
+        foreground: p:green
+        background: transparent
+        type: node
+        style: plain
+      - options:
+          fetch_version: false
+        template: " "
+        foreground: p:blue
+        background: transparent
+        type: go
+        style: plain
+      - options:
+          display_mode: files
+          fetch_version: false
+          fetch_virtual_env: false
+        template: " "
+        foreground: p:yellow
+        background: transparent
+        type: python
+        style: plain
+      - template: <p:blue><b>{{ .CurrentDate | date "15:04:05" }}</b></>
+        foreground: p:white
+        background: transparent
+        type: time
+        style: plain
+  - type: prompt
+    alignment: left
+    segments:
+      - template: "<p:error-color>\uf00d</> {{ .Code }} "
+        foreground: p:prompt
+        type: status
+        style: plain
+        templates:
+          - "{{ if and (eq .OS \"windows\") (eq .Shell \"pwsh\") }}<p:error-color>\uf00d</> {{ url (.Code | hresult) (printf \"https://www.hresult.info/Search?q=%d\" .Code) }} {{ end }}"
+        templates_logic: first_match
+      - foreground: p:prompt
+        templates_logic: first_match
+        type: text
+        style: plain
+        foreground_templates:
+          - "{{ if ne .Code 0 }}p:error{{ end }}"
+        templates:
+          - "{{ if .Root}}<p:prompt-color>\uf292</>{{end}}"
+          - <p:prompt-color></>
+    newline: true
+tooltips:
+  - options:
+      display_default: true
+    leading_diamond: 
+    trailing_diamond: 
+    template: "  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
+    foreground: p:white
+    background: p:orange
+    type: aws
+    style: diamond
+    tips:
+      - aws
+  - leading_diamond: 
+    trailing_diamond: 
+    template: "  {{ .Name }} "
+    foreground: p:white
+    background: p:blue
+    type: az
+    style: diamond
+    tips:
+      - az
+
+# The console title template should use Emojis because the Nerd Font won't be applied.
+# Emojis are not well supported in TMUX so remove them if .Env is TMUX
+console_title_template: '{{ if ne .Code 0 }}{{ if not .Env.TMUX }}❌ {{ end }}{{ end }}{{ if .Segments.Contains "Session" }}{{ if not .Env.TMUX }}☁️ {{ end }}{{ .HostName }} :: {{ .Folder }}{{ else }}{{ if not .Env.TMUX }}📁 {{ end }}{{ .Folder }}{{ end }}'
+
+secondary_prompt:
+  template: "<p:prompt-color></> "
+  foreground: default
+  background: transparent
+transient_prompt:
+  template: >-
+    <p:transient-clock-color>{{ now | date "15:04" }}</>
+    <p:transient-path-color>{{ .Segments.Path.Path }}</>
+    <p:transient-prompt-color> </>
+  foreground: p:transient-entry-color
+  background: transparent
+
+final_space: true
+pwd: >-
+  {{ if not (.Segments.Contains "Session") }}
+  {{ if coalesce .Env.WT_PROFILE_ID }}
+  osc99
+  {{else}}
+  osc7
+  {{end}}
+  {{end}}
+
+# pwd: >-
+#   {{ if and (not (.Segments.Contains "Session")) (not .WSL) }}
+#   {{ if coalesce .Env.WT_PROFILE_ID }}
+#   osc99
+#   {{else}}
+#   osc7
+#   {{end}}
+#   {{end}}
+# enable_cursor_positioning: true
+# async: true
+shell_integration: true
