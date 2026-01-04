@@ -1,0 +1,1414 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-04T18:27:02.628Z",
+  "themes": [
+    {
+      "name": "1_shell",
+      "file": "1_shell.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/1_shell.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/1_shell.omp.json"
+    },
+    {
+      "name": "agnoster",
+      "file": "agnoster.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/agnoster.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnoster.omp.json"
+    },
+    {
+      "name": "agnoster.minimal",
+      "file": "agnoster.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/agnoster.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnoster.minimal.omp.json"
+    },
+    {
+      "name": "agnosterplus",
+      "file": "agnosterplus.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/agnosterplus.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnosterplus.omp.json"
+    },
+    {
+      "name": "aliens",
+      "file": "aliens.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/aliens.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/aliens.omp.json"
+    },
+    {
+      "name": "amro",
+      "file": "amro.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/amro.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/amro.omp.json"
+    },
+    {
+      "name": "atomic",
+      "file": "atomic.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/atomic.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomic.omp.json"
+    },
+    {
+      "name": "atomicBit",
+      "file": "atomicBit.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/atomicBit.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomicBit.omp.json"
+    },
+    {
+      "name": "avit",
+      "file": "avit.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/avit.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/avit.omp.json"
+    },
+    {
+      "name": "blue-owl",
+      "file": "blue-owl.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "blue",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/blue-owl.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/blue-owl.omp.json"
+    },
+    {
+      "name": "blueish",
+      "file": "blueish.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "blue",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/blueish.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/blueish.omp.json"
+    },
+    {
+      "name": "bubbles",
+      "file": "bubbles.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "diamond",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/bubbles.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubbles.omp.json"
+    },
+    {
+      "name": "bubblesextra",
+      "file": "bubblesextra.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "diamond",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/bubblesextra.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubblesextra.omp.json"
+    },
+    {
+      "name": "bubblesline",
+      "file": "bubblesline.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "diamond",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/bubblesline.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubblesline.omp.json"
+    },
+    {
+      "name": "capr4n",
+      "file": "capr4n.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/capr4n.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/capr4n.omp.json"
+    },
+    {
+      "name": "catppuccin",
+      "file": "catppuccin.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "catppuccin",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin.omp.json"
+    },
+    {
+      "name": "catppuccin_frappe",
+      "file": "catppuccin_frappe.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "catppuccin",
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_frappe.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_frappe.omp.json"
+    },
+    {
+      "name": "catppuccin_latte",
+      "file": "catppuccin_latte.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "catppuccin",
+        "light",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_latte.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_latte.omp.json"
+    },
+    {
+      "name": "catppuccin_macchiato",
+      "file": "catppuccin_macchiato.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "catppuccin",
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_macchiato.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_macchiato.omp.json"
+    },
+    {
+      "name": "catppuccin_mocha",
+      "file": "catppuccin_mocha.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "catppuccin",
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_mocha.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_mocha.omp.json"
+    },
+    {
+      "name": "cert",
+      "file": "cert.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/cert.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cert.omp.json"
+    },
+    {
+      "name": "chips",
+      "file": "chips.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/chips.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/chips.omp.json"
+    },
+    {
+      "name": "cinnamon",
+      "file": "cinnamon.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/cinnamon.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cinnamon.omp.json"
+    },
+    {
+      "name": "clean-detailed",
+      "file": "clean-detailed.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/clean-detailed.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/clean-detailed.omp.json"
+    },
+    {
+      "name": "cloud-context",
+      "file": "cloud-context.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "cloud",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/cloud-context.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cloud-context.omp.json"
+    },
+    {
+      "name": "cloud-native-azure",
+      "file": "cloud-native-azure.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "cloud",
+        "azure",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/cloud-native-azure.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cloud-native-azure.omp.json"
+    },
+    {
+      "name": "cobalt2",
+      "file": "cobalt2.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/cobalt2.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cobalt2.omp.json"
+    },
+    {
+      "name": "craver",
+      "file": "craver.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/craver.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/craver.omp.json"
+    },
+    {
+      "name": "darkblood",
+      "file": "darkblood.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/darkblood.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/darkblood.omp.json"
+    },
+    {
+      "name": "devious-diamonds",
+      "file": "devious-diamonds.omp.yaml",
+      "isMinimal": false,
+      "tags": [
+        "diamond",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/devious-diamonds.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/devious-diamonds.omp.yaml"
+    },
+    {
+      "name": "di4am0nd",
+      "file": "di4am0nd.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/di4am0nd.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/di4am0nd.omp.json"
+    },
+    {
+      "name": "dracula",
+      "file": "dracula.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "dracula",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/dracula.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/dracula.omp.json"
+    },
+    {
+      "name": "easy-term",
+      "file": "easy-term.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/easy-term.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/easy-term.omp.json"
+    },
+    {
+      "name": "emodipt",
+      "file": "emodipt.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/emodipt.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/emodipt.omp.json"
+    },
+    {
+      "name": "emodipt-extend",
+      "file": "emodipt-extend.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/emodipt-extend.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/emodipt-extend.omp.json"
+    },
+    {
+      "name": "fish",
+      "file": "fish.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "fish-style",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/fish.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/fish.omp.json"
+    },
+    {
+      "name": "free-ukraine",
+      "file": "free-ukraine.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/free-ukraine.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/free-ukraine.omp.json"
+    },
+    {
+      "name": "froczh",
+      "file": "froczh.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/froczh.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/froczh.omp.json"
+    },
+    {
+      "name": "glowsticks",
+      "file": "glowsticks.omp.yaml",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/glowsticks.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/glowsticks.omp.yaml"
+    },
+    {
+      "name": "gmay",
+      "file": "gmay.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/gmay.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/gmay.omp.json"
+    },
+    {
+      "name": "grandpa-style",
+      "file": "grandpa-style.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/grandpa-style.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/grandpa-style.omp.json"
+    },
+    {
+      "name": "gruvbox",
+      "file": "gruvbox.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "gruvbox",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/gruvbox.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/gruvbox.omp.json"
+    },
+    {
+      "name": "half-life",
+      "file": "half-life.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/half-life.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/half-life.omp.json"
+    },
+    {
+      "name": "honukai",
+      "file": "honukai.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/honukai.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/honukai.omp.json"
+    },
+    {
+      "name": "hotstick.minimal",
+      "file": "hotstick.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/hotstick.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hotstick.minimal.omp.json"
+    },
+    {
+      "name": "hul10",
+      "file": "hul10.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/hul10.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hul10.omp.json"
+    },
+    {
+      "name": "hunk",
+      "file": "hunk.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/hunk.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hunk.omp.json"
+    },
+    {
+      "name": "huvix",
+      "file": "huvix.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/huvix.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/huvix.omp.json"
+    },
+    {
+      "name": "if_tea",
+      "file": "if_tea.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/if_tea.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/if_tea.omp.json"
+    },
+    {
+      "name": "illusi0n",
+      "file": "illusi0n.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/illusi0n.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/illusi0n.omp.json"
+    },
+    {
+      "name": "iterm2",
+      "file": "iterm2.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/iterm2.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/iterm2.omp.json"
+    },
+    {
+      "name": "jandedobbeleer",
+      "file": "jandedobbeleer.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/jandedobbeleer.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jandedobbeleer.omp.json"
+    },
+    {
+      "name": "jblab_2021",
+      "file": "jblab_2021.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/jblab_2021.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jblab_2021.omp.json"
+    },
+    {
+      "name": "jonnychipz",
+      "file": "jonnychipz.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/jonnychipz.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jonnychipz.omp.json"
+    },
+    {
+      "name": "json",
+      "file": "json.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/json.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/json.omp.json"
+    },
+    {
+      "name": "jtracey93",
+      "file": "jtracey93.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/jtracey93.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jtracey93.omp.json"
+    },
+    {
+      "name": "jv_sitecorian",
+      "file": "jv_sitecorian.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/jv_sitecorian.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jv_sitecorian.omp.json"
+    },
+    {
+      "name": "kali",
+      "file": "kali.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/kali.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/kali.omp.json"
+    },
+    {
+      "name": "kushal",
+      "file": "kushal.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/kushal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/kushal.omp.json"
+    },
+    {
+      "name": "lambda",
+      "file": "lambda.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/lambda.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lambda.omp.json"
+    },
+    {
+      "name": "lambdageneration",
+      "file": "lambdageneration.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/lambdageneration.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lambdageneration.omp.json"
+    },
+    {
+      "name": "larserikfinholt",
+      "file": "larserikfinholt.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/larserikfinholt.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/larserikfinholt.omp.json"
+    },
+    {
+      "name": "lightgreen",
+      "file": "lightgreen.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "light",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/lightgreen.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lightgreen.omp.json"
+    },
+    {
+      "name": "M365Princess",
+      "file": "M365Princess.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/M365Princess.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/M365Princess.omp.json"
+    },
+    {
+      "name": "marcduiker",
+      "file": "marcduiker.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/marcduiker.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/marcduiker.omp.json"
+    },
+    {
+      "name": "markbull",
+      "file": "markbull.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/markbull.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/markbull.omp.json"
+    },
+    {
+      "name": "material",
+      "file": "material.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "material",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/material.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/material.omp.json"
+    },
+    {
+      "name": "microverse-power",
+      "file": "microverse-power.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/microverse-power.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/microverse-power.omp.json"
+    },
+    {
+      "name": "mojada",
+      "file": "mojada.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/mojada.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/mojada.omp.json"
+    },
+    {
+      "name": "montys",
+      "file": "montys.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "oh-my-zsh",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/montys.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json"
+    },
+    {
+      "name": "mt",
+      "file": "mt.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/mt.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/mt.omp.json"
+    },
+    {
+      "name": "multiverse-neon",
+      "file": "multiverse-neon.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "colorful",
+        "rainbow",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/multiverse-neon.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/multiverse-neon.omp.json"
+    },
+    {
+      "name": "negligible",
+      "file": "negligible.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/negligible.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/negligible.omp.json"
+    },
+    {
+      "name": "neko",
+      "file": "neko.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/neko.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/neko.omp.json"
+    },
+    {
+      "name": "night-owl",
+      "file": "night-owl.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/night-owl.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/night-owl.omp.json"
+    },
+    {
+      "name": "nordtron",
+      "file": "nordtron.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "nord",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/nordtron.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/nordtron.omp.json"
+    },
+    {
+      "name": "nu4a",
+      "file": "nu4a.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/nu4a.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/nu4a.omp.json"
+    },
+    {
+      "name": "onehalf.minimal",
+      "file": "onehalf.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free",
+        "onehalf"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/onehalf.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/onehalf.minimal.omp.json"
+    },
+    {
+      "name": "paradox",
+      "file": "paradox.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/paradox.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/paradox.omp.json"
+    },
+    {
+      "name": "pararussel",
+      "file": "pararussel.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/pararussel.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pararussel.omp.json"
+    },
+    {
+      "name": "patriksvensson",
+      "file": "patriksvensson.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/patriksvensson.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/patriksvensson.omp.json"
+    },
+    {
+      "name": "peru",
+      "file": "peru.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/peru.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/peru.omp.json"
+    },
+    {
+      "name": "pixelrobots",
+      "file": "pixelrobots.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/pixelrobots.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pixelrobots.omp.json"
+    },
+    {
+      "name": "plague",
+      "file": "plague.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/plague.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/plague.omp.json"
+    },
+    {
+      "name": "poshmon",
+      "file": "poshmon.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/poshmon.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/poshmon.omp.json"
+    },
+    {
+      "name": "powerlevel10k_classic",
+      "file": "powerlevel10k_classic.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_classic.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_classic.omp.json"
+    },
+    {
+      "name": "powerlevel10k_lean",
+      "file": "powerlevel10k_lean.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_lean.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_lean.omp.json"
+    },
+    {
+      "name": "powerlevel10k_modern",
+      "file": "powerlevel10k_modern.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_modern.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_modern.omp.json"
+    },
+    {
+      "name": "powerlevel10k_rainbow",
+      "file": "powerlevel10k_rainbow.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "colorful",
+        "rainbow",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_rainbow.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json"
+    },
+    {
+      "name": "powerline",
+      "file": "powerline.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/powerline.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerline.omp.json"
+    },
+    {
+      "name": "probua.minimal",
+      "file": "probua.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/probua.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/probua.minimal.omp.json"
+    },
+    {
+      "name": "pure",
+      "file": "pure.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "plain",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/pure.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json"
+    },
+    {
+      "name": "quick-term",
+      "file": "quick-term.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/quick-term.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/quick-term.omp.json"
+    },
+    {
+      "name": "remk",
+      "file": "remk.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/remk.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/remk.omp.json"
+    },
+    {
+      "name": "robbyrussell",
+      "file": "robbyrussell.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "oh-my-zsh",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/robbyrussell.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/robbyrussell.omp.json"
+    },
+    {
+      "name": "rudolfs-dark",
+      "file": "rudolfs-dark.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/rudolfs-dark.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/rudolfs-dark.omp.json"
+    },
+    {
+      "name": "rudolfs-light",
+      "file": "rudolfs-light.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "light",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/rudolfs-light.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/rudolfs-light.omp.json"
+    },
+    {
+      "name": "sim-web",
+      "file": "sim-web.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/sim-web.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sim-web.omp.json"
+    },
+    {
+      "name": "slim",
+      "file": "slim.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/slim.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/slim.omp.json"
+    },
+    {
+      "name": "slimfat",
+      "file": "slimfat.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/slimfat.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/slimfat.omp.json"
+    },
+    {
+      "name": "smoothie",
+      "file": "smoothie.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/smoothie.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/smoothie.omp.json"
+    },
+    {
+      "name": "sonicboom_dark",
+      "file": "sonicboom_dark.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/sonicboom_dark.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sonicboom_dark.omp.json"
+    },
+    {
+      "name": "sonicboom_light",
+      "file": "sonicboom_light.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "light",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/sonicboom_light.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sonicboom_light.omp.json"
+    },
+    {
+      "name": "sorin",
+      "file": "sorin.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/sorin.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sorin.omp.json"
+    },
+    {
+      "name": "space",
+      "file": "space.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/space.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/space.omp.json"
+    },
+    {
+      "name": "spaceship",
+      "file": "spaceship.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "plain",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/spaceship.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/spaceship.omp.json"
+    },
+    {
+      "name": "star",
+      "file": "star.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/star.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json"
+    },
+    {
+      "name": "stelbent-compact.minimal",
+      "file": "stelbent-compact.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/stelbent-compact.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent-compact.minimal.omp.json"
+    },
+    {
+      "name": "stelbent.minimal",
+      "file": "stelbent.minimal.omp.json",
+      "isMinimal": true,
+      "tags": [
+        "minimal",
+        "nerd-font-free"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/stelbent.minimal.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
+    },
+    {
+      "name": "takuya",
+      "file": "takuya.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/takuya.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/takuya.omp.json"
+    },
+    {
+      "name": "the-unnamed",
+      "file": "the-unnamed.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/the-unnamed.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/the-unnamed.omp.json"
+    },
+    {
+      "name": "thecyberden",
+      "file": "thecyberden.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/thecyberden.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/thecyberden.omp.json"
+    },
+    {
+      "name": "tiwahu",
+      "file": "tiwahu.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/tiwahu.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tiwahu.omp.json"
+    },
+    {
+      "name": "tokyo",
+      "file": "tokyo.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "tokyo-night",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/tokyo.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tokyo.omp.json"
+    },
+    {
+      "name": "tokyonight_storm",
+      "file": "tokyonight_storm.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "tokyo-night",
+        "dark",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/tokyonight_storm.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tokyonight_storm.omp.json"
+    },
+    {
+      "name": "tonybaloney",
+      "file": "tonybaloney.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/tonybaloney.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tonybaloney.omp.json"
+    },
+    {
+      "name": "uew",
+      "file": "uew.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/uew.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/uew.omp.json"
+    },
+    {
+      "name": "unicorn",
+      "file": "unicorn.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "colorful",
+        "rainbow",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/unicorn.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/unicorn.omp.json"
+    },
+    {
+      "name": "velvet",
+      "file": "velvet.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/velvet.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/velvet.omp.json"
+    },
+    {
+      "name": "wholespace",
+      "file": "wholespace.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/wholespace.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/wholespace.omp.json"
+    },
+    {
+      "name": "wopian",
+      "file": "wopian.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/wopian.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/wopian.omp.json"
+    },
+    {
+      "name": "xtoys",
+      "file": "xtoys.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "oh-my-zsh",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/xtoys.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/xtoys.omp.json"
+    },
+    {
+      "name": "ys",
+      "file": "ys.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "oh-my-zsh",
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/ys.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/ys.omp.json"
+    },
+    {
+      "name": "zash",
+      "file": "zash.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "imageUrl": "https://ohmyposh.dev/img/themes/zash.png",
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/zash.omp.json"
+    }
+  ]
+}

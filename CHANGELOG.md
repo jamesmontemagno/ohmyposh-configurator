@@ -4,6 +4,30 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-01-04]
 
+### Official Themes Browser
+
+**Browse and Load Official Oh My Posh Themes**
+- **Official Themes Tab**: New third tab in the Theme Library (Configs button) to browse all official Oh My Posh themes directly from the repository
+  - Paginated grid view with 12 themes per page
+  - Preview images loaded from ohmyposh.dev with lazy loading and fallback placeholders
+  - "No Nerd Font" badge for minimal themes that work without special fonts
+  - Direct GitHub links to view theme source files
+  
+- **Search and Filter**: Find themes quickly by name or tags
+  - Real-time search across theme names and tags
+  - Tag-based filtering (e.g., "catppuccin", "powerline", "minimal", "dark")
+  - Results count display during search
+  
+- **On-Demand Loading**: Themes are fetched directly from GitHub when selected
+  - Supports both JSON and YAML theme files
+  - Automatic ID generation for blocks, segments, and tooltips
+  - Caching to avoid redundant downloads
+  
+- **Theme Manifest Generator**: New script to update the official themes list
+  - `npm run generate:official-themes` fetches themes from GitHub API
+  - Auto-infers tags from theme names (catppuccin, dracula, powerline, minimal, etc.)
+  - Identifies minimal themes that don't require Nerd Fonts
+
 ### Advanced Features System
 
 **New Settings System for Managing UI Complexity**
