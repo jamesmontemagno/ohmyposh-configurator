@@ -2,6 +2,19 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "text-light": "#ffffff",
+    "text-dark": "#000000",
+    "azure-bg": "#0078d4",
+    "dotnet-bg": "#512bd4",
+    "git-bg": "#16c60c",
+    "git-modified-bg": "#ffca00",
+    "azfunc-bg": "#ffd800",
+    "docker-bg": "#0db7ed",
+    "exectime-bg": "#8a3ffc",
+    "prompt-ok": "#16c60c",
+    "prompt-error": "#e81123"
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -10,8 +23,8 @@
         {
           "type": "session",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#0078d4",
+          "foreground": "p:text-light",
+          "background": "p:azure-bg",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b0",
           "template": " \uf2bd {{ .UserName }} "
@@ -20,8 +33,8 @@
           "type": "path",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#512bd4",
+          "foreground": "p:text-light",
+          "background": "p:dotnet-bg",
           "template": " \uf07c {{ .Path }} ",
           "options": {
             "style": "folder",
@@ -32,13 +45,13 @@
           "type": "git",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#16c60c",
+          "foreground": "p:text-light",
+          "background": "p:git-bg",
           "foreground_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#000000{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:text-dark{{ end }}"
           ],
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffca00{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:git-modified-bg{{ end }}"
           ],
           "template": " \uf126 {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "options": {
@@ -49,32 +62,32 @@
           "type": "dotnet",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#512bd4",
+          "foreground": "p:text-light",
+          "background": "p:dotnet-bg",
           "template": " \ue77f {{ .Full }} "
         },
         {
           "type": "azfunc",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#ffd800",
+          "foreground": "p:text-light",
+          "background": "p:azfunc-bg",
           "template": " \uf0e7 {{ .Full }} "
         },
         {
           "type": "az",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#0078d4",
+          "foreground": "p:text-light",
+          "background": "p:azure-bg",
           "template": " \ufd03 {{ .EnvironmentName }} "
         },
         {
           "type": "docker",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#0db7ed",
+          "foreground": "p:text-light",
+          "background": "p:docker-bg",
           "template": " \uf308 {{ .Context }} "
         }
       ]
@@ -86,8 +99,8 @@
         {
           "type": "executiontime",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#8a3ffc",
+          "foreground": "p:text-light",
+          "background": "p:exectime-bg",
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0b4",
           "template": " \uf252 {{ .FormattedMs }} ",
@@ -106,9 +119,9 @@
         {
           "type": "status",
           "style": "plain",
-          "foreground": "#16c60c",
+          "foreground": "p:prompt-ok",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#e81123{{ end }}"
+            "{{ if gt .Code 0 }}p:prompt-error{{ end }}"
           ],
           "template": "\u276f ",
           "options": {

@@ -2,6 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "path": "#61AFEF",
+    "git": "#98C379",
+    "status-ok": "#56B6C2",
+    "status-error": "#E06C75"
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -10,7 +16,7 @@
         {
           "type": "path",
           "style": "plain",
-          "foreground": "#61AFEF",
+          "foreground": "p:path",
           "template": "{{ .Path }} ",
           "options": {
             "style": "folder"
@@ -19,15 +25,15 @@
         {
           "type": "git",
           "style": "plain",
-          "foreground": "#98C379",
+          "foreground": "p:git",
           "template": "on \uf126 {{ .HEAD }} "
         },
         {
           "type": "status",
           "style": "plain",
-          "foreground": "#56B6C2",
+          "foreground": "p:status-ok",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#E06C75{{ end }}"
+            "{{ if gt .Code 0 }}p:status-error{{ end }}"
           ],
           "template": "{{ if gt .Code 0 }}\u2717{{ else }}\u2713{{ end }} ",
           "options": {

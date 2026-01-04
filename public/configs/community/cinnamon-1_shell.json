@@ -1,24 +1,38 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "palette": {
+    "text-light": "#ffffff",
+    "session": "#ffbebc",
+    "session-icon": "#ff70a6",
+    "time": "#bc93ff",
+    "winget": "#70e2ff",
+    "git": "#ee79d1",
+    "path-icon": "#00c7fc",
+    "path": "#ffafd2",
+    "prompt-ok": "#A9FFB4",
+    "prompt-error": "#ef5350",
+    "transient": "#FEF5ED"
+  },
   "blocks": [
     {
       "alignment": "left",
       "newline": true,
       "segments": [
         {
-          "foreground": "#ffbebc",
-          "leading_diamond": "<#ff70a6> \ue200 </>",
+          "foreground": "p:session",
+          "leading_diamond": "<p:session-icon> \ue200 </>",
           "options": {
             "display_host": true
           },
           "style": "diamond",
-          "template": "{{ .UserName }} <#ffffff>on</>",
+          "template": "{{ .UserName }} <p:text-light>on</>",
           "type": "session"
         },
         {
-          "foreground": "#bc93ff",
+          "foreground": "p:time",
           "options": {
-            "time_format": "Monday <#ffffff>at</> 3:04 PM"
+            "time_format": "Monday <p:text-light>at</> 3:04 PM"
           },
           "style": "diamond",
           "template": " {{ .CurrentDate | date .Format }} ",
@@ -27,14 +41,14 @@
         {
           "type": "winget",
           "style": "plain",
-          "foreground": "#70e2ff",
+          "foreground": "p:winget",
           "template": " \uf409 {{ .UpdateCount }} ",
           "options": {
             "cache_duration": "5m"
           }
         },
         {
-          "foreground": "#ee79d1",
+          "foreground": "p:git",
           "options": {
             "branch_icon": " \uf126 ",
             "fetch_status": true,
@@ -52,7 +66,7 @@
       "alignment": "right",
       "segments": [
         {
-          "foreground": "#a9ffb4",
+          "foreground": "p:prompt-ok",
           "style": "plain",
           "type": "text"
         },
@@ -84,8 +98,8 @@
       "newline": true,
       "segments": [
         {
-          "foreground": "#ffafd2",
-          "leading_diamond": "<#00c7fc> \ue285 </><#ffafd2>{</>",
+          "foreground": "p:path",
+          "leading_diamond": "<p:path-icon> \ue285 </><p:path>{</>",
           "options": {
             "folder_icon": "\uf07b",
             "folder_separator_icon": " \uebcb ",
@@ -94,13 +108,13 @@
           },
           "style": "diamond",
           "template": " \ue5ff {{ .Path }} ",
-          "trailing_diamond": "<#ffafd2>}</>",
+          "trailing_diamond": "<p:path>}</>",
           "type": "path"
         },
         {
-          "foreground": "#A9FFB4",
+          "foreground": "p:prompt-ok",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#ef5350{{ end }}"
+            "{{ if gt .Code 0 }}p:prompt-error{{ end }}"
           ],
           "options": {
             "always_enabled": true
@@ -116,8 +130,7 @@
   "console_title_template": "{{ .Folder }}",
   "transient_prompt": {
     "background": "transparent",
-    "foreground": "#FEF5ED",
+    "foreground": "p:transient",
     "template": "\ue285 "
-  },
-  "version": 4
+  }
 }
