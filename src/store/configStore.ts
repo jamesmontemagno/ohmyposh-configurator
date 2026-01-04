@@ -12,6 +12,7 @@ interface ConfigState {
   selectedSegmentId: string | null;
   exportFormat: ExportFormat;
   previewBackground: 'dark' | 'light';
+  previewPaletteName: string | undefined;
 
   // Actions
   setConfig: (config: OhMyPoshConfig) => void;
@@ -37,6 +38,16 @@ interface ConfigState {
   ) => void;
   selectSegment: (segmentId: string | null) => void;
   duplicateSegment: (blockId: string, segmentId: string) => void;
+
+  // Palette actions
+  setPalette: (palette: Record<string, string>) => void;
+  setPaletteColor: (key: string, value: string) => void;
+  removePaletteColor: (key: string) => void;
+  setPalettes: (palettes: OhMyPoshConfig['palettes']) => void;
+  setPalettesTemplate: (template: string) => void;
+  setPalettesListEntry: (name: string, palette: Record<string, string>) => void;
+  removePalettesListEntry: (name: string) => void;
+  setPreviewPaletteName: (name: string | undefined) => void;
 
   // Export
   setExportFormat: (format: ExportFormat) => void;
@@ -89,6 +100,7 @@ export const useConfigStore = create<ConfigState>()(
       selectedSegmentId: null,
       exportFormat: 'json',
       previewBackground: 'dark',
+      previewPaletteName: undefined,
 
       setConfig: (config) => set({ config }),
 
@@ -107,6 +119,7 @@ export const useConfigStore = create<ConfigState>()(
           },
           selectedBlockId: null,
           selectedSegmentId: null,
+          previewPaletteName: undefined,
         }),
 
       updateGlobalConfig: (updates) =>
@@ -259,6 +272,97 @@ export const useConfigStore = create<ConfigState>()(
             },
           };
         }),
+
+      // Palette actions
+      setPalette: (palette) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            palette: Object.keys(palette).length > 0 ? palette : undefined,
+          },
+        })),
+
+      setPaletteColor: (key, value) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            palette: {
+              ...(state.config.palette || {}),
+              [key]: value,
+            },
+          },
+        })),
+
+      removePaletteColor: (key) =>
+        set((state) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { [key]: _omitted, ...rest } = state.config.palette || {};
+          return {
+            config: {
+              ...state.config,
+              palette: Object.keys(rest).length > 0 ? rest : undefined,
+            },
+          };
+        }),
+
+      setPalettes: (palettes) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            palettes: palettes,
+          },
+        })),
+
+      setPalettesTemplate: (template) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            palettes: {
+              ...state.config.palettes,
+              template: template || undefined,
+              list: state.config.palettes?.list,
+            },
+          },
+        })),
+
+      setPalettesListEntry: (name, palette) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            palettes: {
+              ...state.config.palettes,
+              template: state.config.palettes?.template,
+              list: {
+                ...(state.config.palettes?.list || {}),
+                [name]: palette,
+              },
+            },
+          },
+        })),
+
+      removePalettesListEntry: (name) =>
+        set((state) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { [name]: _omitted, ...rest } = state.config.palettes?.list || {};
+          const hasRemainingEntries = Object.keys(rest).length > 0;
+          const hasTemplate = !!state.config.palettes?.template;
+          
+          return {
+            config: {
+              ...state.config,
+              palettes: hasRemainingEntries || hasTemplate
+                ? {
+                    template: state.config.palettes?.template,
+                    list: hasRemainingEntries ? rest : undefined,
+                  }
+                : undefined,
+            },
+            // Reset preview palette if the current one was removed
+            previewPaletteName: state.previewPaletteName === name ? undefined : state.previewPaletteName,
+          };
+        }),
+
+      setPreviewPaletteName: (name) => set({ previewPaletteName: name }),
 
       setExportFormat: (format) => set({ exportFormat: format }),
 

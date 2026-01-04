@@ -1,7 +1,21 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2025-12-29",
+  "lastUpdated": "2026-01-03",
   "configs": [
+    {
+      "id": "all-segments",
+      "name": "All Segments",
+      "description": "Every single segment type for testing and exploration",
+      "icon": "misc-rocket",
+      "author": "Oh My Posh Configurator",
+      "tags": [
+        "testing",
+        "complete",
+        "all",
+        "showcase"
+      ],
+      "file": "all-segments.json"
+    },
     {
       "id": "developer-pro",
       "name": "Developer Pro",

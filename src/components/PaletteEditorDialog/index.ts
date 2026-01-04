@@ -1,0 +1,1 @@
+export { PaletteEditorDialog } from './PaletteEditorDialog';

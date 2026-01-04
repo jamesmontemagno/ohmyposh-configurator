@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { ColorInput } from './ColorInput';
 import type { OhMyPoshConfig } from '../../types/ohmyposh';
 
 export function GlobalSettings() {
@@ -58,46 +59,26 @@ export function GlobalSettings() {
 
           {/* Terminal Background */}
           <div>
-            <label className="text-xs text-gray-400">Terminal Background</label>
-            <div className="flex items-center gap-2 mt-1">
-              <input
-                type="color"
-                value={config.terminal_background || '#000000'}
-                onChange={(e) => handleUpdate({ terminal_background: e.target.value })}
-                className="w-8 h-8 rounded cursor-pointer bg-transparent"
-              />
-              <input
-                type="text"
-                value={config.terminal_background || ''}
-                onChange={(e) => handleUpdate({ terminal_background: e.target.value || undefined })}
-                placeholder="#000000"
-                className="flex-1 px-2 py-1 text-xs bg-[#1a1a2e] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
+            <ColorInput
+              label="Terminal BG"
+              value={config.terminal_background || ''}
+              onChange={(value) => handleUpdate({ terminal_background: value || undefined })}
+              allowEmpty
+            />
+            <p className="text-xs text-gray-500 mt-1 ml-[104px]">
               Used for transparency in some segments
             </p>
           </div>
 
           {/* Accent Color */}
           <div>
-            <label className="text-xs text-gray-400">Accent Color</label>
-            <div className="flex items-center gap-2 mt-1">
-              <input
-                type="color"
-                value={config.accent_color || '#ffffff'}
-                onChange={(e) => handleUpdate({ accent_color: e.target.value })}
-                className="w-8 h-8 rounded cursor-pointer bg-transparent"
-              />
-              <input
-                type="text"
-                value={config.accent_color || ''}
-                onChange={(e) => handleUpdate({ accent_color: e.target.value || undefined })}
-                placeholder="#ffffff"
-                className="flex-1 px-2 py-1 text-xs bg-[#1a1a2e] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
-              />
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
+            <ColorInput
+              label="Accent Color"
+              value={config.accent_color || ''}
+              onChange={(value) => handleUpdate({ accent_color: value || undefined })}
+              allowEmpty
+            />
+            <p className="text-xs text-gray-500 mt-1 ml-[104px]">
               Default accent color for segments
             </p>
           </div>

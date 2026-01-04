@@ -1,7 +1,6 @@
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore, getSelectedSegment, findBlockForSegment } from '../../store/configStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
-import { unicodeToEscapes, parseUnicodeEscapes } from '../../utils/unicode';
 import { POWERLINE_SYMBOLS, LEADING_DIAMOND_SYMBOLS, TRAILING_DIAMOND_SYMBOLS } from '../../constants/symbols';
 import { ColorInput } from './ColorInput';
 import { SymbolPicker } from './SymbolPicker';
@@ -10,6 +9,7 @@ import { AvailableMethods } from './AvailableMethods';
 import { AvailableOptions } from './AvailableOptions';
 import { SegmentOptionsEditor } from './SegmentOptionsEditor';
 import { NerdFontPicker } from './NerdFontPicker';
+import { TemplateInput } from './TemplateInput';
 import type { Segment, SegmentStyle } from '../../types/ohmyposh';
 
 const segmentStyles: { value: SegmentStyle; label: string }[] = [
@@ -132,15 +132,11 @@ export function SegmentProperties() {
           <NerdIcon icon="ui-code" size={14} className="text-gray-400" />
           <span className="text-xs font-medium text-gray-300">Template</span>
         </div>
-        <textarea
-          value={unicodeToEscapes(segment.template || '')}
-          onChange={(e) => {
-            const processedValue = parseUnicodeEscapes(e.target.value);
-            handleUpdate({ template: processedValue });
-          }}
-          rows={3}
-          className="w-full px-2 py-1.5 text-xs font-mono bg-[#1a1a2e] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560] resize-y"
+        <TemplateInput
+          value={segment.template || ''}
+          onChange={(value) => handleUpdate({ template: value })}
           placeholder="{{ .Data }}"
+          rows={3}
         />
         <p className="text-xs text-gray-500 mt-1">
           Uses Go template syntax. Unicode symbols shown as \uXXXX.{' '}

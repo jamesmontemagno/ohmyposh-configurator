@@ -13,8 +13,8 @@ export function PreviewPanel() {
   const finalSpace = config.final_space ?? true;
 
   return (
-    <div className="bg-[#16213e] border-t border-[#0f3460]">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-[#0f3460]">
+    <div className="bg-[#16213e] border-t border-[#0f3460] max-h-[40vh] flex flex-col">
+      <div className="flex items-center justify-between px-4 py-2 border-b border-[#0f3460] flex-shrink-0">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-semibold text-gray-200">Preview</h2>
           {config.terminal_background && (
@@ -57,7 +57,7 @@ export function PreviewPanel() {
       </div>
 
       <div
-        className="p-4 text-sm"
+        className="p-4 text-sm overflow-y-auto flex-1 min-h-0"
         style={{ 
           backgroundColor: bgColor, 
           color: textColor,

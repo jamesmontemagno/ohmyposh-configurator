@@ -2,10 +2,47 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
-## [2026-01-03] - HTML Formatting Support
+## [2026-01-03] - Palette Support & Enhanced Template Preview
 
 ### Added
+- **All Segments Sample Config**: Comprehensive test configuration (`all-segments.json`) with 70+ segment types across 18 blocks covering system, SCM, languages, cloud, CLI, frameworks, package managers, build tools, AI, system info, music, health, and web services. Uses version 4 with full palette support (105 color definitions).
+- **Palette Reference Validation**: Config validator now validates palette references (`p:name`), ensuring all referenced colors exist in the palette. Reports palette usage statistics during validation.
+- **Palette Support**: Full support for Oh My Posh's `palette` and `palettes` features
+  - **Palette Editor Dialog**: New dialog accessible via "Palette" button in header to manage color palettes
+  - **Base Palette**: Define reusable colors referenced as `p:key-name` throughout segments
+  - **Palette Variants**: Create multiple named palette variants (e.g., dark/light themes) with template-based selection
+  - **Preview Palette Selector**: Switch between palette variants for preview
+- **Enhanced Color Input**: Three-mode color selector supporting:
+  - Direct hex color values
+  - Named CSS colors (including context-dependent colors like `parentBackground`, `foreground`, `accent`)
+  - Palette references (`p:key-name`) with color swatches
+- **Template Autocomplete**: Type `<p:` in template fields to get autocomplete suggestions for palette color keys
+- **Inline Palette Colors**: Preview panel now resolves `<p:key-name>` inline color tags in templates
+- **Context-Dependent Color Indicators**: Visual indicators for colors that inherit from adjacent segments at runtime
+- **Unresolved Palette Warnings**: Warning indicators when palette references cannot be resolved
 - **HTML Formatting in Templates**: Preview panel now supports HTML formatting tags in templates including `<b>` (bold), `<i>` (italic), `<u>` (underline), `<s>` and `<strike>` (strikethrough). Multiple formatting styles can be combined and work alongside existing color codes.
+- **Enhanced Template Processing**: Added support for additional Go template functions:
+  - `url` - Creates hyperlinks from text and URL arguments
+  - `trunc` - Truncates strings to specified length
+  - `path` - Path rendering with location
+  - `now | date` - Current time with Go date format patterns (e.g., `15:04:05`)
+  - `.Segments.Contains` - Check if a segment type exists
+  - `trimPrefix` - Remove prefix from strings
+  - `coalesce` - Returns first non-empty value
+  - `printf` - String formatting
+  - `or` - Logical OR operation
+  - `hresult` - Windows error code formatting
+  - `eq` - Equality comparison
+- **Cross-Segment Template Data**: Added `.Segments` accessor for templates that reference other segments (e.g., `.Segments.Git.HEAD`, `.Segments.Path.Path`)
+- **Environment Variables**: Mock data now includes `.Env` object with common environment variables (TMUX, WT_PROFILE_ID, HOME, etc.)
+
+### Changed
+- **Mock Data Architecture**: Refactored mock data to be organized by segment type (`segmentMockData`) for easier maintenance. Each segment now has its own complete, self-contained mock data without duplicates.
+- **Go Date Format Parsing**: Template date formatting now properly parses Go's reference time patterns (e.g., `{{ .CurrentDate | date "15:04:05" }}` displays as `14:30:45` instead of full Date object)
+
+### Fixed
+- Fixed preview crash when accessing undefined mock data properties
+- Fixed date/time display showing full Date object instead of formatted time
 
 ## [2026-01-02] - Latest Updates
 

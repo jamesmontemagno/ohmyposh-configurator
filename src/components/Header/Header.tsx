@@ -1,12 +1,20 @@
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { SamplePicker } from '../SamplePicker';
+import { PaletteEditorDialog } from '../PaletteEditorDialog';
 import { useRef, useState, useEffect } from 'react';
 
 export function Header() {
+  const config = useConfigStore((state) => state.config);
   const resetConfig = useConfigStore((state) => state.resetConfig);
   const [showGitHubDropdown, setShowGitHubDropdown] = useState(false);
+  const [showPaletteDialog, setShowPaletteDialog] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Count palette entries for badge
+  const paletteCount = Object.keys(config.palette || {}).length;
+  const palettesCount = config.palettes?.list ? Object.keys(config.palettes.list).length : 0;
+  const totalPaletteCount = paletteCount + palettesCount;
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -36,6 +44,20 @@ export function Header() {
       
       <div className="flex items-center gap-2">
         <SamplePicker />
+        
+        <button
+          onClick={() => setShowPaletteDialog(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors relative"
+          title="Open Palette Editor"
+        >
+          <NerdIcon icon="ui-palette" size={16} />
+          <span className="hidden sm:inline">Palette</span>
+          {totalPaletteCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-[#e94560] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+              {totalPaletteCount}
+            </span>
+          )}
+        </button>
         
         <button
           onClick={resetConfig}
@@ -85,7 +107,7 @@ export function Header() {
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors"
                 onClick={() => setShowGitHubDropdown(false)}
               >
-                <NerdIcon icon="misc-file-code" size={16} />
+                <NerdIcon icon="status-history" size={16} />
                 <span>Changelog</span>
               </a>
             </div>
@@ -102,6 +124,12 @@ export function Header() {
           <span className="hidden sm:inline">Docs</span>
         </a>
       </div>
+      
+      {/* Palette Editor Dialog */}
+      <PaletteEditorDialog 
+        isOpen={showPaletteDialog} 
+        onClose={() => setShowPaletteDialog(false)} 
+      />
     </header>
   );
 }
