@@ -44,7 +44,7 @@ export function SamplePicker() {
         title="Load Sample Configuration"
       >
         <NerdIcon icon="misc-star" size={16} />
-        <span className="text-sm font-medium">Sample Configs</span>
+        <span className="text-sm font-medium">Configs</span>
       </button>
 
       {/* Modal */}
