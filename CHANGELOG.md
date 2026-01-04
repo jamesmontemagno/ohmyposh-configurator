@@ -2,6 +2,17 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Powerline Controls
+
+### Added
+- **Powerline Options**: New controls in SegmentProperties panel for powerline-style segments
+  - `invert_powerline` checkbox: Flip the powerline symbol vertically
+  - `leading_powerline_symbol` picker: Add an additional powerline symbol at the start of the segment
+  - Controls only visible when segment style is set to 'powerline'
+  - Leading powerline symbol picker includes left-pointing symbols (Round Left, Angle Left, Flame Left, Ice Left, Pixel Left)
+  - Full import/export support across JSON, YAML, and TOML formats
+  - Enables "floating" segment effects with powerline symbols on both sides
+
 ## [2026-01-04] - Templates Logic Control
 
 ### Added

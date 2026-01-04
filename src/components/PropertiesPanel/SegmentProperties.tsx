@@ -88,7 +88,7 @@ export function SegmentProperties() {
         </select>
 
         {segment.style === 'powerline' && (
-          <div className="mt-2">
+          <div className="mt-2 space-y-3">
             <SymbolPicker
               label="Powerline Symbol"
               value={segment.powerline_symbol || '\ue0b0'}
@@ -96,6 +96,29 @@ export function SegmentProperties() {
               symbols={POWERLINE_SYMBOLS}
               placeholder="Enter symbol"
             />
+            
+            <SymbolPicker
+              label="Leading Powerline Symbol"
+              value={segment.leading_powerline_symbol || ''}
+              onChange={(value) => handleUpdate({ leading_powerline_symbol: value || undefined })}
+              symbols={LEADING_DIAMOND_SYMBOLS}
+              placeholder="Optional leading symbol"
+            />
+            
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={segment.invert_powerline ?? false}
+                onChange={(e) => handleUpdate({ 
+                  invert_powerline: e.target.checked || undefined 
+                })}
+                className="rounded border-[#0f3460] bg-[#0f0f23] text-[#e94560] focus:ring-[#e94560]"
+              />
+              <span className="text-sm text-white">Invert Powerline</span>
+            </label>
+            <p className="text-xs text-gray-500 -mt-1 ml-6">
+              Flip the powerline symbol vertically
+            </p>
           </div>
         )}
 
