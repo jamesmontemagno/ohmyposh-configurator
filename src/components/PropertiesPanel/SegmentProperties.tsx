@@ -1,5 +1,6 @@
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore, getSelectedSegment, findBlockForSegment } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import { FolderFilterEditor } from './FolderFilterEditor';
 import { CacheSettingsEditor } from './CacheSettingsEditor';
@@ -17,6 +18,7 @@ export function SegmentProperties() {
   const selectedSegmentId = useConfigStore((state) => state.selectedSegmentId);
   const updateSegment = useConfigStore((state) => state.updateSegment);
   const duplicateSegment = useConfigStore((state) => state.duplicateSegment);
+  const features = useAdvancedFeaturesStore((state) => state.features);
 
   const segment = getSelectedSegment(config, selectedSegmentId);
   const block = segment ? findBlockForSegment(config, segment.id) : undefined;
@@ -63,90 +65,100 @@ export function SegmentProperties() {
       <StyleSection item={segment} onUpdate={handleUpdate} />
 
       {/* Template Alias Section */}
-      <div>
-        <div className="flex items-center gap-2 mb-2">
-          <NerdIcon icon="vcs-tag" size={14} className="text-gray-400" />
-          <span className="text-xs font-medium text-gray-300">Template Alias</span>
+      {features.templateAlias && (
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <NerdIcon icon="vcs-tag" size={14} className="text-gray-400" />
+            <span className="text-xs font-medium text-gray-300">Template Alias</span>
+          </div>
+          <input
+            type="text"
+            value={segment.alias ?? ''}
+            onChange={(e) => handleUpdate({ alias: e.target.value || undefined })}
+            placeholder="e.g., Git, Node, MySegment"
+            className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#e94560]"
+          />
+          {!isValidAlias && (
+            <p className="text-xs text-[#e94560] mt-1">
+              Alias must start with a letter and contain only letters, numbers, and underscores
+            </p>
+          )}
+          {isValidAlias && duplicateAlias && (
+            <p className="text-xs text-[#e94560] mt-1">
+              This alias is already used by another segment
+            </p>
+          )}
+          {isValidAlias && !duplicateAlias && (
+            <p className="text-xs text-gray-500 mt-1">
+              Reference in templates as <code className="text-[#e94560]">.Segments.{segment.alias || 'Alias'}</code>
+            </p>
+          )}
         </div>
-        <input
-          type="text"
-          value={segment.alias ?? ''}
-          onChange={(e) => handleUpdate({ alias: e.target.value || undefined })}
-          placeholder="e.g., Git, Node, MySegment"
-          className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#e94560]"
-        />
-        {!isValidAlias && (
-          <p className="text-xs text-[#e94560] mt-1">
-            Alias must start with a letter and contain only letters, numbers, and underscores
-          </p>
-        )}
-        {isValidAlias && duplicateAlias && (
-          <p className="text-xs text-[#e94560] mt-1">
-            This alias is already used by another segment
-          </p>
-        )}
-        {isValidAlias && !duplicateAlias && (
-          <p className="text-xs text-gray-500 mt-1">
-            Reference in templates as <code className="text-[#e94560]">.Segments.{segment.alias || 'Alias'}</code>
-          </p>
-        )}
-      </div>
+      )}
 
       {/* Colors Section */}
-      <ColorsSection item={segment} onUpdate={handleUpdate} />
+      <ColorsSection item={segment} onUpdate={handleUpdate} showColorTemplates={features.colorTemplates} />
 
       {/* Template Section */}
       <TemplateSection 
         item={segment} 
         metadata={metadata} 
         onUpdate={handleUpdate}
-        showTemplatesLogic
+        showTemplatesLogic={features.templatesLogic}
       />
 
       {/* Responsive Display Section */}
-      <ResponsiveSection item={segment} onUpdate={handleUpdate} itemType="segment" />
+      {features.responsiveDisplay && (
+        <ResponsiveSection item={segment} onUpdate={handleUpdate} itemType="segment" />
+      )}
 
       {/* Interactive Toggle */}
-      <div className="space-y-2">
-        <label className="flex items-start gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={segment.interactive ?? false}
-            onChange={(e) => handleUpdate({ 
-              interactive: e.target.checked || undefined 
-            })}
-            className="mt-0.5 rounded border-[#0f3460] bg-[#0f0f23] text-[#e94560] focus:ring-[#e94560]"
-          />
-          <div className="flex-1">
-            <div className="flex items-center gap-1">
-              <NerdIcon icon="ui-external-link" size={14} className="text-gray-400" />
-              <span className="text-sm text-white">Interactive</span>
+      {features.interactive && (
+        <div className="space-y-2">
+          <label className="flex items-start gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={segment.interactive ?? false}
+              onChange={(e) => handleUpdate({ 
+                interactive: e.target.checked || undefined 
+              })}
+              className="mt-0.5 rounded border-[#0f3460] bg-[#0f0f23] text-[#e94560] focus:ring-[#e94560]"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-1">
+                <NerdIcon icon="ui-external-link" size={14} className="text-gray-400" />
+                <span className="text-sm text-white">Interactive</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-0.5">
+                Enable clickable elements (OSC 8 hyperlinks). Supported in iTerm2, Windows Terminal, Hyper, and others.
+              </p>
             </div>
-            <p className="text-xs text-gray-500 mt-0.5">
-              Enable clickable elements (OSC 8 hyperlinks). Supported in iTerm2, Windows Terminal, Hyper, and others.
-            </p>
-          </div>
-        </label>
-      </div>
+          </label>
+        </div>
+      )}
 
       {/* Folder Filters */}
-      <FolderFilterEditor
-        includeFolders={segment.include_folders ?? []}
-        excludeFolders={segment.exclude_folders ?? []}
-        onIncludeChange={(folders) => handleUpdate({
-          include_folders: folders.length > 0 ? folders : undefined
-        })}
-        onExcludeChange={(folders) => handleUpdate({
-          exclude_folders: folders.length > 0 ? folders : undefined
-        })}
-      />
+      {features.folderFilters && (
+        <FolderFilterEditor
+          includeFolders={segment.include_folders ?? []}
+          excludeFolders={segment.exclude_folders ?? []}
+          onIncludeChange={(folders) => handleUpdate({
+            include_folders: folders.length > 0 ? folders : undefined
+          })}
+          onExcludeChange={(folders) => handleUpdate({
+            exclude_folders: folders.length > 0 ? folders : undefined
+          })}
+        />
+      )}
 
       {/* Cache Settings */}
-      <CacheSettingsEditor
-        cache={segment.cache}
-        onChange={(cache) => handleUpdate({ cache })}
-        segmentType={segment.type}
-      />
+      {features.caching && (
+        <CacheSettingsEditor
+          cache={segment.cache}
+          onChange={(cache) => handleUpdate({ cache })}
+          segmentType={segment.type}
+        />
+      )}
 
       {/* Options Section */}
       <OptionsSection item={segment} metadata={metadata} onUpdate={handleUpdate} />

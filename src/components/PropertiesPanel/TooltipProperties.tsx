@@ -1,5 +1,6 @@
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import { TipsEditor } from './TipsEditor';
 import {
@@ -17,6 +18,7 @@ export function TooltipProperties() {
   const updateTooltip = useConfigStore((state) => state.updateTooltip);
   const duplicateTooltip = useConfigStore((state) => state.duplicateTooltip);
   const removeTooltip = useConfigStore((state) => state.removeTooltip);
+  const features = useAdvancedFeaturesStore((state) => state.features);
 
   const tooltip = config.tooltips?.find((t) => t.id === selectedTooltipId);
   const metadata = useSegmentMetadata(tooltip?.type || '');
@@ -84,13 +86,15 @@ export function TooltipProperties() {
       <StyleSection item={tooltip} onUpdate={handleUpdate} />
 
       {/* Colors Section */}
-      <ColorsSection item={tooltip} onUpdate={handleUpdate} />
+      <ColorsSection item={tooltip} onUpdate={handleUpdate} showColorTemplates={features.colorTemplates} />
 
       {/* Template Section */}
       <TemplateSection item={tooltip} metadata={metadata} onUpdate={handleUpdate} />
 
       {/* Responsive Display Section */}
-      <ResponsiveSection item={tooltip} onUpdate={handleUpdate} itemType="tooltip" />
+      {features.responsiveDisplay && (
+        <ResponsiveSection item={tooltip} onUpdate={handleUpdate} itemType="tooltip" />
+      )}
 
       {/* Options Section */}
       <OptionsSection item={tooltip} metadata={metadata} onUpdate={handleUpdate} />

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { isHexColor } from '../../utils/paletteResolver';
 import { PaletteEntryRow } from './PaletteEntryRow';
 import { PalettesListEntry } from './PalettesListEntry';
@@ -19,6 +20,7 @@ export function PaletteEditorDialog({ isOpen, onClose }: PaletteEditorDialogProp
   const removePalettesListEntry = useConfigStore((state) => state.removePalettesListEntry);
   const previewPaletteName = useConfigStore((state) => state.previewPaletteName);
   const setPreviewPaletteName = useConfigStore((state) => state.setPreviewPaletteName);
+  const features = useAdvancedFeaturesStore((state) => state.features);
   
   const dialogRef = useRef<HTMLDivElement>(null);
   
@@ -202,93 +204,95 @@ export function PaletteEditorDialog({ isOpen, onClose }: PaletteEditorDialogProp
             </div>
           </div>
           
-          {/* Palettes Section (collapsible) */}
-          <div>
-            <button
-              onClick={() => setShowPalettesSection(!showPalettesSection)}
-              className="flex items-center gap-2 w-full text-left mb-3"
-            >
-              <NerdIcon 
-                icon={showPalettesSection ? 'ui-chevron-down' : 'ui-chevron-right'} 
-                size={14} 
-                className="text-gray-400"
-              />
-              <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
-                <NerdIcon icon="tool-sliders" size={14} className="text-gray-400" />
-                Palette Variants
-              </h3>
-              {palettesList.length > 0 && (
-                <span className="text-xs text-gray-500">({palettesList.length})</span>
-              )}
-            </button>
-            
-            {showPalettesSection && (
-              <div className="space-y-3">
-                <p className="text-xs text-gray-500 mb-3">
-                  Create multiple palette variants that can be switched based on terminal theme using a template condition.
-                  {' '}
-                  <a
-                    href="https://ohmyposh.dev/docs/configuration/colors#palettes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#e94560] hover:underline"
-                  >
-                    Learn more
-                  </a>
-                </p>
-                
-                {/* Template input */}
-                <div className="p-3 bg-[#16213e] rounded-lg">
-                  <label className="text-xs text-gray-400 block mb-1.5">
-                    Selection Template
-                    <span className="ml-2 text-gray-600" title="Go template that resolves to a palette name from the list">
-                      ⓘ
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    value={palettes?.template || ''}
-                    onChange={(e) => setPalettesTemplate(e.target.value)}
-                    placeholder='{{ if eq .Env.TERM_PROGRAM "iTerm.app" }}iterm{{ else }}default{{ end }}'
-                    className="w-full px-2 py-1.5 text-xs font-mono bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
-                  />
-                </div>
-                
-                {/* Existing palette variants */}
-                <div className="space-y-2">
-                  {palettesList.map((name) => (
-                    <PalettesListEntry
-                      key={name}
-                      name={name}
-                      palette={palettes?.list?.[name] || {}}
-                      basePalette={palette}
-                      onUpdate={setPalettesListEntry}
-                      onDelete={removePalettesListEntry}
-                      onRename={handleRenamePaletteVariant}
+          {/* Palettes Section (collapsible) - only show if paletteVariants feature is enabled */}
+          {features.paletteVariants && (
+            <div>
+              <button
+                onClick={() => setShowPalettesSection(!showPalettesSection)}
+                className="flex items-center gap-2 w-full text-left mb-3"
+              >
+                <NerdIcon 
+                  icon={showPalettesSection ? 'ui-chevron-down' : 'ui-chevron-right'} 
+                  size={14} 
+                  className="text-gray-400"
+                />
+                <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
+                  <NerdIcon icon="tool-sliders" size={14} className="text-gray-400" />
+                  Palette Variants
+                </h3>
+                {palettesList.length > 0 && (
+                  <span className="text-xs text-gray-500">({palettesList.length})</span>
+                )}
+              </button>
+              
+              {showPalettesSection && (
+                <div className="space-y-3">
+                  <p className="text-xs text-gray-500 mb-3">
+                    Create multiple palette variants that can be switched based on terminal theme using a template condition.
+                    {' '}
+                    <a
+                      href="https://ohmyposh.dev/docs/configuration/colors#palettes"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#e94560] hover:underline"
+                    >
+                      Learn more
+                    </a>
+                  </p>
+                  
+                  {/* Template input */}
+                  <div className="p-3 bg-[#16213e] rounded-lg">
+                    <label className="text-xs text-gray-400 block mb-1.5">
+                      Selection Template
+                      <span className="ml-2 text-gray-600" title="Go template that resolves to a palette name from the list">
+                        ⓘ
+                      </span>
+                    </label>
+                    <input
+                      type="text"
+                      value={palettes?.template || ''}
+                      onChange={(e) => setPalettesTemplate(e.target.value)}
+                      placeholder='{{ if eq .Env.TERM_PROGRAM "iTerm.app" }}iterm{{ else }}default{{ end }}'
+                      className="w-full px-2 py-1.5 text-xs font-mono bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
                     />
-                  ))}
+                  </div>
+                  
+                  {/* Existing palette variants */}
+                  <div className="space-y-2">
+                    {palettesList.map((name) => (
+                      <PalettesListEntry
+                        key={name}
+                        name={name}
+                        palette={palettes?.list?.[name] || {}}
+                        basePalette={palette}
+                        onUpdate={setPalettesListEntry}
+                        onDelete={removePalettesListEntry}
+                        onRename={handleRenamePaletteVariant}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Add new palette variant */}
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={newPaletteName}
+                      onChange={(e) => setNewPaletteName(e.target.value)}
+                      placeholder="New palette name (e.g., dark, light, iterm)"
+                      className="flex-1 px-2 py-1.5 text-xs bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
+                    />
+                    <button
+                      onClick={handleAddPaletteVariant}
+                      disabled={!newPaletteName.trim()}
+                      className="px-4 py-1.5 text-xs bg-[#0f3460] text-white rounded hover:bg-[#1a4a7a] disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Add Variant
+                    </button>
+                  </div>
                 </div>
-                
-                {/* Add new palette variant */}
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={newPaletteName}
-                    onChange={(e) => setNewPaletteName(e.target.value)}
-                    placeholder="New palette name (e.g., dark, light, iterm)"
-                    className="flex-1 px-2 py-1.5 text-xs bg-[#0f0f23] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560]"
-                  />
-                  <button
-                    onClick={handleAddPaletteVariant}
-                    disabled={!newPaletteName.trim()}
-                    className="px-4 py-1.5 text-xs bg-[#0f3460] text-white rounded hover:bg-[#1a4a7a] disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Add Variant
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
         
         {/* Footer */}

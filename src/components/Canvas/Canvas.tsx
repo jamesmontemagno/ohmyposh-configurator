@@ -16,6 +16,7 @@ import {
 } from '@dnd-kit/sortable';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import type { Segment, Tooltip } from '../../types/ohmyposh';
 import { SegmentCard } from './SegmentCard';
 import { TooltipCard } from './TooltipCard';
@@ -32,6 +33,7 @@ export function Canvas() {
   const addTooltip = useConfigStore((state) => state.addTooltip);
   const reorderTooltips = useConfigStore((state) => state.reorderTooltips);
   const selectTooltip = useConfigStore((state) => state.selectTooltip);
+  const features = useAdvancedFeaturesStore((state) => state.features);
   
   const [activeSegment, setActiveSegment] = useState<Segment | null>(null);
   const [activeTooltip, setActiveTooltip] = useState<Tooltip | null>(null);
@@ -198,15 +200,19 @@ export function Canvas() {
             </button>
 
             {/* Divider */}
-            <div className="my-2 border-t border-[#0f3460]" />
+            {features.tooltips && (
+              <div className="my-2 border-t border-[#0f3460]" />
+            )}
 
             {/* Tooltips Section */}
-            <TooltipsSection
-              tooltips={tooltips}
-              isExpanded={tooltipsExpanded}
-              onToggle={() => setTooltipsExpanded(!tooltipsExpanded)}
-              onAddTooltip={handleAddTooltip}
-            />
+            {features.tooltips && (
+              <TooltipsSection
+                tooltips={tooltips}
+                isExpanded={tooltipsExpanded}
+                onToggle={() => setTooltipsExpanded(!tooltipsExpanded)}
+                onAddTooltip={handleAddTooltip}
+              />
+            )}
           </div>
         </SortableContext>
 

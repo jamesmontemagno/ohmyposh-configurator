@@ -6,9 +6,10 @@ import type { Segment, Tooltip } from '../../../types/ohmyposh';
 interface ColorsSectionProps {
   item: Segment | Tooltip;
   onUpdate: (updates: Partial<Segment | Tooltip>) => void;
+  showColorTemplates?: boolean;
 }
 
-export function ColorsSection({ item, onUpdate }: ColorsSectionProps) {
+export function ColorsSection({ item, onUpdate, showColorTemplates = true }: ColorsSectionProps) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
@@ -29,24 +30,28 @@ export function ColorsSection({ item, onUpdate }: ColorsSectionProps) {
         />
         
         {/* Conditional Color Templates */}
-        <ColorTemplateEditor
-          label="Conditional Foreground Colors"
-          templates={item.foreground_templates ?? []}
-          onChange={(templates) => onUpdate({
-            foreground_templates: templates.length > 0 ? templates : undefined
-          })}
-          defaultColor={item.foreground ?? ''}
-          colorType="foreground"
-        />
-        <ColorTemplateEditor
-          label="Conditional Background Colors"
-          templates={item.background_templates ?? []}
-          onChange={(templates) => onUpdate({
-            background_templates: templates.length > 0 ? templates : undefined
-          })}
-          defaultColor={item.background ?? ''}
-          colorType="background"
-        />
+        {showColorTemplates && (
+          <>
+            <ColorTemplateEditor
+              label="Conditional Foreground Colors"
+              templates={item.foreground_templates ?? []}
+              onChange={(templates) => onUpdate({
+                foreground_templates: templates.length > 0 ? templates : undefined
+              })}
+              defaultColor={item.foreground ?? ''}
+              colorType="foreground"
+            />
+            <ColorTemplateEditor
+              label="Conditional Background Colors"
+              templates={item.background_templates ?? []}
+              onChange={(templates) => onUpdate({
+                background_templates: templates.length > 0 ? templates : undefined
+              })}
+              defaultColor={item.background ?? ''}
+              colorType="background"
+            />
+          </>
+        )}
       </div>
     </div>
   );

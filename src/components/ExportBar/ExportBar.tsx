@@ -58,7 +58,17 @@ export function ExportBar() {
     <div className="bg-[#16213e] border-t border-[#0f3460] relative">
       <div className="flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-300">Export Format:</span>
+          <button
+            onClick={() => setShowCode(!showCode)}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+          >
+            {showCode ? <NerdIcon icon="ui-eye-off" size={16} /> : <NerdIcon icon="ui-eye" size={16} />}
+            <span>{showCode ? 'Hide' : 'View'} Config</span>
+          </button>
+          
+          <div className="w-px h-6 bg-[#0f3460]" />
+          
+          <span className="text-sm text-gray-300">Format:</span>
           <div className="flex items-center gap-1 bg-[#1a1a2e] rounded p-0.5">
             {formatOptions.map((format) => (
               <button
@@ -109,14 +119,6 @@ export function ExportBar() {
           </div>
 
           <SubmitConfigDialog />
-
-          <button
-            onClick={() => setShowCode(!showCode)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
-          >
-            {showCode ? <NerdIcon icon="ui-eye-off" size={16} /> : <NerdIcon icon="ui-eye" size={16} />}
-            <span>{showCode ? 'Hide' : 'View'} Config</span>
-          </button>
 
           <button
             onClick={handleCopy}

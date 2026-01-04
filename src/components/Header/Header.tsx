@@ -1,20 +1,20 @@
 import { NerdIcon } from '../NerdIcon';
-import { useConfigStore } from '../../store/configStore';
 import { SamplePicker } from '../SamplePicker';
-import { PaletteEditorDialog } from '../PaletteEditorDialog';
+import { AdvancedSettingsDialog } from '../AdvancedSettingsDialog';
+import { useConfigStore } from '../../store/configStore';
 import { useRef, useState, useEffect } from 'react';
 
 export function Header() {
-  const config = useConfigStore((state) => state.config);
-  const resetConfig = useConfigStore((state) => state.resetConfig);
   const [showGitHubDropdown, setShowGitHubDropdown] = useState(false);
-  const [showPaletteDialog, setShowPaletteDialog] = useState(false);
+  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);
-
-  // Count palette entries for badge
-  const paletteCount = Object.keys(config.palette || {}).length;
-  const palettesCount = config.palettes?.list ? Object.keys(config.palettes.list).length : 0;
-  const totalPaletteCount = paletteCount + palettesCount;
+  const resetConfig = useConfigStore((state) => state.resetConfig);
+  
+  const handleResetConfig = () => {
+    if (window.confirm('Are you sure you want to reset to the default configuration? This will clear all your current blocks, segments, and settings.')) {
+      resetConfig();
+    }
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -43,29 +43,24 @@ export function Header() {
       </div>
       
       <div className="flex items-center gap-2">
-        <SamplePicker />
-        
         <button
-          onClick={() => setShowPaletteDialog(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors relative"
-          title="Open Palette Editor"
-        >
-          <NerdIcon icon="ui-palette" size={16} />
-          <span className="hidden sm:inline">Palette</span>
-          {totalPaletteCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-[#e94560] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-              {totalPaletteCount}
-            </span>
-          )}
-        </button>
-        
-        <button
-          onClick={resetConfig}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+          onClick={handleResetConfig}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded transition-colors"
           title="Reset to default configuration"
         >
           <NerdIcon icon="action-refresh" size={16} />
           <span className="hidden sm:inline">Reset</span>
+        </button>
+        
+        <SamplePicker />
+        
+        <button
+          onClick={() => setShowAdvancedSettings(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors relative"
+          title="Settings & Tools"
+        >
+          <NerdIcon icon="tool-settings" size={16} />
+          <span className="hidden sm:inline">Settings</span>
         </button>
 
         <div className="relative" ref={githubDropdownRef}>
@@ -125,10 +120,10 @@ export function Header() {
         </a>
       </div>
       
-      {/* Palette Editor Dialog */}
-      <PaletteEditorDialog 
-        isOpen={showPaletteDialog} 
-        onClose={() => setShowPaletteDialog(false)} 
+      {/* Advanced Settings Dialog */}
+      <AdvancedSettingsDialog
+        isOpen={showAdvancedSettings}
+        onClose={() => setShowAdvancedSettings(false)}
       />
     </header>
   );

@@ -46,7 +46,7 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'tool-settings': { id: 'tool-settings', name: 'Settings', code: 'F013', char: '\uf013', category: 'UI & Navigation', aliases: ['settings', 'Settings', 'cog'], description: 'Settings or configuration' },
   'tool-sliders': { id: 'tool-sliders', name: 'Sliders', code: 'F1DE', char: '\uf1de', category: 'UI & Navigation', aliases: ['sliders', 'adjust'], description: 'Adjust or control' },
   'tool-wrench': { id: 'tool-wrench', name: 'Wrench', code: 'F0AD', char: '\uf0ad', category: 'UI & Navigation', aliases: ['wrench', 'Wrench', 'tools'], description: 'Tools or utilities' },
-  'tool-debug': { id: 'tool-debug', name: 'Debug', code: 'F188', char: '\uf188', category: 'UI & Navigation', aliases: ['debug', 'bug', 'Debug'], description: 'Debug or bug' },
+  'tool-debug': { id: 'tool-debug', name: 'Debug', code: 'F0AD', char: '\uf0ad', category: 'UI & Navigation', aliases: ['debug', 'bug', 'Debug'], description: 'Debug or bug' },
   'ui-palette': { id: 'ui-palette', name: 'Palette', code: 'F1FC', char: '\uf1fc', category: 'UI & Navigation', aliases: ['palette', 'Palette', 'color'], description: 'Color or theme' },
   'ui-code': { id: 'ui-code', name: 'Code', code: 'F121', char: '\uf121', category: 'UI & Navigation', aliases: ['code', 'Code', 'Code2', 'brackets'], description: 'Code or programming' },
   'ui-globe': { id: 'ui-globe', name: 'Globe', code: 'F0AC', char: '\uf0ac', category: 'UI & Navigation', aliases: ['globe', 'Globe', 'world'], description: 'World or internet' },

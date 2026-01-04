@@ -2,6 +2,52 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Advanced Features Settings System
+
+### Added
+- **Advanced Features Settings Dialog**: New settings system to toggle advanced Oh My Posh features on/off
+  - Opens via "Settings" button in Header with feature count badge
+  - "Show All" master toggle to enable/disable all features at once
+  - Per-category toggles for Segment, Block, and Global feature groups
+  - Reset to Defaults button to restore default feature settings
+  - Auto-detect on Import toggle to automatically enable features used in imported configs
+
+- **Advanced Features Store** (`advancedFeaturesStore.ts`): Dedicated Zustand store for feature toggles
+  - 15 toggleable features across 3 categories
+  - Segment features: Template Alias, Conditional Colors, Responsive Display, Folder Filters, Caching, Multiple Templates, Interactive
+  - Block features: Diamond Symbols, Block Overflow, Block Filler
+  - Global features: Tooltips, Extra Prompts, Console Title, Shell Integration, Palette Variants
+  - Uses separate localStorage key (`ohmyposh-advanced-features`) for fresh start
+  - Only "Caching" enabled by default for new users
+
+- **Auto-detection on Import**: When importing configs, automatically enables features that the config uses
+  - Scans imported config for advanced properties (aliases, templates, tooltips, etc.)
+  - Shows notification listing newly enabled features
+  - Can be toggled off in Advanced Settings dialog
+
+### Changed
+- **Header**: Added Settings button between SamplePicker and Palette button
+- **Canvas**: Tooltips section now only shows when `tooltips` feature is enabled
+- **PropertiesPanel/SegmentProperties**: Advanced segment options conditionally rendered:
+  - Template Alias section requires `templateAlias` feature
+  - Conditional color templates require `colorTemplates` feature
+  - Responsive width controls require `responsiveDisplay` feature
+  - Interactive toggle requires `interactive` feature
+  - Folder filters require `folderFilters` feature
+  - Cache settings require `caching` feature
+- **PropertiesPanel/TooltipProperties**: Responsive section requires `responsiveDisplay` feature
+- **PropertiesPanel/BlockProperties**: 
+  - Diamond symbols require `diamondSymbols` feature
+  - Overflow control requires `blockOverflow` feature
+  - Filler input requires `blockFiller` feature
+- **PropertiesPanel/GlobalSettings**: 
+  - Console title template requires `consoleTitle` feature
+  - Shell integration options require `shellIntegration` feature
+  - Tooltips action dropdown requires `tooltips` feature
+  - Extra prompts button requires `extraPrompts` feature
+- **PaletteEditorDialog**: Palette Variants section requires `paletteVariants` feature
+- **ColorsSection**: Added `showColorTemplates` prop to conditionally show color template editors
+
 ## [2026-01-05] - Phase 5 Completion: Default Cache Settings
 
 ### Added
