@@ -19,13 +19,17 @@ SegmentPicker → Canvas → PropertiesPanel
 
 ### Key Patterns
 
-**State Management**: Single Zustand store in [src/store/configStore.ts](src/store/configStore.ts) with persistence. All config mutations go through store actions. Use `generateId()` for new blocks/segments.
+**State Management**: Two Zustand stores with persistence:
+- [src/store/configStore.ts](src/store/configStore.ts) - Main config state with blocks, segments, tooltips, and global settings. Use `generateId()` for new blocks/segments/tooltips.
+- [src/store/advancedFeaturesStore.ts](src/store/advancedFeaturesStore.ts) - Advanced feature toggles for progressive disclosure. Controls visibility of advanced UI controls across the app.
 
-**Segment Metadata**: Stored as JSON in [public/segments/](public/segments/) by category (system, scm, languages, cloud, cli, web, music, health). Each segment defines `type`, `name`, `icon`, `defaultTemplate`, `properties`, and `options`. Loaded dynamically via [src/utils/segmentLoader.ts](src/utils/segmentLoader.ts).
+**Segment Metadata**: Stored as JSON in [public/segments/](public/segments/) by category (system, scm, languages, cloud, cli, web, music, health). Each segment defines `type`, `name`, `icon`, `defaultTemplate`, `properties`, `options`, and optionally `defaultCache`. Loaded dynamically via [src/utils/segmentLoader.ts](src/utils/segmentLoader.ts).
+
+**Default Cache Settings**: Segment metadata includes optional `defaultCache` field with `duration` and `strategy`. When adding segments, these defaults are auto-applied. See Cache Strategy Guide in `public/segments/README.md`.
 
 **Color Schemes**: Default colors in [src/data/colorSchemes.ts](src/data/colorSchemes.ts) - category-based with per-segment overrides. New segments inherit from category unless specified in `segmentColorOverrides`.
 
-**Export/Import**: [src/utils/configExporter.ts](src/utils/configExporter.ts) strips internal `id` fields before export. Supports JSON/YAML/TOML. Unicode chars escaped as `\uXXXX` in JSON.
+**Export/Import**: [src/utils/configExporter.ts](src/utils/configExporter.ts) strips internal `id` fields before export. Supports JSON/YAML/TOML. Unicode chars escaped as `\uXXXX` in JSON. Import automatically detects and enables advanced features when `autoDetectOnImport` is enabled.
 
 ## Development Commands
 
@@ -54,7 +58,8 @@ npm run lint         # ESLint check
 2. Include `type`, `name`, `description`, `icon`, `defaultTemplate`
 3. Add `properties` array for template variables (e.g., `.Full`, `.Path`)
 4. Add `options` array for configurable settings with `name`, `type`, `default`, `description`
-5. Optionally add color override in `colorSchemes.ts`
+5. Optionally add `defaultCache` with `duration` and `strategy` (see Cache Strategy Guide in `public/segments/README.md`)
+6. Optionally add color override in `colorSchemes.ts`
 
 ### Config Structure
 - Sample configs: `public/configs/samples/` 
@@ -68,13 +73,43 @@ npm run lint         # ESLint check
 - **Properties**: Template variables like `{{ .Full }}` - display in template help
 - **Options**: Runtime config like `home_enabled`, `fetch_version` - editable in `options` object
 
+### Advanced Features System
+- Use `advancedFeaturesStore` to check if advanced UI controls should be shown
+- Pattern: `const { caching } = useAdvancedFeaturesStore(); if (!caching) return null;`
+- Always respect feature flags when rendering advanced controls (aliases, templates logic, responsive width, folder filters, cache, interactive, color templates, diamond symbols, block overflow, filler, tooltips, extra prompts, console title, shell integration, palette variants)
+- Auto-detection on import: When importing configs, scan for advanced features and enable them if `autoDetectOnImport` is true
+
+### Tooltips Feature
+- Tooltips are command-triggered custom prompts (e.g., show git status when typing `git`)
+- Stored separately from blocks in config, managed by `addTooltip`, `updateTooltip`, `removeTooltip` actions
+- Each tooltip has `id`, `tips` (trigger commands), and extends `Segment` interface
+- Canvas has dedicated TooltipsSection with drag-and-drop support
+- Selection is mutually exclusive with blocks/segments
+- Preview shows trigger command → tooltip output
+
+### Confirmation Dialogs
+- Use `useConfirm` hook for delete confirmations: `const confirm = useConfirm();`
+- Call with message and optional title: `const confirmed = await confirm('Delete this segment?');`
+- Hook uses `useRef` for proper async resolve handling (avoid closure issues)
+- `ConfirmDialog` component handles the actual dialog rendering
+
+### Component Section Organization
+- PropertiesPanel sections are now separate components for reusability:
+  - `TemplateSection` - Template/templates input with logic dropdown
+  - `StyleSection` - Style picker and style-specific controls
+  - `ColorsSection` - Foreground/background colors with optional color templates
+  - `OptionsSection` - Segment-specific options rendering
+  - `ResponsiveSection` - Min/max width controls
+- Use these sections consistently in SegmentProperties and TooltipProperties
+- Pass `showColorTemplates` prop to ColorsSection to conditionally show templates editor
+
 ### Unicode Handling
 Use [src/utils/unicode.ts](src/utils/unicode.ts) functions:
 - `unicodeToEscapes()` - display in UI
 - `parseUnicodeEscapes()` - parse user input
 
 ### Drag and Drop
-Uses @dnd-kit. Canvas handles cross-block segment moves. Segments identified by `id` field. `EmptyBlockDropzone` for empty blocks.
+Uses @dnd-kit. Canvas handles cross-block segment moves and tooltip reordering. Items identified by `id` field. `EmptyBlockDropzone` for empty blocks.
 
 ## Best Practices & Linting
 

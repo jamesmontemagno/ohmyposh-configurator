@@ -260,14 +260,19 @@ If you're adding a new segment type to the configurator:
          "default": true,
          "description": "What this configuration option does"
        }
-     ]
+     ],
+     "defaultCache": {
+       "duration": "168h",
+       "strategy": "folder"
+     }
    }
    ```
 3. **Properties** define template variables users can use in `{{ }}` templates
 4. **Options** define configuration settings for the segment's behavior
-5. Keep segments alphabetized by name within each category file
-6. Test the segment in the configurator to ensure it displays and exports correctly
-7. See [public/segments/README.md](public/segments/README.md) for more details
+5. **defaultCache** (optional) provides recommended caching - see Cache Strategy Guide in `public/segments/README.md`
+6. Keep segments alphabetized by name within each category file
+7. Test the segment in the configurator to ensure it displays and exports correctly
+8. See [public/segments/README.md](public/segments/README.md) for more details
 
 ## Community Guidelines
 
