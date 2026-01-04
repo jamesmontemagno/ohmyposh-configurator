@@ -41,7 +41,7 @@ function App() {
         </div>
 
         {/* Right Sidebar - Properties Panel */}
-        <div className="w-72 flex-shrink-0 overflow-hidden">
+        <div className="w-84 flex-shrink-0 overflow-hidden">
           <PropertiesPanel />
         </div>
       </div>
