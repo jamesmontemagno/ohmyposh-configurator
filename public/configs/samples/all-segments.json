@@ -158,7 +158,7 @@
           "type": "git",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \ue725 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+          "template": " \uf126 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "foreground": "p:text-light",
           "background": "p:git-bg"
         },
@@ -189,7 +189,7 @@
           "type": "mercurial",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \ue725 {{ .Branch }} ",
+          "template": " \uf126 {{ .Branch }} ",
           "foreground": "p:text-light",
           "background": "p:mercurial-bg"
         },
@@ -197,7 +197,7 @@
           "type": "svn",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \ue725 {{ .Branch }} ",
+          "template": " \uf126 {{ .Branch }} ",
           "foreground": "p:text-light",
           "background": "p:svn-bg"
         },
@@ -205,7 +205,7 @@
           "type": "plastic",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \ue725 {{ .Selector }} ",
+          "template": " \uf126 {{ .Selector }} ",
           "foreground": "p:text-light",
           "background": "p:plastic-bg"
         },
@@ -221,7 +221,7 @@
           "type": "jujutsu",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \ue725 {{ .ChangeId }} ",
+          "template": " \uf126 {{ .ChangeId }} ",
           "foreground": "p:text-light",
           "background": "p:jujutsu-bg"
         },

@@ -22,7 +22,7 @@ const PROMPT_CONFIGS: Array<{
     type: 'transient_prompt',
     label: 'Transient Prompt',
     description: 'Replaces previous prompts after command execution for cleaner history',
-    icon: 'nf-md-history',
+    icon: 'status-history',
     shells: ['Zsh', 'PowerShell', 'Fish', 'Nu', 'Cmd'],
     supportsFiller: true,
   },
@@ -30,7 +30,7 @@ const PROMPT_CONFIGS: Array<{
     type: 'secondary_prompt',
     label: 'Secondary Prompt',
     description: 'Shown when entering multi-line commands',
-    icon: 'nf-md-keyboard_return',
+    icon: 'misc-terminal',
     shells: ['Zsh', 'PowerShell', 'Cmd'],
     supportsFiller: false,
   },
@@ -38,7 +38,7 @@ const PROMPT_CONFIGS: Array<{
     type: 'valid_line',
     label: 'Valid Line',
     description: 'Shown when the command syntax is valid',
-    icon: 'nf-md-check_circle',
+    icon: 'status-check-circle',
     shells: ['PowerShell'],
     supportsFiller: false,
   },
@@ -46,7 +46,7 @@ const PROMPT_CONFIGS: Array<{
     type: 'error_line',
     label: 'Error Line',
     description: 'Shown when the command syntax is invalid',
-    icon: 'nf-md-close_circle',
+    icon: 'status-x-circle',
     shells: ['PowerShell'],
     supportsFiller: false,
   },
@@ -54,7 +54,7 @@ const PROMPT_CONFIGS: Array<{
     type: 'debug_prompt',
     label: 'Debug Prompt',
     description: 'Shown when in debugger mode',
-    icon: 'nf-md-bug',
+    icon: 'tool-debug',
     shells: ['PowerShell'],
     supportsFiller: false,
   },
@@ -131,7 +131,7 @@ export function ExtraPromptsDialog({ isOpen, onClose }: ExtraPromptsDialogProps)
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#0f3460]">
           <div className="flex items-center gap-2">
-            <NerdIcon icon="nf-md-console_line" className="text-[#e94560] text-xl" />
+            <NerdIcon icon="misc-terminal" className="text-[#e94560] text-xl" />
             <div>
               <h2 className="text-lg font-semibold text-white">Extra Prompts</h2>
               <p className="text-xs text-gray-500">
@@ -143,7 +143,7 @@ export function ExtraPromptsDialog({ isOpen, onClose }: ExtraPromptsDialogProps)
             onClick={onClose}
             className="text-gray-400 hover:text-white p-1"
           >
-            <NerdIcon icon="nf-md-close" className="text-xl" />
+            <NerdIcon icon="ui-close" className="text-xl" />
           </button>
         </div>
 

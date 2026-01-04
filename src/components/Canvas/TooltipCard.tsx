@@ -51,7 +51,7 @@ export function TooltipCard({ tooltip, isDragging }: TooltipCardProps) {
       <div className="flex items-center justify-between ml-5">
         <div className="flex items-center gap-2">
           <NerdIcon 
-            icon={metadata?.icon ?? 'nf-md-tooltip_text'} 
+            icon={metadata?.icon ?? 'status-info'} 
             size={16}
             className="text-[#e94560]" 
           />
@@ -70,7 +70,7 @@ export function TooltipCard({ tooltip, isDragging }: TooltipCardProps) {
             className="p-1 text-gray-500 hover:text-[#06d6a0] transition-colors"
             title="Duplicate tooltip"
           >
-            <NerdIcon icon="nf-md-content_copy" size={14} />
+            <NerdIcon icon="action-copy" size={14} />
           </button>
           <button
             onClick={handleRemove}

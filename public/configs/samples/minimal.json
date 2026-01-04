@@ -20,7 +20,7 @@
           "type": "git",
           "style": "plain",
           "foreground": "#98C379",
-          "template": "on \ue725 {{ .HEAD }} "
+          "template": "on \uf126 {{ .HEAD }} "
         },
         {
           "type": "status",

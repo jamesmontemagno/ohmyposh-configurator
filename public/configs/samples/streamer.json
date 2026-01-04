@@ -34,7 +34,7 @@
           "powerline_symbol": "\ue0b0",
           "foreground": "#ffffff",
           "background": "#3fb8af",
-          "template": " \ue725 {{ .HEAD }} "
+          "template": " \uf126 {{ .HEAD }} "
         }
       ]
     },

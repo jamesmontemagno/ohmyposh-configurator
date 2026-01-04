@@ -26,7 +26,7 @@
           "powerline_symbol": "\ue0b0",
           "foreground": "#ffffff",
           "background": "#ffb74d",
-          "template": " \ue725 {{ .HEAD }} "
+          "template": " \uf126 {{ .HEAD }} "
         },
         {
           "type": "node",

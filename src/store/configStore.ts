@@ -98,7 +98,7 @@ const defaultConfig: OhMyPoshConfig = {
           powerline_symbol: '\ue0b0',
           foreground: '#ffffff',
           background: '#98C379',
-          template: ' \ue725 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
+          template: ' \uf126 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
         },
       ],
     },

@@ -24,7 +24,7 @@ export function TooltipProperties() {
   if (!tooltip) {
     return (
       <div className="p-4 text-center text-gray-500 text-sm">
-        <NerdIcon icon="nf-md-tooltip_text" size={32} className="mx-auto mb-2 opacity-50" />
+        <NerdIcon icon="status-info" size={32} className="mx-auto mb-2 opacity-50" />
         <p>Select a tooltip to edit its properties</p>
       </div>
     );
@@ -38,7 +38,7 @@ export function TooltipProperties() {
     <div className="space-y-4">
       {/* Header */}
       <div className="flex items-center gap-2 pb-2 border-b border-[#0f3460]">
-        <NerdIcon icon="nf-md-tooltip_text" size={24} className="text-[#06d6a0]" />
+        <NerdIcon icon="status-info" size={24} className="text-[#06d6a0]" />
         <div>
           <h3 className="text-sm font-semibold text-gray-200">
             Tooltip: {metadata?.name || tooltip.type}
@@ -52,7 +52,7 @@ export function TooltipProperties() {
       {/* Tips Section - Most Important for Tooltips */}
       <div className="p-3 bg-[#1a1a2e] rounded-lg border border-[#06d6a0]/30">
         <div className="flex items-center gap-2 mb-2">
-          <NerdIcon icon="nf-md-keyboard" size={14} className="text-[#06d6a0]" />
+          <NerdIcon icon="misc-terminal" size={14} className="text-[#06d6a0]" />
           <span className="text-xs font-medium text-[#06d6a0]">Trigger Commands</span>
         </div>
         <TipsEditor
@@ -67,7 +67,7 @@ export function TooltipProperties() {
       {/* Segment Type */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <NerdIcon icon="ui-package" size={14} className="text-gray-400" />
+          <NerdIcon icon="file-package" size={14} className="text-gray-400" />
           <span className="text-xs font-medium text-gray-300">Segment Type</span>
         </div>
         <div className="flex items-center gap-2 px-3 py-2 bg-[#1a1a2e] rounded">

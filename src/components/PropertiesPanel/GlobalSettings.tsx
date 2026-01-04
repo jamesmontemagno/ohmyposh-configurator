@@ -200,7 +200,7 @@ export function GlobalSettings() {
           {/* Tooltips Action */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <NerdIcon icon="nf-md-tooltip_text" size={14} className="text-gray-400" />
+              <NerdIcon icon="status-info" size={14} className="text-gray-400" />
               <span className="text-xs font-medium text-gray-300">Tooltips Action</span>
             </div>
             <select
@@ -227,7 +227,7 @@ export function GlobalSettings() {
               className="w-full flex items-center justify-between p-3 bg-[#0f0f23] rounded-lg hover:bg-[#0f3460]/30 transition-colors border border-[#0f3460]"
             >
               <div className="flex items-center gap-2">
-                <NerdIcon icon="nf-md-console_line" size={16} className="text-[#e94560]" />
+                <NerdIcon icon="misc-terminal" size={16} className="text-[#e94560]" />
                 <div className="text-left">
                   <span className="text-xs font-medium text-white">Extra Prompts</span>
                   <p className="text-xs text-gray-500">

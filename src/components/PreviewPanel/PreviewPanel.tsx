@@ -91,7 +91,7 @@ export function PreviewPanel() {
               onClick={() => setTooltipsExpanded(!tooltipsExpanded)}
               className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
             >
-              <NerdIcon icon="nf-md-tooltip_text" size={14} className="text-[#06d6a0]" />
+              <NerdIcon icon="status-info" size={14} className="text-[#06d6a0]" />
               <span className="text-xs font-medium" style={{ color: textColor }}>
                 Tooltips ({tooltips.length})
               </span>

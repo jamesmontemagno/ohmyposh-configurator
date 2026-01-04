@@ -40,7 +40,7 @@
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#ffca00{{ end }}"
           ],
-          "template": " \ue725 {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+          "template": " \uf126 {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "options": {
             "fetch_status": true
           }

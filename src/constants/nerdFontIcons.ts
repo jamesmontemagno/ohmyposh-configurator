@@ -46,6 +46,7 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   'tool-settings': { id: 'tool-settings', name: 'Settings', code: 'F013', char: '\uf013', category: 'UI & Navigation', aliases: ['settings', 'Settings', 'cog'], description: 'Settings or configuration' },
   'tool-sliders': { id: 'tool-sliders', name: 'Sliders', code: 'F1DE', char: '\uf1de', category: 'UI & Navigation', aliases: ['sliders', 'adjust'], description: 'Adjust or control' },
   'tool-wrench': { id: 'tool-wrench', name: 'Wrench', code: 'F0AD', char: '\uf0ad', category: 'UI & Navigation', aliases: ['wrench', 'Wrench', 'tools'], description: 'Tools or utilities' },
+  'tool-debug': { id: 'tool-debug', name: 'Debug', code: 'F188', char: '\uf188', category: 'UI & Navigation', aliases: ['debug', 'bug', 'Debug'], description: 'Debug or bug' },
   'ui-palette': { id: 'ui-palette', name: 'Palette', code: 'F1FC', char: '\uf1fc', category: 'UI & Navigation', aliases: ['palette', 'Palette', 'color'], description: 'Color or theme' },
   'ui-code': { id: 'ui-code', name: 'Code', code: 'F121', char: '\uf121', category: 'UI & Navigation', aliases: ['code', 'Code', 'Code2', 'brackets'], description: 'Code or programming' },
   'ui-globe': { id: 'ui-globe', name: 'Globe', code: 'F0AC', char: '\uf0ac', category: 'UI & Navigation', aliases: ['globe', 'Globe', 'world'], description: 'World or internet' },
@@ -224,6 +225,19 @@ export const NERD_FONT_ICONS_MAP: Record<string, NerdFontIcon> = {
   // === FITNESS & HEALTH ===
   'health-running': { id: 'health-running', name: 'Running', code: 'EF0C', char: '\uef0c', category: 'Miscellaneous', aliases: ['Running', 'strava', 'fitness'], description: 'Running or fitness' },
   'health-heartbeat': { id: 'health-heartbeat', name: 'Heartbeat', code: 'F21E', char: '\uf21e', category: 'Miscellaneous', aliases: ['Heartbeat', 'health', 'pulse'], description: 'Heart rate or health' },
+
+  // === TOOLTIPS & COMMENTS ===
+  'misc-comment': { id: 'misc-comment', name: 'Comment', code: 'F075', char: '\uf075', category: 'Miscellaneous', aliases: ['comment', 'tooltip', 'speech'], description: 'Comment or tooltip' },
+  'misc-comment-plus': { id: 'misc-comment-plus', name: 'Comment Plus', code: 'F4B5', char: '\uf4b5', category: 'Miscellaneous', aliases: ['comment-add', 'tooltip-add'], description: 'Add comment or tooltip' },
+  'misc-comments': { id: 'misc-comments', name: 'Comments', code: 'F086', char: '\uf086', category: 'Miscellaneous', aliases: ['comments', 'chat', 'discussion'], description: 'Multiple comments' },
+  'misc-edit': { id: 'misc-edit', name: 'Edit', code: 'F044', char: '\uf044', category: 'Miscellaneous', aliases: ['edit', 'pencil', 'modify'], description: 'Edit or modify' },
+  'misc-keyboard': { id: 'misc-keyboard', name: 'Keyboard', code: 'F11C', char: '\uf11c', category: 'Miscellaneous', aliases: ['keyboard', 'input', 'type'], description: 'Keyboard or input' },
+  'misc-terminal': { id: 'misc-terminal', name: 'Terminal', code: 'F120', char: '\uf120', category: 'Miscellaneous', aliases: ['terminal', 'console', 'command'], description: 'Terminal or console' },
+  'misc-clipboard': { id: 'misc-clipboard', name: 'Clipboard', code: 'F328', char: '\uf328', category: 'Miscellaneous', aliases: ['clipboard', 'copy', 'paste'], description: 'Clipboard' },
+
+  // === FILES & FOLDERS ===
+  'ui-folder': { id: 'ui-folder', name: 'Folder', code: 'F07B', char: '\uf07b', category: 'Files & Folders', aliases: ['folder', 'directory'], description: 'Folder or directory' },
+  'ui-package': { id: 'ui-package', name: 'Package', code: 'F466', char: '\uf466', category: 'Files & Folders', aliases: ['package', 'box', 'archive'], description: 'Package or box' },
 
   // === MUSIC SERVICES ===
   'service-spotify': { id: 'service-spotify', name: 'Spotify', code: 'F1BC', char: '\uf1bc', category: 'Miscellaneous', aliases: ['Spotify', 'spotify'], description: 'Spotify music' },
