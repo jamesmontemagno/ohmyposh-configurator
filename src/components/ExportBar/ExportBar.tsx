@@ -83,7 +83,7 @@ export function ExportBar() {
   };
 
   const handleDownload = () => {
-    downloadConfig(config, exportFormat);
+    downloadConfig(config, exportFormat, currentConfigName || undefined);
   };
 
   const handleImportOptionClick = (method: 'file' | 'paste') => {

@@ -181,13 +181,17 @@ export function exportConfig(config: OhMyPoshConfig, format: ExportFormat): stri
   }
 }
 
-export function downloadConfig(config: OhMyPoshConfig, format: ExportFormat): void {
+export function downloadConfig(config: OhMyPoshConfig, format: ExportFormat, name?: string): void {
   const content = exportConfig(config, format);
   const blob = new Blob([content], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
   
   const extension = format === 'yaml' ? 'yaml' : format;
-  const filename = `ohmyposh.${extension}`;
+  // Use provided name (sanitized) or default to 'config'
+  const baseName = name 
+    ? name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+    : 'config';
+  const filename = `${baseName}.omp.${extension}`;
   
   const a = document.createElement('a');
   a.href = url;
