@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { parseUnicodeEscapes } from '../../utils/unicode';
+import { parseUnicodeEscapes, stripOmpMarkup, unicodeToEscapes } from '../../utils/unicode';
 import type { PowerlineSymbol } from '../../constants/symbols';
 
 interface SymbolPickerProps {
@@ -17,6 +17,12 @@ export function SymbolPicker({ label, value, onChange, symbols, placeholder }: S
   });
 
   const currentSymbol = symbols.find(s => s.value === value);
+  
+  // Strip OMP markup for preview display
+  const previewValue = stripOmpMarkup(value);
+  
+  // Get unicode escape representation for display
+  const unicodeDisplay = previewValue ? unicodeToEscapes(previewValue) : '';
 
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
@@ -61,11 +67,11 @@ export function SymbolPicker({ label, value, onChange, symbols, placeholder }: S
             placeholder={placeholder || 'Enter symbol or Unicode (e.g., \\ue0b0)'}
             className="w-full mt-1 px-2 py-1 text-sm bg-[#1a1a2e] border border-[#0f3460] rounded text-gray-200 focus:outline-none focus:border-[#e94560] font-mono"
           />
-          {value && (
-            <div className="mt-1 text-xs text-gray-500 flex items-center gap-2">
-              <span>Preview:</span>
-              <span className="nerd-font-symbol text-lg text-white">{value}</span>
-            </div>
+          {previewValue && (
+            <p className="mt-1 text-xs text-gray-500">
+              Symbol: <span className="font-mono text-gray-400">{unicodeDisplay}</span>
+              <span className="text-gray-600 ml-1">(preview may not display all icons)</span>
+            </p>
           )}
         </>
       )}

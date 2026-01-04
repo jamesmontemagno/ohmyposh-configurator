@@ -92,28 +92,8 @@ function extractTemplateUnicodePoints(dir) {
   function processFile(filePath) {
     try {
       const content = readFileSync(filePath, 'utf-8');
-      const data = JSON.parse(content);
-      
-      // Process segment metadata files
-      if (Array.isArray(data)) {
-        data.forEach(segment => {
-          if (segment.defaultTemplate) {
-            extractUnicodeFromString(segment.defaultTemplate, unicodePoints);
-          }
-        });
-      }
-      // Process config files
-      else if (data.blocks && Array.isArray(data.blocks)) {
-        data.blocks.forEach(block => {
-          if (block.segments && Array.isArray(block.segments)) {
-            block.segments.forEach(segment => {
-              if (segment.template) {
-                extractUnicodeFromString(segment.template, unicodePoints);
-              }
-            });
-          }
-        });
-      }
+      // Scan the raw file content for unicode escapes (more comprehensive)
+      extractUnicodeFromString(content, unicodePoints);
     } catch (error) {
       // Silently skip invalid files
     }
@@ -141,13 +121,26 @@ function extractTemplateUnicodePoints(dir) {
  * Extract unicode characters from a string
  */
 function extractUnicodeFromString(str, unicodePoints) {
-  // Match \uXXXX patterns
+  // Match \uXXXX patterns (escape sequences)
   const unicodeRegex = /\\u([0-9a-fA-F]{4})/g;
   let match;
   
   while ((match = unicodeRegex.exec(str)) !== null) {
     const codePoint = parseInt(match[1], 16);
     unicodePoints.add(codePoint);
+  }
+  
+  // Also scan for actual unicode characters in the Private Use Area (Nerd Font range)
+  // PUA ranges: E000-F8FF, F0000-FFFFD, 100000-10FFFD
+  for (const char of str) {
+    const codePoint = char.codePointAt(0);
+    if (codePoint && (
+      (codePoint >= 0xE000 && codePoint <= 0xF8FF) ||  // PUA
+      (codePoint >= 0x2300 && codePoint <= 0x27FF) ||  // Misc Technical & Dingbats
+      (codePoint >= 0xF0000 && codePoint <= 0xFFFFF)   // Supplementary PUA-A
+    )) {
+      unicodePoints.add(codePoint);
+    }
   }
 }
 

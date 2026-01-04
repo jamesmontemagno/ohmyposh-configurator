@@ -34,3 +34,25 @@ export function unicodeToEscapes(input: string): string {
 export function hasUnicodeCharacters(input: string): boolean {
   return input !== unicodeToEscapes(input);
 }
+
+/**
+ * Strip Oh My Posh markup tags from a string, leaving just the content.
+ * Handles color tags like <#ff70a6>text</> and <p:palette>text</>
+ * Returns the inner content (with Unicode escapes parsed) for preview display.
+ */
+export function stripOmpMarkup(input: string): string {
+  if (!input) return '';
+  
+  // First parse any Unicode escapes
+  let result = parseUnicodeEscapes(input);
+  
+  // Remove color tags: <#XXXXXX>...</> or <p:name>...</>
+  // This regex handles opening tags like <#ff70a6>, <p:palette>, </>, etc.
+  result = result.replace(/<\/?[#p:][^>]*>/gi, '');
+  
+  // Also handle standalone closing tags </>
+  result = result.replace(/<\/>/g, '');
+  
+  // Trim any extra whitespace that might be left
+  return result.trim();
+}
