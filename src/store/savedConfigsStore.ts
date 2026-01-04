@@ -404,10 +404,17 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
 // Auto-save draft with debounce
 let draftTimeout: ReturnType<typeof setTimeout> | null = null;
 let dirtyCheckTimeout: ReturnType<typeof setTimeout> | null = null;
+let isInitializing = false;
 
 export const setupDraftAutoSave = () => {
   // Initialize snapshot with current config
   lastConfigSnapshot = JSON.stringify(useConfigStore.getState().config);
+  isInitializing = true;
+  
+  // Allow initialization to complete before enabling dirty checks
+  setTimeout(() => {
+    isInitializing = false;
+  }, 100);
   
   return useConfigStore.subscribe((state) => {
     const currentConfigStr = JSON.stringify(state.config);
@@ -429,6 +436,9 @@ export const setupDraftAutoSave = () => {
         useSavedConfigsStore.getState().saveDraft(state.config);
       }, DRAFT_DEBOUNCE_MS);
     }
+    
+    // Skip dirty check during initialization
+    if (isInitializing) return;
     
     // Debounce dirty check to ensure all state updates have settled
     // This handles the case where loadConfig sets config before lastLoadedId

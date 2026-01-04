@@ -24,6 +24,8 @@ function App() {
 
     preloadSegments();
     
+    let unsubscribe: (() => void) | null = null;
+    
     const initializeApp = async () => {
       // Load saved configs from storage
       await useSavedConfigsStore.getState().loadFromStorage();
@@ -33,13 +35,16 @@ function App() {
       if (restoredConfigName) {
         showToast(`Restored "${restoredConfigName}"`, 'info');
       }
+      
+      // Setup draft auto-save AFTER config is restored
+      unsubscribe = setupDraftAutoSave();
     };
     
     initializeApp();
     
-    // Setup draft auto-save
-    const unsubscribe = setupDraftAutoSave();
-    return () => unsubscribe();
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, [showToast]);
 
   return (
