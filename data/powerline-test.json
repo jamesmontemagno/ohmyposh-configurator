@@ -15,6 +15,7 @@
           "powerline_symbol": "\ue0b0",
           "template": " \uf07c {{ .Path }} ",
           "interactive": true,
+          "include_folders": ["~/projects/**"],
           "options": {
             "style": "folder"
           }
@@ -24,10 +25,30 @@
           "style": "powerline",
           "foreground": "#193549",
           "background": "#95ffa4",
+          "foreground_templates": [
+            "{{ if .Working.Changed }}#ff9248{{ end }}"
+          ],
           "powerline_symbol": "\ue0b0",
           "leading_powerline_symbol": "\ue0b6",
           "invert_powerline": true,
-          "template": " {{ .HEAD }} {{ if .Working.Changed }}\uf044 {{ .Working.String }}{{ end }} "
+          "template": " {{ .HEAD }} {{ if .Working.Changed }}\uf044 {{ .Working.String }}{{ end }} ",
+          "cache": {
+            "duration": "2s",
+            "strategy": "session"
+          }
+        },
+        {
+          "type": "node",
+          "style": "powerline",
+          "foreground": "#ffffff",
+          "background": "#6cc644",
+          "powerline_symbol": "\ue0b0",
+          "template": " \ue718 {{ .Full }} ",
+          "cache": {
+            "duration": "168h",
+            "strategy": "folder"
+          },
+          "exclude_folders": ["**/vendor"]
         },
         {
           "type": "status",

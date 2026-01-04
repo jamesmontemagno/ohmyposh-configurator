@@ -4,6 +4,7 @@ import { useConfigStore, getSelectedSegment, findBlockForSegment } from '../../s
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import { POWERLINE_SYMBOLS, LEADING_DIAMOND_SYMBOLS, TRAILING_DIAMOND_SYMBOLS } from '../../constants/symbols';
 import { ColorInput } from './ColorInput';
+import { ColorTemplateEditor } from './ColorTemplateEditor';
 import { SymbolPicker } from './SymbolPicker';
 import { AvailableProperties } from './AvailableProperties';
 import { AvailableMethods } from './AvailableMethods';
@@ -11,6 +12,8 @@ import { AvailableOptions } from './AvailableOptions';
 import { SegmentOptionsEditor } from './SegmentOptionsEditor';
 import { NerdFontPicker } from './NerdFontPicker';
 import { TemplateInput } from './TemplateInput';
+import { FolderFilterEditor } from './FolderFilterEditor';
+import { CacheSettingsEditor } from './CacheSettingsEditor';
 import type { Segment, SegmentStyle } from '../../types/ohmyposh';
 
 const segmentStyles: { value: SegmentStyle; label: string }[] = [
@@ -190,6 +193,26 @@ export function SegmentProperties() {
             onChange={(value) => handleUpdate({ background: value || undefined })}
             allowEmpty
           />
+          
+          {/* Conditional Color Templates */}
+          <ColorTemplateEditor
+            label="Conditional Foreground Colors"
+            templates={segment.foreground_templates ?? []}
+            onChange={(templates) => handleUpdate({
+              foreground_templates: templates.length > 0 ? templates : undefined
+            })}
+            defaultColor={segment.foreground ?? ''}
+            colorType="foreground"
+          />
+          <ColorTemplateEditor
+            label="Conditional Background Colors"
+            templates={segment.background_templates ?? []}
+            onChange={(templates) => handleUpdate({
+              background_templates: templates.length > 0 ? templates : undefined
+            })}
+            defaultColor={segment.background ?? ''}
+            colorType="background"
+          />
         </div>
       </div>
 
@@ -339,6 +362,25 @@ export function SegmentProperties() {
           </div>
         </label>
       </div>
+
+      {/* Folder Filters */}
+      <FolderFilterEditor
+        includeFolders={segment.include_folders ?? []}
+        excludeFolders={segment.exclude_folders ?? []}
+        onIncludeChange={(folders) => handleUpdate({
+          include_folders: folders.length > 0 ? folders : undefined
+        })}
+        onExcludeChange={(folders) => handleUpdate({
+          exclude_folders: folders.length > 0 ? folders : undefined
+        })}
+      />
+
+      {/* Cache Settings */}
+      <CacheSettingsEditor
+        cache={segment.cache}
+        onChange={(cache) => handleUpdate({ cache })}
+        segmentType={segment.type}
+      />
 
       {/* Editable Segment Options */}
       {metadata?.options && metadata.options.length > 0 && (

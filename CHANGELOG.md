@@ -2,6 +2,32 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Phase 1 Completion: Advanced Segment Properties
+
+### Added
+- **FolderFilterEditor Component** (Issue #32): New collapsible editor for managing `include_folders` and `exclude_folders` arrays
+  - Add, edit, and remove folder patterns with intuitive interface
+  - Glob pattern syntax help with examples (`~/projects/**`, `**/node_modules`, exact paths)
+  - Separate sections for include (whitelist) and exclude (blacklist) folders
+  - Enter key support for quick pattern addition
+  - Empty arrays automatically removed from config
+  
+- **ColorTemplateEditor Component** (Issue #33): New collapsible editor for `foreground_templates` and `background_templates`
+  - Multi-line textarea for template editing
+  - Basic syntax validation (balanced `{{ }}` braces)
+  - Syntax help showing template format
+  - Shows count badge when templates exist
+  - Displays default color fallback value
+  - Ctrl+Enter support for quick template addition
+  
+- **CacheSettingsEditor Component** (Issue #34): New collapsible editor for segment cache configuration
+  - Duration input with format hints (s=seconds, m=minutes, h=hours)
+  - Strategy dropdown (session vs folder)
+  - Quick preset buttons (2s, 30s, 1m, 5m, 1h, 24h, 168h)
+  - Segment-type-aware suggestions (git=2s, node/python/etc=168h, cloud=1h)
+  - Enable/disable toggle with suggested defaults
+  - Shows current cache status in collapsed header
+
 ## [2026-01-04] - Interactive Checkbox
 
 ### Added
