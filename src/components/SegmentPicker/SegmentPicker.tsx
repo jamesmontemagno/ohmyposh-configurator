@@ -144,6 +144,11 @@ export function SegmentPicker() {
       powerline_symbol: lastSegment?.powerline_symbol || '\ue0b0',
       template: metadata.defaultTemplate || ` {{ .${metadata.name.replace(/\s/g, '')} }} `,
       options: metadata.defaultOptions,
+      // Apply default cache settings from metadata if available
+      cache: metadata.defaultCache ? {
+        duration: metadata.defaultCache.duration,
+        strategy: metadata.defaultCache.strategy,
+      } : undefined,
     };
 
     // Inherit colors from previous segment, preserving undefined if not set

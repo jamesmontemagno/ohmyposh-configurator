@@ -263,6 +263,10 @@ export interface SegmentMetadata {
   defaultOptions?: Record<string, unknown>;
   defaultBackground?: string;
   defaultForeground?: string;
+  defaultCache?: {
+    duration: string;
+    strategy: 'session' | 'folder';
+  };
   previewText?: string;
   properties?: SegmentProperty[];
   methods?: SegmentMethod[];

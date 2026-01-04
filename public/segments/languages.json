@@ -4,7 +4,7 @@
     "name": ".NET",
     "description": "Displays the current .NET SDK version and support status",
     "icon": "lang-csharp",
-    "defaultTemplate": " .NET {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
+    "defaultTemplate": " .NET {{ if .Unsupported }}{{ else }}{{ .Full }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#512BD4",
     "previewText": ".NET 10.0.101",
@@ -67,14 +67,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "clojure",
     "name": "Clojure",
     "description": "Displays the current Clojure version when in a Clojure project",
     "icon": "lang-clojure",
-    "defaultTemplate": " \ue768 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5881D8",
     "previewText": "1.11.1",
@@ -152,14 +156,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "crystal",
     "name": "Crystal",
     "description": "Displays the current Crystal version when in a Crystal project",
     "icon": "lang-crystal",
-    "defaultTemplate": " \ue62f {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000000",
     "previewText": "1.10.1",
@@ -237,14 +245,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "dart",
     "name": "Dart",
     "description": "Displays the current Dart version when in a Dart project",
     "icon": "lang-dart",
-    "defaultTemplate": " \ue798 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0175C2",
     "previewText": "3.2.0",
@@ -322,14 +334,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "elixir",
     "name": "Elixir",
     "description": "Displays the current Elixir version when in an Elixir project",
     "icon": "lang-elixir",
-    "defaultTemplate": " \ue62d {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#4B275F",
     "previewText": "1.15.7",
@@ -407,14 +423,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "fortran",
     "name": "Fortran",
     "description": "Displays the current Fortran version when in a Fortran project",
     "icon": "lang-fortran",
-    "defaultTemplate": " \ue7de {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#734F96",
     "previewText": "gfortran 13.2",
@@ -492,14 +512,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "go",
     "name": "Go",
     "description": "Displays the current Go version when in a Go project",
     "icon": "lang-go",
-    "defaultTemplate": "\ue724 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultTemplate": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00ADD8",
     "previewText": "1.21.5",
@@ -577,14 +601,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "haskell",
     "name": "Haskell",
     "description": "Displays the current Haskell (GHC) version when in a Haskell project",
     "icon": "lang-haskell",
-    "defaultTemplate": " \ue61f {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5E5086",
     "previewText": "GHC 9.8.1",
@@ -662,14 +690,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "java",
     "name": "Java",
     "description": "Displays the current Java version when in a Java project",
     "icon": "lang-java",
-    "defaultTemplate": "\ue738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultTemplate": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#E76F00",
     "previewText": "OpenJDK 21",
@@ -747,14 +779,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "julia",
     "name": "Julia",
     "description": "Displays the current Julia version when in a Julia project",
     "icon": "lang-julia",
-    "defaultTemplate": " \ue624 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#9558B2",
     "previewText": "1.10.0",
@@ -832,14 +868,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "kotlin",
     "name": "Kotlin",
     "description": "Displays the current Kotlin version when in a Kotlin project",
     "icon": "lang-kotlin",
-    "defaultTemplate": " \ue81b {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#7F52FF",
     "previewText": "1.9.21",
@@ -917,14 +957,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "lua",
     "name": "Lua",
     "description": "Displays the current Lua version when in a Lua project",
     "icon": "lang-lua",
-    "defaultTemplate": " \ue620 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000080",
     "previewText": "5.4.6",
@@ -1002,14 +1046,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "mojo",
     "name": "Mojo",
     "description": "Displays the current Mojo version and virtual environment",
     "icon": "symbol-flame",
-    "defaultTemplate": " \uf06d {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF6B35",
     "previewText": "0.6.0",
@@ -1094,14 +1142,18 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nim",
     "name": "Nim",
     "description": "Displays the current Nim version when in a Nim project",
     "icon": "symbol-crown",
-    "defaultTemplate": " \uf521 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FFE953",
     "previewText": "2.0.0",
@@ -1179,14 +1231,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "node",
     "name": "Node.js",
     "description": "Displays the current Node.js version and active package manager",
     "icon": "lang-nodejs",
-    "defaultTemplate": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+    "defaultTemplate": "  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#6CC24A",
     "previewText": "v20.10.0",
@@ -1274,14 +1330,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ocaml",
     "name": "OCaml",
     "description": "Displays the current OCaml version when in an OCaml project",
     "icon": "lang-ocaml",
-    "defaultTemplate": " \ue67a {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#EE6A1A",
     "previewText": "5.1.0",
@@ -1359,14 +1419,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "perl",
     "name": "Perl",
     "description": "Displays the current Perl version when in a Perl project",
     "icon": "lang-perl",
-    "defaultTemplate": " \ue769 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0073A1",
     "previewText": "v5.38.0",
@@ -1444,14 +1508,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "php",
     "name": "PHP",
     "description": "Displays the current PHP version when in a PHP project",
     "icon": "lang-php",
-    "defaultTemplate": " \ue73d {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#777BB3",
     "previewText": "8.3.0",
@@ -1529,14 +1597,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "python",
     "name": "Python",
     "description": "Displays the current Python version and active virtual environment",
     "icon": "lang-python",
-    "defaultTemplate": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+    "defaultTemplate": "  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3776AB",
     "previewText": "🐍 venv 3.12.0",
@@ -1626,14 +1698,18 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "r",
     "name": "R",
     "description": "Displays the current R version when in an R project",
     "icon": "lang-r",
-    "defaultTemplate": " \uf25d {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#276DC3",
     "previewText": "4.3.2",
@@ -1711,14 +1787,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ruby",
     "name": "Ruby",
     "description": "Displays the current Ruby version when in a Ruby project",
     "icon": "lang-ruby",
-    "defaultTemplate": " \ue791 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CC342D",
     "previewText": "💎 3.3.0",
@@ -1776,14 +1856,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "rust",
     "name": "Rust",
     "description": "Displays the current Rust version when in a Rust project",
     "icon": "lang-rust",
-    "defaultTemplate": "\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultTemplate": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CE412B",
     "previewText": "1.75.0",
@@ -1846,14 +1930,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "swift",
     "name": "Swift",
     "description": "Displays the current Swift version when in a Swift project",
     "icon": "lang-swift",
-    "defaultTemplate": " \ue755 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#F05138",
     "previewText": "5.9.2",
@@ -1931,14 +2019,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "v",
     "name": "V",
     "description": "Displays the current V version when in a V project",
     "icon": "lang-v",
-    "defaultTemplate": " \ue6ac {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5D87BF",
     "previewText": "0.4.3",
@@ -2016,14 +2108,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "vala",
     "name": "Vala",
     "description": "Displays the current Vala version when in a Vala project",
     "icon": "lang-vala",
-    "defaultTemplate": " \ue8d1 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#A56DE2",
     "previewText": "0.56.14",
@@ -2101,14 +2197,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "zig",
     "name": "Zig",
     "description": "Displays the current Zig version when in a Zig project",
     "icon": "lang-zig",
-    "defaultTemplate": " \ue6a9 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#F7A41D",
     "previewText": "0.11.0",
@@ -2186,6 +2286,10 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   }
 ]

@@ -2,6 +2,26 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-05] - Phase 5 Completion: Default Cache Settings
+
+### Added
+- **Default Cache Field in Segment Metadata** (Issue #50): Schema support for recommended cache settings
+  - Added `defaultCache` field to `SegmentMetadata` interface with `duration` and `strategy` properties
+  - Strategy can be `'session'` (per terminal session) or `'folder'` (per directory)
+  - Updated segments README with full documentation and Cache Strategy Guide
+
+- **Default Cache Values for All Segments** (Issue #48): Pre-configured cache recommendations
+  - SCM segments: `2s` session cache (repository status changes frequently)
+  - Language segments: `168h` folder cache (version rarely changes per project)
+  - Cloud segments: `1h` session for cloud providers, `1m` for kubectl, `5m` folder for IaC tools
+  - CLI segments: varies from `30s` to `168h` based on data volatility
+  - System segments: `24h` session for os/shell only (no cache for real-time segments)
+
+- **Auto-populate Cache on Segment Add** (Issue #49): Intelligent cache defaults
+  - When adding a segment from the picker, cache settings are automatically applied from metadata
+  - Users get optimized defaults out of the box without manual configuration
+  - Cache can still be customized in the Properties Panel after adding
+
 ## [2026-01-05] - Phase 4 Completion: Full Schema Support
 
 ### Added

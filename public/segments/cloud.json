@@ -4,7 +4,7 @@
     "name": "AWS",
     "description": "Displays the currently active AWS profile and region",
     "icon": "cloud-aws",
-    "defaultTemplate": " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
+    "defaultTemplate": "  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF9900",
     "previewText": "default@us-east-1",
@@ -27,7 +27,11 @@
         "default": true,
         "description": "Display segment when using default profile"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "az",
@@ -67,14 +71,18 @@
           "cli|pwsh"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "azd",
     "name": "Azure Developer CLI",
     "description": "Displays the current Azure Developer CLI environment name",
     "icon": "cloud-azure",
-    "defaultTemplate": " \uebd8 {{ .DefaultEnvironment }} ",
+    "defaultTemplate": "  {{ .DefaultEnvironment }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00BCF2",
     "previewText": "my-app-env",
@@ -84,14 +92,18 @@
         "type": "string",
         "description": "Azure Developer CLI environment name"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "azfunc",
     "name": "Azure Functions",
     "description": "Displays the current Azure Functions CLI version",
     "icon": "cloud-azure",
-    "defaultTemplate": " \uebd8 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0062AD",
     "previewText": "4.0.5",
@@ -147,14 +159,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cf",
     "name": "Cloud Foundry",
     "description": "Displays the current Cloud Foundry CLI version",
     "icon": "cloud-generic",
-    "defaultTemplate": " \uf0c2 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0C9DD1",
     "previewText": "8.7.0",
@@ -215,14 +231,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "cftarget",
     "name": "Cloud Foundry Target",
     "description": "Displays the current Cloud Foundry organization and space",
     "icon": "cloud-generic",
-    "defaultTemplate": " \uf0c2 {{ .Org }}/{{ .Space }} ",
+    "defaultTemplate": "  {{ .Org }}/{{ .Space }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0C9DD1",
     "previewText": "myorg/prod",
@@ -249,14 +269,18 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "gcp",
     "name": "Google Cloud",
     "description": "Displays the currently active Google Cloud Platform project and account",
     "icon": "cloud-gcp",
-    "defaultTemplate": " \ue7f1 {{ .Project }} ",
+    "defaultTemplate": "  {{ .Project }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#4285F4",
     "previewText": "my-project-123",
@@ -271,7 +295,11 @@
         "type": "string",
         "description": "error when loading the GCP config"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "kubectl",
@@ -307,14 +335,18 @@
         "default": true,
         "description": "Display default context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1m",
+      "strategy": "session"
+    }
   },
   {
     "type": "pulumi",
     "name": "Pulumi",
     "description": "Displays the current Pulumi stack and logged-in user",
     "icon": "cloud-pulumi",
-    "defaultTemplate": " \ue873 {{ .Stack }} ",
+    "defaultTemplate": "  {{ .Stack }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8A3391",
     "previewText": "dev",
@@ -337,14 +369,18 @@
         "default": true,
         "description": "Fetch the current stack name"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "5m",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cds",
     "name": "SAP CDS",
     "description": "Displays the current SAP Cloud Development SDK version",
     "icon": "dev-server",
-    "defaultTemplate": " \uf489 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0FAAFF",
     "previewText": "7.5.2",
@@ -410,14 +446,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "sitecore",
     "name": "Sitecore",
     "description": "Displays the current Sitecore environment name",
     "icon": "dev-server",
-    "defaultTemplate": " \uf489 {{ .EndpointName }} ",
+    "defaultTemplate": "  {{ .EndpointName }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#EB1F1F",
     "previewText": "Production",
@@ -439,14 +479,18 @@
           "files"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "terraform",
     "name": "Terraform",
     "description": "Displays the currently active Terraform workspace",
     "icon": "cloud-terraform",
-    "defaultTemplate": " \ue8bd {{ .WorkspaceName }} ",
+    "defaultTemplate": "  {{ .WorkspaceName }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#7B42BC",
     "previewText": "production",
@@ -469,6 +513,10 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "5m",
+      "strategy": "folder"
+    }
   }
 ]

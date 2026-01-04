@@ -57,7 +57,7 @@
     "name": "Connection",
     "description": "Displays network connection information, such as the active Wi-Fi SSID or Ethernet status.",
     "icon": "ui-globe",
-    "defaultTemplate": " \uf1eb {{ .Name }} ",
+    "defaultTemplate": "  {{ .Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#40c4ff",
     "previewText": "WiFi",
@@ -94,7 +94,7 @@
     "name": "Execution Time",
     "description": "Displays the duration of the last command execution if it exceeds a specified threshold.",
     "icon": "misc-clock",
-    "defaultTemplate": " \uf252 {{ .FormattedMs }} ",
+    "defaultTemplate": "  {{ .FormattedMs }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8800dd",
     "previewText": "2.3s",
@@ -258,14 +258,18 @@
         "default": "",
         "description": "Icon for NixOS"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "24h",
+      "strategy": "session"
+    }
   },
   {
     "type": "path",
     "name": "Path",
     "description": "Displays the current working directory with support for various shortening and styling options.",
     "icon": "folder-closed",
-    "defaultTemplate": " \uf07c {{ .Path }} ",
+    "defaultTemplate": "  {{ .Path }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#61AFEF",
     "previewText": "~/projects/app",
@@ -445,7 +449,7 @@
     "name": "Project",
     "description": "Displays the name and version of the current project by detecting common project files (e.g., package.json).",
     "icon": "file-package",
-    "defaultTemplate": " \ueb30 {{ .Name }}{{ if .Version }} {{ .Version }}{{ end }} ",
+    "defaultTemplate": "  {{ .Name }}{{ if .Version }} {{ .Version }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#7E57C2",
     "previewText": "my-app 1.0.0",
@@ -510,7 +514,7 @@
     "name": "Root",
     "description": "Displays an indicator when the shell is running with root or administrator privileges.",
     "icon": "status-bolt",
-    "defaultTemplate": " \uf0e7 ",
+    "defaultTemplate": "  ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#ffcc00",
     "previewText": "⚡",
@@ -521,7 +525,7 @@
     "name": "Session",
     "description": "Displays the current user and host information, with optional indicators for SSH sessions.",
     "icon": "ui-users",
-    "defaultTemplate": " \uf007 {{ .UserName }}@{{ .HostName }} ",
+    "defaultTemplate": "  {{ .UserName }}@{{ .HostName }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#c678dd",
     "previewText": "user@laptop",
@@ -580,7 +584,7 @@
     "name": "Shell",
     "description": "Displays the name and version of the current shell (e.g., pwsh, zsh, fish).",
     "icon": "dev-terminal",
-    "defaultTemplate": " \ue795 {{ .Name }} ",
+    "defaultTemplate": "  {{ .Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0077c2",
     "previewText": "pwsh",
@@ -603,14 +607,18 @@
         "default": {},
         "description": "Custom glyph/text for specific shell names (case-insensitive)"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "24h",
+      "strategy": "session"
+    }
   },
   {
     "type": "status",
     "name": "Status",
     "description": "Displays the exit code or status of the last executed command.",
     "icon": "status-check-circle",
-    "defaultTemplate": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ .Code }}{{ end }} ",
+    "defaultTemplate": " {{ if eq .Code 0 }}{{ else }} {{ .Code }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00897b",
     "previewText": "✓",
@@ -657,7 +665,7 @@
     "name": "System Info",
     "description": "Displays real-time system resource usage, such as CPU load or memory consumption.",
     "icon": "misc-chart",
-    "defaultTemplate": " \uf4bc {{ round .PhysicalPercentUsed .Precision }}% ",
+    "defaultTemplate": "  {{ round .PhysicalPercentUsed .Precision }}% ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#e91e63",
     "previewText": "42%",
@@ -698,7 +706,7 @@
     "name": "Time",
     "description": "Displays the current date and time in a customizable format.",
     "icon": "misc-clock",
-    "defaultTemplate": " \uf017 {{ .CurrentDate | date .Format }} ",
+    "defaultTemplate": "  {{ .CurrentDate | date .Format }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2e9599",
     "previewText": "14:32:15",
@@ -728,7 +736,7 @@
     "name": "Upgrade",
     "description": "Displays a notification when a newer version of Oh My Posh is available for download.",
     "icon": "ui-arrow-up",
-    "defaultTemplate": " \uf062 {{ .Latest }} ",
+    "defaultTemplate": "  {{ .Latest }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#4CAF50",
     "previewText": "v2.0.1",

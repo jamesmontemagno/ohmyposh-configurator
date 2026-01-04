@@ -4,7 +4,7 @@
     "name": "Angular",
     "description": "Displays the current Angular CLI version when in an Angular project",
     "icon": "fw-angular",
-    "defaultTemplate": " \ue753 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+    "defaultTemplate": "  {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#DD0031",
     "previewText": "@angular/cli 17.0.0",
@@ -87,14 +87,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "argocd",
     "name": "Argo CD",
     "description": "Displays the current Argo CD context, server, and user information",
     "icon": "devops-argocd",
-    "defaultTemplate": " \ue734 {{ .Context }} ",
+    "defaultTemplate": "  {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#EF7B4D",
     "previewText": "🐳 production",
@@ -114,14 +118,18 @@
         "type": "string",
         "description": "the user of the current context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "aurelia",
     "name": "Aurelia",
     "description": "Displays the current Aurelia version when in an Aurelia project",
     "icon": "fw-aurelia",
-    "defaultTemplate": " \uf489 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#ED2B88",
     "previewText": "2.0.0",
@@ -182,7 +190,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "bazel",
@@ -255,14 +267,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "buf",
     "name": "Buf",
     "description": "Displays the current Buf CLI version when in a Buf project",
     "icon": "tool-buf",
-    "defaultTemplate": " \ue7a1 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1E88E5",
     "previewText": "1.28.1",
@@ -323,14 +339,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "bun",
     "name": "Bun",
     "description": "Displays the current Bun version when in a Bun project",
     "icon": "lang-bun",
-    "defaultTemplate": " \ue76f {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FBF0DF",
     "previewText": "1.0.20",
@@ -431,14 +451,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "claude",
     "name": "Claude Code",
     "description": "Displays the current Claude Code session status, model, and token usage",
     "icon": "ai-robot",
-    "defaultTemplate": " 󰯉 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
+    "defaultTemplate": " 󰯉 {{ .Model.DisplayName }}  {{ .TokenUsagePercent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D97757",
     "previewText": "🤖 claude ",
@@ -520,14 +544,18 @@
         "returnType": "string",
         "description": "Returns the numeric percentage value as a string (e.g., '75')"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cmake",
     "name": "CMake",
     "description": "Displays the current CMake version when in a CMake project",
     "icon": "tool-cmake",
-    "defaultTemplate": " \ue794 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#064F8C",
     "previewText": "3.28.0",
@@ -628,14 +656,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "deno",
     "name": "Deno",
     "description": "Displays the current Deno version when in a Deno project",
     "icon": "pkg-deno",
-    "defaultTemplate": " \ue7c0 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000000",
     "previewText": "1.39.0",
@@ -713,14 +745,18 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "docker",
     "name": "Docker",
     "description": "Displays the current Docker context and active environment",
     "icon": "cloud-docker",
-    "defaultTemplate": " \uf308 {{ .Context }} ",
+    "defaultTemplate": "  {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2496ED",
     "previewText": "🐳 default",
@@ -760,14 +796,18 @@
         ],
         "description": "File extensions to validate"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "30s",
+      "strategy": "session"
+    }
   },
   {
     "type": "firebase",
     "name": "Firebase",
     "description": "Displays the currently active Firebase project",
     "icon": "db-firebase",
-    "defaultTemplate": " \ue787 {{ .Project }} ",
+    "defaultTemplate": "  {{ .Project }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FFA611",
     "previewText": "🔥 my-app",
@@ -777,14 +817,18 @@
         "type": "string",
         "description": "the currently active project"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "flutter",
     "name": "Flutter",
     "description": "Displays the current Flutter version when in a Flutter project",
     "icon": "fw-flutter",
-    "defaultTemplate": " \ue7dd {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#02569B",
     "previewText": "💙 3.16.0",
@@ -873,14 +917,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "copilot",
     "name": "GitHub Copilot",
     "description": "Displays GitHub Copilot status, including premium, inline, and chat usage quotas",
     "icon": "ai-copilot",
-    "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }} ",
+    "defaultTemplate": "  {{ .Premium.Percent.Gauge }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#8957E5",
     "previewText": " 🤖 ██░░░",
@@ -990,14 +1038,18 @@
         "default": 20,
         "description": "HTTP request timeout in milliseconds"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "helm",
     "name": "Helm",
     "description": "Displays the current Helm CLI version",
     "icon": "tool-helm",
-    "defaultTemplate": " \ue7fb {{ .Version }} ",
+    "defaultTemplate": "  {{ .Version }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0F1689",
     "previewText": "⚓ v3.13.3",
@@ -1007,14 +1059,18 @@
         "type": "string",
         "description": "Helm cli version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "mvn",
     "name": "Maven",
     "description": "Displays the current Maven version when in a Maven project",
     "icon": "tool-maven",
-    "defaultTemplate": " \ue674 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#C71A36",
     "previewText": "🪣 3.9.6",
@@ -1114,14 +1170,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nbgv",
     "name": "NBGV",
     "description": "Displays the current version from Nerdbank.GitVersioning",
     "icon": "vcs-git-branch",
-    "defaultTemplate": " \uf412 {{ .Version }} ",
+    "defaultTemplate": "  {{ .Version }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#4EC9B0",
     "previewText": "3.6.133",
@@ -1136,14 +1196,18 @@
         "type": "string",
         "description": "the current assembly version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nix-shell",
     "name": "Nix Shell",
     "description": "Displays the current Nix shell status and environment name",
     "icon": "cloud-nix",
-    "defaultTemplate": " \uf313 {{ .Type }} ",
+    "defaultTemplate": "  {{ .Type }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5277C3",
     "previewText": "❄️ devenv",
@@ -1153,14 +1217,18 @@
         "type": "string",
         "description": "the type of nix shell"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "npm",
     "name": "NPM",
     "description": "Displays the current NPM version when in a Node.js project",
     "icon": "pkg-npm",
-    "defaultTemplate": " \ue71e {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CB3837",
     "previewText": "10.2.5",
@@ -1261,14 +1329,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nx",
     "name": "Nx",
     "description": "Displays the current Nx CLI version when in an Nx workspace",
     "icon": "file-package",
-    "defaultTemplate": " \uf489 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#143055",
     "previewText": "17.2.0",
@@ -1329,14 +1401,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "pnpm",
     "name": "PNPM",
     "description": "Displays the current PNPM version when in a Node.js project",
     "icon": "pkg-pnpm",
-    "defaultTemplate": " \ue865 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#F9AD00",
     "previewText": "8.12.1",
@@ -1437,14 +1513,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "quasar",
     "name": "Quasar",
     "description": "Displays the current Quasar version when in a Quasar project",
     "icon": "tool-quasar",
-    "defaultTemplate": " \ue87f {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1976D2",
     "previewText": "🌟 2.13.0",
@@ -1505,14 +1585,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "react",
     "name": "React",
     "description": "Displays the current React version when in a React project",
     "icon": "fw-react",
-    "defaultTemplate": " \ue7ba {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#61DAFB",
     "previewText": "⚛️ 18.2.0",
@@ -1573,14 +1657,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "svelte",
     "name": "Svelte",
     "description": "Displays the current Svelte version when in a Svelte project",
     "icon": "fw-svelte",
-    "defaultTemplate": " \ue697 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF3E00",
     "previewText": "🔥 4.2.8",
@@ -1641,7 +1729,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "talosctl",
@@ -1658,14 +1750,18 @@
         "type": "string",
         "description": "the current talosctl context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "tauri",
     "name": "Tauri",
     "description": "Displays the current Tauri version when in a Tauri project",
     "icon": "fw-tauri",
-    "defaultTemplate": " \ue8bb {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FFC131",
     "previewText": "1.5.4",
@@ -1726,14 +1822,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ui5tooling",
     "name": "UI5 Tooling",
     "description": "Displays the current UI5 tooling version when in a UI5 project",
     "icon": "tool-wrench",
-    "defaultTemplate": " \uf489 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0A6ED1",
     "previewText": "3.7.1",
@@ -1794,14 +1894,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "umbraco",
     "name": "Umbraco",
     "description": "Displays the current Umbraco version when in an Umbraco project",
     "icon": "tool-umbraco",
-    "defaultTemplate": " \uefbf {{ .Version }} ",
+    "defaultTemplate": "  {{ .Version }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3544B1",
     "previewText": "☂️ 13.0.0",
@@ -1816,14 +1920,18 @@
         "type": "string",
         "description": "the version of umbraco found"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "unity",
     "name": "Unity",
     "description": "Displays the current Unity and C# versions when in a Unity project",
     "icon": "tool-unity",
-    "defaultTemplate": " \ue721 {{ .UnityVersion }} ",
+    "defaultTemplate": "  {{ .UnityVersion }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000000",
     "previewText": "🎮 2023.2.0",
@@ -1838,14 +1946,18 @@
         "type": "string",
         "description": "the C# version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "winget",
     "name": "WinGet",
     "description": "Displays the number of available Windows package updates via WinGet",
     "icon": "action-download",
-    "defaultTemplate": " \uf019 {{ .UpdateCount }} ",
+    "defaultTemplate": "  {{ .UpdateCount }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0078D4",
     "previewText": " 3",
@@ -1855,14 +1967,18 @@
         "type": "int",
         "description": "the number of packages with available updates"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "xmake",
     "name": "XMake",
     "description": "Displays the current XMake version when in an XMake project",
     "icon": "tool-wrench",
-    "defaultTemplate": " \uf489 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#48B9C7",
     "previewText": "2.8.5",
@@ -1918,14 +2034,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "yarn",
     "name": "Yarn",
     "description": "Displays the current Yarn version when in a Node.js project",
     "icon": "pkg-yarn",
-    "defaultTemplate": " \ue6a7 {{ .Full }} ",
+    "defaultTemplate": "  {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2C8EBB",
     "previewText": "🧶 4.0.2",
@@ -2026,6 +2146,10 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   }
 ]
