@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import {
   DndContext,
   closestCenter,
@@ -22,6 +22,8 @@ import { SegmentCard } from './SegmentCard';
 import { TooltipCard } from './TooltipCard';
 import { Block } from './Block';
 import { TooltipsSection } from './TooltipsSection';
+import { ConfirmDialog } from '../ConfirmDialog';
+import { useConfirm } from '../../hooks/useConfirm';
 
 export function Canvas() {
   const config = useConfigStore((state) => state.config);
@@ -38,11 +40,12 @@ export function Canvas() {
   const [activeSegment, setActiveSegment] = useState<Segment | null>(null);
   const [activeTooltip, setActiveTooltip] = useState<Tooltip | null>(null);
   const [tooltipsExpanded, setTooltipsExpanded] = useState(true);
+  const { confirm, ConfirmDialogProps } = useConfirm();
 
   const tooltips = config.tooltips ?? [];
   const tooltipIds = tooltips.map((t) => t.id);
 
-  const handleRemoveBlock = (blockId: string) => {
+  const handleRemoveBlock = useCallback(async (blockId: string) => {
     const block = config.blocks.find(b => b.id === blockId);
     const segmentCount = block?.segments.length || 0;
     
@@ -50,10 +53,16 @@ export function Canvas() {
       ? `Are you sure you want to delete this block? It contains ${segmentCount} segment${segmentCount !== 1 ? 's' : ''}.`
       : 'Are you sure you want to delete this block?';
     
-    if (window.confirm(message)) {
+    const confirmed = await confirm({
+      title: 'Delete Block',
+      message,
+      confirmText: 'Delete',
+      variant: 'danger',
+    });
+    if (confirmed) {
       removeBlock(blockId);
     }
-  };
+  }, [config.blocks, confirm, removeBlock]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -231,6 +240,9 @@ export function Canvas() {
           )}
         </DragOverlay>
       </DndContext>
+      
+      {/* Confirm Dialog */}
+      <ConfirmDialog {...ConfirmDialogProps} />
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import { NerdIcon } from '../NerdIcon';
 import { SamplePicker } from '../SamplePicker';
 import { AdvancedSettingsDialog } from '../AdvancedSettingsDialog';
+import { ConfirmDialog } from '../ConfirmDialog';
 import { useConfigStore } from '../../store/configStore';
+import { useConfirm } from '../../hooks/useConfirm';
 import { useRef, useState, useEffect } from 'react';
 
 export function Header() {
@@ -9,9 +11,16 @@ export function Header() {
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);
   const resetConfig = useConfigStore((state) => state.resetConfig);
+  const { confirm, ConfirmDialogProps } = useConfirm();
   
-  const handleResetConfig = () => {
-    if (window.confirm('Are you sure you want to reset to the default configuration? This will clear all your current blocks, segments, and settings.')) {
+  const handleResetConfig = async () => {
+    const confirmed = await confirm({
+      title: 'Reset Configuration',
+      message: 'Are you sure you want to reset to the default configuration? This will clear all your current blocks, segments, and settings.',
+      confirmText: 'Reset',
+      variant: 'danger',
+    });
+    if (confirmed) {
       resetConfig();
     }
   };
@@ -125,6 +134,9 @@ export function Header() {
         isOpen={showAdvancedSettings}
         onClose={() => setShowAdvancedSettings(false)}
       />
+      
+      {/* Confirm Dialog */}
+      <ConfirmDialog {...ConfirmDialogProps} />
     </header>
   );
 }

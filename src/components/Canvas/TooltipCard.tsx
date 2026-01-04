@@ -1,8 +1,10 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { NerdIcon } from '../NerdIcon';
+import { ConfirmDialog } from '../ConfirmDialog';
 import { useConfigStore } from '../../store/configStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
+import { useConfirm } from '../../hooks/useConfirm';
 import type { Tooltip } from '../../types/ohmyposh';
 
 interface TooltipCardProps {
@@ -15,13 +17,20 @@ export function TooltipCard({ tooltip, isDragging }: TooltipCardProps) {
   const selectTooltip = useConfigStore((s) => s.selectTooltip);
   const removeTooltip = useConfigStore((s) => s.removeTooltip);
   const duplicateTooltip = useConfigStore((s) => s.duplicateTooltip);
+  const { confirm, ConfirmDialogProps } = useConfirm();
   
   const isSelected = selectedTooltipId === tooltip.id;
   const metadata = useSegmentMetadata(tooltip.type);
 
-  const handleRemove = (e: React.MouseEvent) => {
+  const handleRemove = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (window.confirm('Are you sure you want to remove this tooltip?')) {
+    const confirmed = await confirm({
+      title: 'Remove Tooltip',
+      message: 'Are you sure you want to remove this tooltip?',
+      confirmText: 'Remove',
+      variant: 'danger',
+    });
+    if (confirmed) {
       removeTooltip(tooltip.id);
     }
   };
@@ -132,6 +141,9 @@ export function TooltipCard({ tooltip, isDragging }: TooltipCardProps) {
           />
         )}
       </div>
+      
+      {/* Confirm Dialog */}
+      <ConfirmDialog {...ConfirmDialogProps} />
     </div>
   );
 }

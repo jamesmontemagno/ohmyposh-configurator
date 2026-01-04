@@ -1,7 +1,9 @@
 import { NerdIcon } from '../NerdIcon';
+import { ConfirmDialog } from '../ConfirmDialog';
 import { useConfigStore } from '../../store/configStore';
 import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
+import { useConfirm } from '../../hooks/useConfirm';
 import { TipsEditor } from './TipsEditor';
 import {
   StyleSection,
@@ -19,6 +21,7 @@ export function TooltipProperties() {
   const duplicateTooltip = useConfigStore((state) => state.duplicateTooltip);
   const removeTooltip = useConfigStore((state) => state.removeTooltip);
   const features = useAdvancedFeaturesStore((state) => state.features);
+  const { confirm, ConfirmDialogProps } = useConfirm();
 
   const tooltip = config.tooltips?.find((t) => t.id === selectedTooltipId);
   const metadata = useSegmentMetadata(tooltip?.type || '');
@@ -108,8 +111,14 @@ export function TooltipProperties() {
           Duplicate Tooltip
         </button>
         <button
-          onClick={() => {
-            if (window.confirm('Are you sure you want to delete this tooltip?')) {
+          onClick={async () => {
+            const confirmed = await confirm({
+              title: 'Delete Tooltip',
+              message: 'Are you sure you want to delete this tooltip?',
+              confirmText: 'Delete',
+              variant: 'danger',
+            });
+            if (confirmed) {
               removeTooltip(tooltip.id);
             }
           }}
@@ -118,6 +127,9 @@ export function TooltipProperties() {
           Delete Tooltip
         </button>
       </div>
+      
+      {/* Confirm Dialog */}
+      <ConfirmDialog {...ConfirmDialogProps} />
     </div>
   );
 }
