@@ -142,3 +142,61 @@ npm run format:json
 # Format files in another directory
 node scripts/format-json.js some-dir
 ```
+
+## fetch-official-themes.mjs
+
+Fetches theme filenames from the Oh My Posh GitHub repository and generates a manifest file with inferred tags for each theme.
+
+### What it does:
+
+- 🔍 Fetches the list of theme files from the official Oh My Posh repository
+- 🏷️ Infers tags based on theme names (e.g., "catppuccin", "powerline", "minimal")
+- 📋 Generates `public/configs/official/manifest.json` with theme metadata
+- ✨ Identifies "minimal" themes that don't require Nerd Fonts
+
+### Usage:
+
+```bash
+npm run generate:official-themes
+```
+
+### When to run:
+
+- When you want to update the official themes list with new themes from the Oh My Posh repository
+- Periodically to keep the manifest in sync with upstream changes
+
+### Output:
+
+The script creates/updates `public/configs/official/manifest.json` with:
+
+```json
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-04T00:00:00Z",
+  "themes": [
+    {
+      "name": "agnoster",
+      "file": "agnoster.omp.json",
+      "isMinimal": false,
+      "tags": ["powerline", "git", "classic"],
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnoster.omp.json"
+    }
+  ]
+}
+```
+
+### Tag inference:
+
+The script automatically infers tags based on theme name patterns:
+
+| Pattern | Tags Added |
+|---------|-----------|
+| `minimal` | `minimal`, `nerd-font-free` |
+| `catppuccin` | `catppuccin` |
+| `dracula` | `dracula` |
+| `gruvbox` | `gruvbox` |
+| `tokyo` | `tokyo-night` |
+| `dark`, `night` | `dark` |
+| `light` | `light` |
+| `azure` | `cloud`, `azure` |
+| `rainbow`, `unicorn` | `colorful`, `rainbow` |

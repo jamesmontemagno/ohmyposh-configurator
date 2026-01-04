@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import type { ConfigMetadata } from '../../utils/configLoader';
 import { loadAllConfigs, loadConfig } from '../../utils/configLoader';
+import type { OfficialTheme } from '../../utils/officialThemeLoader';
+import { loadOfficialThemeManifest, fetchOfficialTheme } from '../../utils/officialThemeLoader';
+import { OfficialThemeCard } from './OfficialThemeCard';
 
-type TabType = 'samples' | 'community';
+type TabType = 'samples' | 'community' | 'official';
+
+const THEMES_PER_PAGE = 25;
 
 export function SamplePicker() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('samples');
   const [sampleConfigs, setSampleConfigs] = useState<ConfigMetadata[]>([]);
   const [communityConfigs, setCommunityConfigs] = useState<ConfigMetadata[]>([]);
+  const [officialThemes, setOfficialThemes] = useState<OfficialTheme[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingTheme, setLoadingTheme] = useState<string | null>(null);
+  
+  // Official themes pagination and search
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  
   const setConfig = useConfigStore((state) => state.setConfig);
 
   const loadConfigs = async () => {
@@ -22,13 +34,67 @@ export function SamplePicker() {
     setLoading(false);
   };
 
+  const loadOfficialThemes = useCallback(async () => {
+    if (officialThemes.length === 0) {
+      setLoading(true);
+      const manifest = await loadOfficialThemeManifest();
+      setOfficialThemes(manifest.themes);
+      setLoading(false);
+    }
+  }, [officialThemes.length]);
+
+  // Handle tab change - load official themes when tab becomes active
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    if (tab === 'official' && officialThemes.length === 0) {
+      loadOfficialThemes();
+    }
+  };
+
+  // Handle search change - reset page to 1
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    setCurrentPage(1);
+  };
+
   const handleLoadConfig = async (category: TabType, filename: string) => {
-    const config = await loadConfig(category, filename);
+    if (category === 'official') return; // Handled separately
+    const config = await loadConfig(category as 'samples' | 'community', filename);
     if (config) {
       setConfig(config);
       setIsOpen(false);
     }
   };
+
+  const handleLoadOfficialTheme = async (theme: OfficialTheme) => {
+    setLoadingTheme(theme.file);
+    const config = await fetchOfficialTheme(theme.file);
+    if (config) {
+      setConfig(config);
+      setIsOpen(false);
+    }
+    setLoadingTheme(null);
+  };
+
+  // Filter official themes by search query (name and tags)
+  const filteredThemes = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return officialThemes;
+    }
+    const query = searchQuery.toLowerCase().trim();
+    return officialThemes.filter(
+      (theme) =>
+        theme.name.toLowerCase().includes(query) ||
+        theme.tags.some((tag) => tag.toLowerCase().includes(query))
+    );
+  }, [officialThemes, searchQuery]);
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredThemes.length / THEMES_PER_PAGE);
+  const paginatedThemes = useMemo(() => {
+    const start = (currentPage - 1) * THEMES_PER_PAGE;
+    return filteredThemes.slice(start, start + THEMES_PER_PAGE);
+  }, [filteredThemes, currentPage]);
 
   const activeConfigs = activeTab === 'samples' ? sampleConfigs : communityConfigs;
 
@@ -44,7 +110,7 @@ export function SamplePicker() {
         title="Load Sample Configuration"
       >
         <NerdIcon icon="misc-star" size={16} />
-        <span className="text-sm font-medium">Configs</span>
+        <span className="text-sm font-medium">Theme Library</span>
       </button>
 
       {/* Modal */}
@@ -73,7 +139,7 @@ export function SamplePicker() {
             {/* Tabs */}
             <div className="flex border-b border-gray-700 bg-[#0f0f23] px-6">
               <button
-                onClick={() => setActiveTab('samples')}
+                onClick={() => handleTabChange('samples')}
                 className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
                   activeTab === 'samples'
                     ? 'border-purple-500 text-white'
@@ -87,7 +153,7 @@ export function SamplePicker() {
                 </span>
               </button>
               <button
-                onClick={() => setActiveTab('community')}
+                onClick={() => handleTabChange('community')}
                 className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
                   activeTab === 'community'
                     ? 'border-purple-500 text-white'
@@ -100,14 +166,84 @@ export function SamplePicker() {
                   {communityConfigs.length}
                 </span>
               </button>
+              <button
+                onClick={() => handleTabChange('official')}
+                className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
+                  activeTab === 'official'
+                    ? 'border-purple-500 text-white'
+                    : 'border-transparent text-gray-400 hover:text-gray-300'
+                }`}
+              >
+                <NerdIcon icon="dev-terminal" size={16} />
+                <span className="font-medium">Official Themes</span>
+              </button>
             </div>
+
+            {/* Search bar for official themes */}
+            {activeTab === 'official' && (
+              <div className="px-6 py-4 bg-[#0f0f23] border-b border-gray-700">
+                <div className="relative">
+                  <NerdIcon 
+                    icon="action-search" 
+                    size={16} 
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" 
+                  />
+                  <input
+                    type="text"
+                    placeholder="Search themes by name or tag..."
+                    value={searchQuery}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => handleSearchChange('')}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                    >
+                      <NerdIcon icon="ui-close" size={14} />
+                    </button>
+                  )}
+                </div>
+                {searchQuery && (
+                  <p className="mt-2 text-sm text-gray-400">
+                    Found {filteredThemes.length} theme{filteredThemes.length !== 1 ? 's' : ''}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6">
               {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>
+                <div className="flex flex-col items-center justify-center py-12 gap-4">
+                  <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
+                  <p className="text-gray-400 text-sm">
+                    {activeTab === 'official' ? 'Loading official themes...' : 'Loading configurations...'}
+                  </p>
                 </div>
+              ) : activeTab === 'official' ? (
+                // Official themes grid
+                filteredThemes.length === 0 ? (
+                  <div className="text-center py-12">
+                    <NerdIcon icon="action-search" size={48} className="text-gray-600 mx-auto mb-4" />
+                    <p className="text-gray-400">
+                      {searchQuery
+                        ? `No themes found matching "${searchQuery}"`
+                        : 'No official themes available'}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {paginatedThemes.map((theme) => (
+                      <OfficialThemeCard
+                        key={theme.name}
+                        theme={theme}
+                        onSelect={handleLoadOfficialTheme}
+                        isLoading={loadingTheme === theme.file}
+                      />
+                    ))}
+                  </div>
+                )
               ) : activeConfigs.length === 0 ? (
                 <div className="text-center py-12">
                   <p className="text-gray-400 mb-4">
@@ -172,10 +308,35 @@ export function SamplePicker() {
               )}
             </div>
 
+            {/* Pagination for official themes */}
+            {activeTab === 'official' && filteredThemes.length > THEMES_PER_PAGE && (
+              <div className="px-6 py-4 border-t border-gray-700 bg-[#0f0f23] flex items-center justify-center gap-4">
+                <button
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+                >
+                  <NerdIcon icon="ui-chevron-left" size={16} />
+                  Previous
+                </button>
+                <span className="text-gray-400 text-sm">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors flex items-center gap-2"
+                >
+                  Next
+                  <NerdIcon icon="ui-chevron-right" size={16} />
+                </button>
+              </div>
+            )}
+
             {/* Footer */}
             <div className="p-4 border-t border-gray-700 bg-[#0f0f23]">
               <p className="text-xs text-gray-500 text-center">
-                Loading a sample will replace your current configuration
+                Loading a {activeTab === 'official' ? 'theme' : 'sample'} will replace your current configuration
               </p>
             </div>
           </div>

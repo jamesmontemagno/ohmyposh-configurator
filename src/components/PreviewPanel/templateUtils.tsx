@@ -9,7 +9,7 @@ import {
 } from '../../utils/paletteResolver';
 
 // Parse inline color codes and HTML formatting from Oh My Posh templates
-// Format: <#hexcolor>text</>, <p:palette-key>text</>, or </>text (to reset)
+// Format: <#hexcolor>text</>, <p:palette-key>text</>, <transparent>text</>, <red>text</>, or </>text (to reset)
 // HTML: <b>bold</b>, <i>italic</i>, <u>underline</u>, <s>strikethrough</s>
 export function parseInlineColors(
   text: string, 
@@ -17,11 +17,12 @@ export function parseInlineColors(
   palette: Record<string, string> = {}
 ): ReactNode[] {
   const parts: ReactNode[] = [];
-  // Match color start tags <#RRGGBB>, palette tags <p:key-name>, color end tags </>, or HTML formatting tags
-  const tagRegex = /<#([0-9a-fA-F]{6})>|<p:([\w-]+)>|<\/>|<(b|i|u|s|strike)>|<\/(b|i|u|s|strike)>/g;
+  // Match color start tags <#RRGGBB>, palette tags <p:key-name>, named colors <red>, <transparent>, color end tags </>, or HTML formatting tags
+  const tagRegex = /<#([0-9a-fA-F]{6})>|<p:([\w-]+)>|<transparent>|<(\w+)>|<\/>|<(b|i|u|s|strike)>|<\/(b|i|u|s|strike)>/g;
   let lastIndex = 0;
   let match;
   let currentColor = defaultColor;
+  let isTransparent = false;
   const styleStack: { bold?: boolean; italic?: boolean; underline?: boolean; strikethrough?: boolean } = {};
 
   while ((match = tagRegex.exec(text)) !== null) {
@@ -29,7 +30,7 @@ export function parseInlineColors(
     if (match.index > lastIndex) {
       const beforeText = text.substring(lastIndex, match.index);
       if (beforeText) {
-        const style: React.CSSProperties = { color: currentColor };
+        const style: React.CSSProperties = { color: isTransparent ? 'transparent' : currentColor };
         if (styleStack.bold) style.fontWeight = 'bold';
         if (styleStack.italic) style.fontStyle = 'italic';
         
@@ -50,6 +51,7 @@ export function parseInlineColors(
     if (match[1]) {
       // Hex color start tag found - set new color
       currentColor = `#${match[1]}`;
+      isTransparent = false;
     } else if (match[2]) {
       // Palette color tag <p:key-name> - resolve from palette
       const paletteKey = match[2];
@@ -69,19 +71,28 @@ export function parseInlineColors(
         // Unresolved palette key - keep current color but could add warning
         currentColor = defaultColor;
       }
+      isTransparent = false;
+    } else if (match[0] === '<transparent>') {
+      // Transparent color tag - set color to transparent
+      isTransparent = true;
+    } else if (match[3] && isNamedColor(match[3])) {
+      // Named color tag (e.g., <red>, <blue>, <green>)
+      currentColor = NAMED_COLORS[match[3].toLowerCase()];
+      isTransparent = false;
     } else if (match[0] === '</>') {
       // Color end tag </> - reset to default color
       currentColor = defaultColor;
-    } else if (match[3]) {
+      isTransparent = false;
+    } else if (match[4]) {
       // HTML formatting opening tag
-      const tag = match[3];
+      const tag = match[4];
       if (tag === 'b') styleStack.bold = true;
       else if (tag === 'i') styleStack.italic = true;
       else if (tag === 'u') styleStack.underline = true;
       else if (tag === 's' || tag === 'strike') styleStack.strikethrough = true;
-    } else if (match[4]) {
+    } else if (match[5]) {
       // HTML formatting closing tag
-      const tag = match[4];
+      const tag = match[5];
       if (tag === 'b') delete styleStack.bold;
       else if (tag === 'i') delete styleStack.italic;
       else if (tag === 'u') delete styleStack.underline;
@@ -95,7 +106,7 @@ export function parseInlineColors(
   if (lastIndex < text.length) {
     const remainingText = text.substring(lastIndex);
     if (remainingText) {
-      const style: React.CSSProperties = { color: currentColor };
+      const style: React.CSSProperties = { color: isTransparent ? 'transparent' : currentColor };
       if (styleStack.bold) style.fontWeight = 'bold';
       if (styleStack.italic) style.fontStyle = 'italic';
       
