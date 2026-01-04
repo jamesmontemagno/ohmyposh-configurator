@@ -85,6 +85,7 @@ function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
         background: segment.background,
         background_templates: segment.background_templates,
         template: segment.template,
+        templates: segment.templates,
         templates_logic: segment.templates_logic,
         powerline_symbol: segment.powerline_symbol,
         leading_diamond: segment.leading_diamond,

@@ -2,6 +2,19 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Templates Logic Control
+
+### Added
+- **Templates Logic Dropdown**: New dropdown control in SegmentProperties panel for controlling how multiple templates are evaluated
+  - Only appears when segment has a `templates` array (hidden for single `template` property)
+  - Two logic modes available:
+    - `first_match`: Use the first template that produces non-empty output (default)
+    - `join`: Concatenate all non-empty template outputs
+  - Added `templates?: string[]` field to Segment interface
+  - Full import/export support across JSON, YAML, and TOML formats
+  - Help text explains template evaluation behavior
+  - Properly positioned in the Template section for intuitive access
+
 ## [2026-01-04] - Template Alias Support
 
 ### Added
