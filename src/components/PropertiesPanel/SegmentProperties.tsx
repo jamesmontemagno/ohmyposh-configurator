@@ -32,6 +32,17 @@ export function SegmentProperties() {
 
   const [responsiveExpanded, setResponsiveExpanded] = useState(false);
 
+  // Alias validation
+  const aliasPattern = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+  const isValidAlias = !segment?.alias || aliasPattern.test(segment.alias);
+  
+  // Check for duplicate aliases
+  const duplicateAlias = segment?.alias
+    ? config.blocks.some((b) =>
+        b.segments.some((s) => s.id !== segment.id && s.alias === segment.alias)
+      )
+    : false;
+
   if (!segment || !block) {
     return (
       <div className="p-4 text-center text-gray-500 text-sm">
@@ -105,6 +116,36 @@ export function SegmentProperties() {
               placeholder="Right-pointing symbol"
             />
           </div>
+        )}
+      </div>
+
+      {/* Template Alias Section */}
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <NerdIcon icon="vcs-tag" size={14} className="text-gray-400" />
+          <span className="text-xs font-medium text-gray-300">Template Alias</span>
+        </div>
+        <input
+          type="text"
+          value={segment.alias ?? ''}
+          onChange={(e) => handleUpdate({ alias: e.target.value || undefined })}
+          placeholder="e.g., Git, Node, MySegment"
+          className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#e94560]"
+        />
+        {!isValidAlias && (
+          <p className="text-xs text-[#e94560] mt-1">
+            Alias must start with a letter and contain only letters, numbers, and underscores
+          </p>
+        )}
+        {isValidAlias && duplicateAlias && (
+          <p className="text-xs text-[#e94560] mt-1">
+            This alias is already used by another segment
+          </p>
+        )}
+        {isValidAlias && !duplicateAlias && (
+          <p className="text-xs text-gray-500 mt-1">
+            Reference in templates as <code className="text-[#e94560]">.Segments.{segment.alias || 'Alias'}</code>
+          </p>
         )}
       </div>
 

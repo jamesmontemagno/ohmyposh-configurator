@@ -2,6 +2,18 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Template Alias Support
+
+### Added
+- **Template Alias Input**: New input field in SegmentProperties panel for setting segment aliases
+  - Allows users to reference segments in templates using custom names (e.g., `{{ .Segments.MyAlias.Output }}`)
+  - Input validation ensures aliases start with a letter and contain only letters, numbers, and underscores
+  - Duplicate alias detection warns when the same alias is used by multiple segments
+  - Help text dynamically shows how to reference the alias in templates
+  - Empty values treated as `undefined` (not stored in config)
+  - Uses `vcs-tag` icon for visual consistency
+  - Full import/export support across JSON, YAML, and TOML formats
+
 ## [2026-01-04] - Responsive Width Controls
 
 ### Added
