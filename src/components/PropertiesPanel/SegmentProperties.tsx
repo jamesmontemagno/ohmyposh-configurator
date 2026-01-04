@@ -192,9 +192,12 @@ export function SegmentProperties() {
                 type="number"
                 min="0"
                 value={segment.min_width ?? ''}
-                onChange={(e) => handleUpdate({ 
-                  min_width: e.target.value ? parseInt(e.target.value) : undefined 
-                })}
+                onChange={(e) => {
+                  const value = e.target.value ? parseInt(e.target.value, 10) : undefined;
+                  if (value === undefined || (value >= 0 && !isNaN(value))) {
+                    handleUpdate({ min_width: value });
+                  }
+                }}
                 placeholder="No minimum"
                 className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white"
               />
@@ -211,9 +214,12 @@ export function SegmentProperties() {
                 type="number"
                 min="0"
                 value={segment.max_width ?? ''}
-                onChange={(e) => handleUpdate({ 
-                  max_width: e.target.value ? parseInt(e.target.value) : undefined 
-                })}
+                onChange={(e) => {
+                  const value = e.target.value ? parseInt(e.target.value, 10) : undefined;
+                  if (value === undefined || (value >= 0 && !isNaN(value))) {
+                    handleUpdate({ max_width: value });
+                  }
+                }}
                 placeholder="No maximum"
                 className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white"
               />
