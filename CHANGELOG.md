@@ -2,6 +2,17 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Interactive Checkbox
+
+### Added
+- **Interactive Toggle**: New checkbox in SegmentProperties panel for enabling interactive escape sequences
+  - Enables OSC 8 hyperlinks for clickable elements in segments
+  - Clear description with terminal compatibility information (iTerm2, Windows Terminal, Hyper, etc.)
+  - Checkbox positioned before Options section for easy access
+  - Uses `ui-external-link` icon for visual consistency
+  - Full import/export support across JSON, YAML, and TOML formats
+  - False values not exported to keep configs clean
+
 ## [2026-01-04] - Powerline Controls
 
 ### Added

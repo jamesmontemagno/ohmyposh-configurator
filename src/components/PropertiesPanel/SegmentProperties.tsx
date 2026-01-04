@@ -317,6 +317,29 @@ export function SegmentProperties() {
         )}
       </div>
 
+      {/* Interactive Toggle */}
+      <div className="space-y-2">
+        <label className="flex items-start gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={segment.interactive ?? false}
+            onChange={(e) => handleUpdate({ 
+              interactive: e.target.checked || undefined 
+            })}
+            className="mt-0.5 rounded border-[#0f3460] bg-[#0f0f23] text-[#e94560] focus:ring-[#e94560]"
+          />
+          <div className="flex-1">
+            <div className="flex items-center gap-1">
+              <NerdIcon icon="ui-external-link" size={14} className="text-gray-400" />
+              <span className="text-sm text-white">Interactive</span>
+            </div>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Enable clickable elements (OSC 8 hyperlinks). Supported in iTerm2, Windows Terminal, Hyper, and others.
+            </p>
+          </div>
+        </label>
+      </div>
+
       {/* Editable Segment Options */}
       {metadata?.options && metadata.options.length > 0 && (
         <div>

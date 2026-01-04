@@ -14,6 +14,7 @@
           "background": "#61AFEF",
           "powerline_symbol": "\ue0b0",
           "template": " \uf07c {{ .Path }} ",
+          "interactive": true,
           "options": {
             "style": "folder"
           }
