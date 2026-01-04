@@ -2,6 +2,17 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Responsive Width Controls
+
+### Added
+- **Responsive Display Controls**: New collapsible section in SegmentProperties panel for controlling segment visibility based on terminal width
+  - `min_width` input field: Specify minimum terminal width (in columns) to show segment
+  - `max_width` input field: Specify maximum terminal width (in columns) to show segment
+  - Empty values treated as `undefined` (no limit) rather than 0
+  - Section collapsed by default to reduce UI clutter
+  - Uses `ui-monitor` icon for visual consistency
+  - Full import/export support across JSON, YAML, and TOML formats
+
 ## [2026-01-03] - Palette Support & Enhanced Template Preview
 
 ### Added
