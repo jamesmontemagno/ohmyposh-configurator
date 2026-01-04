@@ -180,5 +180,9 @@ function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
     cycle: config.cycle,
     var: config.var,
     maps: config.maps,
+    // Advanced settings
+    upgrade: config.upgrade,
+    iterm_features: config.iterm_features,
+    extends: config.extends,
   };
 }

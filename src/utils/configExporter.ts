@@ -69,6 +69,9 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
     cycle,
     var: configVar,
     maps,
+    upgrade,
+    iterm_features,
+    extends: extendsConfig,
   } = config;
 
   // Build the cleaned config with explicit ordering
@@ -113,6 +116,11 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   // Add variables and maps
   if (configVar) cleanedConfig.var = configVar;
   if (maps) cleanedConfig.maps = maps;
+
+  // Add advanced settings
+  if (upgrade) cleanedConfig.upgrade = upgrade;
+  if (iterm_features && iterm_features.length > 0) cleanedConfig.iterm_features = iterm_features;
+  if (extendsConfig) cleanedConfig.extends = extendsConfig;
 
   return cleanedConfig as CleanedConfig;
 }

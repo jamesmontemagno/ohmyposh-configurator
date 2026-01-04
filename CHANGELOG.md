@@ -2,6 +2,29 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-05] - Phase 4 Completion: Full Schema Support
+
+### Added
+- **Full TypeScript Schema Support** (Issue #44): Complete Oh My Posh schema compatibility
+  - Added `SegmentCache` interface for segment caching configuration
+  - Added `CycleSettings` interface for color cycling configuration  
+  - Added `UpgradeSettings` interface for auto-update configuration
+  - Added `ITermFeature` type for iTerm2 feature flags (`prompt_mark`, `current_dir`, `remote_host`)
+  - Added `upgrade`, `iterm_features`, and `extends` properties to OhMyPoshConfig
+  - Updated `cycle` to use proper `CycleSettings[]` type
+  - All new types are optional for backward compatibility
+
+- **Config Importer Updates** (Issue #45): Import all schema properties
+  - Added import support for `upgrade` settings object
+  - Added import support for `iterm_features` array
+  - Added import support for `extends` property for config inheritance
+
+- **Config Exporter Updates** (Issue #46): Export all schema properties
+  - Added export support for `upgrade` settings (only when defined)
+  - Added export support for `iterm_features` (only when array has items)
+  - Added export support for `extends` property
+  - All exports follow clean output rules (no empty arrays/objects)
+
 ## [2026-01-05] - Phase 3 Completion: Tooltips Support
 
 ### Added
