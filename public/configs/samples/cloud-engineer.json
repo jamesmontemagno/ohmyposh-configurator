@@ -2,6 +2,17 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "text-light": "#ffffff",
+    "os-bg": "#003544",
+    "path-bg": "#0077b6",
+    "git-bg": "#00b4d8",
+    "aws-bg": "#FF9900",
+    "k8s-bg": "#326CE5",
+    "docker-bg": "#2496ED",
+    "prompt-ok": "#00d9ff",
+    "prompt-error": "#ff6b9d"
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -10,8 +21,8 @@
         {
           "type": "os",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#003544",
+          "foreground": "p:text-light",
+          "background": "p:os-bg",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b0",
           "template": " {{ .Icon }} "
@@ -20,8 +31,8 @@
           "type": "path",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#0077b6",
+          "foreground": "p:text-light",
+          "background": "p:path-bg",
           "template": " \uf07c {{ .Path }} ",
           "options": {
             "style": "folder",
@@ -32,32 +43,32 @@
           "type": "git",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#00b4d8",
-          "template": " \ue725 {{ .HEAD }} "
+          "foreground": "p:text-light",
+          "background": "p:git-bg",
+          "template": " \uf126 {{ .HEAD }} "
         },
         {
           "type": "aws",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#FF9900",
+          "foreground": "p:text-light",
+          "background": "p:aws-bg",
           "template": " \uf270 {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} "
         },
         {
           "type": "kubectl",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#326CE5",
+          "foreground": "p:text-light",
+          "background": "p:k8s-bg",
           "template": " \ufd31 {{ .Context }}{{ if .Namespace }}::{{ .Namespace }}{{ end }} "
         },
         {
           "type": "docker",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#2496ED",
+          "foreground": "p:text-light",
+          "background": "p:docker-bg",
           "template": " \uf308 {{ .Context }} "
         }
       ]
@@ -70,9 +81,9 @@
         {
           "type": "status",
           "style": "plain",
-          "foreground": "#00d9ff",
+          "foreground": "p:prompt-ok",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#ff6b9d{{ end }}"
+            "{{ if gt .Code 0 }}p:prompt-error{{ end }}"
           ],
           "template": "\u276f ",
           "options": {

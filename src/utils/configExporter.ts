@@ -1,9 +1,12 @@
 import yaml from 'js-yaml';
 import TOML from '@iarna/toml';
-import type { OhMyPoshConfig, Block, Segment, ExportFormat } from '../types/ohmyposh';
+import type { OhMyPoshConfig, Block, Segment, ExportFormat, Tooltip } from '../types/ohmyposh';
 
 // Type for cleaned segment (without internal id)
 type CleanedSegment = Omit<Segment, 'id'>;
+
+// Type for cleaned tooltip (without internal id)
+type CleanedTooltip = Omit<Tooltip, 'id'>;
 
 // Type for cleaned block (without internal ids)
 interface CleanedBlock extends Omit<Block, 'id' | 'segments'> {
@@ -11,8 +14,9 @@ interface CleanedBlock extends Omit<Block, 'id' | 'segments'> {
 }
 
 // Type for cleaned config
-interface CleanedConfig extends Omit<OhMyPoshConfig, 'blocks'> {
+interface CleanedConfig extends Omit<OhMyPoshConfig, 'blocks' | 'tooltips'> {
   blocks: CleanedBlock[];
+  tooltips?: CleanedTooltip[];
 }
 
 // Remove internal IDs before export
@@ -31,6 +35,13 @@ function cleanBlock(block: Block): CleanedBlock {
   };
 }
 
+// Remove internal ID from tooltip before export
+function cleanTooltip(tooltip: Tooltip): CleanedTooltip {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { id, ...rest } = tooltip;
+  return rest;
+}
+
 export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   // Ensure global settings are always at the top in a consistent order
   const {
@@ -44,7 +55,10 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
     enable_cursor_positioning,
     shell_integration,
     pwd,
+    patch_pwsh_bleed,
+    async: asyncPrompt,
     tooltips,
+    tooltips_action,
     transient_prompt,
     valid_line,
     error_line,
@@ -55,6 +69,9 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
     cycle,
     var: configVar,
     maps,
+    upgrade,
+    iterm_features,
+    extends: extendsConfig,
   } = config;
 
   // Build the cleaned config with explicit ordering
@@ -74,12 +91,17 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   if (enable_cursor_positioning) cleanedConfig.enable_cursor_positioning = enable_cursor_positioning;
   if (shell_integration) cleanedConfig.shell_integration = shell_integration;
   if (pwd) cleanedConfig.pwd = pwd;
+  if (patch_pwsh_bleed) cleanedConfig.patch_pwsh_bleed = patch_pwsh_bleed;
+  if (asyncPrompt) cleanedConfig.async = asyncPrompt;
 
   // Add blocks (required)
   cleanedConfig.blocks = blocks.map(cleanBlock);
 
   // Add optional prompts and tooltips
-  if (tooltips && tooltips.length > 0) cleanedConfig.tooltips = tooltips;
+  if (tooltips && tooltips.length > 0) {
+    cleanedConfig.tooltips = tooltips.map(cleanTooltip);
+  }
+  if (tooltips_action) cleanedConfig.tooltips_action = tooltips_action;
   if (transient_prompt) cleanedConfig.transient_prompt = transient_prompt;
   if (valid_line) cleanedConfig.valid_line = valid_line;
   if (error_line) cleanedConfig.error_line = error_line;
@@ -94,6 +116,11 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   // Add variables and maps
   if (configVar) cleanedConfig.var = configVar;
   if (maps) cleanedConfig.maps = maps;
+
+  // Add advanced settings
+  if (upgrade) cleanedConfig.upgrade = upgrade;
+  if (iterm_features && iterm_features.length > 0) cleanedConfig.iterm_features = iterm_features;
+  if (extendsConfig) cleanedConfig.extends = extendsConfig;
 
   return cleanedConfig as CleanedConfig;
 }

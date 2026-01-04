@@ -44,7 +44,7 @@ export function SamplePicker() {
         title="Load Sample Configuration"
       >
         <NerdIcon icon="misc-star" size={16} />
-        <span className="text-sm font-medium">Sample Configs</span>
+        <span className="text-sm font-medium">Configs</span>
       </button>
 
       {/* Modal */}
@@ -81,7 +81,7 @@ export function SamplePicker() {
                 }`}
               >
                 <NerdIcon icon="misc-lightbulb" size={16} />
-                <span className="font-medium">Official Samples</span>
+                <span className="font-medium">Samples</span>
                 <span className="text-xs bg-gray-700 px-2 py-0.5 rounded-full">
                   {sampleConfigs.length}
                 </span>

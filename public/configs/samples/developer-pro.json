@@ -2,6 +2,23 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "text-light": "#ffffff",
+    "text-dark": "#111111",
+    "session-bg": "#c386f1",
+    "path-bg": "#61AFEF",
+    "git-bg": "#4eca6a",
+    "git-modified-bg": "#f4d03f",
+    "git-diverged-bg": "#f26d50",
+    "git-ahead-bg": "#89d1dc",
+    "node-bg": "#6CA35E",
+    "python-bg": "#FFDE57",
+    "go-bg": "#00ADD8",
+    "rust-bg": "#99908a",
+    "exectime-bg": "#d62976",
+    "prompt-ok": "#e0f8ff",
+    "prompt-error": "#ef5350"
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -10,8 +27,8 @@
         {
           "type": "session",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#c386f1",
+          "foreground": "p:text-light",
+          "background": "p:session-bg",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b0",
           "template": " {{ .UserName }} "
@@ -20,8 +37,8 @@
           "type": "path",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#61AFEF",
+          "foreground": "p:text-light",
+          "background": "p:path-bg",
           "template": " \uf07c {{ .Path }} ",
           "options": {
             "style": "folder",
@@ -32,17 +49,17 @@
           "type": "git",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#4eca6a",
+          "foreground": "p:text-light",
+          "background": "p:git-bg",
           "foreground_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#000000{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ffffff{{ end }}",
-            "{{ if gt .Ahead 0 }}#ffffff{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:text-dark{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:text-light{{ end }}",
+            "{{ if gt .Ahead 0 }}p:text-light{{ end }}"
           ],
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#f4d03f{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#f26d50{{ end }}",
-            "{{ if gt .Ahead 0 }}#89d1dc{{ end }}"
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}p:git-modified-bg{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git-diverged-bg{{ end }}",
+            "{{ if gt .Ahead 0 }}p:git-ahead-bg{{ end }}"
           ],
           "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
           "options": {
@@ -54,32 +71,32 @@
           "type": "node",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#6CA35E",
+          "foreground": "p:text-light",
+          "background": "p:node-bg",
           "template": " \uf898 {{ .Full }} "
         },
         {
           "type": "python",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#111111",
-          "background": "#FFDE57",
+          "foreground": "p:text-dark",
+          "background": "p:python-bg",
           "template": " \ue235 {{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }} "
         },
         {
           "type": "go",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#111111",
-          "background": "#00ADD8",
+          "foreground": "p:text-dark",
+          "background": "p:go-bg",
           "template": " \ue626 {{ .Full }} "
         },
         {
           "type": "rust",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#99908a",
+          "foreground": "p:text-light",
+          "background": "p:rust-bg",
           "template": " \ue7a8 {{ .Full }} "
         }
       ]
@@ -91,8 +108,8 @@
         {
           "type": "executiontime",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#d62976",
+          "foreground": "p:text-light",
+          "background": "p:exectime-bg",
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0b4",
           "template": " \uf252 {{ .FormattedMs }} ",
@@ -110,9 +127,9 @@
         {
           "type": "status",
           "style": "plain",
-          "foreground": "#e0f8ff",
+          "foreground": "p:prompt-ok",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#ef5350{{ end }}"
+            "{{ if gt .Code 0 }}p:prompt-error{{ end }}"
           ],
           "template": "\u276f ",
           "options": {

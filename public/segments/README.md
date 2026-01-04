@@ -40,7 +40,11 @@ Each segment in the JSON files has the following structure:
       "default": true,
       "description": "Description of this configuration option"
     }
-  ]
+  ],
+  "defaultCache": {
+    "duration": "168h",
+    "strategy": "folder"
+  }
 }
 ```
 
@@ -58,6 +62,9 @@ Each segment in the JSON files has the following structure:
   - Controls segment behavior (e.g., `home_enabled`, `fetch_version`)
   - Displayed in the PropertiesPanel with a green color scheme
   - Can include `type` (boolean, string, enum), `default` value, and `values` for enums
+- **defaultCache** (optional): Default cache settings auto-applied when adding the segment
+  - `duration`: Cache duration (e.g., `"2s"`, `"5m"`, `"1h"`, `"168h"`)
+  - `strategy`: Cache strategy - `"session"` (per terminal session) or `"folder"` (per directory)
 
 ## Adding New Segments
 
@@ -68,13 +75,14 @@ To add a new segment:
 3. Add your segment object to the array with all required fields
 4. Add `properties` array listing all template variables available in Oh My Posh
 5. Add `options` array listing all configuration settings from Oh My Posh documentation
-6. Keep segments alphabetized by name within each file
+6. Add `defaultCache` if the segment benefits from caching (see Cache Strategy Guide below)
+7. Keep segments alphabetized by name within each file
 7. Use a [Nerd Font icon ID](../../docs/nerd-font-icons-reference.md) for the `icon` field
 8. Test in the configurator to verify proper display and functionality
 
 ### Example
 
-Here's a complete example with properties and options:
+Here's a complete example with properties, options, and cache settings:
 
 ```json
 {
@@ -131,9 +139,34 @@ Here's a complete example with properties and options:
       "values": ["always", "files", "context", "environment"],
       "description": "When to display this segment"
     }
-  ]
+  ],
+  "defaultCache": {
+    "duration": "168h",
+    "strategy": "folder"
+  }
 }
 ```
+
+## Cache Strategy Guide
+
+The `defaultCache` field provides recommended cache settings that are auto-applied when adding segments. Choose appropriate values based on how often the data changes:
+
+### Strategy Types
+- **session**: Cache persists for the terminal session. Use for context-dependent data that may change when switching projects.
+- **folder**: Cache is tied to the current directory. Use for project-specific data that rarely changes within a project.
+
+### Recommended Durations by Category
+
+| Category | Duration | Strategy | Rationale |
+|----------|----------|----------|-----------|
+| SCM (git, svn, etc.) | `2s` | session | Repository status changes frequently during development |
+| Languages | `168h` | folder | Version rarely changes within a project |
+| Cloud (aws, azure, gcp) | `1h` | session | Context may change when switching between projects |
+| Kubernetes (kubectl) | `1m` | session | Context switches often, but not constantly |
+| IaC (terraform, pulumi) | `5m` | folder | State rarely changes within a project |
+| CLI tools (npm, docker) | `30s-168h` | varies | Depends on how dynamic the data is |
+| System (os, shell) | `24h` | session | Rarely changes |
+| Real-time (time, battery) | none | - | Should not be cached |
 
 ## Dynamic Loading
 

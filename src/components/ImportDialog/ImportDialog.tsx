@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { importConfig } from '../../utils/configImporter';
 
 type ImportMethod = 'file' | 'paste';
@@ -17,9 +18,11 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
   const [format, setFormat] = useState<'json' | 'yaml' | 'toml'>('json');
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState(false);
+  const [enabledFeatures, setEnabledFeatures] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<number | null>(null);
   const setConfig = useConfigStore((state) => state.setConfig);
+  const detectAndEnableFeatures = useAdvancedFeaturesStore((state) => state.detectAndEnableFeatures);
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -44,12 +47,17 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       const importedConfig = importConfig(text, file.name);
       setConfig(importedConfig);
       
+      // Auto-detect and enable advanced features
+      const newlyEnabled = detectAndEnableFeatures(importedConfig);
+      setEnabledFeatures(newlyEnabled);
+      
       setSuccess(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setSuccess(false);
+        setEnabledFeatures([]);
         onClose();
-      }, 1500);
+      }, newlyEnabled.length > 0 ? 3000 : 1500);
       
       // Reset file input
       if (fileInputRef.current) {
@@ -72,13 +80,18 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       const importedConfig = importConfig(pastedConfig, filename);
       setConfig(importedConfig);
       
+      // Auto-detect and enable advanced features
+      const newlyEnabled = detectAndEnableFeatures(importedConfig);
+      setEnabledFeatures(newlyEnabled);
+      
       setSuccess(true);
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         setSuccess(false);
+        setEnabledFeatures([]);
         setPastedConfig('');
         onClose();
-      }, 1500);
+      }, newlyEnabled.length > 0 ? 3000 : 1500);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to import configuration');
     }
@@ -180,11 +193,16 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
               )}
 
               {success && (
-                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 space-y-2">
                   <p className="text-sm text-green-300 flex items-center gap-2">
                     <NerdIcon icon="ui-check" size={16} />
                     Configuration imported successfully!
                   </p>
+                  {enabledFeatures.length > 0 && (
+                    <p className="text-xs text-green-400/80">
+                      Auto-enabled features: {enabledFeatures.join(', ')}
+                    </p>
+                  )}
                 </div>
               )}
             </div>
@@ -257,11 +275,16 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
               )}
 
               {success && (
-                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 space-y-2">
                   <p className="text-sm text-green-300 flex items-center gap-2">
                     <NerdIcon icon="ui-check" size={16} />
                     Configuration imported successfully!
                   </p>
+                  {enabledFeatures.length > 0 && (
+                    <p className="text-xs text-green-400/80">
+                      Auto-enabled features: {enabledFeatures.join(', ')}
+                    </p>
+                  )}
                 </div>
               )}
 

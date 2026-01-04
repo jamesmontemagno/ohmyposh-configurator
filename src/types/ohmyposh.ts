@@ -122,6 +122,7 @@ export interface Segment {
   background?: string;
   background_templates?: string[];
   template?: string;
+  templates?: string[];
   templates_logic?: 'first_match' | 'join';
   powerline_symbol?: string;
   leading_diamond?: string;
@@ -135,10 +136,7 @@ export interface Segment {
   include_folders?: string[];
   exclude_folders?: string[];
   options?: Record<string, unknown>;
-  cache?: {
-    duration?: string;
-    strategy?: 'folder' | 'session';
-  };
+  cache?: SegmentCache;
 }
 
 export interface Block {
@@ -155,6 +153,12 @@ export interface Block {
   segments: Segment[];
 }
 
+// Tooltip extends Segment with tips array for trigger commands
+export interface Tooltip extends Omit<Segment, 'id'> {
+  id: string; // Internal ID for UI (stripped on export)
+  tips: string[]; // Commands that trigger this tooltip (e.g., ['git', 'g'])
+}
+
 export interface ExtraPrompt {
   template?: string;
   foreground?: string;
@@ -165,18 +169,53 @@ export interface ExtraPrompt {
   newline?: boolean;
 }
 
+// Extra prompt types for transient, secondary, valid/error line, and debug prompts
+export type ExtraPromptType =
+  | 'transient_prompt'
+  | 'secondary_prompt'
+  | 'valid_line'
+  | 'error_line'
+  | 'debug_prompt';
+
+// Segment cache settings
+export interface SegmentCache {
+  duration?: string;
+  strategy?: 'session' | 'folder';
+}
+
+// Cycle settings for color cycling
+export interface CycleSettings {
+  duration?: string;
+  foreground?: string;
+  background?: string;
+}
+
+// Upgrade settings for auto-update configuration
+export interface UpgradeSettings {
+  interval?: string;      // e.g., "168h" (1 week)
+  source?: 'cdn' | 'github';
+  auto?: boolean;
+  notice?: boolean;
+}
+
+// iTerm2 feature flags
+export type ITermFeature = 'prompt_mark' | 'current_dir' | 'remote_host';
+
 export interface OhMyPoshConfig {
   $schema?: string;
   version?: number;
   final_space?: boolean;
   enable_cursor_positioning?: boolean;
   shell_integration?: boolean;
-  pwd?: string;
+  pwd?: 'osc99' | 'osc7' | 'osc51';
+  patch_pwsh_bleed?: boolean;
+  async?: boolean;
   console_title_template?: string;
   terminal_background?: string;
   accent_color?: string;
   blocks: Block[];
-  tooltips?: Array<Segment & { tips: string[] }>;
+  tooltips?: Tooltip[];
+  tooltips_action?: 'replace' | 'extend' | 'prepend';
   transient_prompt?: ExtraPrompt;
   valid_line?: ExtraPrompt;
   error_line?: ExtraPrompt;
@@ -187,13 +226,17 @@ export interface OhMyPoshConfig {
     template?: string;
     list?: Record<string, Record<string, string>>;
   };
-  cycle?: Array<{ foreground?: string; background?: string }>;
+  cycle?: CycleSettings[];
   var?: Record<string, unknown>;
   maps?: {
     user_name?: Record<string, string>;
     host_name?: Record<string, string>;
     shell_name?: Record<string, string>;
   };
+  // Advanced settings
+  upgrade?: UpgradeSettings;
+  iterm_features?: ITermFeature[];
+  extends?: string;
 }
 
 // Export format types
@@ -220,6 +263,10 @@ export interface SegmentMetadata {
   defaultOptions?: Record<string, unknown>;
   defaultBackground?: string;
   defaultForeground?: string;
+  defaultCache?: {
+    duration: string;
+    strategy: 'session' | 'folder';
+  };
   previewText?: string;
   properties?: SegmentProperty[];
   methods?: SegmentMethod[];

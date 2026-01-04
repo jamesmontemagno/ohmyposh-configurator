@@ -2,6 +2,192 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04]
+
+### Advanced Features System
+
+**New Settings System for Managing UI Complexity**
+- **Advanced Settings Dialog**: Progressive disclosure system to hide advanced Oh My Posh features until users need them
+  - Access via "Settings" button in Header (shows count of enabled features)
+  - Master "Show All" toggle to quickly enable/disable all advanced features
+  - Organized into 3 categories: Segment Features, Block Features, and Global Features
+  - 15 toggleable features: Template Alias, Conditional Colors, Responsive Display, Folder Filters, Caching, Multiple Templates, Interactive, Diamond Symbols, Block Overflow, Block Filler, Tooltips, Extra Prompts, Console Title, Shell Integration, and Palette Variants
+  - Reset to Defaults button to restore initial state (only Caching enabled by default)
+  
+- **Auto-detection on Import**: Automatically enables features when importing configs that use them
+  - Scans for advanced properties (aliases, templates, tooltips, extra prompts, etc.)
+  - Shows notification listing newly enabled features
+  - Can be toggled off in Advanced Settings dialog
+
+- **Conditional UI Rendering**: All advanced controls now respect feature toggles
+  - SegmentProperties: Template Alias, Conditional Colors, Responsive Width, Interactive, Folder Filters, and Cache sections
+  - BlockProperties: Diamond symbols, Overflow, and Filler controls
+  - GlobalSettings: Console Title, Shell Integration, Tooltips action, and Extra Prompts
+  - Canvas: Tooltips section visibility
+  - PaletteEditor: Palette Variants section
+
+### Full Oh My Posh Schema Support
+
+**Complete Type System Coverage**
+- Added missing TypeScript interfaces for Oh My Posh v4 schema:
+  - `SegmentCache` interface for caching configuration
+  - `CycleSettings` interface for color cycling
+  - `UpgradeSettings` interface for auto-update settings
+  - `ITermFeature` type for iTerm2 integration flags
+  - `Tooltip` interface for command-based tooltips
+  
+- **Enhanced Import/Export**: Full support for all schema properties
+  - Import: `upgrade`, `iterm_features`, `extends`, `tooltips`, `tooltips_action`
+  - Export: Clean output (no empty arrays/objects), proper ID stripping
+  - All formats supported: JSON, YAML, TOML
+
+### Default Cache Settings
+
+**Intelligent Caching for Better Performance**
+- **Segment Metadata Cache Defaults**: Added `defaultCache` field to segment definitions
+  - Includes `duration` (e.g., `2s`, `1h`, `168h`) and `strategy` (`session` or `folder`)
+  - Strategy Guide in segments README with recommendations for each category:
+    - SCM segments: `2s` session (repository changes frequently)
+    - Language segments: `168h` folder (versions rarely change per project)
+    - Cloud segments: `1h` session for providers, `5m` folder for IaC tools
+    - System segments: `24h` session (or no cache for real-time data)
+  
+- **Auto-population on Add**: When adding a segment from picker, cache settings automatically applied from metadata
+  - Users get optimal defaults immediately
+  - Still fully customizable via Properties Panel
+
+### Tooltips Support
+
+**Command-Triggered Custom Prompts**
+- **Tooltip Infrastructure**: Complete implementation of Oh My Posh tooltips feature
+  - New store actions: `addTooltip`, `updateTooltip`, `removeTooltip`, `selectTooltip`, `duplicateTooltip`, `reorderTooltips`
+  - Selection states are mutually exclusive with blocks/segments
+  - Full import/export support with ID normalization
+  
+- **TooltipCard Component**: Visual representation in Canvas
+  - Displays trigger commands as green badges (e.g., `git`, `npm`)
+  - Shows style (powerline/diamond/plain), colors, and template preview
+  - Drag-and-drop reordering with dnd-kit
+  - Duplicate and delete actions
+  
+- **Canvas Tooltips Section**: Dedicated management area
+  - Collapsible section with count badge
+  - Grid layout with drag-and-drop reordering
+  - "Add Tooltip" button creates git tooltip with sensible defaults
+  - Empty state with helpful guidance
+  
+- **TooltipProperties Panel**: Full editor for tooltip configuration
+  - TipsEditor component for managing trigger commands (add/edit/remove)
+  - All segment properties: type, style, colors, template
+  - Style-specific controls (powerline/diamond symbols)
+  - Conditional color templates and responsive display
+  - Segment-specific options
+  
+- **Tooltip Preview**: Visual representation in PreviewPanel
+  - Shows trigger command → tooltip output
+  - Full style rendering with palette color resolution
+  - Click to select for editing
+  
+- **Global Tooltips Action**: Configure how tooltips interact with main prompt
+  - Three modes: Replace (default), Extend (append), Prepend (insert before)
+  - Setting added to GlobalSettings panel
+
+### Extra Prompts Support
+
+**Secondary Prompt Configuration**
+- **ExtraPromptsDialog**: Configure all 5 Oh My Posh secondary prompts
+  - Prompt types: transient_prompt, secondary_prompt, valid_line, error_line, debug_prompt
+  - Enable/disable toggle for each type
+  - Expandable editor sections with template, colors, and options
+  - Shell compatibility information for each prompt type
+  - Launch via GlobalSettings button (shows enabled count badge)
+  
+- **New GlobalSettings Fields**: Added missing top-level config options
+  - `pwd`: Working directory protocol (OSC 99, OSC 7, OSC 51)
+  - `async`: Enable async prompt rendering
+  - `patch_pwsh_bleed`: Fix PowerShell color issues (Windows)
+  
+- **Store Actions**: `setExtraPrompt` and `updateExtraPrompt` for managing secondary prompts
+
+### Advanced Segment Properties
+
+**Comprehensive Property Editors**
+- **FolderFilterEditor**: Manage `include_folders` and `exclude_folders` arrays
+  - Separate sections for whitelist (include) and blacklist (exclude)
+  - Glob pattern syntax help with examples
+  - Inline editing with Enter key support
+  
+- **ColorTemplateEditor**: Edit `foreground_templates` and `background_templates`
+  - Multi-line textarea with syntax validation
+  - Template format help and examples
+  - Ctrl+Enter for quick addition
+  
+- **CacheSettingsEditor**: Configure segment caching
+  - Duration input with format hints (s/m/h)
+  - Strategy dropdown (session vs folder)
+  - Quick preset buttons (2s to 168h)
+  - Segment-type-aware suggestions
+
+### Segment Configuration Options
+
+**Additional Controls for Advanced Users**
+- **Template Alias**: Reference segments in templates by custom name
+  - Validation: must start with letter, alphanumeric + underscores only
+  - Duplicate alias detection with warnings
+  - Dynamic help text showing usage example
+  
+- **Templates Logic**: Control multi-template evaluation
+  - `first_match`: Use first template with non-empty output (default)
+  - `join`: Concatenate all non-empty template outputs
+  - Only shown when segment has `templates` array
+  
+- **Responsive Display**: Control segment visibility by terminal width
+  - `min_width`: Minimum columns to show segment
+  - `max_width`: Maximum columns to show segment
+  - Collapsed by default to reduce clutter
+  
+- **Powerline Controls**: Additional powerline customization
+  - `invert_powerline`: Flip symbol vertically
+  - `leading_powerline_symbol`: Add symbol at segment start
+  - Only shown for powerline-style segments
+  - Enables "floating" effects with symbols on both sides
+  
+- **Interactive Toggle**: Enable OSC 8 hyperlinks
+  - Makes segments clickable in supported terminals
+  - Clear terminal compatibility information
+
+### UI/UX Improvements
+
+- **Confirmation Dialogs**: Added `useConfirm` hook and `ConfirmDialog` component for delete actions
+  - Prevents accidental deletions of segments, blocks, and tooltips
+  - Uses `useRef` for proper async resolve handling
+  
+- **Component Organization**: Refactored PropertiesPanel with reusable sections
+  - New section components: `TemplateSection`, `StyleSection`, `ColorsSection`, `OptionsSection`, `ResponsiveSection`
+  - Reduces code duplication across SegmentProperties and TooltipProperties
+  - Consistent UI patterns throughout the app
+  
+- **Font Subset Updates**: Regenerated Nerd Font subset with improved unicode handling
+  - Better symbol display quality
+  - Optimized file size
+  
+- **SegmentCard Enhancements**: Improved palette color resolution and styling
+  - More accurate color preview in Canvas
+  - Better visual feedback for segment state
+  
+- **SegmentPicker Layout**: Adjusted spacing and layout for improved usability
+
+### Data & Documentation
+
+- **Segment Metadata Updates**: Updated CLI, Cloud, Languages, SCM, System, Web, and Health segments
+  - Added `defaultCache` field to all segments
+  - Icon consistency improvements
+  - Enhanced templates with better formatting
+  
+- **Test Configuration**: Added `powerline-test.json` demonstrating recent features
+  
+- **Segments Documentation**: Updated README with Cache Strategy Guide and authoring instructions
+
 ## [2026-01-03] - Palette Support & Enhanced Template Preview
 
 ### Added

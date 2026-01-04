@@ -2,6 +2,8 @@ export { PropertiesPanel } from './PropertiesPanel';
 export { GlobalSettings } from './GlobalSettings';
 export { BlockProperties } from './BlockProperties';
 export { SegmentProperties } from './SegmentProperties';
+export { TooltipProperties } from './TooltipProperties';
+export { TipsEditor } from './TipsEditor';
 export { SegmentOptionsEditor } from './SegmentOptionsEditor';
 export { AvailableOptions } from './AvailableOptions';
 export { AvailableProperties } from './AvailableProperties';

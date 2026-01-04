@@ -67,7 +67,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "clojure",
@@ -152,7 +156,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "crystal",
@@ -237,7 +245,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "dart",
@@ -322,7 +334,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "elixir",
@@ -407,7 +423,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "fortran",
@@ -492,7 +512,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "go",
@@ -577,7 +601,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "haskell",
@@ -662,7 +690,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "java",
@@ -747,7 +779,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "julia",
@@ -832,7 +868,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "kotlin",
@@ -917,7 +957,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "lua",
@@ -1002,7 +1046,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "mojo",
@@ -1094,7 +1142,11 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nim",
@@ -1179,7 +1231,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "node",
@@ -1274,7 +1330,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ocaml",
@@ -1359,7 +1419,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "perl",
@@ -1444,7 +1508,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "php",
@@ -1529,7 +1597,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "python",
@@ -1626,7 +1698,11 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "r",
@@ -1711,7 +1787,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ruby",
@@ -1776,7 +1856,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "rust",
@@ -1846,7 +1930,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "swift",
@@ -1931,7 +2019,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "v",
@@ -2016,7 +2108,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "vala",
@@ -2101,7 +2197,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "zig",
@@ -2186,6 +2286,10 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   }
 ]

@@ -258,7 +258,11 @@
         "default": "",
         "description": "Icon for NixOS"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "24h",
+      "strategy": "session"
+    }
   },
   {
     "type": "path",
@@ -603,7 +607,11 @@
         "default": {},
         "description": "Custom glyph/text for specific shell names (case-insensitive)"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "24h",
+      "strategy": "session"
+    }
   },
   {
     "type": "status",

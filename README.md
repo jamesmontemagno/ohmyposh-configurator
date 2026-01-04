@@ -26,6 +26,9 @@ Perfect for developers, DevOps engineers, and anyone who wants a beautiful, info
 - 🖱️ **Drag & Drop Interface**: Intuitive visual editor with real-time updates
 - ⚡ **Live Preview**: See your prompt instantly with sample data and powerline/diamond styles
 - 🎛️ **Full Customization**: Configure colors, templates, styles, and alignment with inline documentation
+- 🚀 **Progressive Disclosure**: Advanced features hidden by default with settings dialog to show/hide complexity as needed
+- 🎯 **Smart Defaults**: Auto-applied cache settings, intelligent feature detection on import
+- 💡 **Command Tooltips**: Configure command-triggered custom prompts (e.g., show git status when typing `git`)
 - 📚 **Segment Documentation**: Built-in properties and options reference for every segment
 - 📦 **Import & Export**: Support for JSON, YAML, and TOML formats
 - 💾 **Auto-Save**: Never lose your work with automatic browser storage
@@ -179,20 +182,27 @@ eval "$(oh-my-posh init zsh --config ~/your-theme.json)"
 │       ├── health.json   # 3 health tracker segments
 │       └── README.md     # Documentation for adding segments
 ├── src/
-│   ├── components/       # React components (11 component folders)
-│   │   ├── Canvas/       # Drag-and-drop prompt builder
+│   ├── components/       # React components
+│   │   ├── Canvas/       # Drag-and-drop prompt builder with tooltips support
 │   │   ├── SegmentPicker/ # Category browser with segments
-│   │   ├── PropertiesPanel/ # Segment properties and options editor
-│   │   ├── PreviewPanel/ # Live prompt preview
+│   │   ├── PropertiesPanel/ # Segment, block, tooltip, and global properties editor
+│   │   ├── PreviewPanel/ # Live prompt preview with tooltip previews
+│   │   ├── AdvancedSettingsDialog/ # Progressive disclosure settings for advanced features
+│   │   ├── ExtraPromptsDialog/ # Secondary prompts configuration
+│   │   ├── ConfirmDialog/ # Reusable confirmation dialog
 │   │   └── ...
 │   ├── data/            # Configuration data and color schemes
 │   ├── store/           # Zustand state management with persistence
-│   ├── types/           # TypeScript type definitions (SegmentMetadata, etc.)
+│   │   ├── configStore.ts  # Main config state (blocks, segments, tooltips, global settings)
+│   │   └── advancedFeaturesStore.ts  # Feature toggles for progressive disclosure
+│   ├── types/           # TypeScript type definitions (SegmentMetadata, Tooltip, etc.)
 │   ├── utils/           # Utility functions
 │   │   ├── segmentLoader.ts  # Dynamic segment loading with caching
 │   │   ├── configExporter.ts # Export to JSON/YAML/TOML
+│   │   ├── configImporter.ts # Import with auto-feature detection
 │   │   └── unicode.ts   # Unicode escape handling
-│   └── constants/       # Nerd Font icons and other constants
+│   ├── constants/       # Nerd Font icons and other constants
+│   └── hooks/           # Custom React hooks (useConfirm, etc.)
 ├── docs/                # Comprehensive documentation
 │   ├── config-migration-guide.md  # Guide for config structure updates
 │   ├── segment-json-migration.md  # Segment refactoring documentation
@@ -230,13 +240,18 @@ Segments are now stored in separate JSON files by category in `public/segments/`
          "default": true,
          "description": "What this option does"
        }
-     ]
+     ],
+     "defaultCache": {
+       "duration": "168h",
+       "strategy": "folder"
+     }
    }
    ```
 3. **Properties** are template variables available in `{{ }}` templates (e.g., `.Full`, `.Path`)
 4. **Options** are segment configuration settings (e.g., `home_enabled`, `fetch_version`)
-5. Segments are loaded dynamically on demand for better performance
-6. Colors are applied automatically from category-based color schemes
+5. **defaultCache** (optional) provides recommended caching for performance (see Cache Strategy Guide in `public/segments/README.md`)
+6. Segments are loaded dynamically on demand for better performance
+7. Colors are applied automatically from category-based color schemes
 
 See [public/segments/README.md](public/segments/README.md) for detailed instructions.
 

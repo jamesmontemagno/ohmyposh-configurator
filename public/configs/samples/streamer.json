@@ -2,6 +2,14 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "version": 4,
   "final_space": true,
+  "palette": {
+    "text-light": "#ffffff",
+    "time-bg": "#ff6b6b",
+    "path-bg": "#4ecdc4",
+    "git-bg": "#3fb8af",
+    "spotify-bg": "#1DB954",
+    "prompt": "#e4f9f5"
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -10,8 +18,8 @@
         {
           "type": "time",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#ff6b6b",
+          "foreground": "p:text-light",
+          "background": "p:time-bg",
           "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b0",
           "template": " \uf017 {{ .CurrentDate | date \"15:04\" }} "
@@ -20,8 +28,8 @@
           "type": "path",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#4ecdc4",
+          "foreground": "p:text-light",
+          "background": "p:path-bg",
           "template": " \uf07c {{ .Path }} ",
           "options": {
             "style": "folder",
@@ -32,9 +40,9 @@
           "type": "git",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "foreground": "#ffffff",
-          "background": "#3fb8af",
-          "template": " \ue725 {{ .HEAD }} "
+          "foreground": "p:text-light",
+          "background": "p:git-bg",
+          "template": " \uf126 {{ .HEAD }} "
         }
       ]
     },
@@ -45,8 +53,8 @@
         {
           "type": "spotify",
           "style": "diamond",
-          "foreground": "#ffffff",
-          "background": "#1DB954",
+          "foreground": "p:text-light",
+          "background": "p:spotify-bg",
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0b4",
           "template": " \uf1bc {{ if ne .Status \"stopped\" }}{{ .Artist }} - {{ .Track }}{{ end }} ",
@@ -66,7 +74,7 @@
         {
           "type": "text",
           "style": "plain",
-          "foreground": "#e4f9f5",
+          "foreground": "p:prompt",
           "template": "\u279c "
         }
       ]

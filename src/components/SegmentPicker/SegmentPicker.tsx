@@ -13,7 +13,7 @@ interface SegmentItemProps {
 function SegmentItem({ segment, onAdd }: SegmentItemProps) {
   return (
     <div
-      className="flex items-center gap-2 px-2 py-1.5 hover:bg-[#1a1a2e] rounded cursor-pointer group transition-colors"
+      className="flex items-center gap-1.5 px-1 py-1 hover:bg-[#1a1a2e] rounded cursor-pointer group transition-colors"
       onClick={() => onAdd(segment)}
       draggable
       onDragStart={(e) => {
@@ -22,8 +22,8 @@ function SegmentItem({ segment, onAdd }: SegmentItemProps) {
       }}
       title={`${segment.name}\n\n${segment.description}`}
     >
-      <NerdIcon icon="ui-grip-vertical" size={14} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-      <NerdIcon icon={segment.icon} size={16} className="text-gray-400" />
+      <NerdIcon icon="ui-grip-vertical" size={12} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+      <NerdIcon icon={segment.icon} size={14} className="text-gray-400 flex-shrink-0" />
       <div className="flex-1 min-w-0">
         <div className="text-sm text-gray-200 truncate">{segment.name}</div>
         {segment.previewText && (
@@ -53,22 +53,22 @@ interface CategorySectionProps {
 
 function CategorySection({ category, segments, onAdd, isExpanded, onToggle }: CategorySectionProps) {
   return (
-    <div className="mb-1">
+    <div className="mb-0.5">
       <button
-        className="flex items-center gap-2 w-full px-2 py-1.5 text-left hover:bg-[#1a1a2e] rounded transition-colors"
+        className="flex items-center gap-1.5 w-full px-1.5 py-1 text-left hover:bg-[#1a1a2e] rounded transition-colors"
         onClick={onToggle}
       >
         {isExpanded ? (
-          <NerdIcon icon="ui-chevron-down" size={16} className="text-gray-400" />
+          <NerdIcon icon="ui-chevron-down" size={14} className="text-gray-400" />
         ) : (
-          <NerdIcon icon="ui-chevron-right" size={16} className="text-gray-400" />
+          <NerdIcon icon="ui-chevron-right" size={14} className="text-gray-400" />
         )}
-        <NerdIcon icon={category.icon} size={16} className="text-gray-400" />
-        <span className="text-sm font-medium text-gray-200">{category.name}</span>
+        <NerdIcon icon={category.icon} size={14} className="text-gray-400" />
+        <span className="text-xs font-medium text-gray-200">{category.name}</span>
         <span className="text-xs text-gray-500 ml-auto">{segments.length}</span>
       </button>
       {isExpanded && (
-        <div className="ml-4 mt-1">
+        <div className="ml-1 mt-0.5">
           {segments.map((segment) => (
             <SegmentItem key={segment.type} segment={segment} onAdd={onAdd} />
           ))}
@@ -144,6 +144,11 @@ export function SegmentPicker() {
       powerline_symbol: lastSegment?.powerline_symbol || '\ue0b0',
       template: metadata.defaultTemplate || ` {{ .${metadata.name.replace(/\s/g, '')} }} `,
       options: metadata.defaultOptions,
+      // Apply default cache settings from metadata if available
+      cache: metadata.defaultCache ? {
+        duration: metadata.defaultCache.duration,
+        strategy: metadata.defaultCache.strategy,
+      } : undefined,
     };
 
     // Inherit colors from previous segment, preserving undefined if not set

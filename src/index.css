@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
-/* Nerd Font subset - optimized for app performance (WOFF2 + TTF + CDN fallback) */
+/* Nerd Font subset - optimized for app performance */
 @font-face {
-  font-family: 'Symbols Nerd Font';
+  font-family: 'Symbols Nerd Font Subset';
   src: url('/ohmyposh-configurator/fonts/nerd-symbols-subset.woff2') format('woff2'),
-       url('/ohmyposh-configurator/fonts/nerd-symbols-subset.ttf') format('truetype'),
-       url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+       url('/ohmyposh-configurator/fonts/nerd-symbols-subset.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Full Nerd Font from CDN - fallback for missing glyphs */
+@font-face {
+  font-family: 'Symbols Nerd Font Full';
+  src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.3.0/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -37,7 +45,7 @@ body {
 
 /* Nerd Font symbol styling for preview */
 .nerd-font-symbol {
-  font-family: 'Symbols Nerd Font', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
+  font-family: 'Symbols Nerd Font Subset', 'Symbols Nerd Font Full', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
   font-size: 1.4em;
   line-height: 1;
   display: inline-flex;
@@ -47,7 +55,7 @@ body {
 
 /* Powerline symbols that need to fill segment height */
 .powerline-symbol {
-  font-family: 'Symbols Nerd Font', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
+  font-family: 'Symbols Nerd Font Subset', 'Symbols Nerd Font Full', 'Hack Nerd Font', 'FiraCode Nerd Font', 'CaskaydiaCove Nerd Font', monospace;
   font-size: 1.75em;
   line-height: 1;
   display: inline-flex;

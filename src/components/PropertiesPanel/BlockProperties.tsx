@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useConfigStore } from '../../store/configStore';
+import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { LEADING_DIAMOND_SYMBOLS, TRAILING_DIAMOND_SYMBOLS } from '../../constants/symbols';
 import { SymbolPicker } from './SymbolPicker';
 import type { Block, BlockType, BlockAlignment } from '../../types/ohmyposh';
@@ -8,6 +9,7 @@ export function BlockProperties() {
   const config = useConfigStore((state) => state.config);
   const selectedBlockId = useConfigStore((state) => state.selectedBlockId);
   const updateBlock = useConfigStore((state) => state.updateBlock);
+  const features = useAdvancedFeaturesStore((state) => state.features);
   const [isExpanded, setIsExpanded] = useState(true);
 
   const block = config.blocks.find((b) => b.id === selectedBlockId);
@@ -58,7 +60,7 @@ export function BlockProperties() {
             </div>
           )}
 
-          {block.alignment === 'right' && (
+          {block.alignment === 'right' && features.blockOverflow && (
             <div>
               <label className="text-xs text-gray-400">Overflow</label>
               <select
@@ -76,7 +78,7 @@ export function BlockProperties() {
             </div>
           )}
 
-          {block.alignment === 'right' && (
+          {block.alignment === 'right' && features.blockFiller && (
             <div>
               <label className="text-xs text-gray-400">Filler</label>
               <input
@@ -118,21 +120,25 @@ export function BlockProperties() {
             </label>
           </div>
 
-          <SymbolPicker
-            label="Leading Diamond"
-            value={block.leading_diamond || ''}
-            onChange={(value) => handleUpdate({ leading_diamond: value || undefined })}
-            symbols={LEADING_DIAMOND_SYMBOLS}
-            placeholder="Left-pointing symbol"
-          />
+          {features.diamondSymbols && (
+            <>
+              <SymbolPicker
+                label="Leading Diamond"
+                value={block.leading_diamond || ''}
+                onChange={(value) => handleUpdate({ leading_diamond: value || undefined })}
+                symbols={LEADING_DIAMOND_SYMBOLS}
+                placeholder="Left-pointing symbol"
+              />
 
-          <SymbolPicker
-            label="Trailing Diamond"
-            value={block.trailing_diamond || ''}
-            onChange={(value) => handleUpdate({ trailing_diamond: value || undefined })}
-            symbols={TRAILING_DIAMOND_SYMBOLS}
-            placeholder="Right-pointing symbol"
-          />
+              <SymbolPicker
+                label="Trailing Diamond"
+                value={block.trailing_diamond || ''}
+                onChange={(value) => handleUpdate({ trailing_diamond: value || undefined })}
+                symbols={TRAILING_DIAMOND_SYMBOLS}
+                placeholder="Right-pointing symbol"
+              />
+            </>
+          )}
 
           <div>
             <label className="text-xs text-gray-400">Index (for extends)</label>

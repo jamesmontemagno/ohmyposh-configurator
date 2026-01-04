@@ -3,6 +3,8 @@ import { CSS } from '@dnd-kit/utilities';
 import { NerdIcon } from '../NerdIcon';
 import type { Segment } from '../../types/ohmyposh';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
+import { useConfigStore } from '../../store/configStore';
+import { resolvePaletteColor, getActivePalette } from '../../utils/paletteResolver';
 
 interface SegmentCardProps {
   segment: Segment;
@@ -20,6 +22,16 @@ export function SegmentCard({
   isDragging,
 }: SegmentCardProps) {
   const metadata = useSegmentMetadata(segment.type);
+  const config = useConfigStore((state) => state.config);
+  const previewPaletteName = useConfigStore((state) => state.previewPaletteName);
+
+  // Resolve palette colors for display
+  const palette = getActivePalette(config, previewPaletteName);
+  const resolvedBg = resolvePaletteColor(segment.background, palette);
+  const resolvedFg = resolvePaletteColor(segment.foreground, palette);
+  
+  const backgroundColor = resolvedBg.color || 'transparent';
+  const foregroundColor = resolvedFg.color || '#ffffff';
 
   const tooltipText = metadata?.name && metadata?.description 
     ? `${metadata.name}\n\n${metadata.description}` 
@@ -35,9 +47,9 @@ export function SegmentCard({
           : 'hover:ring-1 hover:ring-gray-500'
       }`}
       style={{
-        backgroundColor: segment.background || 'transparent',
-        color: segment.foreground || '#ffffff',
-        border: !segment.background ? '1px solid rgba(255,255,255,0.2)' : 'none',
+        backgroundColor,
+        color: foregroundColor,
+        border: backgroundColor === 'transparent' ? '1px solid rgba(255,255,255,0.2)' : 'none',
       }}
       onClick={(e) => {
         e.stopPropagation();

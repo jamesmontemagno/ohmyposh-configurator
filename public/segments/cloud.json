@@ -27,14 +27,18 @@
         "default": true,
         "description": "Display segment when using default profile"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "az",
     "name": "Azure",
     "description": "Displays the current Azure CLI subscription name and ID",
     "icon": "cloud-azure",
-    "defaultTemplate": " ﴃ {{ .Name }} ",
+    "defaultTemplate": " \ufd03 {{ .Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0078D4",
     "previewText": "My Subscription",
@@ -67,7 +71,11 @@
           "cli|pwsh"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "azd",
@@ -84,7 +92,11 @@
         "type": "string",
         "description": "Azure Developer CLI environment name"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "azfunc",
@@ -147,7 +159,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cf",
@@ -215,7 +231,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "cftarget",
@@ -249,7 +269,11 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "gcp",
@@ -271,14 +295,18 @@
         "type": "string",
         "description": "error when loading the GCP config"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "kubectl",
     "name": "Kubernetes",
     "description": "Displays the current Kubernetes context and namespace",
     "icon": "cloud-kubernetes",
-    "defaultTemplate": " ⎈ {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} ",
+    "defaultTemplate": " \u2388 {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#326CE5",
     "previewText": "prod-cluster::default",
@@ -307,7 +335,11 @@
         "default": true,
         "description": "Display default context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1m",
+      "strategy": "session"
+    }
   },
   {
     "type": "pulumi",
@@ -337,7 +369,11 @@
         "default": true,
         "description": "Fetch the current stack name"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "5m",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cds",
@@ -410,7 +446,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "sitecore",
@@ -439,7 +479,11 @@
           "files"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "1h",
+      "strategy": "session"
+    }
   },
   {
     "type": "terraform",
@@ -469,6 +513,10 @@
           "context"
         ]
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "5m",
+      "strategy": "folder"
+    }
   }
 ]

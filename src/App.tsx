@@ -25,7 +25,7 @@ function App() {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar - Segment Picker */}
-        <div className="w-64 flex-shrink-0 overflow-hidden">
+        <div className="w-56 flex-shrink-0 overflow-hidden">
           <SegmentPicker />
         </div>
 

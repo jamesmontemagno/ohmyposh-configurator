@@ -87,7 +87,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "argocd",
@@ -114,7 +118,11 @@
         "type": "string",
         "description": "the user of the current context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "aurelia",
@@ -182,7 +190,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "bazel",
@@ -255,7 +267,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "buf",
@@ -323,7 +339,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "bun",
@@ -431,14 +451,18 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "claude",
     "name": "Claude Code",
     "description": "Displays the current Claude Code session status, model, and token usage",
     "icon": "ai-robot",
-    "defaultTemplate": " 󰯉 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
+    "defaultTemplate": " \uf0bc9 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D97757",
     "previewText": "🤖 claude ",
@@ -520,7 +544,11 @@
         "returnType": "string",
         "description": "Returns the numeric percentage value as a string (e.g., '75')"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "cmake",
@@ -628,7 +656,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "deno",
@@ -713,7 +745,11 @@
         "default": "",
         "description": "Template for version URL"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "docker",
@@ -760,7 +796,11 @@
         ],
         "description": "File extensions to validate"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "30s",
+      "strategy": "session"
+    }
   },
   {
     "type": "firebase",
@@ -777,7 +817,11 @@
         "type": "string",
         "description": "the currently active project"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "flutter",
@@ -873,7 +917,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "copilot",
@@ -990,7 +1038,11 @@
         "default": 20,
         "description": "HTTP request timeout in milliseconds"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "helm",
@@ -1007,7 +1059,11 @@
         "type": "string",
         "description": "Helm cli version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "mvn",
@@ -1114,7 +1170,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nbgv",
@@ -1136,7 +1196,11 @@
         "type": "string",
         "description": "the current assembly version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nix-shell",
@@ -1153,7 +1217,11 @@
         "type": "string",
         "description": "the type of nix shell"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "npm",
@@ -1261,7 +1329,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "nx",
@@ -1329,7 +1401,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "pnpm",
@@ -1437,7 +1513,11 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "quasar",
@@ -1505,7 +1585,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "react",
@@ -1573,7 +1657,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "svelte",
@@ -1641,14 +1729,18 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "talosctl",
     "name": "Talosctl",
     "description": "Displays the current Talos context",
     "icon": "cloud-kubernetes",
-    "defaultTemplate": " ⎈ {{ .Context }} ",
+    "defaultTemplate": " \u2388 {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF6A00",
     "previewText": "1.6.0",
@@ -1658,7 +1750,11 @@
         "type": "string",
         "description": "the current talosctl context"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "tauri",
@@ -1726,7 +1822,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "ui5tooling",
@@ -1794,7 +1894,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "umbraco",
@@ -1816,7 +1920,11 @@
         "type": "string",
         "description": "the version of umbraco found"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "unity",
@@ -1838,7 +1946,11 @@
         "type": "string",
         "description": "the C# version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "winget",
@@ -1855,7 +1967,11 @@
         "type": "int",
         "description": "the number of packages with available updates"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "xmake",
@@ -1918,7 +2034,11 @@
         "default": "",
         "description": "Text when command is missing"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   },
   {
     "type": "yarn",
@@ -2026,6 +2146,10 @@
         ],
         "description": "Tooling to use for fetching version"
       }
-    ]
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
   }
 ]
