@@ -2,9 +2,22 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
-## [2026-01-03] - HTML Formatting Support
+## [2026-01-03] - Palette Support & HTML Formatting
 
 ### Added
+- **Palette Support**: Full support for Oh My Posh's `palette` and `palettes` features
+  - **Palette Editor Dialog**: New dialog accessible via "Palette" button in header to manage color palettes
+  - **Base Palette**: Define reusable colors referenced as `p:key-name` throughout segments
+  - **Palette Variants**: Create multiple named palette variants (e.g., dark/light themes) with template-based selection
+  - **Preview Palette Selector**: Switch between palette variants for preview
+- **Enhanced Color Input**: Three-mode color selector supporting:
+  - Direct hex color values
+  - Named CSS colors (including context-dependent colors like `parentBackground`, `foreground`, `accent`)
+  - Palette references (`p:key-name`) with color swatches
+- **Template Autocomplete**: Type `<p:` in template fields to get autocomplete suggestions for palette color keys
+- **Inline Palette Colors**: Preview panel now resolves `<p:key-name>` inline color tags in templates
+- **Context-Dependent Color Indicators**: Visual indicators for colors that inherit from adjacent segments at runtime
+- **Unresolved Palette Warnings**: Warning indicators when palette references cannot be resolved
 - **HTML Formatting in Templates**: Preview panel now supports HTML formatting tags in templates including `<b>` (bold), `<i>` (italic), `<u>` (underline), `<s>` and `<strike>` (strikethrough). Multiple formatting styles can be combined and work alongside existing color codes.
 
 ## [2026-01-02] - Latest Updates

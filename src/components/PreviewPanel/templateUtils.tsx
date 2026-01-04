@@ -1,14 +1,24 @@
 import type { ReactNode } from 'react';
 import type { Segment } from '../../types/ohmyposh';
 import { mockData, getMockDataForSegment } from './mockData';
+import { 
+  resolvePaletteColor, 
+  isHexColor,
+  NAMED_COLORS,
+  isNamedColor,
+} from '../../utils/paletteResolver';
 
 // Parse inline color codes and HTML formatting from Oh My Posh templates
-// Format: <#hexcolor>text</> or </>text (to reset)
+// Format: <#hexcolor>text</>, <p:palette-key>text</>, or </>text (to reset)
 // HTML: <b>bold</b>, <i>italic</i>, <u>underline</u>, <s>strikethrough</s>
-export function parseInlineColors(text: string, defaultColor: string): ReactNode[] {
+export function parseInlineColors(
+  text: string, 
+  defaultColor: string,
+  palette: Record<string, string> = {}
+): ReactNode[] {
   const parts: ReactNode[] = [];
-  // Match color start tags <#RRGGBB>, color end tags </>, or HTML formatting tags
-  const tagRegex = /<#([0-9a-fA-F]{6})>|<\/>|<(b|i|u|s|strike)>|<\/(b|i|u|s|strike)>/g;
+  // Match color start tags <#RRGGBB>, palette tags <p:key-name>, color end tags </>, or HTML formatting tags
+  const tagRegex = /<#([0-9a-fA-F]{6})>|<p:([\w-]+)>|<\/>|<(b|i|u|s|strike)>|<\/(b|i|u|s|strike)>/g;
   let lastIndex = 0;
   let match;
   let currentColor = defaultColor;
@@ -38,21 +48,40 @@ export function parseInlineColors(text: string, defaultColor: string): ReactNode
     }
 
     if (match[1]) {
-      // Color start tag found - set new color
+      // Hex color start tag found - set new color
       currentColor = `#${match[1]}`;
+    } else if (match[2]) {
+      // Palette color tag <p:key-name> - resolve from palette
+      const paletteKey = match[2];
+      if (paletteKey in palette) {
+        const paletteValue = palette[paletteKey];
+        // Resolve the palette value (could be hex, named color, or another reference)
+        const resolved = resolvePaletteColor(`p:${paletteKey}`, palette);
+        if (resolved.color) {
+          currentColor = resolved.color;
+        } else {
+          // Fall back to palette value as-is if we can't resolve
+          currentColor = isHexColor(paletteValue) ? paletteValue : 
+                         isNamedColor(paletteValue) ? NAMED_COLORS[paletteValue.toLowerCase()] : 
+                         defaultColor;
+        }
+      } else {
+        // Unresolved palette key - keep current color but could add warning
+        currentColor = defaultColor;
+      }
     } else if (match[0] === '</>') {
       // Color end tag </> - reset to default color
       currentColor = defaultColor;
-    } else if (match[2]) {
+    } else if (match[3]) {
       // HTML formatting opening tag
-      const tag = match[2];
+      const tag = match[3];
       if (tag === 'b') styleStack.bold = true;
       else if (tag === 'i') styleStack.italic = true;
       else if (tag === 'u') styleStack.underline = true;
       else if (tag === 's' || tag === 'strike') styleStack.strikethrough = true;
-    } else if (match[3]) {
+    } else if (match[4]) {
       // HTML formatting closing tag
-      const tag = match[3];
+      const tag = match[4];
       if (tag === 'b') delete styleStack.bold;
       else if (tag === 'i') delete styleStack.italic;
       else if (tag === 'u') delete styleStack.underline;
