@@ -9,7 +9,7 @@ import { OfficialThemeCard } from './OfficialThemeCard';
 
 type TabType = 'samples' | 'community' | 'official';
 
-const THEMES_PER_PAGE = 12;
+const THEMES_PER_PAGE = 25;
 
 export function SamplePicker() {
   const [isOpen, setIsOpen] = useState(false);
