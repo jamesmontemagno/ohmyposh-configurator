@@ -6,11 +6,12 @@ interface SaveConfigDialogProps {
   isOpen: boolean;
   onClose: () => void;
   editingId?: string | null;
+  onSaveSuccess?: (name: string) => void;
 }
 
 const MAX_CONFIGS = 50;
 
-export function SaveConfigDialog({ isOpen, onClose, editingId }: SaveConfigDialogProps) {
+export function SaveConfigDialog({ isOpen, onClose, editingId, onSaveSuccess }: SaveConfigDialogProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [tagInput, setTagInput] = useState('');
@@ -18,7 +19,7 @@ export function SaveConfigDialog({ isOpen, onClose, editingId }: SaveConfigDialo
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  const { configs, saveConfig, updateConfig, lastLoadedId } = useSavedConfigsStore();
+  const { configs, saveConfig, updateConfig } = useSavedConfigsStore();
   
   const isEditing = editingId !== null && editingId !== undefined;
   const editingConfig = isEditing ? configs.find(c => c.id === editingId) : null;
@@ -103,6 +104,7 @@ export function SaveConfigDialog({ isOpen, onClose, editingId }: SaveConfigDialo
           return;
         }
       }
+      onSaveSuccess?.(trimmedName);
       onClose();
     } catch {
       setError('An error occurred while saving');
@@ -147,6 +149,7 @@ export function SaveConfigDialog({ isOpen, onClose, editingId }: SaveConfigDialo
         setIsSaving(false);
         return;
       }
+      onSaveSuccess?.(trimmedName);
       onClose();
     } catch {
       setError('An error occurred while saving');
@@ -282,11 +285,11 @@ export function SaveConfigDialog({ isOpen, onClose, editingId }: SaveConfigDialo
             Cancel
           </button>
           
-          {/* Show "Save as New" button when editing a different config */}
-          {isEditing && lastLoadedId !== editingId && (
+          {/* Show "Save as New" button when editing */}
+          {isEditing && (
             <button
               onClick={handleSaveAsNew}
-              disabled={isSaving || isAtLimit}
+              disabled={isSaving || configs.length >= MAX_CONFIGS}
               className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
             >
               Save as New

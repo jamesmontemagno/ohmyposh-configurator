@@ -23,9 +23,9 @@ function SegmentItem({ segment, onAdd }: SegmentItemProps) {
       title={`${segment.name}\n\n${segment.description}`}
     >
       <NerdIcon icon="ui-grip-vertical" size={12} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-      <NerdIcon icon={segment.icon} size={14} className="text-gray-400 flex-shrink-0" />
+      <NerdIcon icon={segment.icon} size={16} className="text-gray-400 flex-shrink-0" />
       <div className="flex-1 min-w-0">
-        <div className="text-sm text-gray-200 truncate">{segment.name}</div>
+        <div className="text-[0.9rem] text-gray-200 truncate">{segment.name}</div>
         {segment.previewText && (
           <div className="text-xs text-gray-500 font-mono truncate">{segment.previewText}</div>
         )}

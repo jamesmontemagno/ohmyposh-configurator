@@ -8,6 +8,9 @@ const DRAFT_STORAGE_KEY = 'ohmyposh-draft-config';
 const MAX_CONFIGS = 50;
 const DRAFT_DEBOUNCE_MS = 5000;
 
+// Track config snapshot for change detection
+let lastConfigSnapshot: string | null = null;
+
 interface DraftData {
   config: OhMyPoshConfig;
   savedAt: string;
@@ -109,6 +112,9 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
       hasUnsavedChanges: false,
     });
     
+    // Update snapshot to match saved config
+    lastConfigSnapshot = JSON.stringify(currentConfig);
+    
     // Clear draft after explicit save
     await getState().clearDraft();
     
@@ -148,6 +154,11 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
     await persistConfigs(updatedConfigs);
     setState({ configs: updatedConfigs, hasUnsavedChanges: false });
     
+    // Update snapshot to match saved config
+    if (updates.config) {
+      lastConfigSnapshot = JSON.stringify(updates.config);
+    }
+    
     // Clear draft after explicit save
     await getState().clearDraft();
   },
@@ -175,6 +186,12 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
     setState({ 
       lastLoadedId: id,
       hasUnsavedChanges: false,
+    });
+    
+    // Reset the snapshot to the newly loaded config
+    // This needs to happen after a microtask to ensure config is set
+    queueMicrotask(() => {
+      lastConfigSnapshot = JSON.stringify(useConfigStore.getState().config);
     });
     
     // Clear draft when loading a saved config
@@ -344,20 +361,60 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
 
 // Auto-save draft with debounce
 let draftTimeout: ReturnType<typeof setTimeout> | null = null;
+let dirtyCheckTimeout: ReturnType<typeof setTimeout> | null = null;
 
 export const setupDraftAutoSave = () => {
+  // Initialize snapshot with current config
+  lastConfigSnapshot = JSON.stringify(useConfigStore.getState().config);
+  
   return useConfigStore.subscribe((state) => {
-    // Clear any pending timeout
-    if (draftTimeout) {
-      clearTimeout(draftTimeout);
+    const currentConfigStr = JSON.stringify(state.config);
+    
+    // Check if config actually changed from last snapshot
+    const configChanged = currentConfigStr !== lastConfigSnapshot;
+    
+    if (configChanged) {
+      // Update snapshot for next comparison
+      lastConfigSnapshot = currentConfigStr;
+      
+      // Clear any pending timeout
+      if (draftTimeout) {
+        clearTimeout(draftTimeout);
+      }
+      
+      // Set new timeout for draft save
+      draftTimeout = setTimeout(() => {
+        useSavedConfigsStore.getState().saveDraft(state.config);
+      }, DRAFT_DEBOUNCE_MS);
     }
     
-    // Set new timeout
-    draftTimeout = setTimeout(() => {
-      useSavedConfigsStore.getState().saveDraft(state.config);
-      useSavedConfigsStore.getState().setHasUnsavedChanges(true);
-    }, DRAFT_DEBOUNCE_MS);
+    // Debounce dirty check to ensure all state updates have settled
+    // This handles the case where loadConfig sets config before lastLoadedId
+    if (dirtyCheckTimeout) {
+      clearTimeout(dirtyCheckTimeout);
+    }
+    
+    dirtyCheckTimeout = setTimeout(() => {
+      const { lastLoadedId, configs, hasUnsavedChanges } = useSavedConfigsStore.getState();
+      if (lastLoadedId) {
+        const savedConfig = configs.find(c => c.id === lastLoadedId);
+        if (savedConfig) {
+          const currentConfig = JSON.stringify(useConfigStore.getState().config);
+          const savedConfigStr = JSON.stringify(savedConfig.config);
+          const shouldBeUnsaved = currentConfig !== savedConfigStr;
+          
+          if (shouldBeUnsaved !== hasUnsavedChanges) {
+            useSavedConfigsStore.getState().setHasUnsavedChanges(shouldBeUnsaved);
+          }
+        }
+      }
+    }, 50); // Small delay to let state settle
   });
+};
+
+// Reset the snapshot when loading a config (called from loadConfig)
+export const resetConfigSnapshot = () => {
+  lastConfigSnapshot = JSON.stringify(useConfigStore.getState().config);
 };
 
 // Helper to check if stored keys exist (for debugging)

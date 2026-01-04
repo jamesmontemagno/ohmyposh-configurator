@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { useSavedConfigsStore } from '../../store/savedConfigsStore';
@@ -6,6 +6,7 @@ import { exportConfig, downloadConfig, copyToClipboard } from '../../utils/confi
 import { ImportDialog } from '../ImportDialog';
 import { SubmitConfigDialog } from '../SubmitConfigDialog';
 import { SaveConfigDialog } from '../SaveConfigDialog';
+import { ToastContainer, type ToastData } from '../Toast';
 import type { ExportFormat } from '../../types/ohmyposh';
 
 const formatOptions: { value: ExportFormat; label: string; iconName: string }[] = [
@@ -18,19 +19,60 @@ export function ExportBar() {
   const config = useConfigStore((state) => state.config);
   const exportFormat = useConfigStore((state) => state.exportFormat);
   const setExportFormat = useConfigStore((state) => state.setExportFormat);
-  const { hasUnsavedChanges, lastLoadedId, configs } = useSavedConfigsStore();
+  const { hasUnsavedChanges, lastLoadedId, configs, updateConfig } = useSavedConfigsStore();
   const [copied, setCopied] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [importMethod, setImportMethod] = useState<'file' | 'paste'>('file');
   const [showImportDropdown, setShowImportDropdown] = useState(false);
+  const [toasts, setToasts] = useState<ToastData[]>([]);
   const importDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Toast helpers
+  const toastIdCounter = useRef(0);
+  const showToast = useCallback((message: string, type: ToastData['type'] = 'info', duration = 3000) => {
+    const id = `toast-${++toastIdCounter.current}`;
+    setToasts((prev) => [...prev, { id, message, type, duration }]);
+  }, []);
+
+  const dismissToast = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
 
   // Get the name of the currently loaded config (if any)
   const currentConfigName = lastLoadedId 
     ? configs.find(c => c.id === lastLoadedId)?.name 
     : null;
+
+  // Quick save function for keyboard shortcut
+  const handleQuickSave = useCallback(async () => {
+    if (lastLoadedId) {
+      // Update existing config with current config state
+      const currentConfig = configs.find(c => c.id === lastLoadedId);
+      if (currentConfig) {
+        await updateConfig(lastLoadedId, { config: config });
+        showToast(`Saved "${currentConfig.name}"`, 'success');
+      }
+    } else {
+      // No config loaded, show dialog
+      setShowSaveDialog(true);
+    }
+  }, [lastLoadedId, configs, updateConfig, config, showToast]);
+
+  // Keyboard shortcut handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl+S (Windows/Linux) or Cmd+S (Mac)
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        handleQuickSave();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleQuickSave]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -182,7 +224,11 @@ export function ExportBar() {
         isOpen={showSaveDialog}
         onClose={() => setShowSaveDialog(false)}
         editingId={lastLoadedId}
+        onSaveSuccess={(name) => showToast(`Saved "${name}"`, 'success')}
       />
+
+      {/* Toast notifications */}
+      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
     </div>
   );
 }
