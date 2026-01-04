@@ -107,6 +107,82 @@ function validateManifest(category, manifestPath) {
   return Array.from(configFiles);
 }
 
+/**
+ * Validate palette references in a config
+ * Checks that all p:name references exist in the palette
+ */
+function validatePaletteReferences(config, prefix) {
+  const palette = config.palette || {};
+  const paletteKeys = new Set(Object.keys(palette));
+  const missingRefs = new Set();
+
+  // Helper to check a color value
+  function checkColorRef(value, location) {
+    if (typeof value === 'string' && value.startsWith('p:')) {
+      const refName = value.slice(2); // Remove 'p:' prefix
+      if (!paletteKeys.has(refName)) {
+        missingRefs.add(`${location}: '${value}' not found in palette`);
+      }
+    }
+  }
+
+  // Helper to check an object with foreground/background properties
+  function checkColorObject(obj, location) {
+    if (!obj || typeof obj !== 'object') return;
+    if (obj.foreground) checkColorRef(obj.foreground, `${location} foreground`);
+    if (obj.background) checkColorRef(obj.background, `${location} background`);
+    if (obj.foreground_templates) {
+      obj.foreground_templates.forEach((tpl, i) => {
+        checkColorRef(tpl, `${location} foreground_templates[${i}]`);
+      });
+    }
+    if (obj.background_templates) {
+      obj.background_templates.forEach((tpl, i) => {
+        checkColorRef(tpl, `${location} background_templates[${i}]`);
+      });
+    }
+  }
+
+  // Check global settings that can have colors
+  const globalColorSettings = [
+    'transient_prompt',
+    'secondary_prompt', 
+    'debug_prompt',
+    'valid_line',
+    'error_line',
+    'osc99',
+    'tooltip'
+  ];
+  
+  globalColorSettings.forEach(setting => {
+    if (config[setting]) {
+      checkColorObject(config[setting], setting);
+    }
+  });
+
+  // Check all segments for color references
+  if (config.blocks && Array.isArray(config.blocks)) {
+    config.blocks.forEach((block, blockIndex) => {
+      if (block.segments && Array.isArray(block.segments)) {
+        block.segments.forEach((segment, segmentIndex) => {
+          const loc = `block ${blockIndex}, segment ${segmentIndex} (${segment.type || 'unknown'})`;
+          checkColorObject(segment, loc);
+        });
+      }
+    });
+  }
+
+  // Report missing palette references as errors
+  missingRefs.forEach(msg => {
+    addError(`${prefix}: palette reference ${msg}`);
+  });
+
+  // Info about palette usage
+  if (paletteKeys.size > 0) {
+    log(`  Using palette with ${paletteKeys.size} color definitions`, 'info');
+  }
+}
+
 function validateConfigFile(category, fileName) {
   const filePath = path.join(CONFIGS_DIR, category, fileName);
   log(`Validating ${category}/${fileName}...`);
@@ -157,6 +233,11 @@ function validateConfigFile(category, fileName) {
         }
       });
     }
+  }
+
+  // Validate palette references (version 2+ configs can use palette)
+  if (config.version >= 2) {
+    validatePaletteReferences(config, prefix);
   }
 
   log(`${category}/${fileName} validated`, 'success');
