@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Test coverage
+coverage
+
 # Original Nerd Font (we only commit the subset)
 public/fonts/SymbolsNerdFontMono-Regular.ttf
 
