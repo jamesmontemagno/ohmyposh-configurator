@@ -107,7 +107,7 @@ export function Header() {
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors"
                 onClick={() => setShowGitHubDropdown(false)}
               >
-                <NerdIcon icon="misc-file-code" size={16} />
+                <NerdIcon icon="status-history" size={16} />
                 <span>Changelog</span>
               </a>
             </div>

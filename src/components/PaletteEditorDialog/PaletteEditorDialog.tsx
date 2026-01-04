@@ -533,7 +533,7 @@ export function PaletteEditorDialog({ isOpen, onClose }: PaletteEditorDialogProp
                 className="text-gray-400"
               />
               <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
-                <NerdIcon icon="tool-layers" size={14} className="text-gray-400" />
+                <NerdIcon icon="tool-sliders" size={14} className="text-gray-400" />
                 Palette Variants
               </h3>
               {palettesList.length > 0 && (
