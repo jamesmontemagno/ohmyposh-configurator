@@ -2,11 +2,11 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { useSavedConfigsStore } from '../../store/savedConfigsStore';
+import { useToastStore } from '../../store/toastStore';
 import { exportConfig, downloadConfig, copyToClipboard } from '../../utils/configExporter';
 import { ImportDialog } from '../ImportDialog';
-import { SubmitConfigDialog } from '../SubmitConfigDialog';
+import { ShareDialog } from '../ShareDialog';
 import { SaveConfigDialog } from '../SaveConfigDialog';
-import { ToastContainer, type ToastData } from '../Toast';
 import type { ExportFormat } from '../../types/ohmyposh';
 
 const formatOptions: { value: ExportFormat; label: string; iconName: string }[] = [
@@ -20,25 +20,14 @@ export function ExportBar() {
   const exportFormat = useConfigStore((state) => state.exportFormat);
   const setExportFormat = useConfigStore((state) => state.setExportFormat);
   const { hasUnsavedChanges, lastLoadedId, configs, updateConfig } = useSavedConfigsStore();
+  const showToast = useToastStore((state) => state.showToast);
   const [copied, setCopied] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [importMethod, setImportMethod] = useState<'file' | 'paste'>('file');
   const [showImportDropdown, setShowImportDropdown] = useState(false);
-  const [toasts, setToasts] = useState<ToastData[]>([]);
   const importDropdownRef = useRef<HTMLDivElement>(null);
-
-  // Toast helpers
-  const toastIdCounter = useRef(0);
-  const showToast = useCallback((message: string, type: ToastData['type'] = 'info', duration = 3000) => {
-    const id = `toast-${++toastIdCounter.current}`;
-    setToasts((prev) => [...prev, { id, message, type, duration }]);
-  }, []);
-
-  const dismissToast = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }, []);
 
   // Get the name of the currently loaded config (if any)
   const currentConfigName = lastLoadedId 
@@ -183,7 +172,7 @@ export function ExportBar() {
             )}
           </div>
 
-          <SubmitConfigDialog />
+          <ShareDialog />
 
           <button
             onClick={handleCopy}
@@ -226,9 +215,6 @@ export function ExportBar() {
         editingId={lastLoadedId}
         onSaveSuccess={(name) => showToast(`Saved "${name}"`, 'success')}
       />
-
-      {/* Toast notifications */}
-      <ToastContainer toasts={toasts} onDismiss={dismissToast} />
     </div>
   );
 }

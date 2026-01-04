@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
+import { useToastStore, type ToastData } from '../../store/toastStore';
 
-export interface ToastData {
-  id: string;
-  message: string;
-  type: 'success' | 'error' | 'info';
-  duration?: number;
-}
+export type { ToastData } from '../../store/toastStore';
 
 interface ToastProps {
   toast: ToastData;
@@ -69,11 +65,18 @@ function ToastItem({ toast, onDismiss }: ToastProps) {
 }
 
 interface ToastContainerProps {
-  toasts: ToastData[];
-  onDismiss: (id: string) => void;
+  toasts?: ToastData[];
+  onDismiss?: (id: string) => void;
 }
 
-export function ToastContainer({ toasts, onDismiss }: ToastContainerProps) {
+export function ToastContainer({ toasts: propToasts, onDismiss: propOnDismiss }: ToastContainerProps) {
+  const storeToasts = useToastStore((state) => state.toasts);
+  const storeDismiss = useToastStore((state) => state.dismissToast);
+  
+  // Use props if provided, otherwise use store
+  const toasts = propToasts ?? storeToasts;
+  const onDismiss = propOnDismiss ?? storeDismiss;
+  
   if (toasts.length === 0) return null;
 
   return (

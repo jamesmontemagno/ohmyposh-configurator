@@ -4,6 +4,12 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-01-04]
 
+### Share Button with Multiple Options
+
+- **Share Dropdown**: Replaced single "Submit" button with a "Share" dropdown offering two options:
+  - **Add to Theme Library**: Opens the existing community submission dialog with instructions for contributing via PR
+  - **Create GitHub Gist**: Copies config to clipboard, opens gist.github.com in new tab, and shows step-by-step instructions
+
 ### My Configs - Local Config Library
 
 **Save, Manage, and Restore Your Configurations Locally**

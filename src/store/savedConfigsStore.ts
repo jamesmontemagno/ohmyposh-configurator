@@ -5,6 +5,7 @@ import { useConfigStore, generateId } from './configStore';
 
 const CONFIGS_STORAGE_KEY = 'ohmyposh-saved-configs';
 const DRAFT_STORAGE_KEY = 'ohmyposh-draft-config';
+const LAST_LOADED_KEY = 'ohmyposh-last-loaded-id';
 const MAX_CONFIGS = 50;
 const DRAFT_DEBOUNCE_MS = 5000;
 
@@ -46,6 +47,9 @@ interface SavedConfigsState {
   // State management
   setHasUnsavedChanges: (value: boolean) => void;
   clearLastLoadedId: () => void;
+  
+  // Auto-restore
+  autoRestoreLastConfig: () => Promise<string | null>;
 }
 
 // Helper to persist configs to IndexedDB
@@ -65,8 +69,10 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
     setState({ isLoading: true });
     try {
       const storedConfigs = await get<SavedConfig[]>(CONFIGS_STORAGE_KEY);
+      const storedLastLoadedId = await get<string>(LAST_LOADED_KEY);
       setState({ 
         configs: storedConfigs || [],
+        lastLoadedId: storedLastLoadedId || null,
         isLoading: false,
       });
     } catch (error) {
@@ -172,6 +178,11 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
       configs: updatedConfigs,
       lastLoadedId: lastLoadedId === id ? null : lastLoadedId,
     });
+    
+    // Clear from storage if we just unloaded this config
+    if (lastLoadedId === id) {
+      del(LAST_LOADED_KEY);
+    }
   },
 
   loadConfig: (id) => {
@@ -187,6 +198,9 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
       lastLoadedId: id,
       hasUnsavedChanges: false,
     });
+    
+    // Persist lastLoadedId to storage
+    set(LAST_LOADED_KEY, id);
     
     // Reset the snapshot to the newly loaded config
     // This needs to happen after a microtask to ensure config is set
@@ -356,6 +370,34 @@ export const useSavedConfigsStore = create<SavedConfigsState>((setState, getStat
 
   clearLastLoadedId: () => {
     setState({ lastLoadedId: null });
+    del(LAST_LOADED_KEY);
+  },
+
+  autoRestoreLastConfig: async () => {
+    const { lastLoadedId, configs } = getState();
+    
+    if (!lastLoadedId) return null;
+    
+    const config = configs.find(c => c.id === lastLoadedId);
+    if (!config) {
+      // Config was deleted, clear the stored ID
+      setState({ lastLoadedId: null });
+      del(LAST_LOADED_KEY);
+      return null;
+    }
+    
+    // Load the config
+    const loadedConfig = JSON.parse(JSON.stringify(config.config));
+    useConfigStore.getState().setConfig(loadedConfig);
+    
+    setState({ hasUnsavedChanges: false });
+    
+    // Reset the snapshot
+    queueMicrotask(() => {
+      lastConfigSnapshot = JSON.stringify(useConfigStore.getState().config);
+    });
+    
+    return config.name;
   },
 }));
 
