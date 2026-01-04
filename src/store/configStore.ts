@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Block, Segment, OhMyPoshConfig, ExportFormat } from '../types/ohmyposh';
+import type { Block, Segment, OhMyPoshConfig, ExportFormat, ExtraPrompt, ExtraPromptType } from '../types/ohmyposh';
 
 // Generate unique IDs
 let idCounter = 0;
@@ -48,6 +48,10 @@ interface ConfigState {
   setPalettesListEntry: (name: string, palette: Record<string, string>) => void;
   removePalettesListEntry: (name: string) => void;
   setPreviewPaletteName: (name: string | undefined) => void;
+
+  // Extra prompt actions
+  setExtraPrompt: (type: ExtraPromptType, prompt: ExtraPrompt | undefined) => void;
+  updateExtraPrompt: (type: ExtraPromptType, updates: Partial<ExtraPrompt>) => void;
 
   // Export
   setExportFormat: (format: ExportFormat) => void;
@@ -363,6 +367,43 @@ export const useConfigStore = create<ConfigState>()(
         }),
 
       setPreviewPaletteName: (name) => set({ previewPaletteName: name }),
+
+      // Extra prompt actions
+      setExtraPrompt: (type, prompt) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            [type]: prompt,
+          },
+        })),
+
+      updateExtraPrompt: (type, updates) =>
+        set((state) => {
+          const currentPrompt = state.config[type];
+          // If no current prompt exists, create new one from updates
+          // Otherwise merge updates into existing prompt
+          const newPrompt: ExtraPrompt = {
+            ...currentPrompt,
+            ...updates,
+          };
+          
+          // Check if the resulting prompt is effectively empty
+          const isEmptyPrompt = 
+            !newPrompt.template &&
+            !newPrompt.foreground &&
+            !newPrompt.background &&
+            !newPrompt.filler &&
+            newPrompt.newline === undefined &&
+            (!newPrompt.foreground_templates || newPrompt.foreground_templates.length === 0) &&
+            (!newPrompt.background_templates || newPrompt.background_templates.length === 0);
+          
+          return {
+            config: {
+              ...state.config,
+              [type]: isEmptyPrompt ? undefined : newPrompt,
+            },
+          };
+        }),
 
       setExportFormat: (format) => set({ exportFormat: format }),
 

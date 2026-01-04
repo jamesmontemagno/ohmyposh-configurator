@@ -2,6 +2,18 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-04] - Phase 2 Store Support: Extra Prompts
+
+### Added
+- **ExtraPromptType Type**: Added union type for type-safe extra prompt handling
+  - Covers all 5 extra prompt types: `transient_prompt`, `secondary_prompt`, `valid_line`, `error_line`, `debug_prompt`
+  
+- **Store Actions for Extra Prompts** (Issue #37): Added Zustand store actions for managing extra prompts
+  - `setExtraPrompt(type, prompt)`: Set or clear an entire extra prompt
+  - `updateExtraPrompt(type, updates)`: Partially update an extra prompt's properties
+  - Automatically clears empty prompts from config (no orphaned empty objects)
+  - Verified import/export support already exists for all 5 extra prompt types
+
 ## [2026-01-04] - Phase 1 Completion: Advanced Segment Properties
 
 ### Added

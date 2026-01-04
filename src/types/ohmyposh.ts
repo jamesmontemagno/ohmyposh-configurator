@@ -166,6 +166,14 @@ export interface ExtraPrompt {
   newline?: boolean;
 }
 
+// Extra prompt types for transient, secondary, valid/error line, and debug prompts
+export type ExtraPromptType =
+  | 'transient_prompt'
+  | 'secondary_prompt'
+  | 'valid_line'
+  | 'error_line'
+  | 'debug_prompt';
+
 export interface OhMyPoshConfig {
   $schema?: string;
   version?: number;
