@@ -2,25 +2,16 @@ import { NerdIcon } from '../NerdIcon';
 import { SamplePicker } from '../SamplePicker';
 import { AdvancedSettingsDialog } from '../AdvancedSettingsDialog';
 import { ConfirmDialog } from '../ConfirmDialog';
-import { SaveConfigDialog } from '../SaveConfigDialog';
 import { useConfigStore } from '../../store/configStore';
-import { useSavedConfigsStore } from '../../store/savedConfigsStore';
 import { useConfirm } from '../../hooks/useConfirm';
 import { useRef, useState, useEffect } from 'react';
 
 export function Header() {
   const [showGitHubDropdown, setShowGitHubDropdown] = useState(false);
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
-  const [showSaveDialog, setShowSaveDialog] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);
   const resetConfig = useConfigStore((state) => state.resetConfig);
-  const { hasUnsavedChanges, lastLoadedId, configs } = useSavedConfigsStore();
   const { confirm, ConfirmDialogProps } = useConfirm();
-
-  // Get the name of the currently loaded config (if any)
-  const currentConfigName = lastLoadedId 
-    ? configs.find(c => c.id === lastLoadedId)?.name 
-    : null;
   
   const handleResetConfig = async () => {
     const confirmed = await confirm({
@@ -61,20 +52,6 @@ export function Header() {
       </div>
       
       <div className="flex items-center gap-2">
-        {/* Save button */}
-        <button
-          onClick={() => setShowSaveDialog(true)}
-          className="relative flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-green-400 hover:bg-green-900/20 rounded transition-colors"
-          title={lastLoadedId ? `Update "${currentConfigName}"` : "Save current config"}
-        >
-          <NerdIcon icon="action-save" size={16} />
-          <span className="hidden sm:inline">Save</span>
-          {/* Unsaved indicator dot */}
-          {hasUnsavedChanges && (
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-[#16213e]" />
-          )}
-        </button>
-        
         <button
           onClick={handleResetConfig}
           className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded transition-colors"
@@ -156,13 +133,6 @@ export function Header() {
       <AdvancedSettingsDialog
         isOpen={showAdvancedSettings}
         onClose={() => setShowAdvancedSettings(false)}
-      />
-      
-      {/* Save Config Dialog */}
-      <SaveConfigDialog
-        isOpen={showSaveDialog}
-        onClose={() => setShowSaveDialog(false)}
-        editingId={lastLoadedId}
       />
       
       {/* Confirm Dialog */}
