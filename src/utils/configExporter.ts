@@ -44,6 +44,8 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
     enable_cursor_positioning,
     shell_integration,
     pwd,
+    patch_pwsh_bleed,
+    async: asyncPrompt,
     tooltips,
     transient_prompt,
     valid_line,
@@ -74,6 +76,8 @@ export function cleanConfig(config: OhMyPoshConfig): CleanedConfig {
   if (enable_cursor_positioning) cleanedConfig.enable_cursor_positioning = enable_cursor_positioning;
   if (shell_integration) cleanedConfig.shell_integration = shell_integration;
   if (pwd) cleanedConfig.pwd = pwd;
+  if (patch_pwsh_bleed) cleanedConfig.patch_pwsh_bleed = patch_pwsh_bleed;
+  if (asyncPrompt) cleanedConfig.async = asyncPrompt;
 
   // Add blocks (required)
   cleanedConfig.blocks = blocks.map(cleanBlock);

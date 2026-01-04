@@ -127,6 +127,8 @@ function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
     enable_cursor_positioning: config.enable_cursor_positioning,
     shell_integration: config.shell_integration,
     pwd: config.pwd,
+    patch_pwsh_bleed: config.patch_pwsh_bleed,
+    async: config.async,
     console_title_template: config.console_title_template,
     terminal_background: config.terminal_background,
     accent_color: config.accent_color,

@@ -2,12 +2,24 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
-## [2026-01-04] - Phase 2 Store Support: Extra Prompts
+## [2026-01-04] - Phase 2 Completion: Global Settings & Extra Prompts
 
 ### Added
-- **ExtraPromptType Type**: Added union type for type-safe extra prompt handling
-  - Covers all 5 extra prompt types: `transient_prompt`, `secondary_prompt`, `valid_line`, `error_line`, `debug_prompt`
-  
+- **ExtraPromptsDialog Component** (Issue #36): New dialog for managing secondary prompts
+  - Configure all 5 extra prompt types: transient_prompt, secondary_prompt, valid_line, error_line, debug_prompt
+  - Enable/disable toggle for each prompt type with toggle switch UI
+  - Expandable editor sections with template, foreground/background colors, filler (transient only), and newline options
+  - Shell compatibility information shown for each prompt type
+  - Launch button in GlobalSettings with enabled count badge
+  - Escape key and backdrop click to close dialog
+  - Links to official Oh My Posh documentation
+
+- **New GlobalSettings Fields** (Issue #35): Added missing top-level configuration options
+  - `pwd` dropdown: Working directory protocol (OSC 99, OSC 7, OSC 51) for terminal "Open Here" features
+  - `async` checkbox: Async prompt rendering for faster shell startup
+  - `patch_pwsh_bleed` checkbox: Fix PowerShell color bleeding issues (Windows)
+  - All new fields properly typed, imported, and exported
+
 - **Store Actions for Extra Prompts** (Issue #37): Added Zustand store actions for managing extra prompts
   - `setExtraPrompt(type, prompt)`: Set or clear an entire extra prompt
   - `updateExtraPrompt(type, updates)`: Partially update an extra prompt's properties

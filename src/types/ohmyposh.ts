@@ -180,7 +180,9 @@ export interface OhMyPoshConfig {
   final_space?: boolean;
   enable_cursor_positioning?: boolean;
   shell_integration?: boolean;
-  pwd?: string;
+  pwd?: 'osc99' | 'osc7' | 'osc51';
+  patch_pwsh_bleed?: boolean;
+  async?: boolean;
   console_title_template?: string;
   terminal_background?: string;
   accent_color?: string;
