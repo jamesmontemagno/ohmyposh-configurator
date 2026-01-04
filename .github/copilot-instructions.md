@@ -38,6 +38,7 @@ npm run dev          # Start Vite dev server
 npm run build        # TypeScript check + Vite build
 npm run validate     # Validate configs in public/configs/
 npm run lint         # ESLint check
+npm run test         # Run unit tests (Vitest)
 ```
 
 ## Code Conventions
@@ -116,7 +117,8 @@ Uses @dnd-kit. Canvas handles cross-block segment moves and tooltip reordering. 
 - **React Hooks**: Avoid using `useEffect` to synchronize state with props or reset state. Use conditional rendering with `key` props to reset components, or lazy state initialization.
 - **Type Safety**: Avoid `any` at all costs. Use `unknown` for external data and cast to specific interfaces.
 - **Unused Variables**: Prefix intentional unused variables with `_` (e.g., `const [_unused, value] = ...`).
-- **CI Enforcement**: The GitHub Actions CI pipeline enforces zero linting errors and successful builds.
+- **Testing New Logic**: When implementing new business logic, utility functions, or store actions, always add corresponding unit tests in `__tests__` directories.
+- **CI Enforcement**: The GitHub Actions CI pipeline enforces zero linting errors, successful builds, and passing tests.
 
 ## Testing Changes
 
@@ -124,7 +126,7 @@ Uses @dnd-kit. Canvas handles cross-block segment moves and tooltip reordering. 
 2. Validate configs: `npm run validate`
 3. Test export in all formats (JSON/YAML/TOML)
 4. Verify preview renders correctly with powerline symbols
-5. **Mandatory**: Run `npm run lint` and `npm run build` to ensure CI will pass.
+5. **Mandatory**: Run `npm run lint`, `npm run test`, and `npm run build` to ensure CI will pass.
 
 ## Changelog Maintenance
 

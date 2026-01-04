@@ -246,6 +246,12 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
   
 - **SegmentPicker Layout**: Adjusted spacing and layout for improved usability
 
+### Development & Testing
+
+- **Enhanced Copilot Instructions**: Updated `copilot-instructions.md` with mandatory linting, testing, and build requirements
+- **Unit Testing Infrastructure**: Added Vitest for unit testing with initial tests for stores and data logic
+- **CI Enforcement**: Updated CI pipeline to enforce zero linting errors, successful builds, and passing tests
+
 ### Data & Documentation
 
 - **Segment Metadata Updates**: Updated CLI, Cloud, Languages, SCM, System, Web, and Health segments
