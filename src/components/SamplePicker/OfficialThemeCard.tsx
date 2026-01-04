@@ -19,7 +19,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
       disabled={isLoading}
       className="group relative flex flex-col bg-[#0f0f23] hover:bg-[#16172e] border border-gray-700 hover:border-purple-500 rounded-lg transition-all text-left overflow-hidden disabled:opacity-50 disabled:cursor-wait"
     >
-      {/* Preview Image Container */}
+      {/* Preview Image Container - 16:9 aspect ratio */}
       <div className="relative aspect-video w-full bg-gray-900 overflow-hidden">
         {!imageError ? (
           <>
@@ -35,7 +35,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover object-top transition-opacity ${
+              className={`w-full h-full object-cover object-left transition-opacity ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />
@@ -76,7 +76,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
             className="p-1.5 hover:bg-gray-700 rounded transition-colors ml-2 flex-shrink-0"
             title="View on GitHub"
           >
-            <NerdIcon icon="dev-github" size={16} className="text-gray-400 hover:text-white" />
+            <NerdIcon icon="vcs-github" size={16} className="text-gray-400 hover:text-white" />
           </a>
         </div>
 

@@ -110,7 +110,7 @@ export function SamplePicker() {
         title="Load Sample Configuration"
       >
         <NerdIcon icon="misc-star" size={16} />
-        <span className="text-sm font-medium">Configs</span>
+        <span className="text-sm font-medium">Theme Library</span>
       </button>
 
       {/* Modal */}
@@ -176,9 +176,6 @@ export function SamplePicker() {
               >
                 <NerdIcon icon="dev-terminal" size={16} />
                 <span className="font-medium">Official Themes</span>
-                <span className="text-xs bg-gray-700 px-2 py-0.5 rounded-full">
-                  {officialThemes.length}
-                </span>
               </button>
             </div>
 
@@ -236,7 +233,7 @@ export function SamplePicker() {
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {paginatedThemes.map((theme) => (
                       <OfficialThemeCard
                         key={theme.name}
