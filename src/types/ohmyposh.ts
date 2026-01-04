@@ -292,3 +292,20 @@ export interface SegmentOption {
   values?: string[];
   description: string;
 }
+
+// Saved config types for local storage (My Configs feature)
+export interface SavedConfig {
+  id: string;
+  name: string;
+  description?: string;
+  config: OhMyPoshConfig;
+  createdAt: string;
+  updatedAt: string;
+  tags?: string[];
+}
+
+export interface SavedConfigsBundle {
+  version: number;
+  exportedAt: string;
+  configs: SavedConfig[];
+}

@@ -1,30 +1,52 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useSavedConfigsStore } from '../../store/savedConfigsStore';
+import { useConfirm } from '../../hooks/useConfirm';
+import { ConfirmDialog } from '../ConfirmDialog';
 import type { ConfigMetadata } from '../../utils/configLoader';
 import { loadAllConfigs, loadConfig } from '../../utils/configLoader';
 import type { OfficialTheme } from '../../utils/officialThemeLoader';
 import { loadOfficialThemeManifest, fetchOfficialTheme } from '../../utils/officialThemeLoader';
 import { OfficialThemeCard } from './OfficialThemeCard';
+import { SavedConfigCard } from './SavedConfigCard';
+import type { SavedConfigsBundle } from '../../types/ohmyposh';
 
-type TabType = 'samples' | 'community' | 'official';
+type TabType = 'my-configs' | 'samples' | 'community' | 'official';
 
 const THEMES_PER_PAGE = 25;
+const MAX_CONFIGS = 50;
 
 export function SamplePicker() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabType>('samples');
+  const [activeTab, setActiveTab] = useState<TabType>('my-configs');
   const [sampleConfigs, setSampleConfigs] = useState<ConfigMetadata[]>([]);
   const [communityConfigs, setCommunityConfigs] = useState<ConfigMetadata[]>([]);
   const [officialThemes, setOfficialThemes] = useState<OfficialTheme[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingTheme, setLoadingTheme] = useState<string | null>(null);
+  const [importError, setImportError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   // Official themes pagination and search
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   
   const setConfig = useConfigStore((state) => state.setConfig);
+  const { 
+    configs: savedConfigs, 
+    lastLoadedId, 
+    loadConfig: loadSavedConfig,
+    renameConfig,
+    duplicateConfig,
+    deleteConfig,
+    exportAllConfigs,
+    importConfigsBundle,
+    loadFromStorage,
+    clearLastLoadedId,
+  } = useSavedConfigsStore();
+  
+  const { confirm, ConfirmDialogProps } = useConfirm();
 
   const loadConfigs = async () => {
     setLoading(true);
@@ -58,10 +80,11 @@ export function SamplePicker() {
   };
 
   const handleLoadConfig = async (category: TabType, filename: string) => {
-    if (category === 'official') return; // Handled separately
+    if (category === 'official' || category === 'my-configs') return; // Handled separately
     const config = await loadConfig(category as 'samples' | 'community', filename);
     if (config) {
       setConfig(config);
+      clearLastLoadedId(); // No longer working on a saved config
       setIsOpen(false);
     }
   };
@@ -71,10 +94,94 @@ export function SamplePicker() {
     const config = await fetchOfficialTheme(theme.file);
     if (config) {
       setConfig(config);
+      clearLastLoadedId(); // No longer working on a saved config
       setIsOpen(false);
     }
     setLoadingTheme(null);
   };
+
+  // My Configs handlers
+  const handleLoadSavedConfig = (id: string) => {
+    loadSavedConfig(id);
+    setIsOpen(false);
+  };
+
+  const handleRenameConfig = async (id: string, newName: string) => {
+    await renameConfig(id, newName);
+  };
+
+  const handleDuplicateConfig = async (id: string) => {
+    await duplicateConfig(id);
+  };
+
+  const handleDeleteConfig = async (id: string) => {
+    const config = savedConfigs.find(c => c.id === id);
+    const confirmed = await confirm({
+      title: 'Delete Config',
+      message: `Are you sure you want to delete "${config?.name}"? This action cannot be undone.`,
+      confirmText: 'Delete',
+      variant: 'danger',
+    });
+    if (confirmed) {
+      await deleteConfig(id);
+    }
+  };
+
+  const handleExportAll = () => {
+    const bundle = exportAllConfigs();
+    const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `my-configs-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    setImportError(null);
+    
+    try {
+      const text = await file.text();
+      const bundle = JSON.parse(text) as SavedConfigsBundle;
+      
+      // Validate bundle structure
+      if (!bundle.version || !Array.isArray(bundle.configs)) {
+        setImportError('Invalid backup file format');
+        return;
+      }
+      
+      // Import with rename strategy (can be changed to 'skip' if preferred)
+      const result = await importConfigsBundle(bundle, 'rename');
+      
+      if (result.imported === 0 && result.skipped > 0) {
+        setImportError(`All ${result.skipped} configs were skipped (duplicates or limit reached)`);
+      }
+    } catch {
+      setImportError('Failed to parse backup file');
+    }
+    
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  // Sort saved configs by updatedAt (most recent first)
+  const sortedSavedConfigs = useMemo(() => {
+    return [...savedConfigs].sort((a, b) => 
+      new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+  }, [savedConfigs]);
 
   // Filter official themes by search query (name and tags)
   const filteredThemes = useMemo(() => {
@@ -105,6 +212,7 @@ export function SamplePicker() {
         onClick={() => {
           setIsOpen(true);
           loadConfigs();
+          loadFromStorage();
         }}
         className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
         title="Load Sample Configuration"
@@ -112,6 +220,15 @@ export function SamplePicker() {
         <NerdIcon icon="misc-star" size={16} />
         <span className="text-sm font-medium">Theme Library</span>
       </button>
+
+      {/* Hidden file input for import */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleImportFile}
+        className="hidden"
+      />
 
       {/* Modal */}
       {isOpen && (
@@ -124,7 +241,7 @@ export function SamplePicker() {
                 <div>
                   <h2 className="text-xl font-bold text-white">Theme Library</h2>
                   <p className="text-sm text-gray-400">
-                    Choose from official samples or community-contributed themes
+                    Your saved configs, samples, and official themes
                   </p>
                 </div>
               </div>
@@ -138,6 +255,20 @@ export function SamplePicker() {
 
             {/* Tabs */}
             <div className="flex border-b border-gray-700 bg-[#0f0f23] px-6">
+              <button
+                onClick={() => handleTabChange('my-configs')}
+                className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
+                  activeTab === 'my-configs'
+                    ? 'border-purple-500 text-white'
+                    : 'border-transparent text-gray-400 hover:text-gray-300'
+                }`}
+              >
+                <NerdIcon icon="action-save" size={16} />
+                <span className="font-medium">My Configs</span>
+                <span className="text-xs bg-gray-700 px-2 py-0.5 rounded-full">
+                  {savedConfigs.length}/{MAX_CONFIGS}
+                </span>
+              </button>
               <button
                 onClick={() => handleTabChange('samples')}
                 className={`flex items-center gap-2 px-4 py-3 border-b-2 transition-colors ${
@@ -179,6 +310,38 @@ export function SamplePicker() {
               </button>
             </div>
 
+            {/* My Configs header with export/import */}
+            {activeTab === 'my-configs' && savedConfigs.length > 0 && (
+              <div className="px-6 py-3 bg-[#0f0f23] border-b border-gray-700 flex items-center justify-between">
+                <span className="text-sm text-gray-400">
+                  {savedConfigs.length} saved config{savedConfigs.length !== 1 ? 's' : ''}
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleImportClick}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded transition-colors"
+                  >
+                    <NerdIcon icon="action-import" size={14} />
+                    Import
+                  </button>
+                  <button
+                    onClick={handleExportAll}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded transition-colors"
+                  >
+                    <NerdIcon icon="action-export" size={14} />
+                    Export All
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Import error message */}
+            {importError && activeTab === 'my-configs' && (
+              <div className="mx-6 mt-4 p-3 bg-red-900/30 border border-red-700 rounded-lg">
+                <p className="text-sm text-red-300">{importError}</p>
+              </div>
+            )}
+
             {/* Search bar for official themes */}
             {activeTab === 'official' && (
               <div className="px-6 py-4 bg-[#0f0f23] border-b border-gray-700">
@@ -214,13 +377,45 @@ export function SamplePicker() {
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6">
-              {loading ? (
+              {loading && activeTab !== 'my-configs' ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
                   <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-500"></div>
                   <p className="text-gray-400 text-sm">
                     {activeTab === 'official' ? 'Loading official themes...' : 'Loading configurations...'}
                   </p>
                 </div>
+              ) : activeTab === 'my-configs' ? (
+                // My Configs grid
+                savedConfigs.length === 0 ? (
+                  <div className="text-center py-12">
+                    <NerdIcon icon="action-save" size={48} className="text-gray-600 mx-auto mb-4" />
+                    <p className="text-gray-400 mb-2">No saved configs yet</p>
+                    <p className="text-sm text-gray-500 mb-4">
+                      Click the &quot;Save&quot; button in the header to save your current config
+                    </p>
+                    <button
+                      onClick={handleImportClick}
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors text-sm"
+                    >
+                      <NerdIcon icon="action-import" size={16} />
+                      Import from Backup
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {sortedSavedConfigs.map((config) => (
+                      <SavedConfigCard
+                        key={config.id}
+                        config={config}
+                        isCurrentlyLoaded={config.id === lastLoadedId}
+                        onLoad={() => handleLoadSavedConfig(config.id)}
+                        onRename={(newName) => handleRenameConfig(config.id, newName)}
+                        onDuplicate={() => handleDuplicateConfig(config.id)}
+                        onDelete={() => handleDeleteConfig(config.id)}
+                      />
+                    ))}
+                  </div>
+                )
               ) : activeTab === 'official' ? (
                 // Official themes grid
                 filteredThemes.length === 0 ? (
@@ -336,12 +531,17 @@ export function SamplePicker() {
             {/* Footer */}
             <div className="p-4 border-t border-gray-700 bg-[#0f0f23]">
               <p className="text-xs text-gray-500 text-center">
-                Loading a {activeTab === 'official' ? 'theme' : 'sample'} will replace your current configuration
+                {activeTab === 'my-configs' 
+                  ? 'Your saved configs are stored locally in your browser'
+                  : `Loading a ${activeTab === 'official' ? 'theme' : 'sample'} will replace your current configuration`}
               </p>
             </div>
           </div>
         </div>
       )}
+      
+      {/* Confirm Dialog */}
+      <ConfirmDialog {...ConfirmDialogProps} />
     </>
   );
 }

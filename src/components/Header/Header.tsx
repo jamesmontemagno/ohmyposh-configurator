@@ -3,6 +3,7 @@ import { SamplePicker } from '../SamplePicker';
 import { AdvancedSettingsDialog } from '../AdvancedSettingsDialog';
 import { ConfirmDialog } from '../ConfirmDialog';
 import { useConfigStore } from '../../store/configStore';
+import { useSavedConfigsStore } from '../../store/savedConfigsStore';
 import { useConfirm } from '../../hooks/useConfirm';
 import { useRef, useState, useEffect } from 'react';
 
@@ -11,7 +12,13 @@ export function Header() {
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
   const githubDropdownRef = useRef<HTMLDivElement>(null);
   const resetConfig = useConfigStore((state) => state.resetConfig);
+  const { lastLoadedId, configs, hasUnsavedChanges, clearLastLoadedId } = useSavedConfigsStore();
   const { confirm, ConfirmDialogProps } = useConfirm();
+  
+  // Get the currently loaded config name
+  const currentConfigName = lastLoadedId 
+    ? configs.find(c => c.id === lastLoadedId)?.name 
+    : null;
   
   const handleResetConfig = async () => {
     const confirmed = await confirm({
@@ -22,6 +29,7 @@ export function Header() {
     });
     if (confirmed) {
       resetConfig();
+      clearLastLoadedId();
     }
   };
 
@@ -49,6 +57,21 @@ export function Header() {
           <h1 className="text-lg font-bold text-white">Oh My Posh Configurator</h1>
           <p className="text-xs text-gray-400">Visual Configuration Builder</p>
         </div>
+        
+        {/* Current config indicator */}
+        {currentConfigName && (
+          <div className="flex items-center gap-2 ml-2 pl-4 border-l border-[#0f3460]">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-900/40 border border-purple-700/50 rounded-lg">
+              <NerdIcon icon="action-save" size={14} className="text-purple-400" />
+              <span className="text-sm text-purple-200 max-w-[200px] truncate" title={currentConfigName}>
+                {currentConfigName}
+              </span>
+              {hasUnsavedChanges && (
+                <span className="w-2 h-2 bg-amber-500 rounded-full" title="Unsaved changes" />
+              )}
+            </div>
+          </div>
+        )}
       </div>
       
       <div className="flex items-center gap-2">

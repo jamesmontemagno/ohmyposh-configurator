@@ -1,9 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useSavedConfigsStore } from '../../store/savedConfigsStore';
+import { useToastStore } from '../../store/toastStore';
 import { exportConfig, downloadConfig, copyToClipboard } from '../../utils/configExporter';
 import { ImportDialog } from '../ImportDialog';
-import { SubmitConfigDialog } from '../SubmitConfigDialog';
+import { ShareDialog } from '../ShareDialog';
+import { SaveConfigDialog } from '../SaveConfigDialog';
 import type { ExportFormat } from '../../types/ohmyposh';
 
 const formatOptions: { value: ExportFormat; label: string; iconName: string }[] = [
@@ -16,12 +19,49 @@ export function ExportBar() {
   const config = useConfigStore((state) => state.config);
   const exportFormat = useConfigStore((state) => state.exportFormat);
   const setExportFormat = useConfigStore((state) => state.setExportFormat);
+  const { hasUnsavedChanges, lastLoadedId, configs, updateConfig } = useSavedConfigsStore();
+  const showToast = useToastStore((state) => state.showToast);
   const [copied, setCopied] = useState(false);
   const [showCode, setShowCode] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
   const [importMethod, setImportMethod] = useState<'file' | 'paste'>('file');
   const [showImportDropdown, setShowImportDropdown] = useState(false);
   const importDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Get the name of the currently loaded config (if any)
+  const currentConfigName = lastLoadedId 
+    ? configs.find(c => c.id === lastLoadedId)?.name 
+    : null;
+
+  // Quick save function for keyboard shortcut
+  const handleQuickSave = useCallback(async () => {
+    if (lastLoadedId) {
+      // Update existing config with current config state
+      const currentConfig = configs.find(c => c.id === lastLoadedId);
+      if (currentConfig) {
+        await updateConfig(lastLoadedId, { config: config });
+        showToast(`Saved "${currentConfig.name}"`, 'success');
+      }
+    } else {
+      // No config loaded, show dialog
+      setShowSaveDialog(true);
+    }
+  }, [lastLoadedId, configs, updateConfig, config, showToast]);
+
+  // Keyboard shortcut handler
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl+S (Windows/Linux) or Cmd+S (Mac)
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        handleQuickSave();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleQuickSave]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -43,7 +83,7 @@ export function ExportBar() {
   };
 
   const handleDownload = () => {
-    downloadConfig(config, exportFormat);
+    downloadConfig(config, exportFormat, currentConfigName || undefined);
   };
 
   const handleImportOptionClick = (method: 'file' | 'paste') => {
@@ -87,6 +127,20 @@ export function ExportBar() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Save button */}
+          <button
+            onClick={() => setShowSaveDialog(true)}
+            className="relative flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-green-400 hover:bg-green-900/20 rounded transition-colors"
+            title={lastLoadedId ? `Update "${currentConfigName}"` : "Save to My Configs"}
+          >
+            <NerdIcon icon="action-save" size={16} />
+            <span>Save</span>
+            {/* Unsaved indicator dot */}
+            {hasUnsavedChanges && (
+              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-[#16213e]" />
+            )}
+          </button>
+
           <div className="relative" ref={importDropdownRef}>
             <button
               onClick={() => setShowImportDropdown(!showImportDropdown)}
@@ -118,7 +172,7 @@ export function ExportBar() {
             )}
           </div>
 
-          <SubmitConfigDialog />
+          <ShareDialog />
 
           <button
             onClick={handleCopy}
@@ -153,6 +207,14 @@ export function ExportBar() {
           initialMethod={importMethod}
         />
       )}
+
+      {/* Save Config Dialog */}
+      <SaveConfigDialog
+        isOpen={showSaveDialog}
+        onClose={() => setShowSaveDialog(false)}
+        editingId={lastLoadedId}
+        onSaveSuccess={(name) => showToast(`Saved "${name}"`, 'success')}
+      />
     </div>
   );
 }

@@ -4,6 +4,51 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-01-04]
 
+### Share Button with Multiple Options
+
+- **Share Dropdown**: Replaced single "Submit" button with a "Share" dropdown offering two options:
+  - **Add to Theme Library**: Opens the existing community submission dialog with instructions for contributing via PR
+  - **Create GitHub Gist**: Copies config to clipboard, opens gist.github.com in new tab, and shows step-by-step instructions
+
+### My Configs - Local Config Library
+
+**Save, Manage, and Restore Your Configurations Locally**
+- **My Configs Tab**: New first tab in Theme Library for managing saved configs
+  - Grid view of saved configs sorted by last updated
+  - Config count display with 50 config limit indicator
+  - Export All / Import buttons for backup and restore
+  
+- **Save Config Dialog**: Save current config with name, description, and tags
+  - Accessible via new "Save" button in header
+  - Duplicate name validation
+  - Update existing config or save as new
+  - Tag support (up to 5 tags per config)
+  
+- **Saved Config Cards**: Rich display for each saved config
+  - Name, description preview, and tags
+  - Relative timestamp ("Updated 2h ago")
+  - "Active" badge for currently loaded config
+  - Overflow menu with Rename, Duplicate, and Delete actions
+  - Inline rename with keyboard support
+  
+- **Auto-Save Drafts**: Never lose work with automatic draft recovery
+  - Drafts auto-saved every 5 seconds to IndexedDB
+  - Recovery banner on app load if unsaved changes detected
+  - One-click restore or discard options
+  
+- **Unsaved Changes Indicator**: Amber dot on Save button when changes detected
+  - Visual feedback that current work differs from last save
+  - Helps users remember to save before closing
+  
+- **Bundle Export/Import**: Backup and transfer all configs
+  - "Export All" downloads `my-configs-backup-{date}.json`
+  - Import handles duplicates with auto-rename strategy
+  - Respects 50 config limit during import
+
+- **IndexedDB Storage**: Persistent local storage using `idb-keyval`
+  - Configs persist across browser sessions
+  - No server required - 100% client-side
+
 ### Official Themes Browser
 
 **Browse and Load Official Oh My Posh Themes**

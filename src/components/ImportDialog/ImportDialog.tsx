@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
+import { useSavedConfigsStore } from '../../store/savedConfigsStore';
 import { useAdvancedFeaturesStore } from '../../store/advancedFeaturesStore';
 import { importConfig } from '../../utils/configImporter';
 
@@ -22,6 +23,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
   const fileInputRef = useRef<HTMLInputElement>(null);
   const timeoutRef = useRef<number | null>(null);
   const setConfig = useConfigStore((state) => state.setConfig);
+  const clearLastLoadedId = useSavedConfigsStore((state) => state.clearLastLoadedId);
   const detectAndEnableFeatures = useAdvancedFeaturesStore((state) => state.detectAndEnableFeatures);
 
   // Cleanup timeout on unmount
@@ -46,6 +48,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       const text = await file.text();
       const importedConfig = importConfig(text, file.name);
       setConfig(importedConfig);
+      clearLastLoadedId(); // No longer working on a saved config
       
       // Auto-detect and enable advanced features
       const newlyEnabled = detectAndEnableFeatures(importedConfig);
@@ -79,6 +82,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
       const filename = `config.${format}`;
       const importedConfig = importConfig(pastedConfig, filename);
       setConfig(importedConfig);
+      clearLastLoadedId(); // No longer working on a saved config
       
       // Auto-detect and enable advanced features
       const newlyEnabled = detectAndEnableFeatures(importedConfig);
