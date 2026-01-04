@@ -122,6 +122,7 @@ export interface Segment {
   background?: string;
   background_templates?: string[];
   template?: string;
+  templates?: string[];
   templates_logic?: 'first_match' | 'join';
   powerline_symbol?: string;
   leading_diamond?: string;

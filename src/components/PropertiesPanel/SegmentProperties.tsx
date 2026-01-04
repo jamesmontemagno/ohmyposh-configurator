@@ -194,6 +194,28 @@ export function SegmentProperties() {
           </a>
         </p>
         
+        {/* Templates Logic - only show if templates array exists */}
+        {segment.templates && segment.templates.length > 0 && (
+          <div className="mt-3">
+            <label className="block text-xs text-gray-400 mb-1">
+              Templates Logic
+            </label>
+            <select
+              value={segment.templates_logic ?? 'first_match'}
+              onChange={(e) => handleUpdate({ 
+                templates_logic: e.target.value as 'first_match' | 'join'
+              })}
+              className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1 text-sm text-white focus:outline-none focus:border-[#e94560]"
+            >
+              <option value="first_match">First Match (use first non-empty result)</option>
+              <option value="join">Join (concatenate all non-empty results)</option>
+            </select>
+            <p className="text-xs text-gray-500 mt-1">
+              How to handle multiple templates
+            </p>
+          </div>
+        )}
+        
         {/* Nerd Font Icon Picker */}
         <div className="mt-2">
           <NerdFontPicker />
