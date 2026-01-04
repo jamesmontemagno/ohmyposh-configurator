@@ -7,18 +7,26 @@ import { PreviewPanel } from './components/PreviewPanel';
 import { ExportBar } from './components/ExportBar';
 import { ScreenSizeWarning } from './components/ScreenSizeWarning';
 import { OnboardingTutorial } from './components/OnboardingTutorial';
+import { DraftRecoveryBanner } from './components/DraftRecoveryBanner';
 import { preloadSegments } from './utils/segmentLoader';
+import { useSavedConfigsStore, setupDraftAutoSave } from './store/savedConfigsStore';
 
 function App() {
-  // Preload all segments on app mount for better UX
+  // Initialize saved configs store and auto-save on app mount
   useEffect(() => {
     preloadSegments();
+    useSavedConfigsStore.getState().loadFromStorage();
+    
+    // Setup draft auto-save
+    const unsubscribe = setupDraftAutoSave();
+    return () => unsubscribe();
   }, []);
 
   return (
     <div className="flex flex-col h-screen bg-[#0f0f23]">
       <ScreenSizeWarning />
       <OnboardingTutorial />
+      <DraftRecoveryBanner />
       {/* Header */}
       <Header />
 
