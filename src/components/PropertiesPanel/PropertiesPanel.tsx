@@ -2,10 +2,12 @@ import { useConfigStore } from '../../store/configStore';
 import { GlobalSettings } from './GlobalSettings';
 import { BlockProperties } from './BlockProperties';
 import { SegmentProperties } from './SegmentProperties';
+import { TooltipProperties } from './TooltipProperties';
 
 export function PropertiesPanel() {
   const selectedBlockId = useConfigStore((state) => state.selectedBlockId);
   const selectedSegmentId = useConfigStore((state) => state.selectedSegmentId);
+  const selectedTooltipId = useConfigStore((state) => state.selectedTooltipId);
 
   return (
     <div className="flex flex-col h-full bg-[#16213e] border-l border-[#0f3460]">
@@ -17,6 +19,7 @@ export function PropertiesPanel() {
         <GlobalSettings />
         {selectedBlockId && <BlockProperties />}
         {selectedSegmentId && <SegmentProperties />}
+        {selectedTooltipId && <TooltipProperties />}
       </div>
     </div>
   );

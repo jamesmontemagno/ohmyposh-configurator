@@ -197,6 +197,28 @@ export function GlobalSettings() {
             </div>
           </div>
 
+          {/* Tooltips Action */}
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <NerdIcon icon="nf-md-tooltip_text" size={14} className="text-gray-400" />
+              <span className="text-xs font-medium text-gray-300">Tooltips Action</span>
+            </div>
+            <select
+              value={config.tooltips_action ?? 'replace'}
+              onChange={(e) => handleUpdate({ 
+                tooltips_action: (e.target.value as 'replace' | 'extend' | 'prepend') || undefined 
+              })}
+              className="w-full bg-[#0f0f23] border border-[#0f3460] rounded px-2 py-1.5 text-xs text-gray-200 focus:outline-none focus:border-[#e94560]"
+            >
+              <option value="replace">Replace (default)</option>
+              <option value="extend">Extend (append to existing)</option>
+              <option value="prepend">Prepend (add before existing)</option>
+            </select>
+            <p className="text-xs text-gray-500 mt-1">
+              How tooltips interact with the prompt when triggered
+            </p>
+          </div>
+
           {/* Divider */}
           <div className="border-t border-[#0f3460] pt-4 mt-4">
             {/* Extra Prompts Button */}

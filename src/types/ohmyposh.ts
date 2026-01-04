@@ -156,6 +156,12 @@ export interface Block {
   segments: Segment[];
 }
 
+// Tooltip extends Segment with tips array for trigger commands
+export interface Tooltip extends Omit<Segment, 'id'> {
+  id: string; // Internal ID for UI (stripped on export)
+  tips: string[]; // Commands that trigger this tooltip (e.g., ['git', 'g'])
+}
+
 export interface ExtraPrompt {
   template?: string;
   foreground?: string;
@@ -187,7 +193,8 @@ export interface OhMyPoshConfig {
   terminal_background?: string;
   accent_color?: string;
   blocks: Block[];
-  tooltips?: Array<Segment & { tips: string[] }>;
+  tooltips?: Tooltip[];
+  tooltips_action?: 'replace' | 'extend' | 'prepend';
   transient_prompt?: ExtraPrompt;
   valid_line?: ExtraPrompt;
   error_line?: ExtraPrompt;

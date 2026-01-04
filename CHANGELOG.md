@@ -2,6 +2,62 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-01-05] - Phase 3 Completion: Tooltips Support
+
+### Added
+- **Tooltip Types and Store** (Issue #38): Core infrastructure for tooltips support
+  - Added `Tooltip` interface extending `Segment` with `id: string` and `tips: string[]` fields
+  - Added `tooltips_action` type for prompt interaction modes (`replace`, `extend`, `prepend`)
+  - New store state: `selectedTooltipId` for tracking selected tooltip
+  - New store actions: `addTooltip`, `updateTooltip`, `removeTooltip`, `selectTooltip`, `duplicateTooltip`, `reorderTooltips`
+  - Selection states are mutually exclusive (tooltip selection clears block/segment selection)
+  - Import normalization adds unique IDs to tooltips
+  - Export properly strips internal IDs from tooltips
+
+- **TooltipCard Component** (Issue #42): Visual card for displaying tooltips in the Canvas
+  - Shows tips as green command badges (e.g., `git`, `npm`)
+  - Style indicator pill (powerline/diamond/plain/accordion)
+  - Color swatches showing foreground and background colors
+  - Template preview showing segment output
+  - Drag handle for reordering tooltips
+  - Selection state with visual feedback
+  - Action buttons for duplicate and remove operations
+  - Uses dnd-kit for drag-and-drop functionality
+
+- **Canvas Tooltips Section** (Issue #40): Dedicated section in Canvas for managing tooltips
+  - Collapsible section with tooltip count badge
+  - SortableContext with rectSortingStrategy for grid layout
+  - Empty state with helpful guidance for users new to tooltips
+  - "Add Tooltip" button creates new git tooltip with default settings
+  - Drag-and-drop reordering between tooltips
+  - DragOverlay for tooltip preview during drag operations
+  - Tooltips section appears below blocks with visual divider
+
+- **TooltipProperties Component** (Issue #41): Full property panel for editing tooltips
+  - TipsEditor component for managing trigger commands
+    - Add, edit, remove tips with inline editing
+    - Duplicate tip detection and validation
+    - Enter key support for quick tip addition
+  - All segment properties: type, style, colors, template
+  - Style-specific controls (powerline symbols, diamond shapes)
+  - Conditional color templates support
+  - Responsive display settings (min/max width)
+  - Segment-specific options based on tooltip type
+  - Actions section with duplicate and delete buttons
+
+- **Tooltips Action Dropdown** (Issue #39): Global setting for tooltip behavior
+  - Added to GlobalSettings panel with tooltip icon
+  - Three modes: Replace (default), Extend (append), Prepend (add before)
+  - Descriptive help text explaining tooltip prompt interaction
+
+- **Tooltip Preview** (Issue #43): Visual preview of tooltips in PreviewPanel
+  - Collapsible tooltips section below main prompt preview
+  - Shows trigger command with arrow pointing to tooltip preview
+  - Full segment style rendering (powerline, diamond, plain)
+  - Click to select tooltip for editing
+  - Respects palette color resolution
+  - Selection highlight with green ring
+
 ## [2026-01-04] - Phase 2 Completion: Global Settings & Extra Prompts
 
 ### Added

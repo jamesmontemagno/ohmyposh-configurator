@@ -1,6 +1,6 @@
 import * as yaml from 'js-yaml';
 import * as toml from '@iarna/toml';
-import type { OhMyPoshConfig, Segment } from '../types/ohmyposh';
+import type { OhMyPoshConfig, Segment, Tooltip } from '../types/ohmyposh';
 import { generateId } from '../store/configStore';
 
 /**
@@ -119,6 +119,41 @@ function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
     };
   });
 
+  // Normalize tooltips by adding IDs
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const normalizedTooltips = config.tooltips?.map((tooltip: any): Tooltip => {
+    if (!tooltip || typeof tooltip !== 'object') {
+      throw new Error('Invalid tooltip in configuration');
+    }
+
+    return {
+      id: tooltip.id || generateId(),
+      type: tooltip.type || 'text',
+      style: tooltip.style || 'plain',
+      tips: tooltip.tips || [],
+      foreground: tooltip.foreground,
+      foreground_templates: tooltip.foreground_templates,
+      background: tooltip.background,
+      background_templates: tooltip.background_templates,
+      template: tooltip.template,
+      templates: tooltip.templates,
+      templates_logic: tooltip.templates_logic,
+      powerline_symbol: tooltip.powerline_symbol,
+      leading_diamond: tooltip.leading_diamond,
+      trailing_diamond: tooltip.trailing_diamond,
+      invert_powerline: tooltip.invert_powerline,
+      leading_powerline_symbol: tooltip.leading_powerline_symbol,
+      min_width: tooltip.min_width,
+      max_width: tooltip.max_width,
+      interactive: tooltip.interactive,
+      alias: tooltip.alias,
+      include_folders: tooltip.include_folders,
+      exclude_folders: tooltip.exclude_folders,
+      options: tooltip.options || tooltip.properties,
+      cache: tooltip.cache,
+    };
+  });
+
   // Return normalized config
   return {
     $schema: config.$schema,
@@ -133,7 +168,8 @@ function normalizeConfig(config: Record<string, any>): OhMyPoshConfig {
     terminal_background: config.terminal_background,
     accent_color: config.accent_color,
     blocks: normalizedBlocks,
-    tooltips: config.tooltips,
+    tooltips: normalizedTooltips,
+    tooltips_action: config.tooltips_action,
     transient_prompt: config.transient_prompt,
     valid_line: config.valid_line,
     error_line: config.error_line,

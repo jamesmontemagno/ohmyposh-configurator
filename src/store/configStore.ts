@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Block, Segment, OhMyPoshConfig, ExportFormat, ExtraPrompt, ExtraPromptType } from '../types/ohmyposh';
+import type { Block, Segment, OhMyPoshConfig, ExportFormat, ExtraPrompt, ExtraPromptType, Tooltip } from '../types/ohmyposh';
 
 // Generate unique IDs
 let idCounter = 0;
@@ -10,6 +10,7 @@ interface ConfigState {
   config: OhMyPoshConfig;
   selectedBlockId: string | null;
   selectedSegmentId: string | null;
+  selectedTooltipId: string | null;
   exportFormat: ExportFormat;
   previewBackground: 'dark' | 'light';
   previewPaletteName: string | undefined;
@@ -52,6 +53,14 @@ interface ConfigState {
   // Extra prompt actions
   setExtraPrompt: (type: ExtraPromptType, prompt: ExtraPrompt | undefined) => void;
   updateExtraPrompt: (type: ExtraPromptType, updates: Partial<ExtraPrompt>) => void;
+
+  // Tooltip actions
+  addTooltip: (tooltip?: Partial<Tooltip>) => void;
+  updateTooltip: (tooltipId: string, updates: Partial<Tooltip>) => void;
+  removeTooltip: (tooltipId: string) => void;
+  selectTooltip: (tooltipId: string | null) => void;
+  duplicateTooltip: (tooltipId: string) => void;
+  reorderTooltips: (fromIndex: number, toIndex: number) => void;
 
   // Export
   setExportFormat: (format: ExportFormat) => void;
@@ -102,6 +111,7 @@ export const useConfigStore = create<ConfigState>()(
       config: defaultConfig,
       selectedBlockId: null,
       selectedSegmentId: null,
+      selectedTooltipId: null,
       exportFormat: 'json',
       previewBackground: 'dark',
       previewPaletteName: undefined,
@@ -123,6 +133,7 @@ export const useConfigStore = create<ConfigState>()(
           },
           selectedBlockId: null,
           selectedSegmentId: null,
+          selectedTooltipId: null,
           previewPaletteName: undefined,
         }),
 
@@ -179,7 +190,7 @@ export const useConfigStore = create<ConfigState>()(
           return { config: { ...state.config, blocks } };
         }),
 
-      selectBlock: (blockId) => set({ selectedBlockId: blockId }),
+      selectBlock: (blockId) => set({ selectedBlockId: blockId, selectedSegmentId: null, selectedTooltipId: null }),
 
       addSegment: (blockId, segment, index) =>
         set((state) => ({
@@ -248,7 +259,7 @@ export const useConfigStore = create<ConfigState>()(
           return { config: { ...state.config, blocks } };
         }),
 
-      selectSegment: (segmentId) => set({ selectedSegmentId: segmentId }),
+      selectSegment: (segmentId) => set({ selectedSegmentId: segmentId, selectedTooltipId: null }),
 
       duplicateSegment: (blockId, segmentId) =>
         set((state) => {
@@ -402,6 +413,93 @@ export const useConfigStore = create<ConfigState>()(
               ...state.config,
               [type]: isEmptyPrompt ? undefined : newPrompt,
             },
+          };
+        }),
+
+      // Tooltip actions
+      addTooltip: (partial) =>
+        set((state) => {
+          const newTooltip: Tooltip = {
+            id: generateId(),
+            type: 'git',
+            style: 'plain',
+            tips: ['command'],
+            template: ' {{ .HEAD }} ',
+            foreground: '#ffffff',
+            background: '#193549',
+            ...partial,
+          };
+          
+          return {
+            config: {
+              ...state.config,
+              tooltips: [...(state.config.tooltips ?? []), newTooltip],
+            },
+            selectedTooltipId: newTooltip.id,
+            selectedBlockId: null,
+            selectedSegmentId: null,
+          };
+        }),
+
+      updateTooltip: (tooltipId, updates) =>
+        set((state) => ({
+          config: {
+            ...state.config,
+            tooltips: state.config.tooltips?.map((tooltip) =>
+              tooltip.id === tooltipId ? { ...tooltip, ...updates } : tooltip
+            ),
+          },
+        })),
+
+      removeTooltip: (tooltipId) =>
+        set((state) => {
+          const filteredTooltips = state.config.tooltips?.filter((t) => t.id !== tooltipId);
+          return {
+            config: {
+              ...state.config,
+              tooltips: filteredTooltips && filteredTooltips.length > 0 ? filteredTooltips : undefined,
+            },
+            selectedTooltipId: state.selectedTooltipId === tooltipId ? null : state.selectedTooltipId,
+          };
+        }),
+
+      selectTooltip: (tooltipId) =>
+        set({
+          selectedTooltipId: tooltipId,
+          selectedBlockId: tooltipId ? null : null,
+          selectedSegmentId: tooltipId ? null : null,
+        }),
+
+      duplicateTooltip: (tooltipId) =>
+        set((state) => {
+          const original = state.config.tooltips?.find((t) => t.id === tooltipId);
+          if (!original) return state;
+          
+          const duplicate: Tooltip = {
+            ...original,
+            id: generateId(),
+            tips: [...original.tips],
+          };
+          
+          return {
+            config: {
+              ...state.config,
+              tooltips: [...(state.config.tooltips ?? []), duplicate],
+            },
+            selectedTooltipId: duplicate.id,
+            selectedBlockId: null,
+            selectedSegmentId: null,
+          };
+        }),
+
+      reorderTooltips: (fromIndex, toIndex) =>
+        set((state) => {
+          const tooltips = [...(state.config.tooltips ?? [])];
+          const [removed] = tooltips.splice(fromIndex, 1);
+          tooltips.splice(toIndex, 0, removed);
+          
+          return {
+            config: { ...state.config, tooltips },
           };
         }),
 
