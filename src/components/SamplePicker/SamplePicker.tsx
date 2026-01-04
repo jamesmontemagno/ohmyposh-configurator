@@ -43,6 +43,7 @@ export function SamplePicker() {
     exportAllConfigs,
     importConfigsBundle,
     loadFromStorage,
+    clearLastLoadedId,
   } = useSavedConfigsStore();
   
   const { confirm, ConfirmDialogProps } = useConfirm();
@@ -83,6 +84,7 @@ export function SamplePicker() {
     const config = await loadConfig(category as 'samples' | 'community', filename);
     if (config) {
       setConfig(config);
+      clearLastLoadedId(); // No longer working on a saved config
       setIsOpen(false);
     }
   };
@@ -92,6 +94,7 @@ export function SamplePicker() {
     const config = await fetchOfficialTheme(theme.file);
     if (config) {
       setConfig(config);
+      clearLastLoadedId(); // No longer working on a saved config
       setIsOpen(false);
     }
     setLoadingTheme(null);
