@@ -73,6 +73,11 @@ const defaultConfig: OhMyPoshConfig = {
   $schema: 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json',
   version: 4,
   final_space: true,
+  palette: {
+    'text-light': '#ffffff',
+    'path-bg': '#61AFEF',
+    'git-bg': '#98C379',
+  },
   blocks: [
     {
       id: generateId(),
@@ -84,8 +89,8 @@ const defaultConfig: OhMyPoshConfig = {
           type: 'path',
           style: 'powerline',
           powerline_symbol: '\ue0b0',
-          foreground: '#ffffff',
-          background: '#61AFEF',
+          foreground: 'p:text-light',
+          background: 'p:path-bg',
           template: ' \uf07c {{ .Path }} ',
           options: {
             style: 'folder',
@@ -96,8 +101,8 @@ const defaultConfig: OhMyPoshConfig = {
           type: 'git',
           style: 'powerline',
           powerline_symbol: '\ue0b0',
-          foreground: '#ffffff',
-          background: '#98C379',
+          foreground: 'p:text-light',
+          background: 'p:git-bg',
           template: ' \uf126 {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ',
         },
       ],

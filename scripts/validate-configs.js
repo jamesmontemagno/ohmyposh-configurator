@@ -180,6 +180,28 @@ function validatePaletteReferences(config, prefix) {
   // Info about palette usage
   if (paletteKeys.size > 0) {
     log(`  Using palette with ${paletteKeys.size} color definitions`, 'info');
+  } else {
+    // Count how many hardcoded colors are used
+    let hardcodedColorCount = 0;
+    const colorPattern = /^#[0-9A-Fa-f]{3,8}$/;
+    
+    function countColors(obj) {
+      if (!obj || typeof obj !== 'object') return;
+      if (obj.foreground && colorPattern.test(obj.foreground)) hardcodedColorCount++;
+      if (obj.background && colorPattern.test(obj.background)) hardcodedColorCount++;
+    }
+    
+    if (config.blocks && Array.isArray(config.blocks)) {
+      config.blocks.forEach(block => {
+        if (block.segments && Array.isArray(block.segments)) {
+          block.segments.forEach(segment => countColors(segment));
+        }
+      });
+    }
+    
+    if (hardcodedColorCount > 0) {
+      addWarning(`${prefix}: consider using a palette for easier color management (found ${hardcodedColorCount} hardcoded colors)`);
+    }
   }
 }
 
