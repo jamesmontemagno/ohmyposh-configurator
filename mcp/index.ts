@@ -52,7 +52,7 @@ import {
 } from './lib/configLoader.js';
 import { cleanConfig } from './lib/configExporter.js';
 
-import type { OhMyPoshConfig, SegmentType, SegmentStyle } from '../src/types/ohmyposh.js';
+import type { OhMyPoshConfig, SegmentType, SegmentStyle, SegmentCategory } from '../src/types/ohmyposh.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -408,12 +408,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         let config: unknown;
         try {
           config = JSON.parse(configStr);
-        } catch {
+        } catch (parseError) {
           return {
             content: [
               {
                 type: 'text',
-                text: 'Error: Invalid JSON\n' + (error as Error).message,
+                text: 'Error: Invalid JSON\n' + (parseError as Error).message,
               },
             ],
           };
@@ -487,8 +487,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         if (search) {
           segments = searchSegments(search);
         } else if (category) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          segments = await loadSegmentCategory(category as any, SEGMENTS_DIR);
+          // Validate category is one of the known types
+          const validCategories: SegmentCategory[] = [
+            'system',
+            'scm',
+            'languages',
+            'cloud',
+            'cli',
+            'web',
+            'music',
+            'health',
+          ];
+          if (!validCategories.includes(category as SegmentCategory)) {
+            throw new Error(`Invalid category: ${category}. Valid categories: ${validCategories.join(', ')}`);
+          }
+          segments = await loadSegmentCategory(category as SegmentCategory, SEGMENTS_DIR);
         } else {
           segments = await loadAllSegments(SEGMENTS_DIR);
         }
@@ -561,12 +574,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       default:
         throw new Error(`Unknown tool: ${name}`);
     }
-  } catch {
+  } catch (toolError) {
     return {
       content: [
         {
           type: 'text',
-          text: `Error: ${(error as Error).message}`,
+          text: `Error: ${(toolError as Error).message}`,
         },
       ],
       isError: true,
@@ -670,8 +683,8 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
       default:
         throw new Error(`Unknown resource: ${uri}`);
     }
-  } catch {
-    throw new Error(`Failed to read resource: ${(error as Error).message}`);
+  } catch (resourceError) {
+    throw new Error(`Failed to read resource: ${(resourceError as Error).message}`);
   }
 });
 
