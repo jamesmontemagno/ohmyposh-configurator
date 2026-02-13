@@ -6,6 +6,11 @@
   "bin": {
     "ohmyposh-mcp": "./dist/mcp/index.js"
   },
+  "files": [
+    "dist/mcp/",
+    "public/segments/",
+    "public/configs/"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/minify-json.js dist",

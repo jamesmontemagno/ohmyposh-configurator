@@ -125,6 +125,24 @@ export function validateConfig(config: unknown): ValidationResult {
       }
     };
 
+    // Check palette references inside template arrays (foreground_templates, background_templates)
+    const checkTemplateRefs = (templates: unknown, path: string) => {
+      if (!Array.isArray(templates)) return;
+      templates.forEach((tpl: unknown, tplIndex: number) => {
+        if (typeof tpl !== 'string') return;
+        const matches = tpl.matchAll(/p:([\w-]+)/g);
+        for (const match of matches) {
+          if (!paletteKeys.has(match[1])) {
+            errors.push({
+              path: `${path}[${tplIndex}]`,
+              message: `Palette reference "p:${match[1]}" not found in palette`,
+              severity: 'error',
+            });
+          }
+        }
+      });
+    };
+
     // Check all blocks and segments for palette references
     cfg.blocks?.forEach((block: Block, blockIndex: number) => {
       block.segments?.forEach((segment: Segment, segmentIndex: number) => {
@@ -135,6 +153,8 @@ export function validateConfig(config: unknown): ValidationResult {
         if (segment.background) {
           checkColorRef(segment.background, `${segmentPath}.background`);
         }
+        checkTemplateRefs(segment.foreground_templates, `${segmentPath}.foreground_templates`);
+        checkTemplateRefs(segment.background_templates, `${segmentPath}.background_templates`);
       });
     });
   }

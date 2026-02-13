@@ -132,6 +132,92 @@ describe('configValidator', () => {
       const result = validateConfig(config);
       expect(result.valid).toBe(true);
     });
+
+    it('should error on invalid palette reference in foreground_templates', () => {
+      const config = {
+        $schema: 'test',
+        palette: {
+          'text-light': '#ffffff',
+        },
+        blocks: [
+          {
+            type: 'prompt',
+            segments: [
+              {
+                type: 'git',
+                style: 'powerline',
+                foreground_templates: [
+                  '{{ if .Working.Changed }}p:missing-color{{ end }}',
+                ],
+              },
+            ],
+          },
+        ],
+      };
+      const result = validateConfig(config);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e: ValidationError) => e.message.includes('p:missing-color'))).toBe(true);
+    });
+
+    it('should error on invalid palette reference in background_templates', () => {
+      const config = {
+        $schema: 'test',
+        palette: {
+          'git-clean': '#2ecc71',
+        },
+        blocks: [
+          {
+            type: 'prompt',
+            segments: [
+              {
+                type: 'git',
+                style: 'powerline',
+                background: 'p:git-clean',
+                background_templates: [
+                  '{{ if .Working.Changed }}p:git-dirty{{ end }}',
+                ],
+              },
+            ],
+          },
+        ],
+      };
+      const result = validateConfig(config);
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e: ValidationError) => e.message.includes('p:git-dirty'))).toBe(true);
+    });
+
+    it('should validate correct palette references in templates', () => {
+      const config = {
+        $schema: 'test',
+        palette: {
+          'text-light': '#ffffff',
+          'text-dark': '#000000',
+          'git-clean': '#2ecc71',
+          'git-dirty': '#f39c12',
+        },
+        blocks: [
+          {
+            type: 'prompt',
+            segments: [
+              {
+                type: 'git',
+                style: 'powerline',
+                foreground: 'p:text-light',
+                background: 'p:git-clean',
+                foreground_templates: [
+                  '{{ if .Working.Changed }}p:text-dark{{ end }}',
+                ],
+                background_templates: [
+                  '{{ if .Working.Changed }}p:git-dirty{{ end }}',
+                ],
+              },
+            ],
+          },
+        ],
+      };
+      const result = validateConfig(config);
+      expect(result.valid).toBe(true);
+    });
   });
 
   describe('isValidConfig', () => {

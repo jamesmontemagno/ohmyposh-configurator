@@ -24,8 +24,6 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
-import TOML from '@iarna/toml';
 
 import {
   createDefaultConfig,
@@ -50,7 +48,7 @@ import {
   loadConfigById,
   listConfigs,
 } from './lib/configLoader.js';
-import { cleanConfig } from './lib/configExporter.js';
+import { exportConfig } from './lib/configExporter.js';
 
 import type { OhMyPoshConfig, SegmentType, SegmentStyle, SegmentCategory } from '../src/types/ohmyposh.js';
 
@@ -58,8 +56,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Paths to data directories
-const SEGMENTS_DIR = join(__dirname, '../public/segments');
-const CONFIGS_DIR = join(__dirname, '../public/configs');
+// When compiled, __dirname is dist/mcp/, so go up two levels to reach project root
+const SEGMENTS_DIR = join(__dirname, '../../public/segments');
+const CONFIGS_DIR = join(__dirname, '../../public/configs');
 
 /**
  * Main MCP Server
@@ -276,8 +275,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       {
         name: 'search_ohmyposh_docs',
         description:
-          'Search the official Oh My Posh documentation at https://ohmyposh.dev/docs/ for information about ' +
-          'segments, configuration options, templates, and features. Returns relevant documentation snippets.',
+          'Get links to the official Oh My Posh documentation at https://ohmyposh.dev/docs/ for a given topic. ' +
+          'Returns documentation URLs and guidance for segments, configuration options, templates, and features.',
         inputSchema: {
           type: 'object',
           properties: {
@@ -334,31 +333,56 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         // Create base configuration
         let config = createDefaultConfig();
 
-        // Add a default block
-        const block = createBlock({
+        // Determine which segments to add based on description and explicit list
+        const segmentsToAdd = segments || inferSegmentsFromDescription(description);
+        const segmentStyle = style || 'powerline';
+
+        // Separate status from main segments for better multi-block layout
+        const mainSegments = segmentsToAdd.filter(s => s !== 'status');
+        const hasStatus = segmentsToAdd.includes('status');
+
+        // Create main block with primary segments
+        const mainBlock = createBlock({
           type: 'prompt',
           alignment: 'left',
         });
 
-        // Determine which segments to add based on description and explicit list
-        const segmentsToAdd = segments || inferSegmentsFromDescription(description);
-
-        // Add segments to the block
-        for (const segmentType of segmentsToAdd) {
+        for (const segmentType of mainSegments) {
           const metadata = getSegmentMetadata(segmentType);
           if (metadata) {
             const segment = createSegment(segmentType as SegmentType, {
-              style: style || 'powerline',
+              style: segmentStyle,
               foreground: metadata.defaultForeground,
               background: metadata.defaultBackground,
               template: metadata.defaultTemplate,
             });
-            block.segments.push(segment);
+            mainBlock.segments.push(segment);
           }
         }
 
-        // Add block to config
-        config = addBlockToConfig(config, block);
+        config = addBlockToConfig(config, mainBlock);
+
+        // Add status on a new line for cleaner prompt layout
+        if (hasStatus) {
+          const statusBlock = createBlock({
+            type: 'prompt',
+            alignment: 'left',
+          });
+          statusBlock.newline = true;
+
+          const statusSegment = createSegment('status' as SegmentType, {
+            style: 'plain',
+            foreground: '#e0f8ff',
+            background: 'transparent',
+            template: '\u276f ',
+            segmentOptions: { always_enabled: true },
+          });
+          statusSegment.foreground_templates = [
+            '{{ if gt .Code 0 }}#ef5350{{ end }}',
+          ];
+          statusBlock.segments.push(statusSegment);
+          config = addBlockToConfig(config, statusBlock);
+        }
 
         return {
           content: [
@@ -399,6 +423,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           background: metadata.defaultBackground,
           template: template || metadata.defaultTemplate,
         });
+
+        // Validate block index
+        if (blockIndex < 0 || blockIndex >= config.blocks.length) {
+          throw new Error(
+            `Invalid block index ${blockIndex}. Configuration has ${config.blocks.length} block(s) (valid indices: 0-${config.blocks.length - 1}).`
+          );
+        }
 
         // Add segment to block
         const updatedConfig = addSegmentToBlock(config, blockIndex, segment);
@@ -468,11 +499,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'export_configuration': {
-        const args = request.params.arguments as {
+        const { config: configStr, format = 'json' } = args as {
           config: string;
           format?: 'json' | 'yaml' | 'toml';
         };
-        const { config: configStr, format = 'json' } = args;
 
         let config: OhMyPoshConfig;
         try {
@@ -481,27 +511,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error('Invalid JSON configuration');
         }
 
-        // Clean config (remove internal IDs)
-        const cleaned = cleanConfig(config);
-
-        let output: string;
-        switch (format) {
-          case 'yaml':
-            output = yaml.dump(cleaned, { indent: 2, lineWidth: 120, noRefs: true });
-            break;
-          case 'toml': {
-            // Remove null values for TOML
-            const cleanedForToml = JSON.parse(
-              JSON.stringify(cleaned, (_, value) => (value === null ? undefined : value))
-            );
-            output = TOML.stringify(cleanedForToml as TOML.JsonMap);
-            break;
-          }
-          case 'json':
-          default:
-            output = JSON.stringify(cleaned, null, 2);
-            break;
-        }
+        const output = exportConfig(config, format);
 
         return {
           content: [
@@ -514,11 +524,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'list_segments': {
-        const args = request.params.arguments as {
+        const { category, search } = args as {
           category?: string;
           search?: string;
         };
-        const { category, search } = args;
 
         let segments;
         if (search) {
@@ -938,29 +947,37 @@ function inferSegmentsFromDescription(description: string): string[] {
   if (lower.includes('git')) segments.push('git');
 
   // Languages
-  if (lower.includes('node') || lower.includes('javascript') || lower.includes('npm'))
+  if (lower.includes('node') || lower.includes('javascript') || lower.includes('npm') || lower.includes('typescript'))
     segments.push('node');
   if (lower.includes('python')) segments.push('python');
-  if (lower.includes('go')) segments.push('go');
+  if (lower.includes('go') && !lower.includes('google')) segments.push('go');
   if (lower.includes('rust')) segments.push('rust');
-  if (lower.includes('java')) segments.push('java');
-  if (lower.includes('dotnet') || lower.includes('.net') || lower.includes('c#'))
+  if (lower.includes('java') && !lower.includes('javascript')) segments.push('java');
+  if (lower.includes('dotnet') || lower.includes('.net') || lower.includes('c#') || lower.includes('csharp'))
     segments.push('dotnet');
   if (lower.includes('ruby')) segments.push('ruby');
   if (lower.includes('php')) segments.push('php');
+  if (lower.includes('dart') || lower.includes('flutter')) segments.push('dart');
+  if (lower.includes('swift')) segments.push('swift');
+  if (lower.includes('react')) segments.push('react');
+  if (lower.includes('angular')) segments.push('angular');
 
   // Cloud
   if (lower.includes('aws')) segments.push('aws');
   if (lower.includes('azure')) segments.push('az');
   if (lower.includes('gcp') || lower.includes('google cloud')) segments.push('gcp');
-  if (lower.includes('kubernetes') || lower.includes('kubectl')) segments.push('kubectl');
+  if (lower.includes('kubernetes') || lower.includes('kubectl') || lower.includes('k8s')) segments.push('kubectl');
   if (lower.includes('docker')) segments.push('docker');
+  if (lower.includes('helm')) segments.push('helm');
+
+  // AI tools
+  if (lower.includes('copilot')) segments.push('copilot');
 
   // System
   if (lower.includes('time')) segments.push('time');
   if (lower.includes('battery')) segments.push('battery');
   if (lower.includes('shell')) segments.push('shell');
-  if (lower.includes('os')) segments.push('os');
+  if (/\bos\b/.test(lower)) segments.push('os');
 
   // Dev tools
   if (lower.includes('terraform')) segments.push('terraform');

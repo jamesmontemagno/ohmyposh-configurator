@@ -4,6 +4,12 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-02-13]
 
+### Added: MCP npm Publish Automation
+
+- Added GitHub Actions workflow to publish the MCP package to npm on `mcp-v*` release tags or manual dispatch
+- Added semver validation and version resolution from release tags or manual workflow input
+- Added trusted publishing support (`--provenance`) with `NPM_TOKEN` authentication for npm releases
+
 ### Added: Model Context Protocol (MCP) Server
 
 **AI-Powered Configuration with Natural Language**
