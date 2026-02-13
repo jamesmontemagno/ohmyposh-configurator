@@ -34,15 +34,10 @@ import {
   addBlockToConfig,
   addSegmentToBlock,
   updateGlobalSettings,
-  addTooltipToConfig,
-  createTooltip,
-  setPalette,
-  addPaletteColor,
 } from './lib/configBuilder.js';
 import {
   validateConfig,
   formatValidationResult,
-  isValidConfig,
 } from './lib/configValidator.js';
 import {
   loadAllSegments,
@@ -54,8 +49,6 @@ import {
 import {
   loadConfigById,
   listConfigs,
-  searchConfigs,
-  getAllConfigs,
 } from './lib/configLoader.js';
 import { cleanConfig } from './lib/configExporter.js';
 
@@ -352,7 +345,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         let config: OhMyPoshConfig;
         try {
           config = JSON.parse(configStr);
-        } catch (error) {
+        } catch {
           throw new Error('Invalid JSON configuration');
         }
 
@@ -392,7 +385,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         let config: OhMyPoshConfig;
         try {
           config = JSON.parse(configStr);
-        } catch (error) {
+        } catch {
           throw new Error('Invalid JSON configuration');
         }
 
@@ -415,7 +408,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         let config: unknown;
         try {
           config = JSON.parse(configStr);
-        } catch (error) {
+        } catch {
           return {
             content: [
               {
@@ -438,15 +431,16 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'export_configuration': {
-        const { config: configStr, format = 'json' } = args as {
+        const args = request.params.arguments as {
           config: string;
           format?: 'json' | 'yaml' | 'toml';
         };
+        const { config: configStr, format = 'json' } = args;
 
         let config: OhMyPoshConfig;
         try {
           config = JSON.parse(configStr);
-        } catch (error) {
+        } catch {
           throw new Error('Invalid JSON configuration');
         }
 
@@ -458,13 +452,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           case 'yaml':
             output = yaml.dump(cleaned, { indent: 2, lineWidth: 120, noRefs: true });
             break;
-          case 'toml':
+          case 'toml': {
             // Remove null values for TOML
             const cleanedForToml = JSON.parse(
               JSON.stringify(cleaned, (_, value) => (value === null ? undefined : value))
             );
             output = TOML.stringify(cleanedForToml as TOML.JsonMap);
             break;
+          }
           case 'json':
           default:
             output = JSON.stringify(cleaned, null, 2);
@@ -482,12 +477,17 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'list_segments': {
-        const { category, search } = args as { category?: string; search?: string };
+        const args = request.params.arguments as {
+          category?: string;
+          search?: string;
+        };
+        const { category, search } = args;
 
         let segments;
         if (search) {
           segments = searchSegments(search);
         } else if (category) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           segments = await loadSegmentCategory(category as any, SEGMENTS_DIR);
         } else {
           segments = await loadAllSegments(SEGMENTS_DIR);
@@ -561,7 +561,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       default:
         throw new Error(`Unknown tool: ${name}`);
     }
-  } catch (error) {
+  } catch {
     return {
       content: [
         {
@@ -670,7 +670,7 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
       default:
         throw new Error(`Unknown resource: ${uri}`);
     }
-  } catch (error) {
+  } catch {
     throw new Error(`Failed to read resource: ${(error as Error).message}`);
   }
 });

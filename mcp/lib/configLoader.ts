@@ -3,7 +3,7 @@
  * Loads sample and community configurations from JSON files
  */
 
-import { readFile, readdir } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 import type { OhMyPoshConfig } from '../../src/types/ohmyposh.js';
 
