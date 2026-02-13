@@ -1,6 +1,6 @@
 # Font Subset Process
 
-This document explains how the Oh My Posh Configurator optimizes font loading using a subset of the Nerd Font, reducing the initial download size from **~1.5MB to ~50-100KB** (~95% reduction).
+This document explains how the Oh My Posh Configurator 5000 optimizes font loading using a subset of the Nerd Font, reducing the initial download size from **~1.5MB to ~50-100KB** (~95% reduction).
 
 ## Overview
 

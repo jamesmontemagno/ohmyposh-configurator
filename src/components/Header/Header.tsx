@@ -54,7 +54,7 @@ export function Header() {
           </svg>
         </div>
         <div>
-          <h1 className="text-lg font-bold text-white">Oh My Posh Configurator</h1>
+          <h1 className="text-lg font-bold text-white">Oh My Posh Configurator 5000</h1>
           <p className="text-xs text-gray-400">Visual Configuration Builder</p>
         </div>
         

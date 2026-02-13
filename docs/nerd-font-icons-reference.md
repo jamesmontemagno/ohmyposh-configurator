@@ -1,6 +1,6 @@
 # Nerd Font Icons Reference Guide
 
-This document provides a comprehensive guide to the Nerd Font icons integrated into the Oh My Posh Configurator, along with resources for exploring and verifying icon codes.
+This document provides a comprehensive guide to the Nerd Font icons integrated into the Oh My Posh Configurator 5000, along with resources for exploring and verifying icon codes.
 
 ## 📚 Official Nerd Fonts Resources
 

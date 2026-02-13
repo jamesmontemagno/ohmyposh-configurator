@@ -1,8 +1,8 @@
-# Oh My Posh Visual Configurator ✨
+# Oh My Posh Configurator 5000 ✨
 
 <div align="center">
 
-![Oh My Posh Configurator](https://img.shields.io/badge/Oh%20My%20Posh-Visual%20Configurator-e94560?style=for-the-badge)
+![Oh My Posh Configurator 5000](https://img.shields.io/badge/Oh%20My%20Posh-Configurator%205000-e94560?style=for-the-badge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://jamesmontemagno.github.io/ohmyposh-configurator/)
 
@@ -14,9 +14,9 @@
 
 ---
 
-## 🎯 What is Oh My Posh Configurator?
+## 🎯 What is Oh My Posh Configurator 5000?
 
-The **Oh My Posh Visual Configurator** is a modern, intuitive web application that lets you design and customize your terminal prompt visually. No more manual JSON editing or trial-and-error configuration—just drag, drop, customize, and export!
+The **Oh My Posh Configurator 5000** is a modern, intuitive web application that lets you design and customize your terminal prompt visually. No more manual JSON editing or trial-and-error configuration—just drag, drop, customize, and export!
 
 Perfect for developers, DevOps engineers, and anyone who wants a beautiful, informative terminal prompt for PowerShell, Bash, Zsh, Fish, or any shell supported by [Oh My Posh](https://ohmyposh.dev/).
 

@@ -1,4 +1,4 @@
-# Copilot Instructions for Oh My Posh Configurator
+# Copilot Instructions for Oh My Posh Configurator 5000
 
 ## Project Overview
 

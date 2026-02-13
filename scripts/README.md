@@ -1,6 +1,6 @@
 # Scripts
 
-This directory contains utility scripts for the Oh My Posh Configurator project.
+This directory contains utility scripts for the Oh My Posh Configurator 5000 project.
 
 ## validate-configs.js
 

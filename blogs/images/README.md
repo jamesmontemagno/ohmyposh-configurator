@@ -1,13 +1,13 @@
 # Blog Images
 
-This folder contains images for the Oh My Posh Visual Configurator blog posts.
+This folder contains images for the Oh My Posh Configurator 5000 blog posts.
 
 ## Available Images
 
 ### Main Interface
 ![Main Interface](main-interface.png)
 - **File**: `main-interface.png`
-- **Description**: The complete Oh My Posh Configurator interface showing the segment picker on the left, configuration canvas in the center, and properties panel on the right, with a live preview at the bottom.
+- **Description**: The complete Oh My Posh Configurator 5000 interface showing the segment picker on the left, configuration canvas in the center, and properties panel on the right, with a live preview at the bottom.
 - **Usage**: Featured in the blog post introduction
 
 ### Properties Panel

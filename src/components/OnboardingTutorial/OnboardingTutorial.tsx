@@ -9,7 +9,7 @@ interface TutorialStep {
 
 const tutorialSteps: TutorialStep[] = [
   {
-    title: 'Welcome to Oh My Posh Configurator! 🎨',
+    title: 'Welcome to Oh My Posh Configurator 5000! 🎨',
     description: 'This visual tool helps you create and customize your terminal prompt configuration. Let\'s take a quick tour of the features.',
     icon: 'misc-lightbulb',
   },

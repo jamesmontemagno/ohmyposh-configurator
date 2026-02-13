@@ -1,8 +1,8 @@
-# Introducing Oh My Posh Visual Configurator: Finally, a Drag-and-Drop Terminal Theme Builder! ✨
+# Introducing Oh My Posh Configurator 5000: Finally, a Drag-and-Drop Terminal Theme Builder! ✨
 
-If you've ever spent way too much time digging through JSON files trying to get your terminal prompt *just right*, this post is for you. I'm incredibly excited to share something I've been working on: the **Oh My Posh Visual Configurator**—a web-based drag-and-drop builder that makes creating beautiful terminal prompts actually fun (yes, really!).
+If you've ever spent way too much time digging through JSON files trying to get your terminal prompt *just right*, this post is for you. I'm incredibly excited to share something I've been working on: the **Oh My Posh Configurator 5000**—a web-based drag-and-drop builder that makes creating beautiful terminal prompts actually fun (yes, really!)!
 
-![Oh My Posh Configurator Main Interface](images/main-interface.png)
+![Oh My Posh Configurator 5000 Main Interface](images/main-interface.png)
 *The main interface showing the segment picker, configuration canvas, and live preview*
 
 ## The Problem We All Know Too Well

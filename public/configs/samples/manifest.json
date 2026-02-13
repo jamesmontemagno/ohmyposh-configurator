@@ -7,7 +7,7 @@
       "name": "All Segments",
       "description": "Every single segment type for testing and exploration",
       "icon": "misc-rocket",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "testing",
         "complete",
@@ -21,7 +21,7 @@
       "name": "Developer Pro",
       "description": "Complete setup for software developers with Git, language versions, and execution time",
       "icon": "ui-code",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "developer",
         "git",
@@ -35,7 +35,7 @@
       "name": "Streamer Setup",
       "description": "Clean and colorful prompt perfect for streaming with music and time info",
       "icon": "misc-video",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "streaming",
         "music",
@@ -49,7 +49,7 @@
       "name": "Minimal Dev",
       "description": "Simple and fast prompt with just the essentials",
       "icon": "weather-stormy",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "minimal",
         "fast",
@@ -63,7 +63,7 @@
       "name": "Cloud Engineer",
       "description": "Focused on cloud services with AWS, Azure, Kubernetes, and Docker info",
       "icon": "cloud-generic",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "cloud",
         "aws",
@@ -78,7 +78,7 @@
       "name": "Full Stack",
       "description": "Comprehensive setup for full-stack developers with frontend and backend tools",
       "icon": "misc-rocket",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "full-stack",
         "react",
@@ -93,7 +93,7 @@
       "name": "Data Scientist",
       "description": "Optimized for data science work with Python, R, and Julia",
       "icon": "misc-chart",
-      "author": "Oh My Posh Configurator",
+      "author": "Oh My Posh Configurator 5000",
       "tags": [
         "data-science",
         "python",
