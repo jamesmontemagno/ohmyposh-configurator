@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh My Posh Configurator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #f8f8f2;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #b8b8c8;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #0f3460;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: #e94560;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: #61AFEF;
+            font-size: 1.3rem;
+            margin: 20px 0 10px 0;
+        }
+
+        .card p {
+            color: #d8d8e8;
+            margin-bottom: 15px;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 8px 0;
+            color: #d8d8e8;
+            border-bottom: 1px solid #0f3460;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card li::before {
+            content: "▸ ";
+            color: #e94560;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tool-card {
+            background: #0f0f23;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #0f3460;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: #e94560;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(233, 69, 96, 0.2);
+        }
+
+        .tool-card h4 {
+            color: #61AFEF;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            font-size: 0.9rem;
+            color: #b8b8c8;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feature-item {
+            background: #0f0f23;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #0f3460;
+        }
+
+        .feature-item strong {
+            color: #98C379;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #0f0f23;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #98C379;
+            font-family: 'Courier New', monospace;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #e94560 0%, #c93a52 100%);
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .cta h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .cta code {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding: 4px 8px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 2px solid #0f3460;
+            color: #b8b8c8;
+        }
+
+        .status {
+            display: inline-block;
+            background: #98C379;
+            color: #0f0f23;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Oh My Posh Configurator</h1>
+            <p>AI-Powered Terminal Prompt Configuration</p>
+            <div style="margin-top: 15px;">
+                <span class="status">MCP Server Active</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h2><span class="icon">🤖</span> MCP Server</h2>
+                <p>The Model Context Protocol server is running and ready to assist AI assistants in creating and managing Oh My Posh configurations.</p>
+                
+                <h3>Capabilities</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <strong>11 Tools</strong>
+                        <span>CRUD operations on configurations</span>
+                    </div>
+                    <div class="feature-item">
+                        <strong>4 Resources</strong>
+                        <span>Access to 103+ segments</span>
+                    </div>
+                    <div class="feature-item">
+                        <strong>3 Prompts</strong>
+                        <span>Templated workflows</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🎨</span> Features</h2>
+                <ul>
+                    <li>Natural language configuration generation</li>
+                    <li>Smart segment defaults and colors</li>
+                    <li>Multi-format export (JSON/YAML/TOML)</li>
+                    <li>Configuration validation with errors</li>
+                    <li>Official documentation search</li>
+                    <li>103+ segments across 8 categories</li>
+                    <li>Sample and community configs</li>
+                </ul>
+            </div>
+
+            <div class="card full-width">
+                <h2><span class="icon">🛠️</span> Available Tools</h2>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>create_configuration</h4>
+                        <p>Generate configs from natural language descriptions</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>add_segment</h4>
+                        <p>Add segments with smart defaults</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>modify_configuration</h4>
+                        <p>Edit existing configurations</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>validate_configuration</h4>
+                        <p>Check config validity with detailed errors</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>export_configuration</h4>
+                        <p>Convert between JSON/YAML/TOML</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>list_segments</h4>
+                        <p>Browse all available segments</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>get_segment_info</h4>
+                        <p>Get detailed segment documentation</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>list_sample_configs</h4>
+                        <p>View sample configurations</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>load_sample_config</h4>
+                        <p>Load specific samples</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>search_ohmyposh_docs</h4>
+                        <p>Search official documentation</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>get_ohmyposh_segment_docs</h4>
+                        <p>Get official segment docs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">💬</span> Example Requests</h2>
+                <ul>
+                    <li>"Create a developer prompt with git and Python"</li>
+                    <li>"Add caching to all language segments"</li>
+                    <li>"Apply the Dracula color theme"</li>
+                    <li>"Validate my Oh My Posh configuration"</li>
+                    <li>"Search docs for powerline symbols"</li>
+                    <li>"Get documentation for the git segment"</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">📚</span> Segment Categories</h2>
+                <ul>
+                    <li><strong>System:</strong> Path, OS, Shell, Battery, Time</li>
+                    <li><strong>SCM:</strong> Git, Mercurial, SVN, Fossil</li>
+                    <li><strong>Languages:</strong> Node, Python, Go, Rust, Java</li>
+                    <li><strong>Cloud:</strong> AWS, Azure, GCP, Kubernetes</li>
+                    <li><strong>CLI:</strong> NPM, Docker, Terraform</li>
+                    <li><strong>Web:</strong> IP Address, Weather, HTTP</li>
+                    <li><strong>Music:</strong> Spotify, YouTube Music</li>
+                    <li><strong>Health:</strong> Nightscout, Strava</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>🚀 Get Started</h2>
+            <p>Start creating Oh My Posh configurations with natural language!</p>
+            <p>Try asking: <code>"Create me a nice-looking developer prompt"</code></p>
+        </div>
+
+        <footer>
+            <p>Oh My Posh Configurator MCP Server v1.0.0</p>
+            <p>Supporting Claude Desktop, GitHub Copilot, VS Code, and more</p>
+        </footer>
+    </div>
+</body>
+</html>

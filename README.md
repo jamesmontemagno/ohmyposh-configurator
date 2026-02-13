@@ -39,6 +39,7 @@ Perfect for developers, DevOps engineers, and anyone who wants a beautiful, info
 - 📱 **Responsive Design**: Works on desktop, tablet, and mobile devices
 - 🎨 **Smart Color Schemes**: Category-based default colors for quick setup
 - 🤖 **MCP Server**: Use AI assistants like Claude to create and manage configurations through natural language ([Learn more](docs/MCP_SERVER.md))
+- 🖥️ **MCP UI/App**: Interactive visualization interface for the MCP server with visual tool documentation
 
 ## 🗂️ Segment Categories
 
