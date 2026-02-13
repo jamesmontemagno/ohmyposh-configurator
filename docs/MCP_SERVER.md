@@ -35,7 +35,9 @@ npm install
 npm run build:mcp
 ```
 
-## Configuration with Claude Desktop
+## Configuration with AI Assistants
+
+### Claude Desktop
 
 To use this MCP server with Claude Desktop, add it to your Claude configuration file:
 
@@ -58,6 +60,32 @@ To use this MCP server with Claude Desktop, add it to your Claude configuration 
 Replace `/absolute/path/to/ohmyposh-configurator` with the actual path to your cloned repository.
 
 After adding this configuration, restart Claude Desktop.
+
+### VS Code with GitHub Copilot
+
+To use this MCP server with VS Code and GitHub Copilot:
+
+1. Install an MCP-compatible extension for VS Code (search for "MCP Client" in the VS Code marketplace)
+
+2. Configure the extension to point to the built MCP server:
+   ```
+   /absolute/path/to/ohmyposh-configurator/dist/mcp/index.js
+   ```
+
+3. Use GitHub Copilot Chat to interact with Oh My Posh configurations through natural language
+
+4. Example prompts in VS Code:
+   - "Create a developer prompt configuration"
+   - "Add a git segment to my Oh My Posh config"
+   - "Validate my Oh My Posh configuration"
+
+### Other MCP-Compatible Clients
+
+The server follows the Model Context Protocol specification and should work with any MCP-compatible client. Configure your client to run:
+
+```bash
+node /absolute/path/to/ohmyposh-configurator/dist/mcp/index.js
+```
 
 ## Available Tools
 
@@ -173,6 +201,31 @@ Load a specific sample configuration by ID.
 **Example:**
 ```
 Load the developer-pro sample config
+```
+
+### search_ohmyposh_docs
+
+Search the official Oh My Posh documentation for information about segments, configuration, templates, and features.
+
+**Parameters:**
+- `query` (string, required): Search query
+- `topic` (string, optional): Narrow search to specific topic (segments, configuration, templates, installation, general)
+
+**Example:**
+```
+Search Oh My Posh docs for "powerline symbols"
+```
+
+### get_ohmyposh_segment_docs
+
+Get the official Oh My Posh documentation for a specific segment type from https://ohmyposh.dev/docs/segments/
+
+**Parameters:**
+- `segmentType` (string, required): The segment type to get documentation for
+
+**Example:**
+```
+Get official documentation for the git segment
 ```
 
 ## Available Resources

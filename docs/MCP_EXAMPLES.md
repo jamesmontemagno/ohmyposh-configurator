@@ -243,6 +243,45 @@ Explain each segment in my configuration
 **Result:**
 Claude uses `get_segment_info` for each segment type and provides detailed explanations
 
+## Example 11: Search Official Documentation
+
+**User Request:**
+```
+Search the Oh My Posh docs for information about powerline symbols
+```
+
+**Expected Flow:**
+1. Claude calls `search_ohmyposh_docs` with query: "powerline symbols"
+2. MCP server provides documentation links and context
+3. Returns relevant sections and URLs
+
+**Result:**
+Guidance on where to find information:
+- Direct link to powerline documentation
+- Key topics to explore
+- Relevant configuration examples
+
+## Example 12: Get Official Segment Documentation
+
+**User Request:**
+```
+Get the official Oh My Posh documentation for the git segment
+```
+
+**Expected Flow:**
+1. Claude calls `get_ohmyposh_segment_docs` with segmentType: "git"
+2. MCP server retrieves local metadata
+3. Provides link to official docs at ohmyposh.dev
+4. Returns formatted documentation
+
+**Result:**
+Complete documentation including:
+- Segment description and properties
+- Configuration options with defaults
+- Template variables available
+- Recommended cache settings
+- Link to official docs for latest info
+
 ## Tips for Best Results
 
 1. **Be Specific**: "Add git segment" vs "Add version control"

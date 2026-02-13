@@ -3,8 +3,10 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { validateConfig, isValidConfig, formatValidationResult } from '../configValidator';
-import { createDefaultConfig, createBlock, createSegment, addBlockToConfig, addSegmentToBlock } from '../configBuilder';
+import { validateConfig, isValidConfig, formatValidationResult } from '../configValidator.js';
+import { createDefaultConfig, createBlock, createSegment, addBlockToConfig, addSegmentToBlock } from '../configBuilder.js';
+
+import type { ValidationError } from '../configValidator.js';
 
 describe('configValidator', () => {
   describe('validateConfig', () => {
@@ -48,7 +50,7 @@ describe('configValidator', () => {
       };
       const result = validateConfig(config);
       expect(result.valid).toBe(false);
-      expect(result.errors.some(e => e.message.includes('type'))).toBe(true);
+      expect(result.errors.some((e: ValidationError) => e.message.includes('type'))).toBe(true);
     });
 
     it('should error on segment without type', () => {
@@ -63,7 +65,7 @@ describe('configValidator', () => {
       };
       const result = validateConfig(config);
       expect(result.valid).toBe(false);
-      expect(result.errors.some(e => e.message.includes('type'))).toBe(true);
+      expect(result.errors.some((e: ValidationError) => e.message.includes('type'))).toBe(true);
     });
 
     it('should warn about empty segments array', () => {
@@ -103,7 +105,7 @@ describe('configValidator', () => {
       };
       const result = validateConfig(config);
       expect(result.valid).toBe(false);
-      expect(result.errors.some(e => e.message.includes('p:missing-color'))).toBe(true);
+      expect(result.errors.some((e: ValidationError) => e.message.includes('p:missing-color'))).toBe(true);
     });
 
     it('should validate correct palette reference', () => {

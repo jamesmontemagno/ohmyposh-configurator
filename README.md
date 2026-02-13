@@ -94,7 +94,11 @@ npm run preview
 
 ## 🤖 MCP Server (AI-Powered Configuration)
 
-Want to create Oh My Posh configurations using natural language with AI assistants like Claude? The Oh My Posh Configurator includes a Model Context Protocol (MCP) server!
+Want to create Oh My Posh configurations using natural language with AI assistants? The Oh My Posh Configurator includes a Model Context Protocol (MCP) server that works with:
+
+- **Claude Desktop** - Anthropic's desktop application
+- **GitHub Copilot** (via VS Code) - Microsoft's AI pair programmer
+- **VS Code** - With MCP-compatible extensions
 
 **Quick Setup for Claude Desktop:**
 
@@ -116,6 +120,22 @@ Want to create Oh My Posh configurations using natural language with AI assistan
    ```
 
 3. Restart Claude Desktop and start creating prompts with AI!
+
+**Quick Setup for VS Code with GitHub Copilot:**
+
+1. Build the MCP server:
+   ```bash
+   npm run build:mcp
+   ```
+
+2. Install an MCP extension for VS Code (e.g., "MCP Client" or similar)
+
+3. Configure the extension to use the Oh My Posh MCP server at:
+   ```
+   /path/to/ohmyposh-configurator/dist/mcp/index.js
+   ```
+
+4. Use GitHub Copilot Chat to interact with the MCP server!
 
 **Example Requests:**
 - "Create me a developer prompt with git and Python"

@@ -13,7 +13,7 @@ import {
   updateGlobalSettings,
   setPalette,
   addPaletteColor,
-} from '../configBuilder';
+} from '../configBuilder.js';
 
 describe('configBuilder', () => {
   describe('createDefaultConfig', () => {

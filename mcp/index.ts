@@ -273,6 +273,43 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['configId'],
         },
       },
+      {
+        name: 'search_ohmyposh_docs',
+        description:
+          'Search the official Oh My Posh documentation at https://ohmyposh.dev/docs/ for information about ' +
+          'segments, configuration options, templates, and features. Returns relevant documentation snippets.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            query: {
+              type: 'string',
+              description: 'Search query (e.g., "git segment options", "powerline symbols", "color templates")',
+            },
+            topic: {
+              type: 'string',
+              enum: ['segments', 'configuration', 'templates', 'installation', 'general'],
+              description: 'Optional: Narrow search to a specific documentation topic',
+            },
+          },
+          required: ['query'],
+        },
+      },
+      {
+        name: 'get_ohmyposh_segment_docs',
+        description:
+          'Get the official Oh My Posh documentation for a specific segment type. ' +
+          'Returns detailed information from https://ohmyposh.dev/docs/segments/',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            segmentType: {
+              type: 'string',
+              description: 'The segment type to get documentation for (e.g., "git", "python", "aws")',
+            },
+          },
+          required: ['segmentType'],
+        },
+      },
     ],
   };
 });
@@ -566,6 +603,111 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             {
               type: 'text',
               text: JSON.stringify(result, null, 2),
+            },
+          ],
+        };
+      }
+
+      case 'search_ohmyposh_docs': {
+        const { query, topic } = args as { query: string; topic?: string };
+
+        // Build the search URL for Oh My Posh docs
+        const baseUrl = 'https://ohmyposh.dev/docs/';
+        let searchPath = '';
+        
+        if (topic) {
+          searchPath = topic === 'segments' ? 'segments/' : 
+                      topic === 'configuration' ? 'configuration/' :
+                      topic === 'templates' ? 'configuration/templates/' :
+                      topic === 'installation' ? 'installation/' : '';
+        }
+
+        const docsUrl = baseUrl + searchPath;
+        
+        return {
+          content: [
+            {
+              type: 'text',
+              text: `To search the Oh My Posh documentation for "${query}":\n\n` +
+                    `1. Visit: ${docsUrl}\n` +
+                    `2. Use the search functionality on the docs site\n` +
+                    `3. Or browse the relevant section:\n\n` +
+                    (topic === 'segments' ? `   - Segments: ${baseUrl}segments/\n` : '') +
+                    (topic === 'configuration' ? `   - Configuration: ${baseUrl}configuration/\n` : '') +
+                    (topic === 'templates' ? `   - Templates: ${baseUrl}configuration/templates/\n` : '') +
+                    (!topic ? `   - Main docs: ${baseUrl}\n` : '') +
+                    `\nKey topics to explore:\n` +
+                    `- Segment types and their options\n` +
+                    `- Template variables and functions\n` +
+                    `- Color and style configuration\n` +
+                    `- Performance optimization (caching)\n` +
+                    `\nNote: For segment-specific documentation, use the 'get_ohmyposh_segment_docs' tool with the segment type.`,
+            },
+          ],
+        };
+      }
+
+      case 'get_ohmyposh_segment_docs': {
+        const { segmentType } = args as { segmentType: string };
+
+        // First check if we have metadata for this segment
+        const metadata = getSegmentMetadata(segmentType);
+        if (!metadata) {
+          throw new Error(`Unknown segment type: ${segmentType}. Use list_segments to see available types.`);
+        }
+
+        const docsUrl = `https://ohmyposh.dev/docs/segments/${segmentType.toLowerCase()}`;
+        
+        // Build comprehensive response with local metadata and link to official docs
+        let response = `# ${metadata.name} Segment\n\n`;
+        response += `**Type**: \`${segmentType}\`\n`;
+        response += `**Category**: ${metadata.category}\n\n`;
+        response += `${metadata.description}\n\n`;
+
+        if (metadata.defaultTemplate) {
+          response += `## Default Template\n\`\`\`\n${metadata.defaultTemplate}\n\`\`\`\n\n`;
+        }
+
+        if (metadata.properties && metadata.properties.length > 0) {
+          response += `## Available Properties\n\n`;
+          metadata.properties.forEach(prop => {
+            response += `- **${prop.name}** (${prop.type}): ${prop.description}\n`;
+          });
+          response += '\n';
+        }
+
+        if (metadata.options && metadata.options.length > 0) {
+          response += `## Configuration Options\n\n`;
+          metadata.options.forEach(opt => {
+            response += `- **${opt.name}** (${opt.type})`;
+            if (opt.default !== undefined) {
+              response += ` - Default: \`${JSON.stringify(opt.default)}\``;
+            }
+            response += `\n  ${opt.description}\n`;
+          });
+          response += '\n';
+        }
+
+        if (metadata.defaultCache) {
+          response += `## Recommended Cache Settings\n\n`;
+          response += `- **Duration**: ${metadata.defaultCache.duration}\n`;
+          response += `- **Strategy**: ${metadata.defaultCache.strategy}\n\n`;
+        }
+
+        response += `## Official Documentation\n\n`;
+        response += `For complete and up-to-date information, visit:\n`;
+        response += `${docsUrl}\n\n`;
+        response += `The official documentation includes:\n`;
+        response += `- Detailed property descriptions\n`;
+        response += `- Configuration examples\n`;
+        response += `- Platform-specific notes\n`;
+        response += `- Troubleshooting tips\n`;
+
+        return {
+          content: [
+            {
+              type: 'text',
+              text: response,
             },
           ],
         };

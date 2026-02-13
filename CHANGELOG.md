@@ -9,11 +9,11 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 **AI-Powered Configuration with Natural Language**
 
 - **MCP Server Implementation**: Full Model Context Protocol server for AI assistant integration
-  - Enable AI assistants like Claude to create and manage Oh My Posh configurations
+  - Enable AI assistants like Claude, GitHub Copilot, and VS Code to create and manage Oh My Posh configurations
   - Natural language configuration generation and modification
-  - Works seamlessly with Claude Desktop and other MCP-compatible clients
+  - Works seamlessly with Claude Desktop, VS Code, and other MCP-compatible clients
 
-- **MCP Tools (9 actions available)**:
+- **MCP Tools (11 actions available)**:
   - `create_configuration`: Generate configs from natural language descriptions
   - `add_segment`: Add segments with smart defaults and auto-applied colors
   - `modify_configuration`: Edit existing configurations
@@ -23,6 +23,8 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
   - `get_segment_info`: Get detailed segment documentation and properties
   - `list_sample_configs`: View available sample configurations
   - `load_sample_config`: Load specific sample configurations by ID
+  - **NEW** `search_ohmyposh_docs`: Search official Oh My Posh documentation
+  - **NEW** `get_ohmyposh_segment_docs`: Get official docs for specific segments
 
 - **MCP Resources (4 data sources)**:
   - `ohmyposh://segments/all`: Complete segment library with metadata
