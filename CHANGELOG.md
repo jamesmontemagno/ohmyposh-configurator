@@ -12,7 +12,6 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
   - Enable AI assistants like Claude, GitHub Copilot, and VS Code to create and manage Oh My Posh configurations
   - Natural language configuration generation and modification
   - Works seamlessly with Claude Desktop, VS Code, and other MCP-compatible clients
-  - **NEW** Interactive UI/App visualization interface
 
 - **MCP Tools (11 actions available)**:
   - `create_configuration`: Generate configs from natural language descriptions
@@ -27,8 +26,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
   - **NEW** `search_ohmyposh_docs`: Search official Oh My Posh documentation
   - **NEW** `get_ohmyposh_segment_docs`: Get official docs for specific segments
 
-- **MCP Resources (5 data sources)**:
-  - **NEW** `ohmyposh://ui/app`: Interactive HTML visualization interface
+- **MCP Resources (4 data sources)**:
   - `ohmyposh://segments/all`: Complete segment library with metadata
   - `ohmyposh://segments/categories`: Segment categories and organization
   - `ohmyposh://configs/samples`: Pre-built sample configurations
@@ -38,15 +36,6 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
   - `quick_start`: Quick start workflows for common use cases
   - `troubleshoot`: Interactive troubleshooting assistance
   - `apply_theme`: Color theme application helpers
-
-- **Interactive UI/App Visualization** (NEW):
-  - Beautiful HTML interface accessible via `ohmyposh://ui/app` resource
-  - Visual overview of all 11 tools with descriptions
-  - Feature showcase with segment categories
-  - Example requests and use cases
-  - Responsive design with Oh My Posh branding
-  - Real-time server status indicator
-  - Works in MCP clients that support HTML resources
 
 - **Reusable Configuration Library**: Extracted core logic for MCP server
   - `configBuilder`: Create and modify configurations programmatically

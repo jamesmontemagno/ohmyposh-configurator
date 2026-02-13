@@ -282,29 +282,6 @@ Complete documentation including:
 - Recommended cache settings
 - Link to official docs for latest info
 
-## Example 13: Access Interactive UI
-
-**User Request:**
-```
-Show me the MCP server UI
-```
-
-**Expected Flow:**
-1. AI assistant requests the `ohmyposh://ui/app` resource
-2. MCP server returns HTML content
-3. Client renders the interactive interface
-
-**Result:**
-Beautiful visualization interface showing:
-- Server status and capabilities
-- All 11 tools with descriptions
-- Feature showcase
-- Segment categories overview
-- Example requests
-- Quick-start guidance
-
-The UI provides an at-a-glance overview of everything the MCP server can do, making it easier to understand and use all available tools and resources.
-
 ## Tips for Best Results
 
 1. **Be Specific**: "Add git segment" vs "Add version control"

@@ -9,7 +9,6 @@ The Oh My Posh Configurator MCP Server exposes the configurator's functionality 
 - **Tools (Actions)**: Create, modify, validate, and export configurations
 - **Resources (Data)**: Access to 103+ segment definitions and sample configurations
 - **Prompts (Templates)**: Quick start workflows and troubleshooting assistance
-- **UI/App (NEW)**: Interactive visualization interface for enhanced user experience
 
 ## Installation
 
@@ -231,28 +230,12 @@ Get official documentation for the git segment
 
 ## Available Resources
 
-Resources are read-only data sources that AI assistants can access:
+Resources are read-only data sources that Claude can access:
 
-- `ohmyposh://ui/app`: **NEW** Interactive visualization interface - HTML UI for the MCP server
 - `ohmyposh://segments/all`: Complete list of all 103+ segments
 - `ohmyposh://segments/categories`: List of segment categories
 - `ohmyposh://configs/samples`: Sample configurations
 - `ohmyposh://configs/community`: Community configurations
-
-### Accessing the UI
-
-The MCP server now includes an interactive visualization interface accessible through the `ohmyposh://ui/app` resource. This provides:
-
-- **Visual Overview**: See all tools, resources, and capabilities at a glance
-- **Tool Documentation**: Browse available tools with descriptions
-- **Feature List**: Understand what the MCP server can do
-- **Segment Categories**: Quick reference to all 103+ segments organized by category
-- **Example Requests**: Get inspired with common use cases
-
-To access the UI in compatible MCP clients (like Claude Desktop):
-1. Request the `ohmyposh://ui/app` resource
-2. The client will render the HTML interface
-3. Explore the visual documentation and examples
 
 ## Available Prompts
 

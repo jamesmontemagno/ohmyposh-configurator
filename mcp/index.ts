@@ -24,7 +24,6 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { readFile } from 'fs/promises';
 import yaml from 'js-yaml';
 import TOML from '@iarna/toml';
 
@@ -737,12 +736,6 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
   return {
     resources: [
       {
-        uri: 'ohmyposh://ui/app',
-        name: 'Oh My Posh Configurator UI',
-        description: 'Interactive visualization interface for the MCP server',
-        mimeType: 'text/html',
-      },
-      {
         uri: 'ohmyposh://segments/all',
         name: 'All Segments',
         description: 'Complete list of all 103+ available Oh My Posh segments across all categories',
@@ -777,21 +770,6 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 
   try {
     switch (uri) {
-      case 'ohmyposh://ui/app': {
-        // Serve the UI HTML file
-        const uiPath = join(__dirname, 'ui', 'app.html');
-        const htmlContent = await readFile(uiPath, 'utf-8');
-        return {
-          contents: [
-            {
-              uri,
-              mimeType: 'text/html',
-              text: htmlContent,
-            },
-          ],
-        };
-      }
-
       case 'ohmyposh://segments/all': {
         const segments = await loadAllSegments(SEGMENTS_DIR);
         return {

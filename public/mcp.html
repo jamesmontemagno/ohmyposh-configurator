@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Server - Oh My Posh Configurator</title>
+    <meta name="description" content="Model Context Protocol server for AI-powered Oh My Posh configuration. Use with Claude Desktop, GitHub Copilot, VS Code, and more.">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/ohmyposh-configurator/favicon.svg" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            color: #f8f8f2;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: #b8b8c8;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #61AFEF;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #e94560;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #0f3460;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: #e94560;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: #61AFEF;
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+        }
+
+        .card p {
+            color: #d8d8e8;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 10px 0;
+            color: #d8d8e8;
+            border-bottom: 1px solid #0f3460;
+            line-height: 1.6;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card li::before {
+            content: "▸ ";
+            color: #e94560;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tool-card {
+            background: #0f0f23;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #0f3460;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: #e94560;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.3);
+        }
+
+        .tool-card h4 {
+            color: #61AFEF;
+            font-size: 1.15rem;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tool-card p {
+            font-size: 0.95rem;
+            color: #b8b8c8;
+            margin-bottom: 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #0f0f23;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #0f3460;
+            text-align: center;
+        }
+
+        .feature-item strong {
+            color: #98C379;
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-item span {
+            color: #b8b8c8;
+            font-size: 0.95rem;
+        }
+
+        code {
+            background: #0f0f23;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #98C379;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #0f0f23;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #0f3460;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #98C379;
+            font-size: 0.9rem;
+        }
+
+        .setup-section {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #61AFEF;
+            margin: 30px 0;
+        }
+
+        .setup-section h2 {
+            color: #61AFEF;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .setup-steps {
+            counter-reset: step-counter;
+        }
+
+        .setup-step {
+            margin-bottom: 30px;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .setup-step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #e94560;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .setup-step h3 {
+            color: #61AFEF;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #e94560 0%, #c93a52 100%);
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .cta h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #e94560;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 2px solid #0f3460;
+            color: #b8b8c8;
+        }
+
+        footer a {
+            color: #61AFEF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e94560;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #98C379;
+            color: #0f0f23;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 0 5px;
+        }
+
+        .badge-count {
+            background: #61AFEF;
+        }
+
+        .highlight {
+            background: rgba(233, 69, 96, 0.1);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #e94560;
+            margin: 20px 0;
+        }
+
+        .highlight strong {
+            color: #e94560;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/ohmyposh-configurator/" class="back-link">← Back to Configurator</a>
+            <h1>🤖 MCP Server</h1>
+            <p class="subtitle">AI-Powered Oh My Posh Configuration</p>
+            <div style="margin-top: 20px;">
+                <span class="badge">11 Tools</span>
+                <span class="badge badge-count">5 Resources</span>
+                <span class="badge">3 Prompts</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="card">
+                <h2><span class="icon">💡</span> What is MCP?</h2>
+                <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard that enables AI assistants to interact with external tools and data sources.</p>
+                <p>Our MCP server allows AI assistants like <strong>Claude</strong>, <strong>GitHub Copilot</strong>, and others to help you create and manage Oh My Posh configurations through natural language conversations.</p>
+                
+                <div class="highlight">
+                    <p><strong>Example:</strong></p>
+                    <p>"Create me a developer prompt with git and Python info"</p>
+                    <p style="margin-top: 10px; color: #98C379;">→ AI generates a complete Oh My Posh configuration with appropriate segments, colors, and templates!</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🎯</span> Key Features</h2>
+                <ul>
+                    <li>Natural language configuration generation</li>
+                    <li>Smart segment defaults and colors</li>
+                    <li>Multi-format export (JSON/YAML/TOML)</li>
+                    <li>Configuration validation with detailed errors</li>
+                    <li>Official documentation search integration</li>
+                    <li>Access to 103+ segments across 8 categories</li>
+                    <li>Sample and community configuration templates</li>
+                </ul>
+            </div>
+
+            <div class="card full-width">
+                <h2><span class="icon">🛠️</span> Available Tools</h2>
+                <p>The MCP server provides 11 powerful tools for configuration management:</p>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>create_configuration</h4>
+                        <p>Generate configs from natural language descriptions</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>add_segment</h4>
+                        <p>Add segments with smart defaults</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>modify_configuration</h4>
+                        <p>Edit existing configurations</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>validate_configuration</h4>
+                        <p>Check config validity with detailed errors</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>export_configuration</h4>
+                        <p>Convert between JSON/YAML/TOML formats</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>list_segments</h4>
+                        <p>Browse all 103+ available segments</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>get_segment_info</h4>
+                        <p>Get detailed segment documentation</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>list_sample_configs</h4>
+                        <p>View pre-built sample configurations</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>load_sample_config</h4>
+                        <p>Load specific sample configurations</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>search_ohmyposh_docs</h4>
+                        <p>Search official Oh My Posh documentation</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>get_ohmyposh_segment_docs</h4>
+                        <p>Get official segment documentation with examples</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">💬</span> Example Requests</h2>
+                <p>Try these natural language requests with your AI assistant:</p>
+                <ul>
+                    <li>"Create a developer prompt with git and Python"</li>
+                    <li>"Add caching to all language segments"</li>
+                    <li>"Apply the Dracula color theme to my config"</li>
+                    <li>"Validate my Oh My Posh configuration"</li>
+                    <li>"Search docs for powerline symbols"</li>
+                    <li>"Help me optimize my slow prompt"</li>
+                    <li>"Export my configuration as YAML"</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">📚</span> Resources</h2>
+                <p>The MCP server provides access to comprehensive data resources:</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <strong>103+</strong>
+                        <span>Available Segments</span>
+                    </div>
+                    <div class="feature-item">
+                        <strong>8</strong>
+                        <span>Segment Categories</span>
+                    </div>
+                    <div class="feature-item">
+                        <strong>6+</strong>
+                        <span>Sample Configs</span>
+                    </div>
+                </div>
+                
+                <h3>Segment Categories</h3>
+                <ul>
+                    <li><strong>System:</strong> Path, OS, Shell, Battery, Time, Execution Time</li>
+                    <li><strong>SCM:</strong> Git, Mercurial, SVN, Fossil, Plastic SCM</li>
+                    <li><strong>Languages:</strong> Node.js, Python, Go, Rust, Java, .NET, PHP, Ruby, and 20+ more</li>
+                    <li><strong>Cloud:</strong> AWS, Azure, GCP, Kubernetes, Docker, Terraform</li>
+                    <li><strong>CLI:</strong> NPM, Yarn, PNPM, Angular, React, Flutter</li>
+                    <li><strong>Web:</strong> IP Address, Weather, HTTP requests</li>
+                    <li><strong>Music:</strong> Spotify, YouTube Music, Last.fm</li>
+                    <li><strong>Health:</strong> Nightscout, Strava, Withings</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="setup-section">
+            <h2>⚙️ Setup Instructions</h2>
+            <p style="margin-bottom: 30px; color: #d8d8e8;">Get started in minutes with your preferred AI assistant:</p>
+            
+            <div class="setup-steps">
+                <div class="setup-step">
+                    <h3>Clone and Build</h3>
+                    <p>First, clone the repository and build the MCP server:</p>
+                    <pre><code>git clone https://github.com/jamesmontemagno/ohmyposh-configurator.git
+cd ohmyposh-configurator
+npm install
+npm run build:mcp</code></pre>
+                </div>
+
+                <div class="setup-step">
+                    <h3>Configure Your AI Assistant</h3>
+                    
+                    <h4 style="color: #e94560; margin: 20px 0 10px 0;">For Claude Desktop:</h4>
+                    <p>Add to your <code>claude_desktop_config.json</code> file:</p>
+                    <p style="margin-bottom: 5px; color: #b8b8c8; font-size: 0.9rem;">
+                        <strong>macOS:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code><br>
+                        <strong>Windows:</strong> <code>%APPDATA%\Claude\claude_desktop_config.json</code>
+                    </p>
+                    <pre><code>{
+  "mcpServers": {
+    "ohmyposh": {
+      "command": "node",
+      "args": [
+        "/absolute/path/to/ohmyposh-configurator/dist/mcp/index.js"
+      ]
+    }
+  }
+}</code></pre>
+
+                    <h4 style="color: #e94560; margin: 20px 0 10px 0;">For VS Code with GitHub Copilot:</h4>
+                    <p>Install an MCP-compatible extension and configure it to use:</p>
+                    <pre><code>/absolute/path/to/ohmyposh-configurator/dist/mcp/index.js</code></pre>
+                </div>
+
+                <div class="setup-step">
+                    <h3>Start Creating!</h3>
+                    <p>Restart your AI assistant and start creating configurations with natural language.</p>
+                    <p style="color: #98C379; margin-top: 15px;">Try: <em>"Create a developer prompt with git and Python"</em></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h2><span class="icon">🌟</span> Use Cases</h2>
+                
+                <h3>For Beginners</h3>
+                <p>"Create me a nice-looking developer prompt with git and Python info"</p>
+                
+                <h3>For Advanced Users</h3>
+                <p>"Add caching to all language segments with optimal durations"</p>
+                
+                <h3>For Teams</h3>
+                <p>"Generate a standardized DevOps prompt for our team with AWS, kubectl, and terraform"</p>
+                
+                <h3>For Customization</h3>
+                <p>"Apply the Dracula color theme to my configuration"</p>
+                
+                <h3>For Troubleshooting</h3>
+                <p>"My prompt is slow - help me optimize it"</p>
+            </div>
+
+            <div class="card">
+                <h2><span class="icon">🔗</span> Resources</h2>
+                <ul>
+                    <li><a href="https://github.com/jamesmontemagno/ohmyposh-configurator/blob/main/docs/MCP_SERVER.md" style="color: #61AFEF;">📖 Complete MCP Server Documentation</a></li>
+                    <li><a href="https://github.com/jamesmontemagno/ohmyposh-configurator/blob/main/docs/MCP_EXAMPLES.md" style="color: #61AFEF;">💡 MCP Usage Examples</a></li>
+                    <li><a href="https://modelcontextprotocol.io/" style="color: #61AFEF;">🌐 Model Context Protocol Specification</a></li>
+                    <li><a href="https://ohmyposh.dev/docs/" style="color: #61AFEF;">📚 Oh My Posh Official Documentation</a></li>
+                    <li><a href="https://github.com/jamesmontemagno/ohmyposh-configurator" style="color: #61AFEF;">💻 GitHub Repository</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta">
+            <h2>🚀 Ready to Get Started?</h2>
+            <p>Build amazing Oh My Posh configurations with AI assistance</p>
+            <div style="margin-top: 20px;">
+                <a href="/ohmyposh-configurator/" class="btn">Use Visual Configurator</a>
+                <a href="https://github.com/jamesmontemagno/ohmyposh-configurator/blob/main/docs/MCP_SERVER.md" class="btn btn-secondary">Setup MCP Server</a>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Oh My Posh Configurator MCP Server</strong></p>
+            <p>Compatible with Claude Desktop, GitHub Copilot, VS Code, and any MCP-compatible client</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/jamesmontemagno/ohmyposh-configurator">View on GitHub</a> · 
+                <a href="https://ohmyposh.dev">Oh My Posh Docs</a> · 
+                <a href="/ohmyposh-configurator/">Configurator Home</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
