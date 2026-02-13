@@ -3,6 +3,7 @@
  * Interactive browse/search of all segments inline in the AI chat
  */
 import { App } from '@modelcontextprotocol/ext-apps';
+import { renderConfig } from '../../shared/renderer';
 import '../../shared/styles.css';
 import './styles.css';
 
@@ -38,6 +39,17 @@ const CATEGORY_COLORS: Record<string, string> = {
   web: '#7C9FF5',
   music: '#E06C75',
   health: '#89CA78',
+};
+
+const CATEGORY_FG: Record<string, string> = {
+  system: '#ffffff',
+  scm: '#ffffff',
+  languages: '#ffffff',
+  cloud: '#282c34',
+  cli: '#ffffff',
+  web: '#ffffff',
+  music: '#ffffff',
+  health: '#ffffff',
 };
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -97,6 +109,27 @@ function renderDetailPanel(): string {
   html += `<button id="close-detail" class="close-btn" title="Close">✕</button>`;
   html += `</div>`;
   html += `<p class="detail-desc">${escapeHtml(s.description)}</p>`;
+
+  // Visual preview of the segment
+  const previewConfig = {
+    blocks: [{
+      type: 'prompt',
+      alignment: 'left',
+      segments: [
+        {
+          type: s.type,
+          style: 'powerline',
+          powerline_symbol: '\ue0b0',
+          background: CATEGORY_COLORS[s.category] || '#888',
+          foreground: CATEGORY_FG[s.category] || '#ffffff',
+          template: s.defaultTemplate || ` ${s.name} `,
+        },
+      ],
+    }],
+  };
+  html += `<div class="detail-section"><strong>Preview</strong>`;
+  html += renderConfig(previewConfig, true);
+  html += `</div>`;
 
   if (s.defaultTemplate) {
     html += `<div class="detail-section"><strong>Default Template</strong><code class="template-code">${escapeHtml(s.defaultTemplate)}</code></div>`;
@@ -177,13 +210,27 @@ function render() {
   html += renderDetailPanel();
   html += `</div>`;
 
+  // Preserve search input focus and cursor position across re-renders
+  const existingInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const hadFocus = existingInput === document.activeElement;
+  const cursorPos = existingInput?.selectionStart ?? null;
+
   appEl.innerHTML = html;
 
   // Bind events
-  document.getElementById('search-input')?.addEventListener('input', (e) => {
+  const newInput = document.getElementById('search-input') as HTMLInputElement | null;
+  newInput?.addEventListener('input', (e) => {
     searchQuery = (e.target as HTMLInputElement).value;
     render();
   });
+
+  // Restore focus and cursor position
+  if (hadFocus && newInput) {
+    newInput.focus();
+    if (cursorPos !== null) {
+      newInput.setSelectionRange(cursorPos, cursorPos);
+    }
+  }
 
   document.getElementById('close-detail')?.addEventListener('click', () => {
     selectedSegment = null;

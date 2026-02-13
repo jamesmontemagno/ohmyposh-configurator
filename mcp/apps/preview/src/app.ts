@@ -75,9 +75,10 @@ function parseConfigFromResult(result: { content?: Array<{ type: string; text?: 
 
 // Receive tool result from host
 app.ontoolresult = (result) => {
-  const config = parseConfigFromResult(result);
-  if (config) {
-    currentConfig = config;
+  const parsed = parseConfigFromResult(result);
+  if (parsed) {
+    // load_sample_config returns { config, metadata } — unwrap if needed
+    currentConfig = parsed.config && parsed.config.blocks ? parsed.config : parsed;
     render();
   } else {
     appEl.innerHTML = `<div class="error">Could not parse configuration from tool result</div>`;
