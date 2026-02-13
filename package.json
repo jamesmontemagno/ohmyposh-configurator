@@ -3,9 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "bin": {
+    "ohmyposh-mcp": "./dist/mcp/index.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build && node scripts/minify-json.js dist",
+    "build:mcp": "tsc -p mcp/tsconfig.json",
+    "mcp": "npm run build:mcp && node dist/mcp/index.js",
     "minify": "node scripts/minify-json.js public",
     "format:json": "node scripts/format-json.js public",
     "lint": "eslint .",
@@ -24,6 +29,7 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@iarna/toml": "^2.2.5",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@tailwindcss/vite": "^4.1.8",
     "idb-keyval": "^6.2.2",
     "js-yaml": "^4.1.0",
