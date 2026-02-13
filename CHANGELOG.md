@@ -2,6 +2,64 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-02-13]
+
+### Added: Model Context Protocol (MCP) Server
+
+**AI-Powered Configuration with Natural Language**
+
+- **MCP Server Implementation**: Full Model Context Protocol server for AI assistant integration
+  - Enable AI assistants like Claude to create and manage Oh My Posh configurations
+  - Natural language configuration generation and modification
+  - Works seamlessly with Claude Desktop and other MCP-compatible clients
+
+- **MCP Tools (9 actions available)**:
+  - `create_configuration`: Generate configs from natural language descriptions
+  - `add_segment`: Add segments with smart defaults and auto-applied colors
+  - `modify_configuration`: Edit existing configurations
+  - `validate_configuration`: Check config validity with detailed error messages
+  - `export_configuration`: Convert between JSON, YAML, and TOML formats
+  - `list_segments`: Browse all 103+ available segments with filtering
+  - `get_segment_info`: Get detailed segment documentation and properties
+  - `list_sample_configs`: View available sample configurations
+  - `load_sample_config`: Load specific sample configurations by ID
+
+- **MCP Resources (4 data sources)**:
+  - `ohmyposh://segments/all`: Complete segment library with metadata
+  - `ohmyposh://segments/categories`: Segment categories and organization
+  - `ohmyposh://configs/samples`: Pre-built sample configurations
+  - `ohmyposh://configs/community`: Community-contributed configurations
+
+- **MCP Prompts (3 workflow templates)**:
+  - `quick_start`: Quick start workflows for common use cases
+  - `troubleshoot`: Interactive troubleshooting assistance
+  - `apply_theme`: Color theme application helpers
+
+- **Reusable Configuration Library**: Extracted core logic for MCP server
+  - `configBuilder`: Create and modify configurations programmatically
+  - `configValidator`: Validate configurations with detailed error reporting
+  - `configExporter`: Export to JSON/YAML/TOML with proper formatting
+  - `configLoader`: Load sample and community configurations
+  - `segmentLoader`: Load and search segment metadata
+
+- **Comprehensive Testing**: Full test coverage for MCP functionality
+  - Unit tests for configuration builder (17 tests)
+  - Unit tests for configuration validator (13 tests)
+  - Integration with existing test infrastructure
+
+- **Documentation**: Complete MCP server documentation
+  - Setup guide for Claude Desktop integration
+  - Tool reference with examples
+  - Use case documentation
+  - Architecture overview
+
+**Example Use Cases:**
+- "Create a developer prompt with git and Python"
+- "Add caching to all language segments with optimal durations"
+- "Generate a standardized DevOps prompt with AWS, kubectl, and terraform"
+- "Apply the Dracula color theme to my configuration"
+- "My prompt is slow - help me optimize it"
+
 ## [2026-01-04]
 
 ### Share Button with Multiple Options

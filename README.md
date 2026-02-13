@@ -38,6 +38,7 @@ Perfect for developers, DevOps engineers, and anyone who wants a beautiful, info
 - 🌐 **100% Client-Side**: Your configurations never leave your browser
 - 📱 **Responsive Design**: Works on desktop, tablet, and mobile devices
 - 🎨 **Smart Color Schemes**: Category-based default colors for quick setup
+- 🤖 **MCP Server**: Use AI assistants like Claude to create and manage configurations through natural language ([Learn more](docs/MCP_SERVER.md))
 
 ## 🗂️ Segment Categories
 
@@ -82,11 +83,47 @@ npm run preview
 
 - `npm run dev`: Start Vite development server
 - `npm run build`: Build for production and minify all JSON assets
+- `npm run build:mcp`: Build the MCP server
+- `npm run mcp`: Run the MCP server
 - `npm run preview`: Serve the production build from `dist/`
 - `npm run minify`: Manually minify JSON files in the `public/` directory
 - `npm run format:json`: Expand/format JSON files in `public/` for easier editing
 - `npm run validate`: Validate all configuration files and manifests
 - `npm run lint`: Run ESLint check
+- `npm run test`: Run tests
+
+## 🤖 MCP Server (AI-Powered Configuration)
+
+Want to create Oh My Posh configurations using natural language with AI assistants like Claude? The Oh My Posh Configurator includes a Model Context Protocol (MCP) server!
+
+**Quick Setup for Claude Desktop:**
+
+1. Build the MCP server:
+   ```bash
+   npm run build:mcp
+   ```
+
+2. Add to your Claude Desktop config (`claude_desktop_config.json`):
+   ```json
+   {
+     "mcpServers": {
+       "ohmyposh": {
+         "command": "node",
+         "args": ["/path/to/ohmyposh-configurator/dist/mcp/index.js"]
+       }
+     }
+   }
+   ```
+
+3. Restart Claude Desktop and start creating prompts with AI!
+
+**Example Requests:**
+- "Create me a developer prompt with git and Python"
+- "Add caching to all language segments"
+- "Apply the Dracula color theme"
+- "Help optimize my slow prompt"
+
+📖 **[Full MCP Server Documentation](docs/MCP_SERVER.md)**
 
 ## 📖 Usage
 
