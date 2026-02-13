@@ -10,6 +10,8 @@
 
 [🚀 Launch App](https://jamesmontemagno.github.io/ohmyposh-configurator/) • [📖 Documentation](https://ohmyposh.dev/docs/) • [💬 Discussions](https://github.com/jamesmontemagno/ohmyposh-configurator/discussions)
 
+![Oh My Posh Visual Configurator](blogs/images/main-interface.png)
+
 </div>
 
 ---

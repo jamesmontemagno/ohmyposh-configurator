@@ -4,6 +4,26 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-02-13]
 
+### Added: MCP Apps (Interactive UIs in Chat)
+
+- **Config Preview App**: Visual prompt rendering inline in AI chat hosts (Claude Desktop, VS Code Insiders)
+  - Renders Oh My Posh prompts with accurate powerline, diamond, and plain styles
+  - Light/dark terminal background toggle
+  - Export buttons (JSON/YAML/TOML) that call back to the MCP server
+  - Automatically shown when `create_configuration`, `modify_configuration`, or `load_sample_config` tools are used
+- **Segment Explorer App**: Interactive segment browser with search and category filtering
+  - Browse all 103+ segments organized by 8 categories
+  - Collapsible category sections with color-coded headers
+  - Detail panel showing properties, options, default template, and cache settings
+  - Automatically shown when `list_segments` or `get_segment_info` tools are used
+- **MCP App infrastructure**: Vite build pipeline producing self-contained HTML files
+  - Added `@modelcontextprotocol/ext-apps` for client-side App class
+  - Added `vite-plugin-singlefile` for single-file HTML bundling
+  - Nerd Font subset embedded inline for icon rendering
+  - Shared modules: color resolver, template evaluator, mock data, prompt renderer
+  - New `ui://` resource URIs served by the MCP server
+  - Tool `_meta.ui.resourceUri` fields for automatic app preloading
+
 ### Added: MCP npm Publish Automation
 
 - Added GitHub Actions workflow to publish the MCP package to npm on `mcp-v*` release tags or manual dispatch

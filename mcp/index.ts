@@ -24,6 +24,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { readFile } from 'fs/promises';
 
 import {
   createDefaultConfig,
@@ -59,6 +60,22 @@ const __dirname = dirname(__filename);
 // When compiled, __dirname is dist/mcp/, so go up two levels to reach project root
 const SEGMENTS_DIR = join(__dirname, '../../public/segments');
 const CONFIGS_DIR = join(__dirname, '../../public/configs');
+const APPS_DIR = join(__dirname, 'apps');
+
+// MCP Apps constants
+const RESOURCE_MIME_TYPE = 'text/html;profile=mcp-app';
+const RESOURCE_URI_META_KEY = 'ui/resourceUri';
+const PREVIEW_RESOURCE_URI = 'ui://ohmyposh-configurator/preview.html';
+const SEGMENTS_RESOURCE_URI = 'ui://ohmyposh-configurator/segments.html';
+
+// Cache loaded app HTML
+const appHtmlCache = new Map<string, string>();
+async function loadAppHtml(name: string): Promise<string> {
+  if (appHtmlCache.has(name)) return appHtmlCache.get(name)!;
+  const html = await readFile(join(APPS_DIR, name), 'utf-8');
+  appHtmlCache.set(name, html);
+  return html;
+}
 
 /**
  * Main MCP Server
@@ -120,6 +137,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['description'],
         },
+        _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
         name: 'add_segment',
@@ -174,6 +192,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['config', 'modifications'],
         },
+        _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
         name: 'validate_configuration',
@@ -231,6 +250,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
           },
         },
+        _meta: { ui: { resourceUri: SEGMENTS_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: SEGMENTS_RESOURCE_URI },
       },
       {
         name: 'get_segment_info',
@@ -247,6 +267,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['segmentType'],
         },
+        _meta: { ui: { resourceUri: SEGMENTS_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: SEGMENTS_RESOURCE_URI },
       },
       {
         name: 'list_sample_configs',
@@ -271,6 +292,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['configId'],
         },
+        _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
         name: 'search_ohmyposh_docs',
@@ -745,6 +767,18 @@ server.setRequestHandler(ListResourcesRequestSchema, async () => {
   return {
     resources: [
       {
+        uri: PREVIEW_RESOURCE_URI,
+        name: 'Config Preview App',
+        description: 'Interactive visual preview of Oh My Posh configurations rendered inline',
+        mimeType: RESOURCE_MIME_TYPE,
+      },
+      {
+        uri: SEGMENTS_RESOURCE_URI,
+        name: 'Segment Explorer App',
+        description: 'Interactive browser for all 103+ Oh My Posh segments with search and details',
+        mimeType: RESOURCE_MIME_TYPE,
+      },
+      {
         uri: 'ohmyposh://segments/all',
         name: 'All Segments',
         description: 'Complete list of all 103+ available Oh My Posh segments across all categories',
@@ -779,6 +813,24 @@ server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
 
   try {
     switch (uri) {
+      case PREVIEW_RESOURCE_URI: {
+        const html = await loadAppHtml('preview/index.html');
+        return {
+          contents: [
+            { uri, mimeType: RESOURCE_MIME_TYPE, text: html },
+          ],
+        };
+      }
+
+      case SEGMENTS_RESOURCE_URI: {
+        const html = await loadAppHtml('segments/index.html');
+        return {
+          contents: [
+            { uri, mimeType: RESOURCE_MIME_TYPE, text: html },
+          ],
+        };
+      }
+
       case 'ohmyposh://segments/all': {
         const segments = await loadAllSegments(SEGMENTS_DIR);
         return {

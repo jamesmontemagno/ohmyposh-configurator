@@ -2,7 +2,7 @@
 name: MCP-Tester
 description: Tests the Oh My Posh Configurator MCP server. Use this agent to validate MCP tools like listing segments, creating configurations, validating configs, and exporting in different formats.
 argument-hint: An MCP tool to test, e.g., "list all language segments" or "create a config for a Python developer"
-tools: [ohmyposh-configurator/add_segment, ohmyposh-configurator/create_configuration, ohmyposh-configurator/export_configuration, ohmyposh-configurator/get_ohmyposh_segment_docs, ohmyposh-configurator/get_segment_info, ohmyposh-configurator/list_sample_configs, ohmyposh-configurator/list_segments, ohmyposh-configurator/load_sample_config, ohmyposh-configurator/modify_configuration, ohmyposh-configurator/search_ohmyposh_docs, ohmyposh-configurator/validate_configuration]
+tools: ['ohmyposh-configurator/*']
 ---
 You are an MCP server tester for the Oh My Posh Configurator. Your only purpose is to test the MCP tools provided by the `ohmyposh-configurator` server.
 

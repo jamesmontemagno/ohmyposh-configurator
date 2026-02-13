@@ -237,6 +237,15 @@ Resources are read-only data sources that Claude can access:
 - `ohmyposh://configs/samples`: Sample configurations
 - `ohmyposh://configs/community`: Community configurations
 
+### MCP Apps (Interactive UIs)
+
+The server also exposes interactive HTML apps via the [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps) extension. In supported hosts (Claude Desktop, VS Code Insiders), these render inline in the chat:
+
+- **Config Preview** (`ui://ohmyposh-configurator/preview.html`): Visual prompt rendering with light/dark toggle and export buttons. Automatically shown when `create_configuration`, `modify_configuration`, or `load_sample_config` tools are called.
+- **Segment Explorer** (`ui://ohmyposh-configurator/segments.html`): Interactive segment browser with search, category filtering, and detailed property/option views. Shown with `list_segments` and `get_segment_info` tools.
+
+The apps are self-contained HTML files bundled with Vite and `vite-plugin-singlefile`, including an embedded Nerd Font subset for icon rendering.
+
 ## Available Prompts
 
 Prompts are templated workflows for common tasks:
@@ -312,6 +321,25 @@ The MCP server is built with:
 ```
 mcp/
 ├── index.ts                    # Main MCP server
+├── vite.apps.config.ts         # Vite config for MCP Apps build
+├── apps/
+│   ├── tsconfig.json           # Browser tsconfig for apps
+│   ├── shared/
+│   │   ├── styles.css          # Shared styles + Nerd Font
+│   │   ├── colors.ts           # Color resolution utilities
+│   │   ├── mockData.ts         # Mock data for template preview
+│   │   ├── templateUtils.ts    # Go template evaluator
+│   │   └── renderer.ts         # Prompt-to-HTML renderer
+│   ├── preview/
+│   │   ├── index.html          # Config Preview app entry
+│   │   └── src/
+│   │       ├── app.ts          # Preview app logic
+│   │       └── styles.css      # Preview-specific styles
+│   └── segments/
+│       ├── index.html          # Segment Explorer app entry
+│       └── src/
+│           ├── app.ts          # Explorer app logic
+│           └── styles.css      # Explorer-specific styles
 ├── lib/
 │   ├── configBuilder.ts        # Configuration creation utilities
 │   ├── configExporter.ts       # Export to JSON/YAML/TOML
@@ -319,7 +347,7 @@ mcp/
 │   ├── configValidator.ts      # Configuration validation
 │   ├── segmentLoader.ts        # Load segment metadata
 │   └── __tests__/              # Unit tests
-└── tsconfig.json               # TypeScript configuration
+└── tsconfig.json               # TypeScript configuration (Node.js)
 ```
 
 ## Contributing
