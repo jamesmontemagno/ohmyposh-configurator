@@ -80,7 +80,7 @@
           "powerline_symbol": "\ue0b0",
           "foreground": "p:text-light",
           "background": "p:azure-bg",
-          "template": " \ufd03 {{ .EnvironmentName }} "
+          "template": " \uebd8 {{ .EnvironmentName }} "
         },
         {
           "type": "docker",

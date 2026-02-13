@@ -38,7 +38,7 @@
     "name": "Azure",
     "description": "Displays the current Azure CLI subscription name and ID",
     "icon": "cloud-azure",
-    "defaultTemplate": " \ufd03 {{ .Name }} ",
+    "defaultTemplate": " \uebd8 {{ .Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0078D4",
     "previewText": "My Subscription",
