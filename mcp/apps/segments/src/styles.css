@@ -137,6 +137,12 @@
   overflow-y: auto;
 }
 
+/* Full-width detail panel for single-segment mode */
+.detail-panel-full {
+  max-width: none;
+  max-height: none;
+}
+
 .detail-header {
   display: flex;
   justify-content: space-between;

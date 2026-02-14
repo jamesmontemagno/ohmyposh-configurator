@@ -1,6 +1,8 @@
 @font-face {
   font-family: 'NerdSymbols';
-  src: url('/fonts/nerd-symbols-subset.woff2') format('woff2');
+  src: url('/fonts/nerd-symbols-subset.woff2') format('woff2'),
+       url('/fonts/nerd-symbols-subset.ttf') format('truetype'),
+       url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.3.0/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
   font-display: swap;
 }
 

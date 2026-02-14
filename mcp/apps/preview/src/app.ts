@@ -4,11 +4,15 @@
  */
 import { App } from '@modelcontextprotocol/ext-apps';
 import { renderConfig, renderConfigInfo } from '../../shared/renderer';
+import { loadNerdFont } from '../../shared/fontLoader';
 import '../../shared/styles.css';
 import './styles.css';
 
 const appEl = document.getElementById('app')!;
 const app = new App({ name: 'Oh My Posh Preview', version: '1.0.0' });
+
+// Load Nerd Font via FontFace API (CSS data: URIs blocked by webview CSP)
+loadNerdFont();
 
 let currentConfig: Record<string, unknown> | null = null;
 let darkMode = true;

@@ -4,11 +4,15 @@
  */
 import { App } from '@modelcontextprotocol/ext-apps';
 import { renderConfig } from '../../shared/renderer';
+import { loadNerdFont } from '../../shared/fontLoader';
 import '../../shared/styles.css';
 import './styles.css';
 
 const appEl = document.getElementById('app')!;
 const app = new App({ name: 'Oh My Posh Segments', version: '1.0.0' });
+
+// Load Nerd Font via FontFace API (CSS data: URIs blocked by webview CSP)
+loadNerdFont();
 
 interface SegmentSummary {
   type: string;
@@ -92,21 +96,27 @@ function groupByCategory(list: SegmentSummary[]): Record<string, SegmentSummary[
   return groups;
 }
 
+/** True when only a single segment was loaded (no list context) */
+const isSingleSegmentMode = (): boolean => segments.length === 0 && selectedSegment !== null;
+
 function renderDetailPanel(): string {
   if (loadingDetail) return `<div class="detail-panel"><div class="loading">Loading segment details...</div></div>`;
   if (!selectedSegment) return '';
 
   const s = selectedSegment;
   const catColor = CATEGORY_COLORS[s.category] || '#888';
+  const fullWidth = isSingleSegmentMode();
 
-  let html = `<div class="detail-panel">`;
+  let html = `<div class="detail-panel${fullWidth ? ' detail-panel-full' : ''}">`;
   html += `<div class="detail-header">`;
   html += `<div class="detail-title">`;
   html += `<span class="detail-name">${escapeHtml(s.name)}</span>`;
   html += `<span class="detail-type">${escapeHtml(s.type)}</span>`;
   html += `<span class="detail-badge" style="background:${catColor};">${escapeHtml(CATEGORY_LABELS[s.category] || s.category)}</span>`;
   html += `</div>`;
-  html += `<button id="close-detail" class="close-btn" title="Close">✕</button>`;
+  if (!fullWidth) {
+    html += `<button id="close-detail" class="close-btn" title="Close">✕</button>`;
+  }
   html += `</div>`;
   html += `<p class="detail-desc">${escapeHtml(s.description)}</p>`;
 
@@ -164,6 +174,12 @@ function render() {
   const filtered = filterSegments();
   const grouped = groupByCategory(filtered);
   const categoryOrder = ['system', 'scm', 'languages', 'cloud', 'cli', 'web', 'music', 'health'];
+
+  // Single-segment mode: show only the detail panel, full-width, no chrome
+  if (isSingleSegmentMode()) {
+    appEl.innerHTML = renderDetailPanel();
+    return;
+  }
 
   let html = `<div class="explorer-header">`;
   html += `<span class="explorer-title">Segment Explorer</span>`;
