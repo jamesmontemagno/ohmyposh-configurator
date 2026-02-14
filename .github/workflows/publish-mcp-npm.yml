@@ -52,7 +52,7 @@ jobs:
 
       - name: Set publishable package metadata
         run: |
-          npm pkg set private=false
+          npm pkg delete private
           npm version "${{ steps.version.outputs.version }}" --no-git-tag-version --allow-same-version
 
       - name: Build MCP package
