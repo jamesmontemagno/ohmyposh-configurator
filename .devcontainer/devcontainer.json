@@ -1,5 +1,5 @@
 {
-  "name": "Oh My Posh Configurator",
+  "name": "Oh My Posh Configurator 5000",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
   
   "features": {

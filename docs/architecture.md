@@ -1,8 +1,8 @@
-# Oh My Posh Configurator - Architecture Documentation
+# Oh My Posh Configurator 5000 - Architecture Documentation
 
 ## Overview
 
-The Oh My Posh Visual Configurator is a modern React application that provides a visual interface for creating and customizing Oh My Posh terminal prompt configurations. The application runs entirely client-side with no backend dependencies.
+The Oh My Posh Configurator 5000 is a modern React application that provides a visual interface for creating and customizing Oh My Posh terminal prompt configurations. The application runs entirely client-side with no backend dependencies.
 
 ## Core Architecture
 

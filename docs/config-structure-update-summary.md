@@ -5,7 +5,7 @@
 
 ## Overview
 
-Successfully updated the Oh My Posh Configurator to separate configuration metadata from Oh My Posh configs. Config files now contain pure Oh My Posh configurations, while metadata is stored in manifest.json files.
+Successfully updated the Oh My Posh Configurator 5000 to separate configuration metadata from Oh My Posh configs. Config files now contain pure Oh My Posh configurations, while metadata is stored in manifest.json files.
 
 ## Changes Made
 

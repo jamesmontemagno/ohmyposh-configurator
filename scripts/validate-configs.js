@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Validation script for Oh My Posh Configurator config files
+ * Validation script for Oh My Posh Configurator 5000 config files
  * Validates manifest.json and individual config files
  */
 
@@ -296,7 +296,7 @@ function validateCategory(category) {
 }
 
 function main() {
-  console.log('\n🔍 Oh My Posh Configurator - Config Validation\n');
+  console.log('\n🔍 Oh My Posh Configurator 5000 - Config Validation\n');
   console.log('='.repeat(50));
 
   // Check configs directory exists

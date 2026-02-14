@@ -1,6 +1,6 @@
-# Contributing to Oh My Posh Configurator
+# Contributing to Oh My Posh Configurator 5000
 
-Thank you for your interest in contributing to the Oh My Posh Configurator! We welcome contributions from the community, especially sharing your custom Oh My Posh configurations.
+Thank you for your interest in contributing to the Oh My Posh Configurator 5000! We welcome contributions from the community, especially sharing your custom Oh My Posh configurations.
 
 ## Ways to Contribute
 
@@ -12,7 +12,7 @@ The easiest way to contribute is by sharing your Oh My Posh configuration with t
 
 **Using the Built-in Tool (Recommended):**
 
-1. Open the Oh My Posh Configurator at https://jamesmontemagno.github.io/ohmyposh-configurator/
+1. Open the Oh My Posh Configurator 5000 at https://jamesmontemagno.github.io/ohmyposh-configurator/
 2. Design your configuration using the visual editor
 3. Click the "Share" button in the header
 4. Fill in the required information:

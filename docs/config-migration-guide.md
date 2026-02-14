@@ -2,7 +2,7 @@
 
 ## Overview
 
-As of December 30, 2025, the Oh My Posh Configurator has updated its configuration file structure to separate metadata from the actual Oh My Posh configuration. This guide will help you migrate your existing configurations to the new format.
+As of December 30, 2025, the Oh My Posh Configurator 5000 has updated its configuration file structure to separate metadata from the actual Oh My Posh configuration. This guide will help you migrate your existing configurations to the new format.
 
 ## What Changed?
 
