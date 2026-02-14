@@ -1,6 +1,6 @@
 # Oh My Posh Configurator MCP Server
 
-Model Context Protocol (MCP) server that enables AI assistants like Claude to help users create and manage Oh My Posh configurations through natural language conversations.
+Model Context Protocol (MCP) server that enables AI assistants like GitHub Copilot in VS Code to help users create and manage Oh My Posh configurations through natural language conversations.
 
 ## Overview
 
@@ -12,12 +12,28 @@ The Oh My Posh Configurator MCP Server exposes the configurator's functionality 
 
 ## Installation
 
-### Prerequisites
+### From npm (Recommended)
+
+The easiest way to get started — no cloning required:
+
+```bash
+npx ohmyposh-configurator
+```
+
+Or install globally:
+
+```bash
+npm install -g ohmyposh-configurator
+```
+
+### From Source
+
+#### Prerequisites
 
 - Node.js 18 or later
 - npm or another package manager
 
-### Setup
+#### Setup
 
 1. Clone the repository:
 ```bash
@@ -37,9 +53,32 @@ npm run build:mcp
 
 ## Configuration with AI Assistants
 
+### VS Code with GitHub Copilot (Recommended)
+
+Add to your VS Code `.vscode/mcp.json` (or User Settings):
+
+```json
+{
+  "servers": {
+    "ohmyposh-configurator": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "ohmyposh-configurator"]
+    }
+  }
+}
+```
+
+Requires VS Code with the **GitHub Copilot** extension and MCP support enabled.
+
+Use GitHub Copilot Chat to interact with Oh My Posh configurations through natural language:
+- "Create a developer prompt configuration"
+- "Add a git segment to my Oh My Posh config"
+- "Validate my Oh My Posh configuration"
+
 ### Claude Desktop
 
-To use this MCP server with Claude Desktop, add it to your Claude configuration file:
+Add to your Claude configuration file:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -57,27 +96,7 @@ To use this MCP server with Claude Desktop, add it to your Claude configuration 
 }
 ```
 
-Replace `/absolute/path/to/ohmyposh-configurator` with the actual path to your cloned repository.
-
 After adding this configuration, restart Claude Desktop.
-
-### VS Code with GitHub Copilot
-
-To use this MCP server with VS Code and GitHub Copilot:
-
-1. Install an MCP-compatible extension for VS Code (search for "MCP Client" in the VS Code marketplace)
-
-2. Configure the extension to point to the built MCP server:
-   ```
-   /absolute/path/to/ohmyposh-configurator/dist/mcp/index.js
-   ```
-
-3. Use GitHub Copilot Chat to interact with Oh My Posh configurations through natural language
-
-4. Example prompts in VS Code:
-   - "Create a developer prompt configuration"
-   - "Add a git segment to my Oh My Posh config"
-   - "Validate my Oh My Posh configuration"
 
 ### Other MCP-Compatible Clients
 
