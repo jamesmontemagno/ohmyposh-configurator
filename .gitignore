@@ -15,6 +15,12 @@ dist-ssr
 # Test coverage
 coverage
 
+# TypeScript build outputs (except intentional ones)
+src/**/*.js
+src/**/*.d.ts
+src/**/*.js.map
+src/**/*.d.ts.map
+
 # Original Nerd Font (we only commit the subset)
 public/fonts/SymbolsNerdFontMono-Regular.ttf
 

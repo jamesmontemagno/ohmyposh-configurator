@@ -2,6 +2,92 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-02-13]
+
+### Added: MCP Apps (Interactive UIs in Chat)
+
+- **Config Preview App**: Visual prompt rendering inline in AI chat hosts (Claude Desktop, VS Code Insiders)
+  - Renders Oh My Posh prompts with accurate powerline, diamond, and plain styles
+  - Light/dark terminal background toggle
+  - Export buttons (JSON/YAML/TOML) that call back to the MCP server
+  - Automatically shown when `create_configuration`, `modify_configuration`, or `load_sample_config` tools are used
+- **Segment Explorer App**: Interactive segment browser with search and category filtering
+  - Browse all 103+ segments organized by 8 categories
+  - Collapsible category sections with color-coded headers
+  - Detail panel showing properties, options, default template, and cache settings
+  - Automatically shown when `list_segments` or `get_segment_info` tools are used
+- **MCP App infrastructure**: Vite build pipeline producing self-contained HTML files
+  - Added `@modelcontextprotocol/ext-apps` for client-side App class
+  - Added `vite-plugin-singlefile` for single-file HTML bundling
+  - Nerd Font subset embedded inline for icon rendering
+  - Shared modules: color resolver, template evaluator, mock data, prompt renderer
+  - New `ui://` resource URIs served by the MCP server
+  - Tool `_meta.ui.resourceUri` fields for automatic app preloading
+
+### Added: MCP npm Publish Automation
+
+- Added GitHub Actions workflow to publish the MCP package to npm on `mcp-v*` release tags or manual dispatch
+- Added semver validation and version resolution from release tags or manual workflow input
+- Added trusted publishing support (`--provenance`) with `NPM_TOKEN` authentication for npm releases
+
+### Added: Model Context Protocol (MCP) Server
+
+**AI-Powered Configuration with Natural Language**
+
+- **MCP Server Implementation**: Full Model Context Protocol server for AI assistant integration
+  - Enable AI assistants like Claude, GitHub Copilot, and VS Code to create and manage Oh My Posh configurations
+  - Natural language configuration generation and modification
+  - Works seamlessly with Claude Desktop, VS Code, and other MCP-compatible clients
+
+- **MCP Tools (11 actions available)**:
+  - `create_configuration`: Generate configs from natural language descriptions
+  - `add_segment`: Add segments with smart defaults and auto-applied colors
+  - `modify_configuration`: Edit existing configurations
+  - `validate_configuration`: Check config validity with detailed error messages
+  - `export_configuration`: Convert between JSON, YAML, and TOML formats
+  - `list_segments`: Browse all 103+ available segments with filtering
+  - `get_segment_info`: Get detailed segment documentation and properties
+  - `list_sample_configs`: View available sample configurations
+  - `load_sample_config`: Load specific sample configurations by ID
+  - **NEW** `search_ohmyposh_docs`: Search official Oh My Posh documentation
+  - **NEW** `get_ohmyposh_segment_docs`: Get official docs for specific segments
+
+- **MCP Resources (4 data sources)**:
+  - `ohmyposh://segments/all`: Complete segment library with metadata
+  - `ohmyposh://segments/categories`: Segment categories and organization
+  - `ohmyposh://configs/samples`: Pre-built sample configurations
+  - `ohmyposh://configs/community`: Community-contributed configurations
+
+- **MCP Prompts (3 workflow templates)**:
+  - `quick_start`: Quick start workflows for common use cases
+  - `troubleshoot`: Interactive troubleshooting assistance
+  - `apply_theme`: Color theme application helpers
+
+- **Reusable Configuration Library**: Extracted core logic for MCP server
+  - `configBuilder`: Create and modify configurations programmatically
+  - `configValidator`: Validate configurations with detailed error reporting
+  - `configExporter`: Export to JSON/YAML/TOML with proper formatting
+  - `configLoader`: Load sample and community configurations
+  - `segmentLoader`: Load and search segment metadata
+
+- **Comprehensive Testing**: Full test coverage for MCP functionality
+  - Unit tests for configuration builder (17 tests)
+  - Unit tests for configuration validator (13 tests)
+  - Integration with existing test infrastructure
+
+- **Documentation**: Complete MCP server documentation
+  - Setup guide for Claude Desktop integration
+  - Tool reference with examples
+  - Use case documentation
+  - Architecture overview
+
+**Example Use Cases:**
+- "Create a developer prompt with git and Python"
+- "Add caching to all language segments with optimal durations"
+- "Generate a standardized DevOps prompt with AWS, kubectl, and terraform"
+- "Apply the Dracula color theme to my configuration"
+- "My prompt is slow - help me optimize it"
+
 ## [2026-01-04]
 
 ### Share Button with Multiple Options

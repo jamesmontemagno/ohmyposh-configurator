@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Segment Explorer Preview</title>
+  <style>
+@font-face {
+  font-family: 'NerdSymbols';
+  src: url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.3.0/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0f0f23; color: #e0e0e0;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 14px; line-height: 1.6; padding: 16px;
+}
+.loading { color: #888; padding: 20px; text-align: center; }
+
+.explorer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.explorer-title { font-size: 13px; font-weight: 600; color: #e94560; text-transform: uppercase; letter-spacing: 0.5px; }
+.explorer-count { font-size: 11px; color: #888; }
+.search-bar { margin-bottom: 12px; }
+.search-bar input {
+  width: 100%; padding: 8px 12px; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; color: #e0e0e0;
+  font-family: inherit; font-size: 13px; outline: none; transition: border-color 0.15s;
+}
+.search-bar input:focus { border-color: #e94560; }
+.search-bar input::placeholder { color: #666; }
+.explorer-content { display: flex; gap: 12px; }
+.segments-list { flex: 1; min-width: 0; }
+.category-group { margin-bottom: 4px; }
+.category-header {
+  display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+  cursor: pointer; border-radius: 0 4px 4px 0; transition: background 0.15s; user-select: none;
+}
+.category-header:hover { background: rgba(255,255,255,0.05); }
+.category-toggle { font-size: 10px; color: #888; width: 12px; }
+.category-name { font-weight: 600; font-size: 12px; }
+.category-count { font-size: 10px; color: #666; margin-left: auto; }
+.category-items { padding-left: 16px; }
+.segment-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 10px; border-radius: 4px; cursor: pointer; transition: background 0.15s; font-size: 12px;
+}
+.segment-item:hover { background: rgba(255,255,255,0.06); }
+.segment-item.selected { background: rgba(233,69,96,0.15); border: 1px solid rgba(233,69,96,0.3); }
+.segment-name { color: #e0e0e0; font-weight: 500; }
+.segment-type { color: #666; font-size: 10px; font-family: monospace; }
+.detail-panel {
+  flex: 1; min-width: 250px; max-width: 400px; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; max-height: 500px; overflow-y: auto;
+}
+.detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.detail-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.detail-name { font-size: 15px; font-weight: 700; color: #fff; }
+.detail-type { font-size: 11px; color: #888; font-family: monospace; }
+.detail-badge { font-size: 9px; padding: 2px 6px; border-radius: 3px; color: #fff; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+.close-btn { background: none; border: none; color: #888; font-size: 16px; cursor: pointer; padding: 2px 6px; }
+.close-btn:hover { color: #e94560; }
+.detail-desc { color: #aaa; font-size: 12px; margin-bottom: 12px; line-height: 1.5; }
+.detail-section { margin-bottom: 12px; }
+.detail-section strong { display: block; font-size: 11px; color: #e94560; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 6px; }
+.template-code { display: block; background: rgba(0,0,0,0.3); padding: 8px 10px; border-radius: 4px; font-size: 11px; color: #98C379; word-break: break-all; white-space: pre-wrap; }
+.detail-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.detail-table th { text-align: left; color: #888; font-weight: 600; padding: 4px 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.detail-table td { padding: 4px 6px; color: #ccc; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.detail-table code { background: rgba(0,0,0,0.2); padding: 1px 4px; border-radius: 2px; font-size: 10px; color: #7C9FF5; }
+  </style>
+</head>
+<body>
+  <div id="app"><div class="loading">Loading segments...</div></div>
+  <script>
+const CATEGORY_COLORS = {
+  system: '#61AFEF', scm: '#98C379', languages: '#C678DD', cloud: '#E5C07B',
+  cli: '#56B6C2', web: '#7C9FF5', music: '#E06C75', health: '#89CA78',
+};
+const CATEGORY_LABELS = {
+  system: 'System', scm: 'Version Control', languages: 'Languages', cloud: 'Cloud & Infra',
+  cli: 'CLI Tools', web: 'Web', music: 'Music', health: 'Health',
+};
+
+const segments = [
+  { type: 'os', name: 'OS', category: 'system', description: 'Display the current operating system' },
+  { type: 'shell', name: 'Shell', category: 'system', description: 'Display the current shell name' },
+  { type: 'battery', name: 'Battery', category: 'system', description: 'Display battery percentage and status' },
+  { type: 'session', name: 'Session', category: 'system', description: 'Display current user and host name' },
+  { type: 'time', name: 'Time', category: 'system', description: 'Display the current time' },
+  { type: 'path', name: 'Path', category: 'system', description: 'Display the current directory path' },
+  { type: 'sysinfo', name: 'System Info', category: 'system', description: 'Display CPU and memory usage' },
+  { type: 'git', name: 'Git', category: 'scm', description: 'Display git repository information' },
+  { type: 'mercurial', name: 'Mercurial', category: 'scm', description: 'Display Mercurial repository info' },
+  { type: 'svn', name: 'SVN', category: 'scm', description: 'Display SVN repository info' },
+  { type: 'node', name: 'Node.js', category: 'languages', description: 'Display Node.js version' },
+  { type: 'python', name: 'Python', category: 'languages', description: 'Display Python version and virtual env' },
+  { type: 'go', name: 'Go', category: 'languages', description: 'Display Go version' },
+  { type: 'rust', name: 'Rust', category: 'languages', description: 'Display Rust version' },
+  { type: 'java', name: 'Java', category: 'languages', description: 'Display Java version' },
+  { type: 'dotnet', name: '.NET', category: 'languages', description: 'Display .NET SDK version' },
+  { type: 'ruby', name: 'Ruby', category: 'languages', description: 'Display Ruby version' },
+  { type: 'aws', name: 'AWS', category: 'cloud', description: 'Display AWS profile and region' },
+  { type: 'az', name: 'Azure', category: 'cloud', description: 'Display Azure subscription info' },
+  { type: 'gcp', name: 'Google Cloud', category: 'cloud', description: 'Display GCP project info' },
+  { type: 'kubectl', name: 'Kubernetes', category: 'cloud', description: 'Display K8s context and namespace' },
+  { type: 'docker', name: 'Docker', category: 'cli', description: 'Display Docker context' },
+  { type: 'terraform', name: 'Terraform', category: 'cli', description: 'Display Terraform workspace' },
+  { type: 'spotify', name: 'Spotify', category: 'music', description: 'Display currently playing Spotify track' },
+  { type: 'strava', name: 'Strava', category: 'health', description: 'Display Strava activity stats' },
+];
+
+const appEl = document.getElementById('app');
+let searchQuery = '';
+let selectedSegment = null;
+const expandedCategories = new Set(['system']);
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function filterSegments() {
+  if (!searchQuery) return segments;
+  const q = searchQuery.toLowerCase();
+  return segments.filter(s => s.name.toLowerCase().includes(q) || s.type.toLowerCase().includes(q) || s.description.toLowerCase().includes(q));
+}
+
+function groupByCategory(list) {
+  const groups = {};
+  for (const s of list) { if (!groups[s.category]) groups[s.category] = []; groups[s.category].push(s); }
+  return groups;
+}
+
+function render() {
+  const filtered = filterSegments();
+  const grouped = groupByCategory(filtered);
+  const categoryOrder = ['system','scm','languages','cloud','cli','web','music','health'];
+
+  let html = `<div class="explorer-header"><span class="explorer-title">Segment Explorer</span><span class="explorer-count">${filtered.length} segments</span></div>`;
+  html += `<div class="search-bar"><input type="text" id="search-input" placeholder="Search segments..." value="${escapeHtml(searchQuery)}" /></div>`;
+  html += `<div class="explorer-content"><div class="segments-list">`;
+
+  for (const cat of categoryOrder) {
+    const catSegs = grouped[cat];
+    if (!catSegs || catSegs.length === 0) continue;
+    const isExpanded = expandedCategories.has(cat) || searchQuery.length > 0;
+    const color = CATEGORY_COLORS[cat] || '#888';
+    const label = CATEGORY_LABELS[cat] || cat;
+    html += `<div class="category-group"><div class="category-header" data-cat="${cat}" style="border-left:3px solid ${color};"><span class="category-toggle">${isExpanded ? '▾' : '▸'}</span><span class="category-name" style="color:${color};">${escapeHtml(label)}</span><span class="category-count">${catSegs.length}</span></div>`;
+    if (isExpanded) {
+      html += `<div class="category-items">`;
+      for (const seg of catSegs) {
+        const sel = selectedSegment?.type === seg.type;
+        html += `<div class="segment-item${sel?' selected':''}" data-type="${escapeHtml(seg.type)}"><span class="segment-name">${escapeHtml(seg.name)}</span><span class="segment-type">${escapeHtml(seg.type)}</span></div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  html += `</div>`;
+  if (selectedSegment) {
+    const s = selectedSegment;
+    const catColor = CATEGORY_COLORS[s.category] || '#888';
+    html += `<div class="detail-panel"><div class="detail-header"><div class="detail-title"><span class="detail-name">${escapeHtml(s.name)}</span><span class="detail-type">${escapeHtml(s.type)}</span><span class="detail-badge" style="background:${catColor};">${escapeHtml(CATEGORY_LABELS[s.category]||s.category)}</span></div><button id="close-detail" class="close-btn" title="Close">✕</button></div><p class="detail-desc">${escapeHtml(s.description)}</p></div>`;
+  }
+  html += `</div>`;
+
+  const existingInput = document.getElementById('search-input');
+  const hadFocus = existingInput === document.activeElement;
+  const cursorPos = existingInput?.selectionStart ?? null;
+
+  appEl.innerHTML = html;
+
+  const newInput = document.getElementById('search-input');
+  newInput?.addEventListener('input', (e) => { searchQuery = e.target.value; render(); });
+  if (hadFocus && newInput) { newInput.focus(); if (cursorPos !== null) newInput.setSelectionRange(cursorPos, cursorPos); }
+
+  document.getElementById('close-detail')?.addEventListener('click', () => { selectedSegment = null; render(); });
+  document.querySelectorAll('.category-header').forEach(el => {
+    el.addEventListener('click', () => {
+      const cat = el.dataset.cat;
+      if (expandedCategories.has(cat)) expandedCategories.delete(cat); else expandedCategories.add(cat);
+      render();
+    });
+  });
+  document.querySelectorAll('.segment-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const t = el.dataset.type;
+      selectedSegment = segments.find(s => s.type === t) || null;
+      render();
+    });
+  });
+}
+
+render();
+  </script>
+</body>
+</html>

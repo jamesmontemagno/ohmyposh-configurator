@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'NerdSymbols';
+  src: url('/fonts/nerd-symbols-subset.woff2') format('woff2'),
+       url('/fonts/nerd-symbols-subset.ttf') format('truetype'),
+       url('https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.3.0/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0f0f23;
+  color: #e0e0e0;
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 16px;
+}
+
+.nerd-symbol {
+  font-family: 'NerdSymbols', 'Fira Code', monospace;
+}
+
+.loading {
+  color: #888;
+  padding: 20px;
+  text-align: center;
+}
+
+.error {
+  color: #ef5350;
+  padding: 12px;
+  background: rgba(239, 83, 80, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(239, 83, 80, 0.3);
+}

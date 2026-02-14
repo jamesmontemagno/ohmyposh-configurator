@@ -1,0 +1,264 @@
+.explorer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.explorer-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e94560;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.explorer-count {
+  font-size: 11px;
+  color: #888;
+}
+
+.search-bar {
+  margin-bottom: 12px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-bar input:focus {
+  border-color: #e94560;
+}
+
+.search-bar input::placeholder {
+  color: #666;
+}
+
+.explorer-content {
+  display: flex;
+  gap: 12px;
+}
+
+.segments-list {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-group {
+  margin-bottom: 4px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.category-header:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.category-toggle {
+  font-size: 10px;
+  color: #888;
+  width: 12px;
+}
+
+.category-name {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.category-count {
+  font-size: 10px;
+  color: #666;
+  margin-left: auto;
+}
+
+.category-items {
+  padding-left: 16px;
+}
+
+.segment-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 12px;
+}
+
+.segment-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.segment-item.selected {
+  background: rgba(233, 69, 96, 0.15);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+}
+
+.segment-name {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.segment-type {
+  color: #666;
+  font-size: 10px;
+  font-family: monospace;
+}
+
+/* Detail Panel */
+.detail-panel {
+  flex: 1;
+  min-width: 250px;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Full-width detail panel for single-segment mode */
+.detail-panel-full {
+  max-width: none;
+  max-height: none;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.detail-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.detail-type {
+  font-size: 11px;
+  color: #888;
+  font-family: monospace;
+}
+
+.detail-badge {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.close-btn:hover {
+  color: #e94560;
+}
+
+.detail-desc {
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.detail-section {
+  margin-bottom: 12px;
+}
+
+.detail-section strong {
+  display: block;
+  font-size: 11px;
+  color: #e94560;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+
+.template-code {
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #98C379;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.detail-table th {
+  text-align: left;
+  color: #888;
+  font-weight: 600;
+  padding: 4px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detail-table td {
+  padding: 4px 6px;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.detail-table code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 10px;
+  color: #7C9FF5;
+}
+
+.detail-section p {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.detail-section p code {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1px 4px;
+  border-radius: 2px;
+  color: #7C9FF5;
+}
