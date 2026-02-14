@@ -374,7 +374,7 @@
             <div class="card">
                 <h2><span class="icon">💡</span> What is MCP?</h2>
                 <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard that enables AI assistants to interact with external tools and data sources.</p>
-                <p>Our MCP server allows AI assistants like <strong>Claude</strong>, <strong>GitHub Copilot</strong>, and others to help you create and manage Oh My Posh configurations through natural language conversations.</p>
+                <p>Our MCP server allows AI assistants like <strong>GitHub Copilot in VS Code</strong> and others to help you create and manage Oh My Posh configurations through natural language conversations.</p>
                 
                 <div class="highlight">
                     <p><strong>Example:</strong></p>
@@ -495,48 +495,45 @@
 
         <div class="setup-section">
             <h2>⚙️ Setup Instructions</h2>
-            <p style="margin-bottom: 30px; color: #d8d8e8;">Get started in minutes with your preferred AI assistant:</p>
+            <p style="margin-bottom: 30px; color: #d8d8e8;">Get started in minutes with VS Code and GitHub Copilot:</p>
             
             <div class="setup-steps">
                 <div class="setup-step">
-                    <h3>Clone and Build</h3>
-                    <p>First, clone the repository and build the MCP server:</p>
-                    <pre><code>git clone https://github.com/jamesmontemagno/ohmyposh-configurator.git
-cd ohmyposh-configurator
-npm install
-npm run build:mcp</code></pre>
+                    <h3>Install from npm</h3>
+                    <p>The easiest way to get started — no cloning required:</p>
+                    <pre><code>npx ohmyposh-configurator</code></pre>
+                    <p style="margin-top: 10px; color: #b8b8c8; font-size: 0.9rem;">Or install globally: <code>npm install -g ohmyposh-configurator</code></p>
                 </div>
 
                 <div class="setup-step">
-                    <h3>Configure Your AI Assistant</h3>
-                    
-                    <h4 style="color: #e94560; margin: 20px 0 10px 0;">For Claude Desktop:</h4>
-                    <p>Add to your <code>claude_desktop_config.json</code> file:</p>
-                    <p style="margin-bottom: 5px; color: #b8b8c8; font-size: 0.9rem;">
-                        <strong>macOS:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code><br>
-                        <strong>Windows:</strong> <code>%APPDATA%\Claude\claude_desktop_config.json</code>
-                    </p>
+                    <h3>Configure VS Code</h3>
+                    <p>Add to your VS Code <code>.vscode/mcp.json</code> (or User Settings):</p>
                     <pre><code>{
-  "mcpServers": {
-    "ohmyposh": {
-      "command": "node",
-      "args": [
-        "/absolute/path/to/ohmyposh-configurator/dist/mcp/index.js"
-      ]
+  "servers": {
+    "ohmyposh-configurator": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "ohmyposh-configurator"]
     }
   }
 }</code></pre>
-
-                    <h4 style="color: #e94560; margin: 20px 0 10px 0;">For VS Code with GitHub Copilot:</h4>
-                    <p>Install an MCP-compatible extension and configure it to use:</p>
-                    <pre><code>/absolute/path/to/ohmyposh-configurator/dist/mcp/index.js</code></pre>
+                    <p style="margin-top: 10px; color: #b8b8c8; font-size: 0.9rem;">Requires VS Code with <strong>GitHub Copilot</strong> extension and MCP support enabled.</p>
                 </div>
 
                 <div class="setup-step">
                     <h3>Start Creating!</h3>
-                    <p>Restart your AI assistant and start creating configurations with natural language.</p>
+                    <p>Open GitHub Copilot Chat in VS Code and start creating configurations with natural language.</p>
                     <p style="color: #98C379; margin-top: 15px;">Try: <em>"Create a developer prompt with git and Python"</em></p>
                 </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 30px;">
+                <p><strong>Alternative: Build from Source</strong></p>
+                <pre style="margin: 10px 0;"><code>git clone https://github.com/jamesmontemagno/ohmyposh-configurator.git
+cd ohmyposh-configurator
+npm install
+npm run build:mcp</code></pre>
+                <p style="font-size: 0.9rem; color: #b8b8c8;">Then point your MCP config to <code>dist/mcp/index.js</code></p>
             </div>
         </div>
 
@@ -583,7 +580,7 @@ npm run build:mcp</code></pre>
 
         <footer>
             <p><strong>Oh My Posh Configurator MCP Server</strong></p>
-            <p>Compatible with Claude Desktop, GitHub Copilot, VS Code, and any MCP-compatible client</p>
+            <p>Compatible with VS Code + GitHub Copilot and any MCP-compatible client</p>
             <p style="margin-top: 15px;">
                 <a href="https://github.com/jamesmontemagno/ohmyposh-configurator">View on GitHub</a> · 
                 <a href="https://ohmyposh.dev">Oh My Posh Docs</a> · 
