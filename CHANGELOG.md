@@ -4,6 +4,16 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-02-13]
 
+## [2026-06-27]
+
+### Changed: Custom Domain Deployment
+
+- Updated the configurator app, MCP page, SEO metadata, and PWA assets to use the `https://configurator.ohmyposh.dev/` custom domain
+- Removed hardcoded GitHub Pages subpath references so the app now serves correctly from the site root
+- Added GitHub Pages `CNAME` support for `configurator.ohmyposh.dev`
+
+## [2026-02-13]
+
 ### Added: MCP Apps (Interactive UIs in Chat)
 
 - **Config Preview App**: Visual prompt rendering inline in AI chat hosts (Claude Desktop, VS Code Insiders)
@@ -493,7 +503,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 ## Project Information
 
 **Repository**: [jamesmontemagno/ohmyposh-configurator](https://github.com/jamesmontemagno/ohmyposh-configurator)  
-**Live Demo**: [GitHub Pages](https://jamesmontemagno.github.io/ohmyposh-configurator/)  
+**Live Demo**: [configurator.ohmyposh.dev](https://configurator.ohmyposh.dev/)  
 **License**: See LICENSE file
 
 For detailed contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).

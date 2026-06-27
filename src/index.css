@@ -3,8 +3,8 @@
 /* Nerd Font subset - optimized for app performance */
 @font-face {
   font-family: 'Symbols Nerd Font Subset';
-  src: url('/ohmyposh-configurator/fonts/nerd-symbols-subset.woff2') format('woff2'),
-       url('/ohmyposh-configurator/fonts/nerd-symbols-subset.ttf') format('truetype');
+  src: url('/fonts/nerd-symbols-subset.woff2') format('woff2'),
+       url('/fonts/nerd-symbols-subset.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

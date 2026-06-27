@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/ohmyposh-configurator/',
+  base: '/',
   define: {
     global: 'globalThis',
   },
@@ -37,4 +37,3 @@ export default defineConfig({
     chunkSizeWarningLimit: 600,
   },
 })
-

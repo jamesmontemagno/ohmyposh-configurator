@@ -4,11 +4,11 @@
 
 ![Oh My Posh Configurator](https://img.shields.io/badge/Oh%20My%20Posh-Visual%20Configurator-e94560?style=for-the-badge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
-[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://jamesmontemagno.github.io/ohmyposh-configurator/)
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://configurator.ohmyposh.dev/)
 
 **Design beautiful terminal prompts without touching configuration files**
 
-[🚀 Launch App](https://jamesmontemagno.github.io/ohmyposh-configurator/) • [📖 Documentation](https://ohmyposh.dev/docs/) • [💬 Discussions](https://github.com/jamesmontemagno/ohmyposh-configurator/discussions)
+[🚀 Launch App](https://configurator.ohmyposh.dev/) • [📖 Documentation](https://ohmyposh.dev/docs/) • [💬 Discussions](https://github.com/jamesmontemagno/ohmyposh-configurator/discussions)
 
 ![Oh My Posh Visual Configurator](blogs/images/main-interface.png)
 
@@ -59,7 +59,7 @@ Perfect for developers, DevOps engineers, and anyone who wants a beautiful, info
 
 No installation required! Visit the hosted version:
 
-**👉 [https://jamesmontemagno.github.io/ohmyposh-configurator/](https://jamesmontemagno.github.io/ohmyposh-configurator/)**
+**👉 [https://configurator.ohmyposh.dev/](https://configurator.ohmyposh.dev/)**
 
 ### 💻 Local Development
 

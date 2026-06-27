@@ -139,7 +139,7 @@ export function Header() {
               </a>
               <hr className="border-[#0f3460] my-1" />
               <a
-                href="/ohmyposh-configurator/mcp.html"
+                href="/mcp.html"
                 className="flex items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#0f3460] hover:text-white transition-colors"
                 onClick={() => setShowGitHubDropdown(false)}
               >

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jamesmontemagno.github.io/ohmyposh-configurator/sitemap.xml
+Sitemap: https://configurator.ohmyposh.dev/sitemap.xml
