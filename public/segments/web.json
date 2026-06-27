@@ -188,7 +188,7 @@
     "defaultTemplate": "\udb82\udc06 {{ .HomeTeam}}{{ if .HasStats }} ({{.HomeTeamWins}}-{{.HomeTeamLosses}}){{ end }}{{ if .Started }}:{{.HomeScore}}{{ end }} vs {{ .AwayTeam}}{{ if .HasStats }} ({{.AwayTeamWins}}-{{.AwayTeamLosses}}){{ end }}{{ if .Started }}:{{.AwayScore}}{{ end }} | {{ if not .Started }}{{.GameDate}} | {{ end }}{{.Time}}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00ACC1",
-    "previewText": "🏀 BOS (61-21):102 vs NYK (50-32):99 | 00:42",
+    "previewText": "\ud83c\udfc0 BOS (61-21):102 vs NYK (50-32):99 | 00:42",
     "properties": [
       {
         "name": ".HomeTeam",
@@ -276,7 +276,7 @@
       },
       {
         "name": "http_timeout",
-        "type": "int",
+        "type": "number",
         "default": 20,
         "description": "How long do you want to wait before you want to see your prompt more than your sugar? I figure a half second is a good default"
       }

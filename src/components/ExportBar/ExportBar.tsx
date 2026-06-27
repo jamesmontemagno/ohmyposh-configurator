@@ -101,6 +101,8 @@ export function ExportBar() {
           <button
             onClick={() => setShowCode(!showCode)}
             className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            aria-label={showCode ? 'Hide configuration code' : 'View configuration code'}
+            title={showCode ? 'Hide configuration code' : 'View configuration code'}
           >
             {showCode ? <NerdIcon icon="ui-eye-off" size={16} /> : <NerdIcon icon="ui-eye" size={16} />}
             <span className="hidden sm:inline">{showCode ? 'Hide' : 'View'} Config</span>
@@ -177,6 +179,8 @@ export function ExportBar() {
           <button
             onClick={handleCopy}
             className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            aria-label={copied ? 'Configuration copied' : 'Copy configuration'}
+            title={copied ? 'Configuration copied' : 'Copy configuration'}
           >
             {copied ? <NerdIcon icon="ui-check" size={16} className="text-green-400" /> : <NerdIcon icon="action-copy" size={16} />}
             <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
@@ -185,6 +189,8 @@ export function ExportBar() {
           <button
             onClick={handleDownload}
             className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-white bg-[#e94560] hover:bg-[#d63850] rounded transition-colors"
+            aria-label="Download configuration"
+            title="Download configuration"
           >
             <NerdIcon icon="action-download" size={16} />
             <span className="hidden sm:inline">Download</span>

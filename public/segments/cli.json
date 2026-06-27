@@ -1978,8 +1978,11 @@
       },
       {
         "name": "commands",
-        "type": "map[string]string",
-        "default": "see below",
+        "type": "object",
+        "default": {
+          "due": "due",
+          "today": "today"
+        },
         "description": "map of name to Taskwarrior arguments; the raw output is exposed in .Commands"
       }
     ]

@@ -4,7 +4,10 @@ import { NerdIcon } from '../NerdIcon';
 export function ScreenSizeWarning() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isDismissed, setIsDismissed] = useState(() => {
-    return localStorage.getItem('smallScreenNoticeDismissed') === 'true';
+    return (
+      localStorage.getItem('smallScreenNoticeDismissed') === 'true' ||
+      localStorage.getItem('screenSizeWarningDismissed') === 'true'
+    );
   });
 
   useEffect(() => {

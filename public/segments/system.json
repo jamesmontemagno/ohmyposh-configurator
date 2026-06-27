@@ -770,7 +770,7 @@
     "defaultTemplate": "{{ .Mode }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#546E7A",
-    "previewText": "⌨️ normal",
+    "previewText": "\u2328\ufe0f normal",
     "properties": [
       {
         "name": ".Mode",

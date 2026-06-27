@@ -708,20 +708,29 @@
       },
       {
         "name": "extensions",
-        "type": "[]string",
-        "default": "*.go, go.mod, go.work, go.sum, go.work.sum",
+        "type": "array",
+        "default": [
+          "*.go",
+          "go.mod",
+          "go.work",
+          "go.sum",
+          "go.work.sum"
+        ],
         "description": "allows to override the default list of file extensions to validate"
       },
       {
         "name": "folders",
-        "type": "[]string",
-        "default": "",
+        "type": "array",
+        "default": [],
         "description": "allows to override the list of folder names to validate"
       },
       {
         "name": "tooling",
-        "type": "[]string",
-        "default": "mod, go",
+        "type": "array",
+        "default": [
+          "mod",
+          "go"
+        ],
         "description": "the tooling to use for fetching the version"
       }
     ]

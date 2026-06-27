@@ -109,7 +109,7 @@
       {
         "name": "city",
         "type": "string",
-        "default": "\"\"",
+        "default": "",
         "description": "City name for location lookup \u2014 takes precedence over latitude/longitude",
         "values": [
           "latitude",
@@ -119,7 +119,7 @@
       {
         "name": "country",
         "type": "string",
-        "default": "\"\"",
+        "default": "",
         "description": "Country name or ISO 3166 alpha-2 code \u2014 required when using city"
       },
       {
@@ -147,7 +147,7 @@
       {
         "name": "first_roza_date",
         "type": "string",
-        "default": "\"\"",
+        "default": "",
         "description": "Override first day of Ramadan as YYYY-MM-DD for local moon sighting"
       },
       {

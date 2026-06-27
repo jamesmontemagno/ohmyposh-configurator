@@ -99,6 +99,8 @@ export function Header() {
           <button
             onClick={() => setShowGitHubDropdown(!showGitHubDropdown)}
             className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+            aria-label="Open GitHub links menu"
+            title="GitHub"
           >
             <NerdIcon icon="vcs-github" size={16} />
             <span className="hidden sm:inline">GitHub</span>
@@ -155,6 +157,8 @@ export function Header() {
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+          aria-label="Open Oh My Posh documentation"
+          title="Docs"
         >
           <NerdIcon icon="misc-book" size={16} />
           <span className="hidden sm:inline">Docs</span>
