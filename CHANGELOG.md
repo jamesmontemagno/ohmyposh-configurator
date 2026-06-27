@@ -26,6 +26,11 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Improved responsive behavior in the header and export action bar to reduce overflow on narrow viewports
 - Updated the draft recovery banner and phone-size notice presentation so they no longer block key editing interactions on small screens
 
+### Changed: GitHub Actions Node Runtime Compatibility
+
+- Updated CI/CD, config validation, and MCP publish workflows from Node 20 to Node 24 for workflow job execution
+- Upgraded core GitHub Actions versions (checkout, setup-node, setup-python, artifact, pages, deploy-pages, github-script) to Node 24-compatible majors to remove forced runtime migration warnings
+
 ## [2026-02-13]
 
 ### Added: MCP Apps (Interactive UIs in Chat)
