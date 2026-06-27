@@ -294,7 +294,7 @@ npm run build        # TypeScript check + Vite build
 **Output**: `dist/` directory with optimized static files
 
 ### Deployment
-- Hosted on GitHub Pages at `/ohmyposh-configurator/`
+- Hosted at `https://configurator.ohmyposh.dev/`
 - Automatic deployment via GitHub Actions
 - Base path configured in `vite.config.ts`
 

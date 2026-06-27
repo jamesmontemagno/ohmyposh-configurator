@@ -388,7 +388,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - [Oh My Posh](https://ohmyposh.dev/) - The prompt theme engine
 - [Model Context Protocol](https://modelcontextprotocol.io/) - Protocol specification
-- [Oh My Posh Configurator Web App](https://jamesmontemagno.github.io/ohmyposh-configurator/) - Visual configurator
+- [Oh My Posh Configurator Web App](https://configurator.ohmyposh.dev/) - Visual configurator
 
 ## Support
 

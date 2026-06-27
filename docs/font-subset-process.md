@@ -180,8 +180,8 @@ See [.github/workflows/ci.yml](../.github/workflows/ci.yml) for details.
 ```css
 @font-face {
   font-family: 'Symbols Nerd Font';
-  src: url('/ohmyposh-configurator/fonts/nerd-symbols-subset.woff2') format('woff2'),
-       url('/ohmyposh-configurator/fonts/nerd-symbols-subset.ttf') format('truetype');
+  src: url('/fonts/nerd-symbols-subset.woff2') format('woff2'),
+       url('/fonts/nerd-symbols-subset.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -191,7 +191,7 @@ See [.github/workflows/ci.yml](../.github/workflows/ci.yml) for details.
 **2. Font Preloading ([index.html](../index.html)):**
 ```html
 <link rel="preload" 
-      href="/ohmyposh-configurator/fonts/nerd-symbols-subset.woff2" 
+      href="/fonts/nerd-symbols-subset.woff2" 
       as="font" 
       type="font/woff2" 
       crossorigin>

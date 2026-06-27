@@ -2,14 +2,14 @@
   "name": "Oh My Posh Visual Configurator",
   "short_name": "OMP Config",
   "description": "Visual configuration builder for Oh My Posh shell prompts",
-  "start_url": "/ohmyposh-configurator/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#16213e",
   "theme_color": "#0f3460",
   "orientation": "any",
   "icons": [
     {
-      "src": "/ohmyposh-configurator/favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -22,7 +22,7 @@
   ],
   "screenshots": [
     {
-      "src": "/ohmyposh-configurator/og-image.svg",
+      "src": "/og-image.svg",
       "sizes": "1200x630",
       "type": "image/svg+xml"
     }

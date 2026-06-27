@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Visual configurator for Oh My Posh terminal prompts. React 19 + TypeScript + Vite app with drag-and-drop interface. Runs 100% client-side, hosted on GitHub Pages at `/ohmyposh-configurator/`.
+Visual configurator for Oh My Posh terminal prompts. React 19 + TypeScript + Vite app with drag-and-drop interface. Runs 100% client-side at `https://configurator.ohmyposh.dev/`.
 
 ## Architecture
 
