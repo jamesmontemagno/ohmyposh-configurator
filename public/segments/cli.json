@@ -101,7 +101,7 @@
     "defaultTemplate": " \ue734 {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#EF7B4D",
-    "previewText": "🐳 production",
+    "previewText": "\ud83d\udc33 production",
     "properties": [
       {
         "name": ".Name",
@@ -123,6 +123,51 @@
       "duration": "168h",
       "strategy": "folder"
     }
+  },
+  {
+    "type": "aspire",
+    "name": "Aspire",
+    "description": "Synced from upstream docs for the aspire segment.",
+    "icon": "tool-cmake",
+    "defaultTemplate": "\u25b2 {{ .Name }}{{ if .Running }} \u2713{{ end }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#455A64",
+    "previewText": "\u25b2 my-app \u2713",
+    "properties": [
+      {
+        "name": ".AppHostPath",
+        "type": "string",
+        "description": "the resolved AppHost path reported by the Aspire CLI or file search"
+      },
+      {
+        "name": ".Name",
+        "type": "string",
+        "description": "the Aspire AppHost display name"
+      },
+      {
+        "name": ".Version",
+        "type": "string",
+        "description": "the Aspire Hosting version from Directory.Packages.props"
+      },
+      {
+        "name": ".Lang",
+        "type": "string",
+        "description": "the detected single-file AppHost language (cs or ts)"
+      },
+      {
+        "name": ".Running",
+        "type": "boolean",
+        "description": "whether the resolved AppHost currently appears in aspire ps"
+      }
+    ],
+    "options": [
+      {
+        "name": "fetch_running",
+        "type": "boolean",
+        "default": true,
+        "description": "query aspire ps to determine whether the resolved AppHost is running"
+      }
+    ]
   },
   {
     "type": "aurelia",
@@ -465,7 +510,7 @@
     "defaultTemplate": " \uf0bc9 {{ .Model.DisplayName }} \uf2d0 {{ .TokenUsagePercent.Gauge }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D97757",
-    "previewText": "🤖 claude ",
+    "previewText": "\ud83e\udd16 claude ",
     "properties": [
       {
         "name": ".SessionID",
@@ -537,7 +582,7 @@
       {
         "name": ".TokenUsagePercent.Gauge",
         "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ▰▰▰▰▱) to show context window usage"
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u25b0\u25b0\u25b0\u25b0\u25b1) to show context window usage"
       },
       {
         "name": ".TokenUsagePercent.String",
@@ -663,6 +708,152 @@
     }
   },
   {
+    "type": "copilot",
+    "name": "GitHub Copilot",
+    "description": "Displays GitHub Copilot status, including premium, inline, and chat usage quotas",
+    "icon": "ai-copilot",
+    "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8957E5",
+    "previewText": " \ud83e\udd16 \u2588\u2588\u2591\u2591\u2591",
+    "properties": [
+      {
+        "name": ".Premium.Used",
+        "type": "int",
+        "description": "Number of premium interactions used"
+      },
+      {
+        "name": ".Premium.Limit",
+        "type": "int",
+        "description": "Total premium interactions available"
+      },
+      {
+        "name": ".Premium.Percent",
+        "type": "int",
+        "description": "Percentage of premium quota used (0-100)"
+      },
+      {
+        "name": ".Premium.Remaining",
+        "type": "int",
+        "description": "Percentage of premium quota remaining (0-100)"
+      },
+      {
+        "name": ".Premium.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited premium quota"
+      },
+      {
+        "name": ".Inline.Used",
+        "type": "int",
+        "description": "Number of inline completions used"
+      },
+      {
+        "name": ".Inline.Limit",
+        "type": "int",
+        "description": "Total inline completions available"
+      },
+      {
+        "name": ".Inline.Percent",
+        "type": "int",
+        "description": "Percentage of inline quota used (0-100)"
+      },
+      {
+        "name": ".Inline.Remaining",
+        "type": "int",
+        "description": "Percentage of inline quota remaining (0-100)"
+      },
+      {
+        "name": ".Inline.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited inline quota"
+      },
+      {
+        "name": ".Chat.Used",
+        "type": "int",
+        "description": "Number of chat interactions used"
+      },
+      {
+        "name": ".Chat.Limit",
+        "type": "int",
+        "description": "Total chat interactions available"
+      },
+      {
+        "name": ".Chat.Percent",
+        "type": "int",
+        "description": "Percentage of chat quota used (0-100)"
+      },
+      {
+        "name": ".Chat.Remaining",
+        "type": "int",
+        "description": "Percentage of chat quota remaining (0-100)"
+      },
+      {
+        "name": ".Chat.Unlimited",
+        "type": "boolean",
+        "description": "Boolean for unlimited chat quota"
+      },
+      {
+        "name": ".BillingCycleEnd",
+        "type": "string",
+        "description": "End date of current billing cycle"
+      }
+    ],
+    "methods": [
+      {
+        "name": ".Percent.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u2588\u2588\u2588\u2588\u2591) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+      },
+      {
+        "name": ".Percent.String",
+        "returnType": "string",
+        "description": "Returns the numeric percentage value as a string (e.g., '75'). Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+      },
+      {
+        "name": ".Remaining.Gauge",
+        "returnType": "string",
+        "description": "Returns a visual gauge using 5-bar blocks (e.g., \u2591\u2588\u2588\u2588\u2588) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
+      }
+    ],
+    "options": [
+      {
+        "name": "http_timeout",
+        "type": "number",
+        "default": 20,
+        "description": "HTTP request timeout in milliseconds"
+      }
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
+  },
+  {
+    "type": "copilot-cli",
+    "name": "GitHub Copilot CLI",
+    "description": "Synced from upstream docs for the copilot-cli segment.",
+    "icon": "ai-copilot",
+    "defaultTemplate": " \uec1e {{ .Model.DisplayName }} \uf2d0 {{ .TokenGauge }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#455A64",
+    "previewText": "\uec1e GPT-5.5 \uf2d0 ▰▰▰▱▱",
+    "properties": [],
+    "options": [
+      {
+        "name": "gauge_marked_char",
+        "type": "string",
+        "default": "\u25b0",
+        "description": "Character used for filled blocks in gauge visualizations"
+      },
+      {
+        "name": "gauge_unmarked_char",
+        "type": "string",
+        "default": "\u25b1",
+        "description": "Character used for empty blocks in gauge visualizations"
+      }
+    ]
+  },
+  {
     "type": "deno",
     "name": "Deno",
     "description": "Displays the current Deno version when in a Deno project",
@@ -759,7 +950,7 @@
     "defaultTemplate": " \uf308 {{ .Context }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2496ED",
-    "previewText": "🐳 default",
+    "previewText": "\ud83d\udc33 default",
     "properties": [
       {
         "name": ".Context",
@@ -810,7 +1001,7 @@
     "defaultTemplate": " \ue787 {{ .Project }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FFA611",
-    "previewText": "🔥 my-app",
+    "previewText": "\ud83d\udd25 my-app",
     "properties": [
       {
         "name": ".Project",
@@ -831,7 +1022,7 @@
     "defaultTemplate": " \ue7dd {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#02569B",
-    "previewText": "💙 3.16.0",
+    "previewText": "\ud83d\udc99 3.16.0",
     "properties": [
       {
         "name": ".Full",
@@ -924,125 +1115,131 @@
     }
   },
   {
-    "type": "copilot",
-    "name": "GitHub Copilot",
-    "description": "Displays GitHub Copilot status, including premium, inline, and chat usage quotas",
-    "icon": "ai-copilot",
-    "defaultTemplate": " \uec1e {{ .Premium.Percent.Gauge }} ",
+    "type": "gradle",
+    "name": "Gradle",
+    "description": "Synced from upstream docs for the gradle segment.",
+    "icon": "tool-gradle",
+    "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
-    "defaultBackground": "#8957E5",
-    "previewText": " 🤖 ██░░░",
+    "defaultBackground": "#455A64",
+    "previewText": "🐘 8.8.0",
     "properties": [
       {
-        "name": ".Premium.Used",
-        "type": "int",
-        "description": "Number of premium interactions used"
-      },
-      {
-        "name": ".Premium.Limit",
-        "type": "int",
-        "description": "Total premium interactions available"
-      },
-      {
-        "name": ".Premium.Percent",
-        "type": "int",
-        "description": "Percentage of premium quota used (0-100)"
-      },
-      {
-        "name": ".Premium.Remaining",
-        "type": "int",
-        "description": "Percentage of premium quota remaining (0-100)"
-      },
-      {
-        "name": ".Premium.Unlimited",
-        "type": "boolean",
-        "description": "Boolean for unlimited premium quota"
-      },
-      {
-        "name": ".Inline.Used",
-        "type": "int",
-        "description": "Number of inline completions used"
-      },
-      {
-        "name": ".Inline.Limit",
-        "type": "int",
-        "description": "Total inline completions available"
-      },
-      {
-        "name": ".Inline.Percent",
-        "type": "int",
-        "description": "Percentage of inline quota used (0-100)"
-      },
-      {
-        "name": ".Inline.Remaining",
-        "type": "int",
-        "description": "Percentage of inline quota remaining (0-100)"
-      },
-      {
-        "name": ".Inline.Unlimited",
-        "type": "boolean",
-        "description": "Boolean for unlimited inline quota"
-      },
-      {
-        "name": ".Chat.Used",
-        "type": "int",
-        "description": "Number of chat interactions used"
-      },
-      {
-        "name": ".Chat.Limit",
-        "type": "int",
-        "description": "Total chat interactions available"
-      },
-      {
-        "name": ".Chat.Percent",
-        "type": "int",
-        "description": "Percentage of chat quota used (0-100)"
-      },
-      {
-        "name": ".Chat.Remaining",
-        "type": "int",
-        "description": "Percentage of chat quota remaining (0-100)"
-      },
-      {
-        "name": ".Chat.Unlimited",
-        "type": "boolean",
-        "description": "Boolean for unlimited chat quota"
-      },
-      {
-        "name": ".BillingCycleEnd",
+        "name": ".Full",
         "type": "string",
-        "description": "End date of current billing cycle"
-      }
-    ],
-    "methods": [
-      {
-        "name": ".Percent.Gauge",
-        "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ████░) to show used capacity. Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+        "description": "the full Gradle version"
       },
       {
-        "name": ".Percent.String",
-        "returnType": "string",
-        "description": "Returns the numeric percentage value as a string (e.g., '75'). Available on .Premium.Percent, .Inline.Percent, and .Chat.Percent"
+        "name": ".Major",
+        "type": "string",
+        "description": "major number"
       },
       {
-        "name": ".Remaining.Gauge",
-        "returnType": "string",
-        "description": "Returns a visual gauge using 5-bar blocks (e.g., ░████) to show remaining capacity. Available on .Premium.Remaining, .Inline.Remaining, and .Chat.Remaining"
+        "name": ".Minor",
+        "type": "string",
+        "description": "minor number"
+      },
+      {
+        "name": ".Patch",
+        "type": "string",
+        "description": "patch number"
+      },
+      {
+        "name": ".KotlinVersion",
+        "type": "string",
+        "description": "bundled Kotlin version"
+      },
+      {
+        "name": ".GroovyVersion",
+        "type": "string",
+        "description": "bundled Groovy version"
+      },
+      {
+        "name": ".AntVersion",
+        "type": "string",
+        "description": "bundled Ant version"
+      },
+      {
+        "name": ".JVMVersion",
+        "type": "string",
+        "description": "Launcher JVM version"
+      },
+      {
+        "name": ".URL",
+        "type": "string",
+        "description": "URL of the release notes (from version_url_template)"
+      },
+      {
+        "name": ".Error",
+        "type": "string",
+        "description": "error encountered when fetching the version string"
       }
     ],
     "options": [
       {
-        "name": "http_timeout",
-        "type": "number",
-        "default": 20,
-        "description": "HTTP request timeout in milliseconds"
+        "name": "home_enabled",
+        "type": "boolean",
+        "default": false,
+        "description": "display the segment in the HOME folder or not"
+      },
+      {
+        "name": "fetch_version",
+        "type": "boolean",
+        "default": true,
+        "description": "fetch the Gradle version"
+      },
+      {
+        "name": "cache_duration",
+        "type": "string",
+        "default": "none",
+        "description": "the duration for which the version will be cached. The duration is a string in the format 1h2m3s and is parsed using the [time.ParseDuration] function from the Go standard library. To disable the cache, use none",
+        "values": [
+          "1h2m3s",
+          "none"
+        ]
+      },
+      {
+        "name": "missing_command_text",
+        "type": "string",
+        "default": "",
+        "description": "text to display when the command is missing"
+      },
+      {
+        "name": "display_mode",
+        "type": "string",
+        "default": "context",
+        "description": "always: the segment is always displayed files: the segment is only displayed when file extensions listed are present context: displays the segment when the environment or files is active",
+        "values": [
+          "always",
+          "files",
+          "context"
+        ]
+      },
+      {
+        "name": "version_url_template",
+        "type": "string",
+        "default": "",
+        "description": "a go [text/template][go-text-template] [template][templates] that creates the URL of the version info / release notes"
+      },
+      {
+        "name": "extensions",
+        "type": "[]string",
+        "default": "*.gradle, *.gradle.kts",
+        "description": "allows to override the default list of file extensions to validate"
+      },
+      {
+        "name": "folders",
+        "type": "[]string",
+        "default": "",
+        "description": "allows to override the list of folder names to validate"
+      },
+      {
+        "name": "tooling",
+        "type": "[]string",
+        "default": "gradle",
+        "description": "the tooling to use for fetching the version"
       }
-    ],
-    "defaultCache": {
-      "duration": "168h",
-      "strategy": "folder"
-    }
+    ]
   },
   {
     "type": "helm",
@@ -1052,7 +1249,7 @@
     "defaultTemplate": " \ue7fb {{ .Version }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0F1689",
-    "previewText": "⚓ v3.13.3",
+    "previewText": "\u2693 v3.13.3",
     "properties": [
       {
         "name": ".Version",
@@ -1073,7 +1270,7 @@
     "defaultTemplate": " \ue674 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#C71A36",
-    "previewText": "🪣 3.9.6",
+    "previewText": "\ud83e\udea3 3.9.6",
     "properties": [
       {
         "name": ".Full",
@@ -1210,7 +1407,7 @@
     "defaultTemplate": " \uf313 {{ .Type }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#5277C3",
-    "previewText": "❄️ devenv",
+    "previewText": "\u2744\ufe0f devenv",
     "properties": [
       {
         "name": ".Type",
@@ -1527,7 +1724,7 @@
     "defaultTemplate": " \ue87f {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1976D2",
-    "previewText": "🌟 2.13.0",
+    "previewText": "\ud83c\udf1f 2.13.0",
     "properties": [
       {
         "name": ".Full",
@@ -1599,7 +1796,7 @@
     "defaultTemplate": " \ue7ba {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#61DAFB",
-    "previewText": "⚛️ 18.2.0",
+    "previewText": "\u269b\ufe0f 18.2.0",
     "properties": [
       {
         "name": ".Full",
@@ -1671,7 +1868,7 @@
     "defaultTemplate": " \ue697 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#FF3E00",
-    "previewText": "🔥 4.2.8",
+    "previewText": "\ud83d\udd25 4.2.8",
     "properties": [
       {
         "name": ".Full",
@@ -1757,6 +1954,40 @@
     }
   },
   {
+    "type": "taskwarrior",
+    "name": "Taskwarrior",
+    "description": "Synced from upstream docs for the taskwarrior segment.",
+    "icon": "misc-clipboard",
+    "defaultTemplate": "\uf4a0 {{ range $k, $v := .Commands }}{{ $k }}:{{ $v }} {{ end }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#455A64",
+    "previewText": "📋 Due:3 Today:7",
+    "properties": [
+      {
+        "name": ".Commands",
+        "type": "map[string]string",
+        "description": "raw command output keyed by name with the first letter uppercased (e.g. \"Due\")"
+      }
+    ],
+    "options": [
+      {
+        "name": "command",
+        "type": "string",
+        "default": "task",
+        "description": "the Taskwarrior executable to use"
+      },
+      {
+        "name": "commands",
+        "type": "object",
+        "default": {
+          "due": "due",
+          "today": "today"
+        },
+        "description": "map of name to Taskwarrior arguments; the raw output is exposed in .Commands"
+      }
+    ]
+  },
+  {
     "type": "tauri",
     "name": "Tauri",
     "description": "Displays the current Tauri version when in a Tauri project",
@@ -1832,7 +2063,7 @@
     "type": "ui5tooling",
     "name": "UI5 Tooling",
     "description": "Displays the current UI5 tooling version when in a UI5 project",
-    "icon": "tool-wrench",
+    "icon": "ui-globe",
     "defaultTemplate": " \uf489 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#0A6ED1",
@@ -1908,7 +2139,7 @@
     "defaultTemplate": " \uefbf {{ .Version }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3544B1",
-    "previewText": "☂️ 13.0.0",
+    "previewText": "\u2602\ufe0f 13.0.0",
     "properties": [
       {
         "name": ".Modern",
@@ -1934,7 +2165,7 @@
     "defaultTemplate": " \ue721 {{ .UnityVersion }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#000000",
-    "previewText": "🎮 2023.2.0",
+    "previewText": "\ud83c\udfae 2023.2.0",
     "properties": [
       {
         "name": ".UnityVersion",
@@ -1977,7 +2208,7 @@
     "type": "xmake",
     "name": "XMake",
     "description": "Displays the current XMake version when in an XMake project",
-    "icon": "tool-wrench",
+    "icon": "tool-cmake",
     "defaultTemplate": " \uf489 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#48B9C7",
@@ -2048,7 +2279,7 @@
     "defaultTemplate": " \ue6a7 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#2C8EBB",
-    "previewText": "🧶 4.0.2",
+    "previewText": "\ud83e\uddf6 4.0.2",
     "properties": [
       {
         "name": ".Full",
@@ -2151,5 +2382,35 @@
       "duration": "168h",
       "strategy": "folder"
     }
+  },
+  {
+    "type": "zvm",
+    "name": "ZVM",
+    "description": "Synced from upstream docs for the zvm segment.",
+    "icon": "lang-zig",
+    "defaultTemplate": "{{ if .ZigIcon }}{{ .ZigIcon }} {{ end }}{{ .Version }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#455A64",
+    "previewText": "⚡ 0.13.0",
+    "properties": [
+      {
+        "name": ".Version",
+        "type": "string",
+        "description": "the active Zig version used by zvm"
+      },
+      {
+        "name": ".ZigIcon",
+        "type": "string",
+        "description": "the configured zigicon"
+      }
+    ],
+    "options": [
+      {
+        "name": "zigicon",
+        "type": "string",
+        "default": "ZVM",
+        "description": "the icon to display before the version"
+      }
+    ]
   }
 ]

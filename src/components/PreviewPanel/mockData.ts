@@ -190,6 +190,11 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
       { Name: 'App2', ID: 'app2', Current: '2.0', Available: '2.1' },
     ],
   },
+
+  vimode: {
+    Mode: 'normal',
+    Keymap: 'vicmd',
+  },
   
   // ============================================================
   // SCM SEGMENTS (Source Control)
@@ -428,6 +433,15 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     Major: '1',
     Minor: '21',
     Patch: '5',
+    Error: '',
+    URL: '',
+  },
+
+  golang: {
+    Full: '1.24.3',
+    Major: '1',
+    Minor: '24',
+    Patch: '3',
     Error: '',
     URL: '',
   },
@@ -716,6 +730,34 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
   command: {
     Output: 'command output',
   },
+
+  aspire: {
+    AppHostPath: '/Users/dev/src/MyAspireApp/MyAspireApp.AppHost.csproj',
+    Name: 'my-app',
+    Version: '9.0.0',
+    Lang: 'cs',
+    Running: true,
+  },
+
+  gradle: {
+    Full: '8.8.0',
+    Major: '8',
+    Minor: '8',
+    Patch: '0',
+    KotlinVersion: '1.9.22',
+    GroovyVersion: '3.0.21',
+    AntVersion: '1.10.14',
+    JVMVersion: '21.0.3',
+    URL: 'https://docs.gradle.org/8.8/release-notes.html',
+    Error: '',
+  },
+
+  taskwarrior: {
+    Commands: {
+      Due: '3',
+      Today: '7',
+    },
+  },
   
   volta: {
     Full: '1.1.1',
@@ -743,6 +785,11 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     Major: '4',
     Minor: '0',
     Patch: '0',
+  },
+
+  zvm: {
+    Version: '0.13.0',
+    ZigIcon: '⚡',
   },
   
   // ============================================================
@@ -805,6 +852,14 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     },
     BillingCycleEnd: '2025-01-15',
   },
+
+  'copilot-cli': {
+    Model: {
+      DisplayName: 'GPT-5.5',
+    },
+    TokenGauge: '▰▰▰▱▱',
+    RemainingTokenPercentage: 62,
+  },
   
   // ============================================================
   // MUSIC SEGMENTS
@@ -855,6 +910,16 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     AverageWatts: 180,
     KudosCount: 15,
   },
+
+  ramadan: {
+    Fajr: '04:58',
+    Iftar: '18:42',
+    Imsak: '04:48',
+    RozaNumber: 12,
+    NextEvent: 'Iftar',
+    TimeRemaining: '01:24',
+    Fasting: true,
+  },
   
   withings: {
     Steps: 8542,
@@ -881,6 +946,23 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
   ipify: {
     IP: '192.168.1.100',
   },
+
+  nba: {
+    HomeTeam: 'BOS',
+    AwayTeam: 'NYK',
+    Time: '00:42',
+    GameDate: '2026-06-27',
+    StartTimeUTC: '2026-06-27T00:42:00Z',
+    GameStatus: 2,
+    HomeScore: 102,
+    AwayScore: 99,
+    HomeTeamWins: 61,
+    HomeTeamLosses: 21,
+    AwayTeamWins: 50,
+    AwayTeamLosses: 32,
+    Started: true,
+    HasStats: true,
+  },
   
   owm: {
     Weather: '\uf185',
@@ -888,6 +970,10 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     UnitIcon: '°F',
     Units: 'imperial',
     Location: 'Seattle',
+  },
+
+  todoist: {
+    TaskCount: 7,
   },
   
   wakatime: {

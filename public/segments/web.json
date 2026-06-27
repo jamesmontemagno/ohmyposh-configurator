@@ -7,7 +7,7 @@
     "defaultTemplate": " {{ .StatusIcon }} {{ .Recipe.Name }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#D78C14",
-    "previewText": "🍺 IPA Batch",
+    "previewText": "\ud83c\udf7a IPA Batch",
     "properties": [
       {
         "name": ".Status",
@@ -181,50 +181,104 @@
     ]
   },
   {
-    "type": "wakatime",
-    "name": "WakaTime",
-    "description": "Displays your total coding time for the current day as tracked by WakaTime.",
-    "icon": "misc-clock",
-    "defaultTemplate": " \uf017 {{ secondsRound .CumulativeTotal.Seconds }} ",
+    "type": "nba",
+    "name": "NBA",
+    "description": "Synced from upstream docs for the nba segment.",
+    "icon": "ui-globe",
+    "defaultTemplate": "\udb82\udc06 {{ .HomeTeam}}{{ if .HasStats }} ({{.HomeTeamWins}}-{{.HomeTeamLosses}}){{ end }}{{ if .Started }}:{{.HomeScore}}{{ end }} vs {{ .AwayTeam}}{{ if .HasStats }} ({{.AwayTeamWins}}-{{.AwayTeamLosses}}){{ end }}{{ if .Started }}:{{.AwayScore}}{{ end }} | {{ if not .Started }}{{.GameDate}} | {{ end }}{{.Time}}",
     "defaultForeground": "#ffffff",
-    "defaultBackground": "#000000",
-    "previewText": "3h 24m",
+    "defaultBackground": "#00ACC1",
+    "previewText": "\ud83c\udfc0 BOS (61-21):102 vs NYK (50-32):99 | 00:42",
     "properties": [
       {
-        "name": ".CumulativeTotal.Seconds",
-        "type": "float64",
-        "description": "total tracked time in seconds"
+        "name": ".HomeTeam",
+        "type": "string",
+        "description": "home team for the upcoming game"
       },
       {
-        "name": ".CumulativeTotal.Text",
+        "name": ".AwayTeam",
         "type": "string",
-        "description": "human readable tracked time"
+        "description": "away team for the upcoming game"
+      },
+      {
+        "name": ".Time",
+        "type": "string",
+        "description": "time (EST) that the upcoming game will start"
+      },
+      {
+        "name": ".GameDate",
+        "type": "string",
+        "description": "date the game will happen"
+      },
+      {
+        "name": ".StartTimeUTC",
+        "type": "string",
+        "description": "time (UTC) the game will start"
+      },
+      {
+        "name": ".GameStatus",
+        "type": "integer",
+        "description": "integer, 1 = scheduled, 2 = in progress, 3 = finished"
+      },
+      {
+        "name": ".HomeScore",
+        "type": "int",
+        "description": "score of the home team"
+      },
+      {
+        "name": ".AwayScore",
+        "type": "int",
+        "description": "score of the away team"
+      },
+      {
+        "name": ".HomeTeamWins",
+        "type": "int",
+        "description": "number of wins the home team currently has for the season"
+      },
+      {
+        "name": ".HomeTeamLosses",
+        "type": "int",
+        "description": "number of losses the home team currently has for the season"
+      },
+      {
+        "name": ".AwayTeamWins",
+        "type": "int",
+        "description": "number of wins the away team currently has for the season"
+      },
+      {
+        "name": ".AwayTeamLosses",
+        "type": "int",
+        "description": "number of losses the away team currently has for the season"
+      },
+      {
+        "name": ".Started",
+        "type": "boolean",
+        "description": "if the game was started or not"
+      },
+      {
+        "name": ".HasStats",
+        "type": "boolean",
+        "description": "if the game has game stats or not"
       }
     ],
     "options": [
       {
-        "name": "url",
-        "type": "string",
-        "default": "https://wakatime.com/api/v1/users/current/summaries",
-        "description": "WakaTime API URL"
-      },
-      {
-        "name": "api_key",
+        "name": "team",
         "type": "string",
         "default": "",
-        "description": "WakaTime API key"
+        "description": "tri-code for the NBA team you want to get data for"
+      },
+      {
+        "name": "days_offset",
+        "type": "int",
+        "default": 8,
+        "description": "how many days in advance you wish to see that information for"
       },
       {
         "name": "http_timeout",
         "type": "number",
         "default": 20,
-        "description": "HTTP timeout in milliseconds"
-      },
-      {
-        "name": "cache_timeout",
-        "type": "number",
-        "default": 10,
-        "description": "Cache timeout in minutes"
+        "description": "How long do you want to wait before you want to see your prompt more than your sugar? I figure a half second is a good default"
       }
     ]
   },
@@ -236,7 +290,7 @@
     "defaultTemplate": " {{ .Weather }} {{ .Temperature }}{{ .UnitIcon }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#1E88E5",
-    "previewText": "☀️ 72°F",
+    "previewText": "\u2600\ufe0f 72\u00b0F",
     "properties": [
       {
         "name": ".Weather",
@@ -277,6 +331,85 @@
           "metric",
           "imperial"
         ]
+      },
+      {
+        "name": "http_timeout",
+        "type": "number",
+        "default": 20,
+        "description": "HTTP timeout in milliseconds"
+      },
+      {
+        "name": "cache_timeout",
+        "type": "number",
+        "default": 10,
+        "description": "Cache timeout in minutes"
+      }
+    ]
+  },
+  {
+    "type": "todoist",
+    "name": "Todoist",
+    "description": "Synced from upstream docs for the todoist segment.",
+    "icon": "ui-globe",
+    "defaultTemplate": "{{ .TaskCount }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#00ACC1",
+    "previewText": "✅ 7",
+    "properties": [
+      {
+        "name": ".TaskCount",
+        "type": "int",
+        "description": "the number of tasks due today"
+      }
+    ],
+    "options": [
+      {
+        "name": "api_key",
+        "type": "string",
+        "default": ".",
+        "description": "Your API Key from [Todoist][todoist]"
+      },
+      {
+        "name": "http_timeout",
+        "type": "int",
+        "default": 20,
+        "description": "The time (_in milliseconds_, ms) it takes to consider an http request as **timed-out**. If no segment is shown, try increasing this timeout."
+      }
+    ]
+  },
+  {
+    "type": "wakatime",
+    "name": "WakaTime",
+    "description": "Displays your total coding time for the current day as tracked by WakaTime.",
+    "icon": "misc-clock",
+    "defaultTemplate": " \uf017 {{ secondsRound .CumulativeTotal.Seconds }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#000000",
+    "previewText": "3h 24m",
+    "properties": [
+      {
+        "name": ".CumulativeTotal.Seconds",
+        "type": "float64",
+        "description": "total tracked time in seconds"
+      },
+      {
+        "name": ".CumulativeTotal.Text",
+        "type": "string",
+        "description": "human readable tracked time"
+      }
+    ],
+    "options": [
+      {
+        "name": "url",
+        "type": "string",
+        "default": "https://wakatime.com/api/v1/users/current/summaries",
+        "description": "WakaTime API URL"
+      },
+      {
+        "name": "api_key",
+        "type": "string",
+        "default": "",
+        "description": "WakaTime API key"
       },
       {
         "name": "http_timeout",

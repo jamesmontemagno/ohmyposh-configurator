@@ -25,9 +25,9 @@ function SegmentItem({ segment, onAdd }: SegmentItemProps) {
       <NerdIcon icon="ui-grip-vertical" size={12} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
       <NerdIcon icon={segment.icon} size={16} className="text-gray-400 flex-shrink-0" />
       <div className="flex-1 min-w-0">
-        <div className="text-[0.9rem] text-gray-200 truncate">{segment.name}</div>
+        <div className="text-[0.95rem] text-gray-200 truncate">{segment.name}</div>
         {segment.previewText && (
-          <div className="text-xs text-gray-500 font-mono truncate">{segment.previewText}</div>
+          <div className="text-[0.8rem] text-gray-500 font-mono truncate">{segment.previewText}</div>
         )}
       </div>
       <button
@@ -64,8 +64,8 @@ function CategorySection({ category, segments, onAdd, isExpanded, onToggle }: Ca
           <NerdIcon icon="ui-chevron-right" size={14} className="text-gray-400" />
         )}
         <NerdIcon icon={category.icon} size={14} className="text-gray-400" />
-        <span className="text-xs font-medium text-gray-200">{category.name}</span>
-        <span className="text-xs text-gray-500 ml-auto">{segments.length}</span>
+        <span className="text-sm font-medium text-gray-200">{category.name}</span>
+        <span className="text-sm text-gray-500 ml-auto">{segments.length}</span>
       </button>
       {isExpanded && (
         <div className="ml-1 mt-0.5">

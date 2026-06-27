@@ -7,7 +7,7 @@
     "defaultTemplate": " {{ if not .Error }}{{ .Icon }} {{ .Percentage }}%{{ end }}{{ .Error }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#f36943",
-    "previewText": "🔋85%",
+    "previewText": "\ud83d\udd0b85%",
     "properties": [
       {
         "name": ".Percentage",
@@ -147,7 +147,7 @@
     "defaultTemplate": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#546E7A",
-    "previewText": "🍎",
+    "previewText": "\ud83c\udf4e",
     "properties": [
       {
         "name": ".Icon",
@@ -517,7 +517,7 @@
     "defaultTemplate": " \uf0e7 ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#ffcc00",
-    "previewText": "⚡",
+    "previewText": "\u26a1",
     "properties": []
   },
   {
@@ -550,7 +550,7 @@
       {
         "name": "ssh_icon",
         "type": "string",
-        "default": "📡",
+        "default": "\ud83d\udce1",
         "description": "Icon for SSH connections"
       },
       {
@@ -621,7 +621,7 @@
     "defaultTemplate": " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ .Code }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#00897b",
-    "previewText": "✓",
+    "previewText": "\u2713",
     "properties": [
       {
         "name": ".Code",
@@ -695,11 +695,12 @@
     "name": "Text",
     "description": "Displays a custom static string or template-based text.",
     "icon": "file-text",
-    "defaultTemplate": " hello ",
+    "defaultTemplate": "",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#546E7A",
     "previewText": "hello",
-    "properties": []
+    "properties": [],
+    "options": []
   },
   {
     "type": "time",
@@ -760,5 +761,28 @@
         "description": "Cache duration for update check (e.g., \"24h\", \"7d\")"
       }
     ]
+  },
+  {
+    "type": "vimode",
+    "name": "Vi mode",
+    "description": "Synced from upstream docs for the vimode segment.",
+    "icon": "dev-terminal",
+    "defaultTemplate": "{{ .Mode }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#546E7A",
+    "previewText": "\u2328\ufe0f normal",
+    "properties": [
+      {
+        "name": ".Mode",
+        "type": "string",
+        "description": "the normalized mode: insert, normal, visual, viopp, replace, or the raw keymap when unmapped"
+      },
+      {
+        "name": ".Keymap",
+        "type": "string",
+        "description": "the raw [$KEYMAP][zsh-keymap] value reported by ZSH (e.g. main, viins, vicmd, visual, viopp)"
+      }
+    ],
+    "options": []
   }
 ]

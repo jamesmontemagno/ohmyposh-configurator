@@ -96,25 +96,27 @@ export function ExportBar() {
 
   return (
     <div className="bg-[#16213e] border-t border-[#0f3460] relative">
-      <div className="flex items-center justify-between px-4 py-2">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 px-2 sm:px-4 py-2 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setShowCode(!showCode)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            aria-label={showCode ? 'Hide configuration code' : 'View configuration code'}
+            title={showCode ? 'Hide configuration code' : 'View configuration code'}
           >
             {showCode ? <NerdIcon icon="ui-eye-off" size={16} /> : <NerdIcon icon="ui-eye" size={16} />}
-            <span>{showCode ? 'Hide' : 'View'} Config</span>
+            <span className="hidden sm:inline">{showCode ? 'Hide' : 'View'} Config</span>
           </button>
           
-          <div className="w-px h-6 bg-[#0f3460]" />
+          <div className="hidden sm:block w-px h-6 bg-[#0f3460]" />
           
-          <span className="text-sm text-gray-300">Format:</span>
+          <span className="text-sm text-gray-300 hidden sm:inline">Format:</span>
           <div className="flex items-center gap-1 bg-[#1a1a2e] rounded p-0.5">
             {formatOptions.map((format) => (
               <button
                 key={format.value}
                 onClick={() => setExportFormat(format.value)}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
+                className={`px-2 sm:px-3 py-1 text-xs rounded transition-colors ${
                   exportFormat === format.value
                     ? 'bg-[#e94560] text-white'
                     : 'text-gray-400 hover:text-white'
@@ -126,15 +128,15 @@ export function ExportBar() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {/* Save button */}
           <button
             onClick={() => setShowSaveDialog(true)}
-            className="relative flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-green-400 hover:bg-green-900/20 rounded transition-colors"
+            className="relative flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-green-400 hover:bg-green-900/20 rounded transition-colors"
             title={lastLoadedId ? `Update "${currentConfigName}"` : "Save to My Configs"}
           >
             <NerdIcon icon="action-save" size={16} />
-            <span>Save</span>
+            <span className="hidden sm:inline">Save</span>
             {/* Unsaved indicator dot */}
             {hasUnsavedChanges && (
               <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-[#16213e]" />
@@ -144,11 +146,11 @@ export function ExportBar() {
           <div className="relative" ref={importDropdownRef}>
             <button
               onClick={() => setShowImportDropdown(!showImportDropdown)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+              className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
               title="Import configuration"
             >
               <NerdIcon icon="action-upload" size={16} />
-              <span>Import</span>
+              <span className="hidden sm:inline">Import</span>
               <NerdIcon icon="ui-chevron-down" size={14} className={`transition-transform ${showImportDropdown ? 'rotate-180' : ''}`} />
             </button>
             
@@ -176,18 +178,22 @@ export function ExportBar() {
 
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+            aria-label={copied ? 'Configuration copied' : 'Copy configuration'}
+            title={copied ? 'Configuration copied' : 'Copy configuration'}
           >
             {copied ? <NerdIcon icon="ui-check" size={16} className="text-green-400" /> : <NerdIcon icon="action-copy" size={16} />}
-            <span>{copied ? 'Copied!' : 'Copy'}</span>
+            <span className="hidden sm:inline">{copied ? 'Copied!' : 'Copy'}</span>
           </button>
 
           <button
             onClick={handleDownload}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-white bg-[#e94560] hover:bg-[#d63850] rounded transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-white bg-[#e94560] hover:bg-[#d63850] rounded transition-colors"
+            aria-label="Download configuration"
+            title="Download configuration"
           >
             <NerdIcon icon="action-download" size={16} />
-            <span>Download</span>
+            <span className="hidden sm:inline">Download</span>
           </button>
         </div>
       </div>

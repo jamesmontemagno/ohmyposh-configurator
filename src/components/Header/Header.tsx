@@ -46,21 +46,21 @@ export function Header() {
   }, []);
 
   return (
-    <header className="bg-[#16213e] border-b border-[#0f3460] px-4 py-3 flex items-center justify-between relative">
-      <div className="flex items-center gap-3">
-        <div className="p-2 bg-purple-600 rounded-lg">
+    <header className="bg-[#16213e] border-b border-[#0f3460] px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2 flex-wrap relative">
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+        <div className="p-1.5 sm:p-2 bg-purple-600 rounded-lg">
           <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
         </div>
-        <div>
-          <h1 className="text-lg font-bold text-white">Oh My Posh Configurator</h1>
-          <p className="text-xs text-gray-400">Visual Configuration Builder</p>
+        <div className="min-w-0">
+          <h1 className="text-base sm:text-lg font-bold text-white truncate">Oh My Posh Configurator</h1>
+          <p className="hidden sm:block text-xs text-gray-400">Visual Configuration Builder</p>
         </div>
         
         {/* Current config indicator */}
         {currentConfigName && (
-          <div className="flex items-center gap-2 ml-2 pl-4 border-l border-[#0f3460]">
+          <div className="hidden lg:flex items-center gap-2 ml-2 pl-4 border-l border-[#0f3460]">
             <div className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-900/40 border border-purple-700/50 rounded-lg">
               <NerdIcon icon="action-save" size={14} className="text-purple-400" />
               <span className="text-sm text-purple-200 max-w-[200px] truncate" title={currentConfigName}>
@@ -74,10 +74,10 @@ export function Header() {
         )}
       </div>
       
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <button
           onClick={handleResetConfig}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded transition-colors"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded transition-colors"
           title="Reset to default configuration"
         >
           <NerdIcon icon="action-refresh" size={16} />
@@ -88,7 +88,7 @@ export function Header() {
         
         <button
           onClick={() => setShowAdvancedSettings(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors relative"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors relative"
           title="Settings & Tools"
         >
           <NerdIcon icon="tool-settings" size={16} />
@@ -98,7 +98,9 @@ export function Header() {
         <div className="relative" ref={githubDropdownRef}>
           <button
             onClick={() => setShowGitHubDropdown(!showGitHubDropdown)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+            aria-label="Open GitHub links menu"
+            title="GitHub"
           >
             <NerdIcon icon="vcs-github" size={16} />
             <span className="hidden sm:inline">GitHub</span>
@@ -154,7 +156,9 @@ export function Header() {
           href="https://ohmyposh.dev/docs"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+          aria-label="Open Oh My Posh documentation"
+          title="Docs"
         >
           <NerdIcon icon="misc-book" size={16} />
           <span className="hidden sm:inline">Docs</span>
