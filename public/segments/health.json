@@ -7,7 +7,7 @@
     "defaultTemplate": " \uf21e {{ .Sgv }}{{ .TrendIcon }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#E74C3C",
-    "previewText": "120↗",
+    "previewText": "120\u2197",
     "properties": [
       {
         "name": ".Sgv",
@@ -44,6 +44,117 @@
         "type": "number",
         "default": 5,
         "description": "Cache timeout in minutes"
+      }
+    ]
+  },
+  {
+    "type": "ramadan",
+    "name": "Ramadan",
+    "description": "Synced from upstream docs for the ramadan segment.",
+    "icon": "health-heartbeat",
+    "defaultTemplate": "\ud83c\udf19 Roza {{.RozaNumber}} \u00b7 {{.NextEvent}} in {{.TimeRemaining}}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#E53935",
+    "previewText": "\ud83c\udf19 Roza 12 \u00b7 Iftar in 01:24",
+    "properties": [
+      {
+        "name": ".Fajr",
+        "type": "string",
+        "description": "Sehar (Fajr) time in HH:MM format"
+      },
+      {
+        "name": ".Iftar",
+        "type": "string",
+        "description": "Iftar (Maghrib) time in HH:MM format"
+      },
+      {
+        "name": ".Imsak",
+        "type": "string",
+        "description": "Imsak time in HH:MM format (~10 min before Fajr)"
+      },
+      {
+        "name": ".RozaNumber",
+        "type": "int",
+        "description": "Day number within Ramadan (1\u201330)"
+      },
+      {
+        "name": ".NextEvent",
+        "type": "string",
+        "description": "Name of the next event: Sehar or Iftar"
+      },
+      {
+        "name": ".TimeRemaining",
+        "type": "string",
+        "description": "Countdown to the next event, e.g. 3h 42m"
+      },
+      {
+        "name": ".Fasting",
+        "type": "boolean",
+        "description": "true when currently between Fajr and Maghrib (fasting window)"
+      }
+    ],
+    "options": [
+      {
+        "name": "latitude",
+        "type": "float64",
+        "default": 0,
+        "description": "Latitude for prayer time calculation (use with longitude)"
+      },
+      {
+        "name": "longitude",
+        "type": "float64",
+        "default": 0,
+        "description": "Longitude for prayer time calculation (use with latitude)"
+      },
+      {
+        "name": "city",
+        "type": "string",
+        "default": "\"\"",
+        "description": "City name for location lookup \u2014 takes precedence over latitude/longitude",
+        "values": [
+          "latitude",
+          "longitude"
+        ]
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "default": "\"\"",
+        "description": "Country name or ISO 3166 alpha-2 code \u2014 required when using city"
+      },
+      {
+        "name": "method",
+        "type": "int",
+        "default": 3,
+        "description": "Prayer calculation method (0\u201323, 99). See [Aladhan methods][methods] for details"
+      },
+      {
+        "name": "school",
+        "type": "int",
+        "default": 0,
+        "description": "Madhab school: 0 = Shafi (standard), 1 = Hanafi",
+        "values": [
+          "0",
+          "1"
+        ]
+      },
+      {
+        "name": "hide_outside_ramadan",
+        "type": "boolean",
+        "default": true,
+        "description": "Hide the segment when not in Ramadan"
+      },
+      {
+        "name": "first_roza_date",
+        "type": "string",
+        "default": "\"\"",
+        "description": "Override first day of Ramadan as YYYY-MM-DD for local moon sighting"
+      },
+      {
+        "name": "http_timeout",
+        "type": "int",
+        "default": 20,
+        "description": "HTTP request timeout in milliseconds"
       }
     ]
   },

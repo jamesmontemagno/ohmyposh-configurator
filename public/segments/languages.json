@@ -1,79 +1,5 @@
 [
   {
-    "type": "dotnet",
-    "name": ".NET",
-    "description": "Displays the current .NET SDK version and support status",
-    "icon": "lang-csharp",
-    "defaultTemplate": " .NET {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
-    "defaultForeground": "#ffffff",
-    "defaultBackground": "#512BD4",
-    "previewText": ".NET 10.0.101",
-    "properties": [
-      {
-        "name": ".Full",
-        "type": "string",
-        "description": "the full version"
-      },
-      {
-        "name": ".Unsupported",
-        "type": "boolean",
-        "description": "true when the version is not supported"
-      },
-      {
-        "name": ".Error",
-        "type": "string",
-        "description": "error encountered when fetching the version string"
-      }
-    ],
-    "options": [
-      {
-        "name": "home_enabled",
-        "type": "boolean",
-        "default": false,
-        "description": "Display in HOME folder"
-      },
-      {
-        "name": "fetch_version",
-        "type": "boolean",
-        "default": true,
-        "description": "Fetch .NET version"
-      },
-      {
-        "name": "cache_duration",
-        "type": "string",
-        "default": "none",
-        "description": "Cache duration (e.g., \"5m\", \"1h\")"
-      },
-      {
-        "name": "missing_command_text",
-        "type": "string",
-        "default": "",
-        "description": "Text when command is missing"
-      },
-      {
-        "name": "display_mode",
-        "type": "enum",
-        "default": "context",
-        "description": "When to display segment",
-        "values": [
-          "always",
-          "files",
-          "context"
-        ]
-      },
-      {
-        "name": "version_url_template",
-        "type": "string",
-        "default": "",
-        "description": "Template for version URL"
-      }
-    ],
-    "defaultCache": {
-      "duration": "168h",
-      "strategy": "folder"
-    }
-  },
-  {
     "type": "clojure",
     "name": "Clojure",
     "description": "Displays the current Clojure version when in a Clojure project",
@@ -304,6 +230,80 @@
         "type": "boolean",
         "default": true,
         "description": "Fetch Dart version"
+      },
+      {
+        "name": "cache_duration",
+        "type": "string",
+        "default": "none",
+        "description": "Cache duration (e.g., \"5m\", \"1h\")"
+      },
+      {
+        "name": "missing_command_text",
+        "type": "string",
+        "default": "",
+        "description": "Text when command is missing"
+      },
+      {
+        "name": "display_mode",
+        "type": "enum",
+        "default": "context",
+        "description": "When to display segment",
+        "values": [
+          "always",
+          "files",
+          "context"
+        ]
+      },
+      {
+        "name": "version_url_template",
+        "type": "string",
+        "default": "",
+        "description": "Template for version URL"
+      }
+    ],
+    "defaultCache": {
+      "duration": "168h",
+      "strategy": "folder"
+    }
+  },
+  {
+    "type": "dotnet",
+    "name": ".NET",
+    "description": "Displays the current .NET SDK version and support status",
+    "icon": "lang-csharp",
+    "defaultTemplate": " .NET {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#512BD4",
+    "previewText": ".NET 10.0.101",
+    "properties": [
+      {
+        "name": ".Full",
+        "type": "string",
+        "description": "the full version"
+      },
+      {
+        "name": ".Unsupported",
+        "type": "boolean",
+        "description": "true when the version is not supported"
+      },
+      {
+        "name": ".Error",
+        "type": "string",
+        "description": "error encountered when fetching the version string"
+      }
+    ],
+    "options": [
+      {
+        "name": "home_enabled",
+        "type": "boolean",
+        "default": false,
+        "description": "Display in HOME folder"
+      },
+      {
+        "name": "fetch_version",
+        "type": "boolean",
+        "default": true,
+        "description": "Fetch .NET version"
       },
       {
         "name": "cache_duration",
@@ -606,6 +606,125 @@
       "duration": "168h",
       "strategy": "folder"
     }
+  },
+  {
+    "type": "golang",
+    "name": "Golang",
+    "description": "Synced from upstream docs for the golang segment.",
+    "icon": "lang-go",
+    "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#3776ab",
+    "previewText": "🐹 1.24.3",
+    "properties": [
+      {
+        "name": ".Full",
+        "type": "string",
+        "description": "the full version"
+      },
+      {
+        "name": ".Major",
+        "type": "string",
+        "description": "major number"
+      },
+      {
+        "name": ".Minor",
+        "type": "string",
+        "description": "minor number"
+      },
+      {
+        "name": ".Patch",
+        "type": "string",
+        "description": "patch number"
+      },
+      {
+        "name": ".URL",
+        "type": "string",
+        "description": "URL of the version info / release notes"
+      },
+      {
+        "name": ".Error",
+        "type": "string",
+        "description": "error encountered when fetching the version string"
+      }
+    ],
+    "options": [
+      {
+        "name": "home_enabled",
+        "type": "boolean",
+        "default": false,
+        "description": "display the segment in the HOME folder or not"
+      },
+      {
+        "name": "fetch_version",
+        "type": "boolean",
+        "default": true,
+        "description": "fetch the golang version"
+      },
+      {
+        "name": "cache_duration",
+        "type": "string",
+        "default": "none",
+        "description": "the duration for which the version will be cached. The duration is a string in the format 1h2m3s and is parsed using the [time.ParseDuration] function from the Go standard library. To disable the cache, use none",
+        "values": [
+          "1h2m3s",
+          "none"
+        ]
+      },
+      {
+        "name": "missing_command_text",
+        "type": "string",
+        "default": "",
+        "description": "text to display when the command is missing"
+      },
+      {
+        "name": "display_mode",
+        "type": "string",
+        "default": "context",
+        "description": "always: the segment is always displayed files: the segment is only displayed when file extensions listed are present context: displays the segment when the environment or files is active",
+        "values": [
+          "always",
+          "files",
+          "context"
+        ]
+      },
+      {
+        "name": "version_url_template",
+        "type": "string",
+        "default": "",
+        "description": "a go [text/template][go-text-template] [template][templates] that creates the URL of the version info / release notes"
+      },
+      {
+        "name": "parse_mod_file",
+        "type": "boolean",
+        "default": false,
+        "description": "parse the go.mod file instead of calling go version"
+      },
+      {
+        "name": "parse_go_work_file",
+        "type": "boolean",
+        "default": false,
+        "description": "parse the go.work file instead of calling go version"
+      },
+      {
+        "name": "extensions",
+        "type": "[]string",
+        "default": "*.go, go.mod, go.work, go.sum, go.work.sum",
+        "description": "allows to override the default list of file extensions to validate"
+      },
+      {
+        "name": "folders",
+        "type": "[]string",
+        "default": "",
+        "description": "allows to override the list of folder names to validate"
+      },
+      {
+        "name": "tooling",
+        "type": "[]string",
+        "default": "mod, go",
+        "description": "the tooling to use for fetching the version"
+      }
+    ]
   },
   {
     "type": "haskell",
@@ -1611,7 +1730,7 @@
     "defaultTemplate": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3776AB",
-    "previewText": "🐍 venv 3.12.0",
+    "previewText": "\ud83d\udc0d venv 3.12.0",
     "properties": [
       {
         "name": ".Venv",
@@ -1801,7 +1920,7 @@
     "defaultTemplate": " \ue791 {{ .Full }} ",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#CC342D",
-    "previewText": "💎 3.3.0",
+    "previewText": "\ud83d\udc8e 3.3.0",
     "properties": [
       {
         "name": ".Full",

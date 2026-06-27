@@ -293,6 +293,21 @@ export function getPreviewText(
       const value = getNestedValue(prop);
       return String(value) === compareValue ? content : '';
     });
+
+    // Handle simple map range loops - {{ range $k, $v := .Commands }}{{ $k }}:{{ $v }} {{ end }}
+    result = result.replace(/\{\{\s*range\s+\$k\s*,\s*\$v\s*:=\s*\.([.\w]+)\s*\}\}([\s\S]*?)\{\{\s*end\s*\}\}/g, (_match, prop, body) => {
+      const value = getNestedValue(prop);
+      if (!value || typeof value !== 'object' || Array.isArray(value)) {
+        return '';
+      }
+
+      return Object.entries(value as Record<string, unknown>)
+        .map(([k, v]) => body
+          .replace(/\{\{\s*\$k\s*\}\}/g, String(k))
+          .replace(/\{\{\s*\$v\s*\}\}/g, String(v ?? ''))
+        )
+        .join('');
+    });
     
     // Handle remaining if statements
     result = result.replace(/\{\{\s*if\s+[^}]*\}\}/g, '');
@@ -365,6 +380,7 @@ export function getPreviewText(
     node: () => segmentData.Full as string,
     python: () => segmentData.Full as string,
     go: () => segmentData.Full as string,
+    golang: () => segmentData.Full as string,
     rust: () => segmentData.Full as string,
     dotnet: () => segmentData.Full as string,
     java: () => segmentData.Full as string,
@@ -397,6 +413,18 @@ export function getPreviewText(
     carbonintensity: () => ((segmentData.Actual as Record<string, unknown>)?.Index as string) || 'low',
     claude: () => `🤖 ${((segmentData.Model as Record<string, unknown>)?.DisplayName as string) || 'Claude'} ${((segmentData.TokenUsagePercent as Record<string, unknown>)?.Gauge as string) || ''}`,
     copilot: () => ((segmentData.Premium as Record<string, Record<string, unknown>>)?.Percent?.Gauge as string) || '████░',
+    'copilot-cli': () => `\uec1e ${((segmentData.Model as Record<string, unknown>)?.DisplayName as string) || 'GPT-5.5'} \uf2d0 ${(segmentData.TokenGauge as string) || '▰▰▰▱▱'}`,
+    aspire: () => `▲ ${(segmentData.Name as string) || 'my-app'}${segmentData.Running ? ' ✓' : ''}`,
+    gradle: () => (segmentData.Full as string) || '8.8.0',
+    taskwarrior: () => {
+      const commands = (segmentData.Commands as Record<string, string>) || {};
+      return Object.entries(commands).map(([k, v]) => `${k}:${v}`).join(' ');
+    },
+    zvm: () => `${(segmentData.ZigIcon as string) || '⚡'} ${(segmentData.Version as string) || '0.13.0'}`,
+    nba: () => `🏀 ${(segmentData.HomeTeam as string) || 'BOS'}:${(segmentData.HomeScore as string | number) || '0'} vs ${(segmentData.AwayTeam as string) || 'NYK'}:${(segmentData.AwayScore as string | number) || '0'}`,
+    todoist: () => `✅ ${(segmentData.TaskCount as string | number) || 0}`,
+    ramadan: () => `🌙 Roza ${(segmentData.RozaNumber as string | number) || 1} · ${(segmentData.NextEvent as string) || 'Iftar'} in ${(segmentData.TimeRemaining as string) || '01:24'}`,
+    vimode: () => `⌨️ ${(segmentData.Mode as string) || 'normal'}`,
     winget: () => `${segmentData.UpdateCount} updates`,
     os: () => '🪟',
     shell: () => segmentData.Name as string,

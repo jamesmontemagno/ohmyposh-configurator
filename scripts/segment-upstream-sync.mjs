@@ -331,7 +331,24 @@ function extractSourceTemplate(content) {
 }
 
 function stableStringify(value) {
-  return JSON.stringify(value, null, 2);
+  const json = JSON.stringify(value, null, 2);
+
+  // Keep non-ASCII characters escaped in generated JSON (for consistent diffs).
+  return json.replace(/[\u0080-\u{10FFFF}]/gu, (char) => {
+    const codePoint = char.codePointAt(0);
+    if (codePoint === undefined) {
+      return char;
+    }
+
+    if (codePoint <= 0xffff) {
+      return `\\u${codePoint.toString(16).padStart(4, '0')}`;
+    }
+
+    const adjusted = codePoint - 0x10000;
+    const highSurrogate = 0xd800 + (adjusted >> 10);
+    const lowSurrogate = 0xdc00 + (adjusted & 0x3ff);
+    return `\\u${highSurrogate.toString(16).padStart(4, '0')}\\u${lowSurrogate.toString(16).padStart(4, '0')}`;
+  });
 }
 
 async function loadLocalInventory() {
@@ -745,6 +762,43 @@ function segmentSort(left, right) {
   return left.type.localeCompare(right.type);
 }
 
+const CATEGORY_DEFAULT_COLORS = {
+  system: '#546E7A',
+  scm: '#4CAF50',
+  languages: '#3776ab',
+  cloud: '#5c6bc0',
+  cli: '#455A64',
+  web: '#00ACC1',
+  music: '#7E57C2',
+  health: '#E53935',
+};
+
+const CATEGORY_FALLBACK_ICONS = {
+  system: 'dev-terminal',
+  scm: 'vcs-git-branch',
+  languages: 'lang-go',
+  cloud: 'cloud-generic',
+  cli: 'tool-wrench',
+  web: 'ui-globe',
+  music: 'misc-clock',
+  health: 'health-heartbeat',
+};
+
+function buildAddedSegment(upstream) {
+  return {
+    type: upstream.type,
+    name: upstream.name,
+    description: `Synced from upstream docs for the ${upstream.type} segment.`,
+    icon: CATEGORY_FALLBACK_ICONS[upstream.category] ?? 'tool-wrench',
+    defaultTemplate: upstream.defaultTemplate,
+    defaultForeground: '#ffffff',
+    defaultBackground: CATEGORY_DEFAULT_COLORS[upstream.category] ?? '#455A64',
+    previewText: upstream.name,
+    properties: upstream.properties,
+    options: upstream.options,
+  };
+}
+
 async function applySafeFixes(results, localFileData) {
   const touchedCategories = new Set();
   const changedFiles = [];
@@ -768,6 +822,27 @@ async function applySafeFixes(results, localFileData) {
     target.defaultTemplate = result.upstream.defaultTemplate;
     target.properties = result.upstream.properties;
     target.options = result.upstream.options;
+    touchedCategories.add(category);
+  }
+
+  for (const result of results) {
+    if (result.status !== 'added-upstream' || !result.upstream) {
+      continue;
+    }
+
+    const category = result.upstream.category;
+    const fileInfo = localFileData.get(category);
+    if (!fileInfo) {
+      continue;
+    }
+
+    const alreadyExists = fileInfo.segments.some((segment) => segment.type === result.type);
+    if (alreadyExists) {
+      continue;
+    }
+
+    fileInfo.segments.push(buildAddedSegment(result.upstream));
+    fileInfo.segments.sort((left, right) => left.type.localeCompare(right.type));
     touchedCategories.add(category);
   }
 
