@@ -2,6 +2,14 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-05-16]
+
+### Added: Segment Upstream Sync Maintenance
+
+- Added a repeatable upstream segment sync script to compare `public/segments/` against live Oh My Posh docs and repository sources
+- Added generation of `docs/segment-upstream-sync-report.md` with drift classification, evidence links, and a recurring maintenance checklist
+- Added an npm entry point for the upstream sync workflow so regular validation can be rerun with consistent inputs
+
 ## [2026-02-13]
 
 ## [2026-06-27]
