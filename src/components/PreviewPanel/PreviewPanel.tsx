@@ -19,7 +19,7 @@ export function PreviewPanel() {
   const tooltips = config.tooltips ?? [];
 
   return (
-    <div className="bg-[#16213e] border-t border-[#0f3460] max-h-[40vh] flex flex-col">
+    <div className="bg-[#16213e] border-t border-[#0f3460] flex flex-col h-full xl:h-auto xl:max-h-[40vh] min-h-0">
       <div className="flex items-center justify-between px-4 py-2 border-b border-[#0f3460] flex-shrink-0">
         <div className="flex items-center gap-2">
           <h2 className="text-sm font-semibold text-gray-200">Preview</h2>

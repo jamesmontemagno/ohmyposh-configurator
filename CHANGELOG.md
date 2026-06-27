@@ -20,6 +20,12 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Removed hardcoded GitHub Pages subpath references so the app now serves correctly from the site root
 - Added GitHub Pages `CNAME` support for `configurator.ohmyposh.dev`
 
+### Changed: Small-Screen Workspace Usability
+
+- Added a compact workspace mode for tablet/mobile widths with panel tabs (Segments, Canvas, Preview, Properties) so editing no longer compresses three columns into unreadable panes
+- Improved responsive behavior in the header and export action bar to reduce overflow on narrow viewports
+- Updated the draft recovery banner and phone-size notice presentation so they no longer block key editing interactions on small screens
+
 ## [2026-02-13]
 
 ### Added: MCP Apps (Interactive UIs in Chat)

@@ -40,16 +40,16 @@ export function DraftRecoveryBanner() {
   if (!isVisible || !draftConfig) return null;
 
   return (
-    <div className="bg-amber-900/30 border-b border-amber-700 px-4 py-2">
-      <div className="flex items-center justify-between max-w-screen-xl mx-auto">
-        <div className="flex items-center gap-3">
+    <div className="bg-amber-900/30 border-b border-amber-700 px-3 sm:px-4 py-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between max-w-screen-xl mx-auto">
+        <div className="flex items-center gap-2 sm:gap-3">
           <NerdIcon icon="status-warning" size={18} className="text-amber-400" />
           <div>
             <span className="text-sm text-amber-200">
               Unsaved changes recovered
             </span>
             {draftTime && (
-              <span className="text-xs text-amber-400 ml-2">
+              <span className="block sm:inline text-xs text-amber-400 sm:ml-2">
                 from {formatTime(draftTime)}
               </span>
             )}
@@ -58,13 +58,13 @@ export function DraftRecoveryBanner() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleDiscard}
-            className="px-3 py-1 text-sm text-amber-300 hover:text-amber-100 hover:bg-amber-900/50 rounded transition-colors"
+            className="flex-1 sm:flex-none px-3 py-1 text-sm text-amber-300 hover:text-amber-100 hover:bg-amber-900/50 rounded transition-colors"
           >
             Discard
           </button>
           <button
             onClick={handleRestore}
-            className="px-3 py-1 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded transition-colors"
+            className="flex-1 sm:flex-none px-3 py-1 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded transition-colors"
           >
             Restore
           </button>

@@ -169,7 +169,7 @@ export function Canvas() {
 
   return (
     <div 
-      className="flex flex-col h-full bg-[#0f0f23] p-4 overflow-auto" 
+      className="flex flex-col h-full bg-[#0f0f23] p-3 sm:p-4 overflow-auto" 
       onClick={handleCanvasClick}
     >
       <div className="mb-4">

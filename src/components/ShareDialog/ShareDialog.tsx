@@ -117,11 +117,11 @@ export function ShareDialog() {
       <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setShowDropdown(!showDropdown)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white bg-[#0f3460] rounded transition-colors"
           title="Share your configuration"
         >
           <NerdIcon icon="action-share" size={16} />
-          <span>Share</span>
+          <span className="hidden sm:inline">Share</span>
           <NerdIcon icon="ui-chevron-down" size={14} className={`transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
         </button>
         

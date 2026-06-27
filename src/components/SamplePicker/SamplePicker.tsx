@@ -214,11 +214,11 @@ export function SamplePicker() {
           loadConfigs();
           loadFromStorage();
         }}
-        className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+        className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 sm:py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
         title="Load Sample Configuration"
       >
         <NerdIcon icon="misc-star" size={16} />
-        <span className="text-sm font-medium">Theme Library</span>
+        <span className="hidden xl:inline text-sm font-medium">Theme Library</span>
       </button>
 
       {/* Hidden file input for import */}

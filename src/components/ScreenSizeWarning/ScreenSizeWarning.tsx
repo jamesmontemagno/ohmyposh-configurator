@@ -4,13 +4,13 @@ import { NerdIcon } from '../NerdIcon';
 export function ScreenSizeWarning() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isDismissed, setIsDismissed] = useState(() => {
-    return localStorage.getItem('screenSizeWarningDismissed') === 'true';
+    return localStorage.getItem('smallScreenNoticeDismissed') === 'true';
   });
 
   useEffect(() => {
     const checkScreenSize = () => {
-      // Show warning for screens smaller than 1024px (Tailwind's lg breakpoint)
-      setIsSmallScreen(window.innerWidth < 1024);
+      // Show notice for phone-sized screens only.
+      setIsSmallScreen(window.innerWidth < 640);
     };
 
     // Check on mount
@@ -24,7 +24,7 @@ export function ScreenSizeWarning() {
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    localStorage.setItem('screenSizeWarningDismissed', 'true');
+    localStorage.setItem('smallScreenNoticeDismissed', 'true');
   };
 
   if (!isSmallScreen || isDismissed) {
@@ -32,40 +32,36 @@ export function ScreenSizeWarning() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6 relative">
+    <div className="fixed bottom-3 left-3 right-3 sm:left-auto sm:w-96 z-40">
+      <div className="bg-[#1a1a2e] border border-[#0f3460] rounded-lg shadow-xl p-4 relative">
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-200 transition-colors"
           aria-label="Dismiss"
         >
           <NerdIcon icon="ui-close" size={20} />
         </button>
 
         <div className="flex items-start gap-4">
-          <div className="bg-blue-100 rounded-full p-3 flex-shrink-0">
-            <NerdIcon icon="ui-monitor" size={24} className="text-blue-600" />
+          <div className="bg-[#0f3460] rounded-full p-2.5 flex-shrink-0">
+            <NerdIcon icon="ui-monitor" size={20} className="text-blue-300" />
           </div>
 
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">
-              Better on Desktop! 🖥️
+            <h2 className="text-base font-bold text-white mb-1.5">
+              Small screen mode
             </h2>
-            <p className="text-gray-600 mb-4">
-              This Oh My Posh configurator is optimized for larger screens. For the best experience, 
-              we recommend using a desktop or tablet in landscape mode.
-            </p>
-            <p className="text-sm text-gray-500">
-              You can still use the site, but some features may be harder to access on smaller screens.
+            <p className="text-sm text-gray-300 mb-3">
+              The compact layout is enabled for phones. For the full workspace, use a larger screen or rotate to landscape.
             </p>
           </div>
         </div>
 
         <button
           onClick={handleDismiss}
-          className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors"
+          className="mt-2 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors"
         >
-          Got it, thanks!
+          Continue
         </button>
       </div>
     </div>
