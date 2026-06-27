@@ -25,6 +25,7 @@
     "format:json": "node scripts/format-json.js public",
     "lint": "eslint .",
     "preview": "vite preview",
+    "segments:sync:upstream": "node scripts/segment-upstream-sync.mjs",
     "validate": "node scripts/validate-configs.js && node scripts/validate-icons.js",
     "validate-icons": "node scripts/validate-icons.js",
     "generate-font-subset": "node scripts/generate-font-subset.js",
