@@ -7,7 +7,11 @@ import { TooltipProperties } from './TooltipProperties';
 import { PaletteEditorDialog } from '../PaletteEditorDialog';
 import { NerdIcon } from '../NerdIcon';
 
-export function PropertiesPanel() {
+interface PropertiesPanelProps {
+  onCollapse?: () => void;
+}
+
+export function PropertiesPanel({ onCollapse }: PropertiesPanelProps) {
   const [showPaletteDialog, setShowPaletteDialog] = useState(false);
   const selectedBlockId = useConfigStore((state) => state.selectedBlockId);
   const selectedSegmentId = useConfigStore((state) => state.selectedSegmentId);
@@ -22,7 +26,20 @@ export function PropertiesPanel() {
   return (
     <div className="flex flex-col h-full bg-[#16213e] border-l border-[#0f3460]">
       <div className="p-3 border-b border-[#0f3460]">
-        <h2 className="text-sm font-semibold text-gray-200">Properties</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-gray-200">Properties</h2>
+          {onCollapse && (
+            <button
+              type="button"
+              onClick={onCollapse}
+              className="p-1 rounded text-gray-400 transition-colors hover:bg-[#1a1a2e] hover:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560]"
+              title="Collapse properties"
+              aria-label="Collapse properties panel"
+            >
+              <NerdIcon icon="ui-chevron-right" size={16} />
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-3">

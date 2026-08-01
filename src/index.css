@@ -73,8 +73,8 @@ body {
 
 .studio-preview-svg svg {
   display: block;
-  width: auto;
-  max-width: none;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   font-family: 'Victor Mono', monospace;
 }

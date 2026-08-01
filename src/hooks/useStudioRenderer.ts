@@ -34,7 +34,8 @@ interface UseStudioRendererResult {
 export function useStudioRenderer(
   config: OhMyPoshConfig,
   backgroundColor: string,
-  active = true
+  active = true,
+  columns = 120
 ): UseStudioRendererResult {
   const initialRuntime = getLoadedStudioRuntime();
   const [status, setStatus] = useState<StudioStatus>(initialRuntime ? 'ready' : 'idle');
@@ -93,6 +94,7 @@ export function useStudioRenderer(
     const timeout = window.setTimeout(() => {
       const options: StudioRenderOptions = {
         ...RENDER_OPTIONS,
+        columns,
         backgroundColor,
       };
 
@@ -118,7 +120,7 @@ export function useStudioRenderer(
     }, RENDER_DELAY_MS);
 
     return () => window.clearTimeout(timeout);
-  }, [active, backgroundColor, config, status]);
+  }, [active, backgroundColor, columns, config, status]);
 
   return { status, progress, svg, error, initialize };
 }

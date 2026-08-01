@@ -2,6 +2,14 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-08-01]
+
+### Changed: Workspace Panel Controls
+
+- Added desktop controls that collapse the Segments and Properties sidebars into compact restore rails, giving the canvas more room without hiding either panel's access point
+- Set the desktop preview to reserve at least one-quarter of the viewport and updated Studio output to calculate a readable terminal width from its available panel space, with vertical-only scrolling
+- Added a maximize control that overlays the Preview panel across the viewport, with an Escape-key shortcut to restore the workspace
+
 ## [2026-07-31]
 
 ### Added: Real Studio Preview Beta
