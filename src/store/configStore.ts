@@ -13,6 +13,7 @@ interface ConfigState {
   selectedTooltipId: string | null;
   exportFormat: ExportFormat;
   previewBackground: 'dark' | 'light';
+  previewRenderer: 'studio' | 'legacy';
   previewPaletteName: string | undefined;
 
   // Actions
@@ -67,6 +68,7 @@ interface ConfigState {
 
   // Preview
   setPreviewBackground: (bg: 'dark' | 'light') => void;
+  setPreviewRenderer: (renderer: 'studio' | 'legacy') => void;
 }
 
 const defaultConfig: OhMyPoshConfig = {
@@ -119,6 +121,7 @@ export const useConfigStore = create<ConfigState>()(
       selectedTooltipId: null,
       exportFormat: 'json',
       previewBackground: 'dark',
+      previewRenderer: 'studio',
       previewPaletteName: undefined,
 
       setConfig: (config) => set({ config }),
@@ -511,6 +514,7 @@ export const useConfigStore = create<ConfigState>()(
       setExportFormat: (format) => set({ exportFormat: format }),
 
       setPreviewBackground: (bg) => set({ previewBackground: bg }),
+      setPreviewRenderer: (renderer) => set({ previewRenderer: renderer }),
     }),
     {
       name: 'ohmyposh-config',
@@ -518,6 +522,7 @@ export const useConfigStore = create<ConfigState>()(
         config: state.config,
         exportFormat: state.exportFormat,
         previewBackground: state.previewBackground,
+        previewRenderer: state.previewRenderer,
       }),
     }
   )

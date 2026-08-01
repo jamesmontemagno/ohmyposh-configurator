@@ -59,6 +59,18 @@ describe('configStore', () => {
       expect(useConfigStore.getState().config.version).toBe(4);
     });
 
+    describe('preview renderer', () => {
+      it('defaults to Studio and persists the selected renderer preference', () => {
+        useConfigStore.setState({ previewRenderer: 'studio' });
+
+        expect(useConfigStore.getState().previewRenderer).toBe('studio');
+
+        useConfigStore.getState().setPreviewRenderer('legacy');
+
+        expect(useConfigStore.getState().previewRenderer).toBe('legacy');
+      });
+    });
+
     it('should clear selections', () => {
       useConfigStore.setState({
         selectedBlockId: 'some-block',
