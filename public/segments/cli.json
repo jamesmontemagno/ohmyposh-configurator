@@ -829,9 +829,9 @@
     }
   },
   {
-    "type": "copilot-cli",
+    "type": "copilot_cli",
     "name": "GitHub Copilot CLI",
-    "description": "Synced from upstream docs for the copilot-cli segment.",
+    "description": "Displays GitHub Copilot CLI session information, including the AI model and context-window usage.",
     "icon": "ai-copilot",
     "defaultTemplate": " \uec1e {{ .Model.DisplayName }} \uf2d0 {{ .TokenGauge }}",
     "defaultForeground": "#ffffff",
@@ -2382,6 +2382,24 @@
       "duration": "168h",
       "strategy": "folder"
     }
+  },
+  {
+    "type": "uno",
+    "name": "Uno Platform",
+    "description": "Displays the active Uno Platform SDK version.",
+    "icon": "ui-code",
+    "defaultTemplate": " \ue799 {{ .Version }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#7D4698",
+    "previewText": "5.6.0",
+    "properties": [
+      {
+        "name": ".Version",
+        "type": "string",
+        "description": "the Uno Platform SDK version"
+      }
+    ],
+    "options": []
   },
   {
     "type": "zvm",

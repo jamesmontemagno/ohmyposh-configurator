@@ -200,3 +200,22 @@ The script automatically infers tags based on theme name patterns:
 | `light` | `light` |
 | `azure` | `cloud`, `azure` |
 | `rainbow`, `unicorn` | `colorful`, `rainbow` |
+
+## segment-upstream-sync.mjs
+
+Validates every official Oh My Posh segment documentation page against the local metadata catalog. The generated report identifies runtime IDs, documented default templates and options, cache recommendations, and segments that are missing locally or no longer documented upstream.
+
+### Usage
+
+```bash
+# Compare against the current upstream main branch
+npm run segments:sync:upstream
+
+# Make a reproducible online comparison against a specific commit or tag
+npm run segments:sync:upstream -- --upstream-ref=<commit-or-tag>
+
+# Compare against a local Oh My Posh checkout, including a future submodule
+npm run segments:sync:upstream -- --upstream-dir=vendor/oh-my-posh
+```
+
+The script writes `docs/segment-upstream-sync-report.md`. A local checkout is optional: keeping the default remote mode avoids adding the full Oh My Posh repository to every clone, while `--upstream-dir` supports a pinned checkout or submodule when a reproducible source snapshot is required.

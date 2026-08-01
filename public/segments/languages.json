@@ -608,14 +608,14 @@
     }
   },
   {
-    "type": "golang",
-    "name": "Golang",
-    "description": "Synced from upstream docs for the golang segment.",
-    "icon": "lang-go",
+    "type": "language",
+    "name": "Generic Language",
+    "description": "Displays a configured language or tool version.",
+    "icon": "tool-wrench",
     "defaultTemplate": "{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
     "defaultForeground": "#ffffff",
     "defaultBackground": "#3776ab",
-    "previewText": "🐹 1.24.3",
+    "previewText": "GCC 13.2.0",
     "properties": [
       {
         "name": ".Full",
@@ -643,6 +643,21 @@
         "description": "URL of the version info / release notes"
       },
       {
+        "name": ".Prerelease",
+        "type": "string",
+        "description": "prerelease identifier"
+      },
+      {
+        "name": ".BuildMetadata",
+        "type": "string",
+        "description": "build identifier"
+      },
+      {
+        "name": ".InProjectDir",
+        "type": "boolean",
+        "description": "whether the working directory is within a project_files match"
+      },
+      {
         "name": ".Error",
         "type": "string",
         "description": "error encountered when fetching the version string"
@@ -659,7 +674,7 @@
         "name": "fetch_version",
         "type": "boolean",
         "default": true,
-        "description": "fetch the golang version"
+        "description": "fetch the version"
       },
       {
         "name": "cache_duration",
@@ -695,43 +710,28 @@
         "description": "a go [text/template][go-text-template] [template][templates] that creates the URL of the version info / release notes"
       },
       {
-        "name": "parse_mod_file",
-        "type": "boolean",
-        "default": false,
-        "description": "parse the go.mod file instead of calling go version"
+        "name": "tools",
+        "type": "array",
+        "default": [],
+        "description": "executables that can report the version, tried in order until one succeeds"
       },
       {
-        "name": "parse_go_work_file",
-        "type": "boolean",
-        "default": false,
-        "description": "parse the go.work file instead of calling go version"
+        "name": "project_files",
+        "type": "array",
+        "default": [],
+        "description": "files in a parent directory that trigger the segment"
       },
       {
         "name": "extensions",
         "type": "array",
-        "default": [
-          "*.go",
-          "go.mod",
-          "go.work",
-          "go.sum",
-          "go.work.sum"
-        ],
-        "description": "allows to override the default list of file extensions to validate"
+        "default": [],
+        "description": "file extensions that trigger the segment"
       },
       {
         "name": "folders",
         "type": "array",
         "default": [],
-        "description": "allows to override the list of folder names to validate"
-      },
-      {
-        "name": "tooling",
-        "type": "array",
-        "default": [
-          "mod",
-          "go"
-        ],
-        "description": "the tooling to use for fetching the version"
+        "description": "folder names that trigger the segment"
       }
     ]
   },

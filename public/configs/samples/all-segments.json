@@ -221,7 +221,7 @@
           "type": "jujutsu",
           "style": "powerline",
           "powerline_symbol": "\ue0b0",
-          "template": " \uf126 {{ .ChangeId }} ",
+          "template": " \uf1fa{{.ChangeID}}{{if .Working.Changed}} \uf044 {{ .Working.String }}{{ end }} ",
           "foreground": "p:text-light",
           "background": "p:jujutsu-bg"
         },
@@ -233,6 +233,26 @@
           "foreground": "p:text-light",
           "background": "p:gitversion-bg"
         }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        { "type": "aspire", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#455A64" },
+        { "type": "copilot_cli", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#fee898" },
+        { "type": "dvc", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#945dd6" },
+        { "type": "gradle", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#02303A" },
+        { "type": "language", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#3776ab" },
+        { "type": "nba", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#455A64" },
+        { "type": "orthodoxcal", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#8B0000" },
+        { "type": "ramadan", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#E53935" },
+        { "type": "taskwarrior", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#455A64" },
+        { "type": "todoist", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#E44332" },
+        { "type": "uno", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#7D4698" },
+        { "type": "vimode", "style": "powerline", "powerline_symbol": "\ue0b0", "foreground": "p:text-light", "background": "#546E7A" },
+        { "type": "zvm", "style": "diamond", "trailing_diamond": "\ue0b4", "foreground": "p:text-light", "background": "#455A64" }
       ]
     },
     {
