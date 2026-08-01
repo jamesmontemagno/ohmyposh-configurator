@@ -1,28 +1,57 @@
-import { useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
-import { BlockPreview } from './BlockPreview';
-import { TooltipPreview } from './TooltipPreview';
+import { LegacyPreview } from './LegacyPreview';
+import { StudioPreview } from './StudioPreview';
 
-export function PreviewPanel() {
+interface PreviewPanelProps {
+  active?: boolean;
+}
+
+export function PreviewPanel({ active = true }: PreviewPanelProps) {
   const config = useConfigStore((state) => state.config);
   const previewBackground = useConfigStore((state) => state.previewBackground);
   const setPreviewBackground = useConfigStore((state) => state.setPreviewBackground);
-  const selectTooltip = useConfigStore((state) => state.selectTooltip);
-  const [tooltipsExpanded, setTooltipsExpanded] = useState(true);
+  const previewRenderer = useConfigStore((state) => state.previewRenderer) ?? 'studio';
+  const setPreviewRenderer = useConfigStore((state) => state.setPreviewRenderer);
 
   // Use terminal_background from config if set, otherwise use preview background preference
   const bgColor = config.terminal_background || (previewBackground === 'dark' ? '#1e1e1e' : '#ffffff');
   const textColor = previewBackground === 'dark' ? '#cccccc' : '#333333';
-  const finalSpace = config.final_space ?? true;
-
-  const tooltips = config.tooltips ?? [];
-
   return (
     <div className="bg-[#16213e] border-t border-[#0f3460] flex flex-col h-full xl:h-auto xl:max-h-[40vh] min-h-0">
-      <div className="flex items-center justify-between px-4 py-2 border-b border-[#0f3460] flex-shrink-0">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-[#0f3460] flex-shrink-0">
+        <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-sm font-semibold text-gray-200">Preview</h2>
+          <div
+            className="flex rounded-md border border-[#0f3460] bg-[#0f0f23] p-0.5"
+            role="group"
+            aria-label="Preview renderer"
+          >
+            <button
+              type="button"
+              onClick={() => setPreviewRenderer('studio')}
+              aria-pressed={previewRenderer === 'studio'}
+              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560] ${
+                previewRenderer === 'studio'
+                  ? 'bg-[#e94560] text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Studio <span className="ml-0.5 opacity-80">Beta</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setPreviewRenderer('legacy')}
+              aria-pressed={previewRenderer === 'legacy'}
+              className={`px-2 py-1 rounded text-[11px] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560] ${
+                previewRenderer === 'legacy'
+                  ? 'bg-[#0f3460] text-white'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              Legacy
+            </button>
+          </div>
           {config.terminal_background && (
             <span className="text-xs text-gray-500 flex items-center gap-1">
               <span>•</span>
@@ -62,66 +91,14 @@ export function PreviewPanel() {
         </div>
       </div>
 
-      <div
-        className="p-4 text-sm overflow-y-auto flex-1 min-h-0"
-        style={{ 
-          backgroundColor: bgColor, 
-          color: textColor,
-          fontFamily: "'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', monospace",
-        }}
-      >
-        <div className="space-y-2">
-          {config.blocks.map((block, index) => (
-            <div key={block.id}>
-              <BlockPreview block={block} />
-              {block.newline && index < config.blocks.length - 1 && <br />}
-            </div>
-          ))}
-          <div className="mt-2">
-            <span style={{ color: textColor }}>❯ </span>
-            {finalSpace && <span> </span>}
-            <span className="animate-pulse">▋</span>
-          </div>
-        </div>
-
-        {/* Tooltips Section */}
-        {tooltips.length > 0 && (
-          <div className="mt-4 pt-4 border-t border-dashed" style={{ borderColor: 'rgba(128,128,128,0.3)' }}>
-            <button
-              onClick={() => setTooltipsExpanded(!tooltipsExpanded)}
-              className="flex items-center gap-2 mb-3 hover:opacity-80 transition-opacity"
-            >
-              <NerdIcon icon="status-info" size={14} className="text-[#06d6a0]" />
-              <span className="text-xs font-medium" style={{ color: textColor }}>
-                Tooltips ({tooltips.length})
-              </span>
-              <span className="text-xs opacity-60">
-                {tooltipsExpanded ? '▼' : '▶'}
-              </span>
-            </button>
-            
-            {tooltipsExpanded && (
-              <div className="space-y-2">
-                {tooltips.map((tooltip) => (
-                  <div 
-                    key={tooltip.id}
-                    className="flex items-center gap-3 cursor-pointer hover:opacity-80"
-                    onClick={() => selectTooltip(tooltip.id)}
-                  >
-                    <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-[#1a472a] text-green-300">
-                      {tooltip.tips[0] || '?'}
-                    </span>
-                    <span className="text-xs opacity-60">→</span>
-                    <TooltipPreview tooltip={tooltip} />
-                  </div>
-                ))}
-                <p className="text-xs opacity-50 mt-2" style={{ color: textColor }}>
-                  Click a tooltip to edit. Tooltips appear when you type the trigger command.
-                </p>
-              </div>
-            )}
-          </div>
-        )}
+      <div className={previewRenderer === 'studio' ? 'contents' : 'hidden'}>
+        <StudioPreview
+          backgroundColor={bgColor}
+          active={active && previewRenderer === 'studio'}
+        />
+      </div>
+      <div className={previewRenderer === 'legacy' ? 'contents' : 'hidden'}>
+        <LegacyPreview backgroundColor={bgColor} textColor={textColor} />
       </div>
     </div>
   );

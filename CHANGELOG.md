@@ -2,6 +2,16 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-07-31]
+
+### Added: Real Studio Preview Beta
+
+- Added an opt-in initialization flow for the real Oh My Posh WebAssembly renderer, selected by default without downloading its roughly 20 MB runtime until the user approves
+- Added local-only rendering progress, retry, error feedback, and last-good-preview retention when a configuration is temporarily invalid
+- Added a persistent Studio/Legacy preview switch so the existing simulated preview and tooltip visualization remain available
+- Self-hosted and pinned the matching Oh My Posh v30 Studio runtime, sample data, and Victor Mono font for reproducible previews
+- Added CI integrity checks for the pinned Studio asset sizes and checksums
+
 ## [2026-05-16]
 
 ### Added: Segment Upstream Sync Maintenance

@@ -1,0 +1,27 @@
+{
+  "ohMyPoshVersion": "30.0.0",
+  "upstreamCommit": "f6793cbedc79f8e28d298018a894d556d2c20fed",
+  "totalBytes": 20354916,
+  "assets": {
+    "omp.wasm": {
+      "bytes": 17848033,
+      "sha256": "d627dc2fde356a44e8937f2490457034265afc75208f02ec10dde47079e022a2",
+      "source": "https://ohmyposh.dev/omp.wasm"
+    },
+    "wasm_exec.js": {
+      "bytes": 16992,
+      "sha256": "0c949f4996f9a89698e4b5c586de32249c3b69b7baadb64d220073cc04acba14",
+      "source": "https://ohmyposh.dev/wasm_exec.js"
+    },
+    "segment_data.json": {
+      "bytes": 66195,
+      "sha256": "1a67e716ce805fdf2f94e09c3a39c115f66deb71dd0f9a1d31ec1761037b433d",
+      "source": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/f6793cbedc79f8e28d298018a894d556d2c20fed/website/segment_data.json"
+    },
+    "VictorMono.ttf": {
+      "bytes": 2423696,
+      "sha256": "bad3a8b6a85f6e4843864248e257af39645d5ca73ce06a73f0485e33d8569a86",
+      "source": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/f6793cbedc79f8e28d298018a894d556d2c20fed/website/static/fonts/VictorMono.ttf"
+    }
+  }
+}

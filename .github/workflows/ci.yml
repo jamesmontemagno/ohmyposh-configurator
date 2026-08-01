@@ -44,6 +44,9 @@ jobs:
       - name: Validate icons
         run: npm run validate-icons
 
+      - name: Validate pinned Studio assets
+        run: npm run validate-studio
+
       - name: Verify font subset exists
         run: |
           if [ ! -f "public/fonts/nerd-symbols-subset.woff2" ]; then

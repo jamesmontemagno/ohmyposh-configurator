@@ -11,11 +11,13 @@ import { DraftRecoveryBanner } from './components/DraftRecoveryBanner';
 import { ToastContainer, useToastStore } from './components/Toast';
 import { preloadSegments } from './utils/segmentLoader';
 import { useSavedConfigsStore, setupDraftAutoSave } from './store/savedConfigsStore';
+import { useMediaQuery } from './hooks/useMediaQuery';
 
 function App() {
   const showToast = useToastStore((state) => state.showToast);
   const initializedRef = useRef(false);
   const [activeCompactPanel, setActiveCompactPanel] = useState<'segments' | 'canvas' | 'preview' | 'properties'>('canvas');
+  const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   // Initialize saved configs store and auto-save on app mount
   useEffect(() => {
@@ -73,7 +75,7 @@ function App() {
             </div>
 
             {/* Preview Panel */}
-            <PreviewPanel />
+            <PreviewPanel active={isDesktop} />
           </div>
 
           {/* Right Sidebar - Properties Panel */}
@@ -120,7 +122,7 @@ function App() {
             )}
             {activeCompactPanel === 'preview' && (
               <div className="h-full overflow-hidden">
-                <PreviewPanel />
+                <PreviewPanel active={!isDesktop} />
               </div>
             )}
             {activeCompactPanel === 'properties' && (

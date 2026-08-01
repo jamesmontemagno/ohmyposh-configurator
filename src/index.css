@@ -10,6 +10,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Victor Mono';
+  src: url('/studio/VictorMono.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Full Nerd Font from CDN - fallback for missing glyphs */
 @font-face {
   font-family: 'Symbols Nerd Font Full';
@@ -61,4 +69,12 @@ body {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+}
+
+.studio-preview-svg svg {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  font-family: 'Victor Mono', monospace;
 }
