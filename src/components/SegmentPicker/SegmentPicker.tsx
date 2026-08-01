@@ -78,7 +78,11 @@ function CategorySection({ category, segments, onAdd, isExpanded, onToggle }: Ca
   );
 }
 
-export function SegmentPicker() {
+interface SegmentPickerProps {
+  onCollapse?: () => void;
+}
+
+export function SegmentPicker({ onCollapse }: SegmentPickerProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [allSegments, setAllSegments] = useState<SegmentMetadata[]>([]);
   const [segmentsByCategory, setSegmentsByCategory] = useState<Record<string, SegmentMetadata[]>>({});
@@ -202,17 +206,30 @@ export function SegmentPicker() {
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-sm font-semibold text-gray-200">Segments</h2>
           <div className="flex items-center gap-1">
+            {onCollapse && (
+              <button
+                type="button"
+                onClick={onCollapse}
+                className="p-1 rounded text-gray-400 transition-colors hover:bg-[#1a1a2e] hover:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560]"
+                title="Collapse segments"
+                aria-label="Collapse segments panel"
+              >
+                <NerdIcon icon="ui-chevron-left" size={16} />
+              </button>
+            )}
             <button
+              type="button"
               onClick={expandAll}
-              className={`p-1 rounded transition-colors ${allExpanded ? 'text-gray-600' : 'text-gray-400 hover:text-gray-200 hover:bg-[#1a1a2e]'}`}
+              className={`p-1 rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560] ${allExpanded ? 'text-gray-600' : 'text-gray-400 hover:text-gray-200 hover:bg-[#1a1a2e]'}`}
               title="Expand all"
               disabled={allExpanded}
             >
               <NerdIcon icon="ui-unfold-more" size={16} />
             </button>
             <button
+              type="button"
               onClick={collapseAll}
-              className={`p-1 rounded transition-colors ${allCollapsed ? 'text-gray-600' : 'text-gray-400 hover:text-gray-200 hover:bg-[#1a1a2e]'}`}
+              className={`p-1 rounded transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560] ${allCollapsed ? 'text-gray-600' : 'text-gray-400 hover:text-gray-200 hover:bg-[#1a1a2e]'}`}
               title="Collapse all"
               disabled={allCollapsed}
             >

@@ -17,8 +17,8 @@ vi.mock('../../utils/studioLoader', () => ({
   }),
 }));
 
-function Harness({ config }: { config: OhMyPoshConfig }) {
-  const result = useStudioRenderer(config, '#1e1e1e');
+function Harness({ config, columns = 120 }: { config: OhMyPoshConfig; columns?: number }) {
+  const result = useStudioRenderer(config, '#1e1e1e', true, columns);
   return (
     <div>
       <button type="button" onClick={result.initialize}>
@@ -85,6 +85,30 @@ describe('useStudioRenderer', () => {
     );
     expect(container.querySelector('[data-testid="error"]')?.textContent).toBe(
       'invalid template'
+    );
+  });
+
+  it('renders with the supplied terminal width', async () => {
+    const config: OhMyPoshConfig = {
+      version: 4,
+      blocks: [],
+    };
+    studioMocks.render.mockReturnValue({
+      svg: '<svg xmlns="http://www.w3.org/2000/svg"><text>preview</text></svg>',
+    });
+
+    act(() => root.render(<Harness config={config} columns={64} />));
+    await act(async () => {
+      container.querySelector('button')?.click();
+      await Promise.resolve();
+    });
+    await act(async () => vi.advanceTimersByTimeAsync(200));
+
+    expect(studioMocks.render).toHaveBeenLastCalledWith(
+      expect.any(String),
+      'json',
+      '{}',
+      expect.objectContaining({ columns: 64 })
     );
   });
 });

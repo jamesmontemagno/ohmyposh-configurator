@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { LegacyPreview } from './LegacyPreview';
@@ -8,6 +9,7 @@ interface PreviewPanelProps {
 }
 
 export function PreviewPanel({ active = true }: PreviewPanelProps) {
+  const [isMaximized, setIsMaximized] = useState(false);
   const config = useConfigStore((state) => state.config);
   const previewBackground = useConfigStore((state) => state.previewBackground);
   const setPreviewBackground = useConfigStore((state) => state.setPreviewBackground);
@@ -17,8 +19,26 @@ export function PreviewPanel({ active = true }: PreviewPanelProps) {
   // Use terminal_background from config if set, otherwise use preview background preference
   const bgColor = config.terminal_background || (previewBackground === 'dark' ? '#1e1e1e' : '#ffffff');
   const textColor = previewBackground === 'dark' ? '#cccccc' : '#333333';
+
+  useEffect(() => {
+    if (!isMaximized) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMaximized(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMaximized]);
+
   return (
-    <div className="bg-[#16213e] border-t border-[#0f3460] flex flex-col h-full xl:h-auto xl:max-h-[40vh] min-h-0">
+    <div
+      className={
+        isMaximized
+          ? 'fixed inset-0 z-50 flex min-h-0 flex-col bg-[#16213e]'
+          : 'flex h-full min-h-0 flex-col border-t border-[#0f3460] bg-[#16213e] xl:h-auto xl:min-h-[25vh] xl:max-h-[40vh]'
+      }
+    >
       <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2 border-b border-[#0f3460] flex-shrink-0">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-sm font-semibold text-gray-200">Preview</h2>
@@ -88,6 +108,16 @@ export function PreviewPanel({ active = true }: PreviewPanelProps) {
               <NerdIcon icon="weather-sunny" size={14} />
             </button>
           </div>
+          <button
+            type="button"
+            onClick={() => setIsMaximized((current) => !current)}
+            aria-label={isMaximized ? 'Exit maximized preview' : 'Maximize preview'}
+            aria-pressed={isMaximized}
+            title={isMaximized ? 'Exit maximized preview (Esc)' : 'Maximize preview'}
+            className="rounded p-1.5 text-gray-400 transition-colors hover:bg-[#0f3460] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560]"
+          >
+            <NerdIcon icon={isMaximized ? 'ui-close' : 'ui-external-link'} size={14} />
+          </button>
         </div>
       </div>
 

@@ -12,11 +12,14 @@ import { ToastContainer, useToastStore } from './components/Toast';
 import { preloadSegments } from './utils/segmentLoader';
 import { useSavedConfigsStore, setupDraftAutoSave } from './store/savedConfigsStore';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { NerdIcon } from './components/NerdIcon';
 
 function App() {
   const showToast = useToastStore((state) => state.showToast);
   const initializedRef = useRef(false);
   const [activeCompactPanel, setActiveCompactPanel] = useState<'segments' | 'canvas' | 'preview' | 'properties'>('canvas');
+  const [segmentsCollapsed, setSegmentsCollapsed] = useState(false);
+  const [propertiesCollapsed, setPropertiesCollapsed] = useState(false);
   const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   // Initialize saved configs store and auto-save on app mount
@@ -63,8 +66,22 @@ function App() {
         {/* Desktop layout */}
         <div className="hidden xl:flex h-full overflow-hidden">
           {/* Left Sidebar - Segment Picker */}
-          <div className="w-72 2xl:w-64 flex-shrink-0 overflow-hidden">
-            <SegmentPicker />
+          <div
+            className={`${segmentsCollapsed ? 'w-11' : 'w-72 2xl:w-64'} flex-shrink-0 overflow-hidden transition-[width] duration-200 ease-out`}
+          >
+            {segmentsCollapsed ? (
+              <button
+                type="button"
+                onClick={() => setSegmentsCollapsed(false)}
+                className="flex h-full w-full items-start justify-center border-r border-[#0f3460] bg-[#16213e] pt-3 text-gray-400 transition-colors hover:bg-[#1a1a2e] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#e94560]"
+                aria-label="Expand segments panel"
+                title="Expand segments"
+              >
+                <NerdIcon icon="ui-chevron-right" size={16} />
+              </button>
+            ) : (
+              <SegmentPicker onCollapse={() => setSegmentsCollapsed(true)} />
+            )}
           </div>
 
           {/* Center - Canvas and Preview */}
@@ -79,8 +96,22 @@ function App() {
           </div>
 
           {/* Right Sidebar - Properties Panel */}
-          <div className="w-80 2xl:w-84 flex-shrink-0 overflow-hidden">
-            <PropertiesPanel />
+          <div
+            className={`${propertiesCollapsed ? 'w-11' : 'w-80 2xl:w-84'} flex-shrink-0 overflow-hidden transition-[width] duration-200 ease-out`}
+          >
+            {propertiesCollapsed ? (
+              <button
+                type="button"
+                onClick={() => setPropertiesCollapsed(false)}
+                className="flex h-full w-full items-start justify-center border-l border-[#0f3460] bg-[#16213e] pt-3 text-gray-400 transition-colors hover:bg-[#1a1a2e] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#e94560]"
+                aria-label="Expand properties panel"
+                title="Expand properties"
+              >
+                <NerdIcon icon="ui-chevron-left" size={16} />
+              </button>
+            ) : (
+              <PropertiesPanel onCollapse={() => setPropertiesCollapsed(true)} />
+            )}
           </div>
         </div>
 

@@ -44,4 +44,22 @@ describe('PreviewPanel', () => {
     expect(useConfigStore.getState().previewRenderer).toBe('legacy');
     expect(container.textContent).toContain('❯');
   });
+
+  it('maximizes the preview and restores it with Escape', () => {
+    act(() => root.render(<PreviewPanel />));
+
+    const maximizeButton = container.querySelector<HTMLButtonElement>(
+      '[aria-label="Maximize preview"]'
+    );
+    expect(maximizeButton).not.toBeNull();
+
+    act(() => maximizeButton?.click());
+
+    expect(container.firstElementChild?.className).toContain('fixed');
+    expect(container.querySelector('[aria-label="Exit maximized preview"]')).not.toBeNull();
+
+    act(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })));
+
+    expect(container.firstElementChild?.className).not.toContain('fixed');
+  });
 });

@@ -1,20 +1,50 @@
+import { useEffect, useRef, useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useConfigStore } from '../../store/configStore';
 import { useStudioRenderer } from '../../hooks/useStudioRenderer';
+
+const DEFAULT_STUDIO_COLUMNS = 80;
+const MIN_STUDIO_COLUMNS = 40;
+const MAX_STUDIO_COLUMNS = 120;
+const STUDIO_COLUMN_WIDTH_PX = 9.7;
+const HORIZONTAL_PADDING_PX = 32;
 
 interface StudioPreviewProps {
   backgroundColor: string;
   active: boolean;
 }
 
+function getStudioColumns(availableWidth: number): number {
+  const contentWidth = Math.max(0, availableWidth - HORIZONTAL_PADDING_PX);
+  const columns = Math.floor(contentWidth / STUDIO_COLUMN_WIDTH_PX);
+  return Math.min(MAX_STUDIO_COLUMNS, Math.max(MIN_STUDIO_COLUMNS, columns));
+}
+
 export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
   const config = useConfigStore((state) => state.config);
   const setPreviewRenderer = useConfigStore((state) => state.setPreviewRenderer);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState(DEFAULT_STUDIO_COLUMNS);
   const { status, progress, svg, error, initialize } = useStudioRenderer(
     config,
     backgroundColor,
-    active
+    active,
+    columns
   );
+
+  useEffect(() => {
+    const preview = previewRef.current;
+    if (!preview) return;
+
+    const updateColumns = () => setColumns(getStudioColumns(preview.clientWidth));
+    updateColumns();
+
+    if (typeof ResizeObserver === 'undefined') return;
+
+    const observer = new ResizeObserver(updateColumns);
+    observer.observe(preview);
+    return () => observer.disconnect();
+  }, []);
 
   if (status === 'idle') {
     return (
@@ -129,7 +159,8 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
 
   return (
     <div
-      className="relative flex-1 min-h-0 overflow-auto px-4 py-5"
+      ref={previewRef}
+      className="relative flex flex-1 min-h-0 flex-col overflow-x-hidden overflow-y-auto px-4 py-5"
       style={{ backgroundColor }}
     >
       {error && (
@@ -153,7 +184,7 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
 
       {svg ? (
         <div
-          className="studio-preview-svg"
+          className="studio-preview-svg min-w-0"
           dangerouslySetInnerHTML={{ __html: svg }}
         />
       ) : (
