@@ -2,6 +2,17 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-08-01]
+
+### Added
+
+- Enhanced the upstream segment sync audit to validate every documentation page by its runtime configuration ID, compare cache recommendations, and support pinned refs or a local Oh My Posh checkout.
+
+### Fixed
+
+- Corrected the GitHub Copilot CLI segment type to `copilot_cli`, matching Oh My Posh's documented runtime identifier.
+- Corrected the Jujutsu segment's case-sensitive `.ChangeID` template property and preview data, and synchronized its documented defaults.
+
 ## [2026-07-31]
 
 ### Added: Real Studio Preview Beta
