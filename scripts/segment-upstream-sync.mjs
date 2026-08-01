@@ -5,6 +5,7 @@ import path from 'path';
 import process from 'process';
 import { execFile } from 'child_process';
 import { promisify } from 'util';
+import { pathToFileURL } from 'url';
 
 const execFileAsync = promisify(execFile);
 
@@ -12,9 +13,6 @@ const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), 
 const SEGMENTS_DIR = path.join(REPO_ROOT, 'public', 'segments');
 const REPORT_PATH = path.join(REPO_ROOT, 'docs', 'segment-upstream-sync-report.md');
 const UPSTREAM_REPO = 'JanDeDobbeleer/oh-my-posh';
-const UPSTREAM_BRANCH = 'main';
-const TREE_API_URL = `https://api.github.com/repos/${UPSTREAM_REPO}/git/trees/${UPSTREAM_BRANCH}?recursive=1`;
-const RAW_BASE_URL = `https://raw.githubusercontent.com/${UPSTREAM_REPO}/${UPSTREAM_BRANCH}`;
 const DOCS_BASE_URL = 'https://ohmyposh.dev/docs/segments';
 
 const CATEGORY_ORDER = ['system', 'scm', 'languages', 'cloud', 'cli', 'web', 'music', 'health'];
@@ -28,13 +26,6 @@ const DOC_CATEGORY_TO_LOCAL = {
   web: 'web',
   music: 'music',
   health: 'health',
-};
-
-const DOC_ID_OVERRIDES = {
-  'languages/go.mdx': 'go',
-  'languages/.net.mdx': 'dotnet',
-  'cloud/azure.mdx': 'az',
-  'cli/vlang.mdx': 'v',
 };
 
 const SOURCE_FILE_OVERRIDES = {
@@ -51,6 +42,8 @@ function parseArgs(argv) {
     scope: 'all',
     cadence: 'weekly',
     strictness: 'report',
+    upstreamRef: 'main',
+    upstreamDir: '',
   };
 
   for (const arg of argv) {
@@ -58,7 +51,8 @@ function parseArgs(argv) {
       continue;
     }
 
-    const [key, value] = arg.slice(2).split('=');
+    const [rawKey, value] = arg.slice(2).split('=');
+    const key = rawKey.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
     if (key in args && value) {
       args[key] = value;
     }
@@ -76,7 +70,19 @@ function parseArgs(argv) {
     throw new Error(`Invalid strictness: ${args.strictness}`);
   }
 
+  if (!args.upstreamRef.trim()) {
+    throw new Error('upstreamRef must not be empty');
+  }
+
   return args;
+}
+
+function getUpstreamUrls(ref) {
+  const encodedRef = encodeURIComponent(ref);
+  return {
+    treeApiUrl: `https://api.github.com/repos/${UPSTREAM_REPO}/git/trees/${encodedRef}?recursive=1`,
+    rawBaseUrl: `https://raw.githubusercontent.com/${UPSTREAM_REPO}/${encodedRef}`,
+  };
 }
 
 async function fetchJson(url) {
@@ -128,16 +134,38 @@ function normalizeText(value) {
 
 function normalizeType(type) {
   const normalized = normalizeText(type).toLowerCase();
-  if (normalized === 'bool') {
+  if (['bool', 'boolean'].includes(normalized)) {
     return 'boolean';
+  }
+
+  if (/^(u?int|float(32|64)?|number)$/.test(normalized)) {
+    return 'number';
+  }
+
+  if (['[]string', 'string[]', 'array'].includes(normalized)) {
+    return 'array';
+  }
+
+  if (/^(map\[.*\].*|object)$/.test(normalized)) {
+    return 'object';
   }
 
   return normalized;
 }
 
 function normalizeDefaultValue(value, type) {
-  const cleaned = normalizeText(value);
+  const cleaned = normalizeText(value)
+    .replace(/\\u([0-9a-fA-F]{4})/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/\\U([0-9a-fA-F]{8})/g, (_, hex) => String.fromCodePoint(parseInt(hex, 16)));
   if (!cleaned || cleaned === 'none') {
+    if (type === 'object') {
+      return {};
+    }
+
+    if (type === 'array') {
+      return [];
+    }
+
     return cleaned;
   }
 
@@ -145,7 +173,7 @@ function normalizeDefaultValue(value, type) {
     return cleaned === 'true';
   }
 
-  if (/^(int|float64|float32|number)$/i.test(type)) {
+  if (type === 'number') {
     const parsed = Number(cleaned);
     return Number.isNaN(parsed) ? cleaned : parsed;
   }
@@ -255,28 +283,19 @@ function extractOptions(content) {
 
 function extractProperties(content) {
   const templateSection = extractSection(content, 'Template');
-  const lines = templateSection.split('\n');
-  const tables = [];
-  let current = [];
+  const propertySections = Array.from(templateSection.matchAll(/^#{3,4}\s+.*Properties\s*$/gim));
 
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (trimmed.startsWith('|')) {
-      current.push(line);
-      continue;
-    }
+  return propertySections.flatMap((section) => {
+    const start = (section.index ?? 0) + section[0].length;
+    const remainingContent = templateSection.slice(start);
+    const nextHeading = /^#{1,4}\s+/m.exec(remainingContent);
+    const propertyContent = nextHeading
+      ? remainingContent.slice(0, nextHeading.index)
+      : remainingContent;
+    const tableLines = propertyContent
+      .split('\n')
+      .filter((line) => line.trim().startsWith('|'));
 
-    if (current.length > 0) {
-      tables.push(current);
-      current = [];
-    }
-  }
-
-  if (current.length > 0) {
-    tables.push(current);
-  }
-
-  return tables.flatMap((tableLines) => {
     return parseMarkdownTableLines(tableLines).map((cells) => {
       const [name, type, description = ''] = cells;
       return {
@@ -293,19 +312,33 @@ function extractDocTitle(content) {
   return normalizeText(idMatch?.[1] ?? '');
 }
 
-function extractDocId(content, relativePath) {
-  const docPath = relativePath.replace(/^website\/docs\/segments\//, '');
-  const override = DOC_ID_OVERRIDES[docPath];
-  if (override) {
-    return override;
-  }
-
+export function extractDocPageId(content, relativePath) {
   const idMatch = content.match(/^id:\s*(.+)$/m);
   if (idMatch) {
     return normalizeText(idMatch[1]);
   }
 
   return path.basename(relativePath, '.mdx');
+}
+
+export function extractRuntimeType(content, fallbackType) {
+  const sampleConfigurationIndex = content.search(/^##\s+(?:Sample )?Configuration\b/im);
+  const sampleConfiguration = sampleConfigurationIndex >= 0
+    ? content.slice(sampleConfigurationIndex)
+    : content;
+  const typeMatch = sampleConfiguration.match(/\btype\s*:\s*["']([^"']+)["']/);
+
+  return normalizeText(typeMatch?.[1] ?? fallbackType);
+}
+
+export function extractSampleConfigurationValue(content, name) {
+  const sampleConfigurationIndex = content.search(/^##\s+(?:Sample )?Configuration\b/im);
+  const sampleConfiguration = sampleConfigurationIndex >= 0
+    ? content.slice(sampleConfigurationIndex)
+    : content;
+  const valueMatch = sampleConfiguration.match(new RegExp(`\\b${name}\\s*:\\s*["']([^"']+)["']`));
+
+  return valueMatch?.[1] ?? '';
 }
 
 function guessSourceFilePath(type) {
@@ -408,8 +441,54 @@ async function getChangedTypes(inventory) {
   }
 }
 
-async function loadUpstreamInventory() {
-  const tree = await fetchJson(TREE_API_URL);
+async function listFiles(directory) {
+  const entries = await fs.readdir(directory, { withFileTypes: true });
+  const nestedFiles = await Promise.all(entries.map(async (entry) => {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      return listFiles(entryPath);
+    }
+
+    return entry.isFile() ? [entryPath] : [];
+  }));
+
+  return nestedFiles.flat();
+}
+
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function loadUpstreamSource(args) {
+  if (args.upstreamDir) {
+    const root = path.resolve(REPO_ROOT, args.upstreamDir);
+    const docsDirectory = path.join(root, 'website', 'docs', 'segments');
+    if (!await fileExists(docsDirectory)) {
+      throw new Error(`Upstream directory does not contain website/docs/segments: ${root}`);
+    }
+
+    const docPaths = (await listFiles(docsDirectory))
+      .filter((filePath) => filePath.endsWith('.mdx'))
+      .map((filePath) => path.relative(root, filePath).split(path.sep).join('/'))
+      .filter((filePath) => !filePath.endsWith('/index.mdx'))
+      .sort();
+
+    return {
+      docPaths,
+      hasSourceFile: (sourcePath) => fileExists(path.join(root, sourcePath)),
+      readText: (sourcePath) => fs.readFile(path.join(root, sourcePath), 'utf8'),
+      getUrl: (sourcePath) => pathToFileURL(path.join(root, sourcePath)).href,
+      description: `Local upstream checkout: ${root}`,
+    };
+  }
+
+  const { treeApiUrl, rawBaseUrl } = getUpstreamUrls(args.upstreamRef);
+  const tree = await fetchJson(treeApiUrl);
   const treeEntries = tree.tree ?? [];
   const docPaths = treeEntries
     .filter((entry) => entry.type === 'blob' && /^website\/docs\/segments\/.+\.mdx$/.test(entry.path))
@@ -417,29 +496,61 @@ async function loadUpstreamInventory() {
     .map((entry) => entry.path)
     .sort();
 
+  return {
+    docPaths,
+    hasSourceFile: async (sourcePath) => treeEntries.some((entry) => entry.path === sourcePath),
+    readText: (sourcePath) => fetchText(`${rawBaseUrl}/${sourcePath}`),
+    getUrl: (sourcePath) => `${rawBaseUrl}/${sourcePath}`,
+    description: `Official repository tree API: ${treeApiUrl}`,
+  };
+}
+
+function extractSampleCache(content) {
+  const sampleConfigurationIndex = content.search(/^##\s+(?:Sample )?Configuration\b/im);
+  const sampleConfiguration = sampleConfigurationIndex >= 0
+    ? content.slice(sampleConfigurationIndex)
+    : content;
+  const cacheMatch = sampleConfiguration.match(/\bcache\s*:\s*\{([\s\S]*?)\n\s*\}/);
+  if (!cacheMatch) {
+    return null;
+  }
+
+  const duration = cacheMatch[1].match(/\bduration\s*:\s*["']([^"']+)["']/)?.[1];
+  const strategy = cacheMatch[1].match(/\bstrategy\s*:\s*["']([^"']+)["']/)?.[1];
+  return duration && strategy ? { duration, strategy } : null;
+}
+
+async function loadUpstreamInventory(args) {
+  const source = await loadUpstreamSource(args);
+
   const upstream = new Map();
 
-  for (const docPath of docPaths) {
-    const rawUrl = `${RAW_BASE_URL}/${docPath}`;
-    const content = await fetchText(rawUrl);
+  for (const docPath of source.docPaths) {
+    const content = await source.readText(docPath);
     const relativeDocPath = docPath.replace(/^website\/docs\/segments\//, '');
     const category = DOC_CATEGORY_TO_LOCAL[relativeDocPath.split('/')[0]];
-    const type = extractDocId(content, docPath);
+    const docPageId = extractDocPageId(content, docPath);
+    const type = extractRuntimeType(content, docPageId);
 
     if (!category || !type) {
       continue;
     }
 
+    if (upstream.has(type)) {
+      const existing = upstream.get(type);
+      throw new Error(`Multiple upstream documentation pages map to runtime type "${type}": ${existing.evidence.repoDocPath} and ${docPath}`);
+    }
+
     const sourcePath = guessSourceFilePath(type);
-    const sourceExists = treeEntries.some((entry) => entry.path === sourcePath);
+    const sourceExists = await source.hasSourceFile(sourcePath);
     let sourceTemplate = '';
     let sourceUrl = '';
     const docTemplate = extractDefaultTemplate(content);
 
     if (sourceExists) {
-      sourceUrl = `${RAW_BASE_URL}/${sourcePath}`;
+      sourceUrl = source.getUrl(sourcePath);
       try {
-        const sourceContent = await fetchText(sourceUrl);
+        const sourceContent = await source.readText(sourcePath);
         sourceTemplate = extractSourceTemplate(sourceContent);
       } catch {
         sourceTemplate = '';
@@ -451,15 +562,18 @@ async function loadUpstreamInventory() {
       category,
       name: extractDocTitle(content) || type,
       defaultTemplate: sourceTemplate || docTemplate,
+      defaultForeground: extractSampleConfigurationValue(content, 'foreground'),
+      defaultBackground: extractSampleConfigurationValue(content, 'background'),
       properties: extractProperties(content),
       options: extractOptions(content),
-      defaultCache: null,
+      defaultCache: extractSampleCache(content),
       evidence: {
         repoDocPath: docPath,
-        repoDocUrl: rawUrl,
+        repoDocUrl: source.getUrl(docPath),
         docsUrl: `${DOCS_BASE_URL}/${relativeDocPath.replace(/\.mdx$/, '')}`,
         sourcePath: sourceExists ? sourcePath : null,
         sourceUrl: sourceUrl || null,
+        docPageId,
       },
       ambiguity: sourceTemplate && docTemplate && normalizeTemplate(sourceTemplate) !== normalizeTemplate(docTemplate)
         ? [`Template mismatch between docs and source (${sourcePath})`]
@@ -467,7 +581,7 @@ async function loadUpstreamInventory() {
     });
   }
 
-  return upstream;
+  return { inventory: upstream, source };
 }
 
 function normalizeLocalSegment(local) {
@@ -475,6 +589,8 @@ function normalizeLocalSegment(local) {
     category: local.category,
     name: local.segment.name,
     defaultTemplate: local.segment.defaultTemplate ?? '',
+    defaultForeground: local.segment.defaultForeground ?? '',
+    defaultBackground: local.segment.defaultBackground ?? '',
     properties: Array.isArray(local.segment.properties) ? local.segment.properties : [],
     options: Array.isArray(local.segment.options) ? local.segment.options : [],
     defaultCache: local.segment.defaultCache ?? null,
@@ -494,7 +610,7 @@ function sameValue(left, right) {
 }
 
 function typesCompatible(localType, upstreamType, localValues, upstreamValues) {
-  if (localType === upstreamType) {
+  if (normalizeType(localType) === normalizeType(upstreamType)) {
     return true;
   }
 
@@ -634,17 +750,39 @@ function compareSegment(type, localSegment, upstreamSegment) {
     });
   }
 
+  for (const field of ['defaultForeground', 'defaultBackground']) {
+    if (upstream[field] && local[field] !== upstream[field]) {
+      differences.push({
+        field,
+        kind: 'default',
+        name: type,
+        confidence: 'high confidence',
+        detail: `${field} differs from documented sample configuration`,
+      });
+    }
+  }
+
   differences.push(...diffNamedEntries('property', local.properties, upstream.properties));
   differences.push(...diffNamedEntries('option', local.options, upstream.options));
 
   const supportsCache = upstream.options.some((option) => option.name === 'cache_duration');
-  if (local.defaultCache && !supportsCache) {
+  if (local.defaultCache && !upstream.defaultCache && !supportsCache) {
     differences.push({
       field: 'defaultCache',
       kind: 'cache',
       name: type,
       confidence: 'needs manual review',
       detail: 'Local defaultCache is set but upstream docs do not expose cache_duration',
+    });
+  }
+
+  if (upstream.defaultCache && !sameValue(local.defaultCache, upstream.defaultCache)) {
+    differences.push({
+      field: 'defaultCache',
+      kind: 'cache',
+      name: type,
+      confidence: 'high confidence',
+      detail: 'Documented cache recommendation differs',
     });
   }
 
@@ -855,10 +993,10 @@ async function applySafeFixes(results, localFileData) {
   return changedFiles.sort();
 }
 
-function buildReport(args, summary, results, appliedChanges) {
+function buildReport(args, source, summary, results, appliedChanges) {
   return `# Segment Upstream Sync Report
 
-This report compares local segment metadata in \`public/segments/\` with live official Oh My Posh sources using scope=\`${args.scope}\`, cadence=\`${args.cadence}\`, and strictness=\`${args.strictness}\`.
+This report compares local segment metadata in \`public/segments/\` with official Oh My Posh sources using scope=\`${args.scope}\`, cadence=\`${args.cadence}\`, and strictness=\`${args.strictness}\`.
 
 ## Summary Metrics
 
@@ -870,13 +1008,15 @@ This report compares local segment metadata in \`public/segments/\` with live of
 - High confidence classifications: ${summary.highConfidence}
 - Medium confidence classifications: ${summary.mediumConfidence}
 - Needs manual review: ${summary.manualReview}
+- Documentation pages scanned: ${source.docPaths.length}
 
 ## Upstream Sources Used
 
-- Official repository tree API: ${TREE_API_URL}
-- Official repository docs files: ${RAW_BASE_URL}/website/docs/segments/<category>/<segment>.mdx
+- ${source.description}
+- Upstream ref: ${args.upstreamRef}
+- Official repository docs files: ${args.upstreamDir || `${getUpstreamUrls(args.upstreamRef).rawBaseUrl}/website/docs/segments/<category>/<segment>.mdx`}
 - Official published docs: ${DOCS_BASE_URL}/<category>/<segment>
-- Official source files when path mapping was available: ${RAW_BASE_URL}/src/segments/<segment>.go
+- Official source files when path mapping was available: ${args.upstreamDir || `${getUpstreamUrls(args.upstreamRef).rawBaseUrl}/src/segments/<segment>.go`}
 
 ## Drift Table
 
@@ -918,7 +1058,7 @@ ${renderManualReview(results)}
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const { inventory: localInventory, fileData } = await loadLocalInventory();
-  const upstreamInventory = await loadUpstreamInventory();
+  const { inventory: upstreamInventory, source } = await loadUpstreamInventory(args);
   const scopeTypes = args.scope === 'changed' ? await getChangedTypes(localInventory) : new Set([...localInventory.keys(), ...upstreamInventory.keys()]);
   const allTypes = [...new Set([...scopeTypes, ...upstreamInventory.keys()].filter((type) => args.scope === 'all' || scopeTypes.has(type)))];
 
@@ -931,7 +1071,7 @@ async function main() {
     : [];
 
   const summary = summarizeResults(results);
-  const report = buildReport(args, summary, results, appliedChanges);
+  const report = buildReport(args, source, summary, results, appliedChanges);
   await fs.writeFile(REPORT_PATH, report, 'utf8');
 
   const output = {
@@ -939,12 +1079,15 @@ async function main() {
     summary,
     appliedChanges,
     reportPath: path.relative(REPO_ROOT, REPORT_PATH),
+    upstreamPagesScanned: source.docPaths.length,
   };
 
   process.stdout.write(`${JSON.stringify(output, null, 2)}\n`);
 }
 
-main().catch((error) => {
-  console.error(error instanceof Error ? error.message : error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error instanceof Error ? error.message : error);
+    process.exitCode = 1;
+  });
+}

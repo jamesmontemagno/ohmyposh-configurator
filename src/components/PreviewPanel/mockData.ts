@@ -13,6 +13,23 @@ const sharedMockData: Record<string, unknown> = {
     PATH: '/usr/bin:/bin',
     TERM: 'xterm-256color',
   },
+
+  orthodoxcal: {
+    FastLevel: 0,
+    FastLevelDesc: 'Fast-free week',
+    FastException: 0,
+    FastExceptionDesc: '',
+    SummaryTitle: 'Saint Nicholas',
+    FeastLevel: 2,
+    FeastLevelDesc: 'Liturgy',
+    Feasts: [],
+    Saints: ['Saint Nicholas'],
+    Titles: [],
+    Tone: 4,
+    IsFasting: false,
+    FeastNames: '',
+    SaintNames: 'Saint Nicholas',
+  },
   
   // Segments accessor - allows templates like .Segments.Git.HEAD
   // Used by text segments and cross-segment templates
@@ -34,6 +51,10 @@ const sharedMockData: Record<string, unknown> = {
         Added: 0,
         Deleted: 0,
         Untracked: 0
+      },
+
+      uno: {
+        Version: '5.6.0',
       },
       Staging: { 
         Changed: false, 
@@ -204,6 +225,10 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     Branch: 'trunk',
     Status: '',
   },
+
+  dvc: {
+    Status: { Changed: true, String: '+1 ~2', Added: 1, Modified: 2, Deleted: 0, Missing: 0 },
+  },
   
   git: {
     RepoName: 'my-app',
@@ -269,13 +294,12 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     Untracked: 0,
   },
   
-  jj: {
-    ChangeId: 'qpvuntsm',
-    ChangeIdShort: 'qpvu',
-    CommitId: 'abc12345',
-    CommitIdShort: 'abc1',
-    Bookmark: 'main',
-    Working: { Changed: false, String: '' },
+  jujutsu: {
+    ChangeID: 'mzvwutnw',
+    ChangeIDPrefix: 'mzvwut',
+    ChangeIDRest: 'nw',
+    ClosestBookmarks: 'main',
+    Working: { Changed: true, String: '+1 ~2' },
   },
   
   plastic: {
@@ -316,6 +340,17 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     Patch: '0',
     Error: '',
     URL: '',
+  },
+
+  language: {
+    Full: '13.2.0',
+    Major: '13',
+    Minor: '2',
+    Patch: '0',
+    Prerelease: '',
+    BuildMetadata: '',
+    InProjectDir: true,
+    Error: '',
   },
   
   azfunc: {
@@ -853,7 +888,7 @@ export const segmentMockData: Record<string, Record<string, unknown>> = {
     BillingCycleEnd: '2025-01-15',
   },
 
-  'copilot-cli': {
+  copilot_cli: {
     Model: {
       DisplayName: 'GPT-5.5',
     },

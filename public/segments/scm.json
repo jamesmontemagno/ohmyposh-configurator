@@ -1,5 +1,36 @@
 [
   {
+    "type": "dvc",
+    "name": "DVC",
+    "description": "Displays Data Version Control repository changes.",
+    "icon": "vcs-git-branch",
+    "defaultTemplate": " \ue8d1 {{.Status.String}} ",
+    "defaultForeground": "#193549",
+    "defaultBackground": "#945dd6",
+    "previewText": "\ue8d1 +1 ~2",
+    "properties": [
+      {
+        "name": ".Status",
+        "type": "DvcStatus",
+        "description": "changes in the worktree"
+      }
+    ],
+    "options": [
+      {
+        "name": "native_fallback",
+        "type": "boolean",
+        "default": false,
+        "description": "Fall back to the native dvc executable in WSL2 shared Windows drives"
+      },
+      {
+        "name": "status_formats",
+        "type": "object",
+        "default": {},
+        "description": "Overrides the display format for individual status items"
+      }
+    ]
+  },
+  {
     "type": "fossil",
     "name": "Fossil",
     "description": "Displays Fossil repository information, including the current branch and status.",
@@ -340,15 +371,35 @@
     "name": "Jujutsu",
     "description": "Displays Jujutsu (jj) repository information, including the current change ID and status.",
     "icon": "vcs-git-branch",
-    "defaultTemplate": " \uf126 {{ .ChangeId }} ",
-    "defaultForeground": "#ffffff",
-    "defaultBackground": "#9B59B6",
-    "previewText": "qpvuntsm",
+    "defaultTemplate": " \uf1fa{{.ChangeID}}{{if .Working.Changed}} \uf044 {{ .Working.String }}{{ end }} ",
+    "defaultForeground": "#193549",
+    "defaultBackground": "#ffeb3b",
+    "previewText": "\uf1famzvwutnw \uf044 +1 ~2",
     "properties": [
       {
-        "name": ".ChangeId",
+        "name": ".Working",
+        "type": "Status",
+        "description": "changes in the working copy"
+      },
+      {
+        "name": ".ChangeID",
         "type": "string",
-        "description": "the current change id"
+        "description": "the shortest unique prefix of the working copy change that is at least change_id_min_len long"
+      },
+      {
+        "name": ".ChangeIDPrefix",
+        "type": "string",
+        "description": "the shortest unique prefix of the working copy change ID"
+      },
+      {
+        "name": ".ChangeIDRest",
+        "type": "string",
+        "description": "the additional portion displayed after .ChangeIDPrefix to satisfy change_id_min_len"
+      },
+      {
+        "name": ".ClosestBookmarks",
+        "type": "string",
+        "description": "closest bookmark(s) on ancestors"
       }
     ],
     "options": [
@@ -379,7 +430,7 @@
       {
         "name": "ahead_icon",
         "type": "string",
-        "default": "⇡",
+        "default": "\u21e1",
         "description": "Icon/character between bookmark and ahead counter"
       },
       {

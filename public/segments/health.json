@@ -48,6 +48,36 @@
     ]
   },
   {
+    "type": "orthodoxcal",
+    "name": "Orthodox Calendar",
+    "description": "Displays Orthodox fasting level and feast information for the current day.",
+    "icon": "health-heartbeat",
+    "defaultTemplate": "\u2626 {{ .FastLevelDesc }}{{ if .FastExceptionDesc }} ({{ .FastExceptionDesc }}){{ end }} \u00b7 {{ .SummaryTitle }} ",
+    "defaultForeground": "#ffffff",
+    "defaultBackground": "#8B0000",
+    "previewText": "\u2626 Fast-free week \u00b7 Saint Nicholas",
+    "properties": [
+      { "name": ".FastLevel", "type": "number", "description": "numeric fasting level" },
+      { "name": ".FastLevelDesc", "type": "string", "description": "human-readable fasting description" },
+      { "name": ".FastException", "type": "number", "description": "numeric exception code" },
+      { "name": ".FastExceptionDesc", "type": "string", "description": "exception detail" },
+      { "name": ".SummaryTitle", "type": "string", "description": "best title for the day" },
+      { "name": ".FeastLevel", "type": "number", "description": "numeric feast level" },
+      { "name": ".FeastLevelDesc", "type": "string", "description": "feast level description" },
+      { "name": ".Feasts", "type": "array", "description": "list of feast names" },
+      { "name": ".Saints", "type": "array", "description": "list of commemorated saints" },
+      { "name": ".Titles", "type": "array", "description": "liturgical titles for the day" },
+      { "name": ".Tone", "type": "number", "description": "liturgical tone" },
+      { "name": ".IsFasting", "type": "boolean", "description": "whether the day has fasting requirements" },
+      { "name": ".FeastNames", "type": "string", "description": "all feasts joined with commas" },
+      { "name": ".SaintNames", "type": "string", "description": "all saints joined with commas" }
+    ],
+    "options": [
+      { "name": "calendar", "type": "enum", "default": "gregorian", "description": "Calendar type", "values": ["gregorian", "julian"] },
+      { "name": "http_timeout", "type": "number", "default": 20, "description": "Timeout for the API request in milliseconds" }
+    ]
+  },
+  {
     "type": "ramadan",
     "name": "Ramadan",
     "description": "Synced from upstream docs for the ramadan segment.",

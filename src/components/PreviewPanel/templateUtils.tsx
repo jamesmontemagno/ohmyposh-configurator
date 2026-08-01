@@ -413,7 +413,7 @@ export function getPreviewText(
     carbonintensity: () => ((segmentData.Actual as Record<string, unknown>)?.Index as string) || 'low',
     claude: () => `🤖 ${((segmentData.Model as Record<string, unknown>)?.DisplayName as string) || 'Claude'} ${((segmentData.TokenUsagePercent as Record<string, unknown>)?.Gauge as string) || ''}`,
     copilot: () => ((segmentData.Premium as Record<string, Record<string, unknown>>)?.Percent?.Gauge as string) || '████░',
-    'copilot-cli': () => `\uec1e ${((segmentData.Model as Record<string, unknown>)?.DisplayName as string) || 'GPT-5.5'} \uf2d0 ${(segmentData.TokenGauge as string) || '▰▰▰▱▱'}`,
+    copilot_cli: () => `\uec1e ${((segmentData.Model as Record<string, unknown>)?.DisplayName as string) || 'GPT-5.5'} \uf2d0 ${(segmentData.TokenGauge as string) || '▰▰▰▱▱'}`,
     aspire: () => `▲ ${(segmentData.Name as string) || 'my-app'}${segmentData.Running ? ' ✓' : ''}`,
     gradle: () => (segmentData.Full as string) || '8.8.0',
     taskwarrior: () => {
