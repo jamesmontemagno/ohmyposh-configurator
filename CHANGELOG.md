@@ -4,6 +4,10 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-08-01]
 
+### Added
+
+- Added a secure, browser-only Studio handoff that imports JSON, YAML, or TOML configurations through a nonce-gated `postMessage` exchange without exposing configuration content in URLs or server storage.
+
 ### Changed: Compact Header Controls
 
 - Kept reset, settings, and theme actions icon-only below the desktop workspace breakpoint to preserve room for compact editing controls.
