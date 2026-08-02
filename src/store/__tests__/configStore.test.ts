@@ -69,6 +69,14 @@ describe('configStore', () => {
 
         expect(useConfigStore.getState().previewRenderer).toBe('legacy');
       });
+
+      it('remembers when Studio has been enabled', () => {
+        useConfigStore.setState({ studioRuntimeEnabled: false });
+
+        useConfigStore.getState().enableStudioRuntime();
+
+        expect(useConfigStore.getState().studioRuntimeEnabled).toBe(true);
+      });
     });
 
     it('should clear selections', () => {

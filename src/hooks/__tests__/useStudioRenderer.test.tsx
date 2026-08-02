@@ -6,19 +6,25 @@ import { useStudioRenderer } from '../useStudioRenderer';
 
 const studioMocks = vi.hoisted(() => ({
   render: vi.fn(),
+  loadStudioRuntime: vi.fn(),
 }));
 
 vi.mock('../../utils/studioLoader', () => ({
   getLoadedStudioRuntime: () => null,
   subscribeToStudioRuntime: () => () => undefined,
-  loadStudioRuntime: async () => ({
-    render: studioMocks.render,
-    dataJson: '{}',
-  }),
+  loadStudioRuntime: studioMocks.loadStudioRuntime,
 }));
 
-function Harness({ config, columns = 120 }: { config: OhMyPoshConfig; columns?: number }) {
-  const result = useStudioRenderer(config, '#1e1e1e', true, columns);
+function Harness({
+  config,
+  columns = 120,
+  autoInitialize = false,
+}: {
+  config: OhMyPoshConfig;
+  columns?: number;
+  autoInitialize?: boolean;
+}) {
+  const result = useStudioRenderer(config, '#1e1e1e', true, columns, autoInitialize);
   return (
     <div>
       <button type="button" onClick={result.initialize}>
@@ -38,6 +44,11 @@ describe('useStudioRenderer', () => {
   beforeEach(() => {
     vi.useFakeTimers();
     studioMocks.render.mockReset();
+    studioMocks.loadStudioRuntime.mockReset();
+    studioMocks.loadStudioRuntime.mockResolvedValue({
+      render: studioMocks.render,
+      dataJson: '{}',
+    });
     container = document.createElement('div');
     document.body.appendChild(container);
     root = createRoot(container);
@@ -110,5 +121,20 @@ describe('useStudioRenderer', () => {
       '{}',
       expect.objectContaining({ columns: 64 })
     );
+  });
+
+  it('initializes automatically when Studio was enabled previously', async () => {
+    const config: OhMyPoshConfig = {
+      version: 4,
+      blocks: [],
+    };
+
+    act(() => root.render(<Harness config={config} autoInitialize />));
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(0);
+    });
+
+    expect(studioMocks.loadStudioRuntime).toHaveBeenCalledOnce();
+    expect(container.querySelector('[data-testid="status"]')?.textContent).toBe('ready');
   });
 });

@@ -35,7 +35,8 @@ export function useStudioRenderer(
   config: OhMyPoshConfig,
   backgroundColor: string,
   active = true,
-  columns = 120
+  columns = 120,
+  autoInitialize = false
 ): UseStudioRendererResult {
   const initialRuntime = getLoadedStudioRuntime();
   const [status, setStatus] = useState<StudioStatus>(initialRuntime ? 'ready' : 'idle');
@@ -87,6 +88,13 @@ export function useStudioRenderer(
         setStatus('error');
       });
   }, []);
+
+  useEffect(() => {
+    if (!autoInitialize || status !== 'idle') return;
+
+    const timeout = window.setTimeout(initialize, 0);
+    return () => window.clearTimeout(timeout);
+  }, [autoInitialize, initialize, status]);
 
   useEffect(() => {
     if (!active || status !== 'ready' || !renderRef.current) return;
