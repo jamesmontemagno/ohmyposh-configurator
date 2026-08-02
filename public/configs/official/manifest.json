@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-01-04T18:27:02.628Z",
+  "lastUpdated": "2026-08-02T17:47:55.954Z",
   "themes": [
     {
       "name": "1_shell",
@@ -10,7 +10,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/1_shell.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/1_shell.omp.json"
     },
     {
@@ -21,7 +20,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/agnoster.png",
+      "imageUrl": "configs/official/previews/agnoster.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnoster.omp.json"
     },
     {
@@ -32,7 +31,6 @@
         "minimal",
         "nerd-font-free"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/agnoster.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnoster.minimal.omp.json"
     },
     {
@@ -43,7 +41,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/agnosterplus.png",
+      "imageUrl": "configs/official/previews/agnosterplus.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/agnosterplus.omp.json"
     },
     {
@@ -54,7 +52,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/aliens.png",
+      "imageUrl": "configs/official/previews/aliens.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/aliens.omp.json"
     },
     {
@@ -65,7 +63,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/amro.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/amro.omp.json"
     },
     {
@@ -76,7 +73,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/atomic.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomic.omp.json"
     },
     {
@@ -87,7 +83,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/atomicBit.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/atomicBit.omp.json"
     },
     {
@@ -98,7 +93,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/avit.png",
+      "imageUrl": "configs/official/previews/avit.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/avit.omp.json"
     },
     {
@@ -110,7 +105,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/blue-owl.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/blue-owl.omp.json"
     },
     {
@@ -122,7 +116,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/blueish.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/blueish.omp.json"
     },
     {
@@ -134,7 +127,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/bubbles.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubbles.omp.json"
     },
     {
@@ -146,7 +138,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/bubblesextra.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubblesextra.omp.json"
     },
     {
@@ -158,7 +149,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/bubblesline.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/bubblesline.omp.json"
     },
     {
@@ -169,7 +159,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/capr4n.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/capr4n.omp.json"
     },
     {
@@ -181,7 +170,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin.omp.json"
     },
     {
@@ -194,7 +182,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_frappe.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_frappe.omp.json"
     },
     {
@@ -207,7 +194,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_latte.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_latte.omp.json"
     },
     {
@@ -220,7 +206,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_macchiato.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_macchiato.omp.json"
     },
     {
@@ -233,7 +218,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/catppuccin_mocha.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/catppuccin_mocha.omp.json"
     },
     {
@@ -244,7 +228,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/cert.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cert.omp.json"
     },
     {
@@ -255,7 +238,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/chips.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/chips.omp.json"
     },
     {
@@ -266,7 +248,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/cinnamon.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cinnamon.omp.json"
     },
     {
@@ -277,7 +258,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/clean-detailed.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/clean-detailed.omp.json"
     },
     {
@@ -289,7 +269,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/cloud-context.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cloud-context.omp.json"
     },
     {
@@ -302,7 +281,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/cloud-native-azure.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cloud-native-azure.omp.json"
     },
     {
@@ -313,7 +291,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/cobalt2.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/cobalt2.omp.json"
     },
     {
@@ -324,7 +301,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/craver.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/craver.omp.json"
     },
     {
@@ -336,7 +312,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/darkblood.png",
+      "imageUrl": "configs/official/previews/darkblood.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/darkblood.omp.json"
     },
     {
@@ -348,7 +324,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/devious-diamonds.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/devious-diamonds.omp.yaml"
     },
     {
@@ -359,7 +334,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/di4am0nd.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/di4am0nd.omp.json"
     },
     {
@@ -371,7 +345,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/dracula.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/dracula.omp.json"
     },
     {
@@ -382,7 +355,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/easy-term.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/easy-term.omp.json"
     },
     {
@@ -393,7 +365,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/emodipt.png",
+      "imageUrl": "configs/official/previews/emodipt.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/emodipt.omp.json"
     },
     {
@@ -404,7 +376,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/emodipt-extend.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/emodipt-extend.omp.json"
     },
     {
@@ -416,7 +387,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/fish.png",
+      "imageUrl": "configs/official/previews/fish.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/fish.omp.json"
     },
     {
@@ -427,7 +398,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/free-ukraine.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/free-ukraine.omp.json"
     },
     {
@@ -438,7 +408,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/froczh.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/froczh.omp.json"
     },
     {
@@ -449,7 +418,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/glowsticks.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/glowsticks.omp.yaml"
     },
     {
@@ -460,7 +428,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/gmay.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/gmay.omp.json"
     },
     {
@@ -471,7 +438,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/grandpa-style.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/grandpa-style.omp.json"
     },
     {
@@ -483,7 +449,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/gruvbox.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/gruvbox.omp.json"
     },
     {
@@ -494,7 +459,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/half-life.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/half-life.omp.json"
     },
     {
@@ -505,7 +469,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/honukai.png",
+      "imageUrl": "configs/official/previews/honukai.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/honukai.omp.json"
     },
     {
@@ -516,7 +480,6 @@
         "minimal",
         "nerd-font-free"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/hotstick.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hotstick.minimal.omp.json"
     },
     {
@@ -527,7 +490,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/hul10.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hul10.omp.json"
     },
     {
@@ -538,7 +500,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/hunk.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/hunk.omp.json"
     },
     {
@@ -549,7 +510,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/huvix.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/huvix.omp.json"
     },
     {
@@ -560,7 +520,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/if_tea.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/if_tea.omp.json"
     },
     {
@@ -571,7 +530,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/illusi0n.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/illusi0n.omp.json"
     },
     {
@@ -582,7 +540,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/iterm2.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/iterm2.omp.json"
     },
     {
@@ -593,7 +550,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/jandedobbeleer.png",
+      "imageUrl": "configs/official/previews/jandedobbeleer.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jandedobbeleer.omp.json"
     },
     {
@@ -604,7 +561,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/jblab_2021.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jblab_2021.omp.json"
     },
     {
@@ -615,7 +571,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/jonnychipz.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jonnychipz.omp.json"
     },
     {
@@ -626,7 +581,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/json.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/json.omp.json"
     },
     {
@@ -637,7 +591,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/jtracey93.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jtracey93.omp.json"
     },
     {
@@ -648,7 +601,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/jv_sitecorian.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jv_sitecorian.omp.json"
     },
     {
@@ -659,7 +611,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/kali.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/kali.omp.json"
     },
     {
@@ -670,7 +621,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/kushal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/kushal.omp.json"
     },
     {
@@ -681,7 +631,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/lambda.png",
+      "imageUrl": "configs/official/previews/lambda.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lambda.omp.json"
     },
     {
@@ -692,7 +642,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/lambdageneration.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lambdageneration.omp.json"
     },
     {
@@ -703,7 +652,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/larserikfinholt.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/larserikfinholt.omp.json"
     },
     {
@@ -715,7 +663,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/lightgreen.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/lightgreen.omp.json"
     },
     {
@@ -726,7 +673,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/M365Princess.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/M365Princess.omp.json"
     },
     {
@@ -737,7 +683,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/marcduiker.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/marcduiker.omp.json"
     },
     {
@@ -748,7 +693,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/markbull.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/markbull.omp.json"
     },
     {
@@ -760,7 +704,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/material.png",
+      "imageUrl": "configs/official/previews/material.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/material.omp.json"
     },
     {
@@ -771,7 +715,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/microverse-power.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/microverse-power.omp.json"
     },
     {
@@ -782,7 +725,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/mojada.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/mojada.omp.json"
     },
     {
@@ -794,7 +736,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/montys.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/montys.omp.json"
     },
     {
@@ -805,7 +746,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/mt.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/mt.omp.json"
     },
     {
@@ -818,7 +758,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/multiverse-neon.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/multiverse-neon.omp.json"
     },
     {
@@ -829,7 +768,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/negligible.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/negligible.omp.json"
     },
     {
@@ -840,7 +778,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/neko.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/neko.omp.json"
     },
     {
@@ -852,7 +789,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/night-owl.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/night-owl.omp.json"
     },
     {
@@ -864,7 +800,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/nordtron.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/nordtron.omp.json"
     },
     {
@@ -875,7 +810,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/nu4a.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/nu4a.omp.json"
     },
     {
@@ -887,7 +821,6 @@
         "nerd-font-free",
         "onehalf"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/onehalf.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/onehalf.minimal.omp.json"
     },
     {
@@ -898,7 +831,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/paradox.png",
+      "imageUrl": "configs/official/previews/paradox.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/paradox.omp.json"
     },
     {
@@ -909,7 +842,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/pararussel.png",
+      "imageUrl": "configs/official/previews/pararussel.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pararussel.omp.json"
     },
     {
@@ -920,7 +853,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/patriksvensson.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/patriksvensson.omp.json"
     },
     {
@@ -931,7 +863,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/peru.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/peru.omp.json"
     },
     {
@@ -942,7 +873,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/pixelrobots.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pixelrobots.omp.json"
     },
     {
@@ -953,7 +883,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/plague.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/plague.omp.json"
     },
     {
@@ -964,7 +893,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/poshmon.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/poshmon.omp.json"
     },
     {
@@ -975,7 +903,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_classic.png",
+      "imageUrl": "configs/official/previews/powerlevel10k_classic.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_classic.omp.json"
     },
     {
@@ -986,7 +914,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_lean.png",
+      "imageUrl": "configs/official/previews/powerlevel10k_lean.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_lean.omp.json"
     },
     {
@@ -997,7 +925,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_modern.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_modern.omp.json"
     },
     {
@@ -1010,7 +937,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/powerlevel10k_rainbow.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerlevel10k_rainbow.omp.json"
     },
     {
@@ -1021,7 +947,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/powerline.png",
+      "imageUrl": "configs/official/previews/powerline.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/powerline.omp.json"
     },
     {
@@ -1032,7 +958,6 @@
         "minimal",
         "nerd-font-free"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/probua.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/probua.minimal.omp.json"
     },
     {
@@ -1043,7 +968,6 @@
         "plain",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/pure.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json"
     },
     {
@@ -1054,7 +978,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/quick-term.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/quick-term.omp.json"
     },
     {
@@ -1065,7 +988,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/remk.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/remk.omp.json"
     },
     {
@@ -1077,7 +999,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/robbyrussell.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/robbyrussell.omp.json"
     },
     {
@@ -1089,7 +1010,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/rudolfs-dark.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/rudolfs-dark.omp.json"
     },
     {
@@ -1101,7 +1021,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/rudolfs-light.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/rudolfs-light.omp.json"
     },
     {
@@ -1112,7 +1031,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/sim-web.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sim-web.omp.json"
     },
     {
@@ -1123,7 +1041,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/slim.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/slim.omp.json"
     },
     {
@@ -1134,7 +1051,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/slimfat.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/slimfat.omp.json"
     },
     {
@@ -1145,7 +1061,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/smoothie.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/smoothie.omp.json"
     },
     {
@@ -1157,7 +1072,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/sonicboom_dark.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sonicboom_dark.omp.json"
     },
     {
@@ -1169,7 +1083,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/sonicboom_light.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sonicboom_light.omp.json"
     },
     {
@@ -1180,7 +1093,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/sorin.png",
+      "imageUrl": "configs/official/previews/sorin.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/sorin.omp.json"
     },
     {
@@ -1191,7 +1104,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/space.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/space.omp.json"
     },
     {
@@ -1202,7 +1114,6 @@
         "plain",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/spaceship.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/spaceship.omp.json"
     },
     {
@@ -1213,7 +1124,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/star.png",
+      "imageUrl": "configs/official/previews/star.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/star.omp.json"
     },
     {
@@ -1224,7 +1135,6 @@
         "minimal",
         "nerd-font-free"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/stelbent-compact.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent-compact.minimal.omp.json"
     },
     {
@@ -1235,7 +1145,6 @@
         "minimal",
         "nerd-font-free"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/stelbent.minimal.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
     },
     {
@@ -1246,7 +1155,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/takuya.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/takuya.omp.json"
     },
     {
@@ -1257,7 +1165,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/the-unnamed.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/the-unnamed.omp.json"
     },
     {
@@ -1268,7 +1175,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/thecyberden.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/thecyberden.omp.json"
     },
     {
@@ -1279,7 +1185,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/tiwahu.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tiwahu.omp.json"
     },
     {
@@ -1291,7 +1196,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/tokyo.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tokyo.omp.json"
     },
     {
@@ -1304,7 +1208,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/tokyonight_storm.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tokyonight_storm.omp.json"
     },
     {
@@ -1315,7 +1218,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/tonybaloney.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/tonybaloney.omp.json"
     },
     {
@@ -1326,7 +1228,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/uew.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/uew.omp.json"
     },
     {
@@ -1339,7 +1240,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/unicorn.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/unicorn.omp.json"
     },
     {
@@ -1350,7 +1250,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/velvet.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/velvet.omp.json"
     },
     {
@@ -1361,7 +1260,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/wholespace.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/wholespace.omp.json"
     },
     {
@@ -1372,7 +1270,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/wopian.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/wopian.omp.json"
     },
     {
@@ -1384,7 +1281,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/xtoys.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/xtoys.omp.json"
     },
     {
@@ -1396,7 +1292,6 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/ys.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/ys.omp.json"
     },
     {
@@ -1407,7 +1302,7 @@
         "powerline",
         "git"
       ],
-      "imageUrl": "https://ohmyposh.dev/img/themes/zash.png",
+      "imageUrl": "configs/official/previews/zash.png",
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/zash.omp.json"
     }
   ]

@@ -6,6 +6,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Fixed
 
+- Restored all 20 legacy official-theme preview images from Oh My Posh's repository history and bundled them locally so the Theme Library no longer depends on retired external image URLs.
 - Accepted Studio's legacy `#nonce=` fragment alias for secure configuration handoffs while rejecting duplicate or ambiguous nonce parameters.
 
 ### Changed
