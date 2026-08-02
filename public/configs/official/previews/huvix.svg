@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="166.88" viewBox="0 0 730.24 166.88" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 162.88 A 4,4 0 0 1 726.24,166.88 H 4 A 4,4 0 0 1 0,162.88 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="165.88" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<text xml:space="preserve" x="16" y="62.96" textLength="69.82" lengthAdjust="spacingAndGlyphs" fill="#ffe082">@alice ➜</text>
+<text xml:space="preserve" x="85.82" y="62.96" textLength="157.1" lengthAdjust="spacingAndGlyphs" fill="#56b6c2"> ~/dev/oh-my-posh </text>
+<text xml:space="preserve" x="242.93" y="62.96" textLength="87.28" lengthAdjust="spacingAndGlyphs" fill="#7fd5ea">(1.23.4) </text>
+<text xml:space="preserve" x="330.21" y="62.96" textLength="148.38" lengthAdjust="spacingAndGlyphs" fill="#9e7eff">( .venv 3.12.4) </text>
+<text xml:space="preserve" x="478.58" y="62.96" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#e8cc97">git(</text>
+<text xml:space="preserve" x="513.5" y="62.96" textLength="43.64" lengthAdjust="spacingAndGlyphs" fill="#56b6c2">main</text>
+<text xml:space="preserve" x="557.14" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#e8cc97">) </text>
+<text xml:space="preserve" x="574.59" y="62.96" textLength="43.64" lengthAdjust="spacingAndGlyphs" fill="#ffab91">734ms</text>
+<text xml:space="preserve" x="16" y="90.01" textLength="43.64" lengthAdjust="spacingAndGlyphs" fill="#64b5f6">[70]</text>
+<text xml:space="preserve" x="59.64" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#64b5f6"> </text>
+<text xml:space="preserve" x="68.37" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="144.12" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

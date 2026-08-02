@@ -31,6 +31,7 @@
     "validate-studio": "node scripts/validate-studio-assets.mjs",
     "generate-font-subset": "node scripts/generate-font-subset.js",
     "generate:official-themes": "node scripts/fetch-official-themes.mjs",
+    "generate:theme-previews": "node scripts/generate-theme-previews.mjs",
     "prepare": "husky",
     "test": "vitest",
     "test:run": "vitest run",

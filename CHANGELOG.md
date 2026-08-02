@@ -6,6 +6,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Fixed
 
+- Replaced retired official-theme images with server-generated SVG previews for official, sample, and community configurations.
 - Accepted Studio's legacy `#nonce=` fragment alias for secure configuration handoffs while rejecting duplicate or ambiguous nonce parameters.
 
 ### Changed

@@ -9,6 +9,7 @@ import { loadAllConfigs, loadConfig } from '../../utils/configLoader';
 import type { OfficialTheme } from '../../utils/officialThemeLoader';
 import { loadOfficialThemeManifest, fetchOfficialTheme } from '../../utils/officialThemeLoader';
 import { OfficialThemeCard } from './OfficialThemeCard';
+import { ConfigPreview } from './ConfigPreview';
 import { SavedConfigCard } from './SavedConfigCard';
 import type { SavedConfigsBundle } from '../../types/ohmyposh';
 
@@ -464,16 +465,21 @@ export function SamplePicker() {
                     <button
                       key={config.id}
                       onClick={() => handleLoadConfig(activeTab, config.file)}
-                      className="group relative flex flex-col items-start p-5 bg-[#0f0f23] hover:bg-[#16172e] border border-gray-700 hover:border-purple-500 rounded-lg transition-all text-left"
+                      className="group relative flex flex-col items-start bg-[#0f0f23] hover:bg-[#16172e] border border-gray-700 hover:border-purple-500 rounded-lg transition-all text-left overflow-hidden"
                     >
-                      {/* Icon Badge */}
-                      <div className="absolute -top-3 -right-3 transform group-hover:scale-110 transition-transform bg-purple-600 rounded-full p-2">
-                        <NerdIcon icon={config.icon} size={20} className="text-white" />
+                      <div className="relative aspect-video w-full bg-gray-900 overflow-hidden">
+                        <ConfigPreview
+                          category={activeTab}
+                          filename={config.file}
+                          name={config.name}
+                        />
+                        <div className="absolute top-2 right-2 bg-purple-600 rounded-full p-2">
+                          <NerdIcon icon={config.icon} size={16} className="text-white" />
+                        </div>
                       </div>
 
-                      {/* Content */}
-                      <div className="w-full">
-                        <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
+                      <div className="w-full p-4">
+                        <h3 className="text-base font-semibold text-white mb-2 flex items-center gap-2">
                           {config.name}
                         </h3>
                         <p className="text-sm text-gray-400 leading-relaxed mb-3">

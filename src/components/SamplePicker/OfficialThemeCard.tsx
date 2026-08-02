@@ -12,6 +12,8 @@ interface OfficialThemeCardProps {
 export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeCardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const imageUrl = getThemePreviewUrl(theme.file);
+  const hasPreviewImage = Boolean(imageUrl) && !imageError;
 
   return (
     <button
@@ -21,7 +23,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
     >
       {/* Preview Image Container - 16:9 aspect ratio */}
       <div className="relative aspect-video w-full bg-gray-900 overflow-hidden">
-        {!imageError ? (
+        {hasPreviewImage ? (
           <>
             {/* Loading skeleton */}
             {!imageLoaded && (
@@ -30,12 +32,12 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
               </div>
             )}
             <img
-              src={getThemePreviewUrl(theme)}
+              src={imageUrl}
               alt={`${theme.name} theme preview`}
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover object-left transition-opacity ${
+              className={`w-full h-full object-contain object-left transition-opacity ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />

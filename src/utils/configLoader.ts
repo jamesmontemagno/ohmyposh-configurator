@@ -40,6 +40,11 @@ const manifestPromises = new Map<string, Promise<ConfigManifest>>();
 const configFileCache = new Map<string, ConfigFile>();
 const configFilePromises = new Map<string, Promise<ConfigFile | null>>();
 
+export function getConfigPreviewUrl(category: 'samples' | 'community', filename: string): string {
+  const previewName = filename.replace(/\.json$/, '');
+  return `${BASE_PATH}configs/${category}/previews/${previewName}.svg`;
+}
+
 /**
  * Fetch configs manifest from a category (samples or community)
  */

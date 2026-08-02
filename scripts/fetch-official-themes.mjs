@@ -122,16 +122,6 @@ function isMinimalTheme(name) {
 }
 
 /**
- * Get the image name for a theme (may differ from config name)
- * The ohmyposh.dev site uses specific naming conventions
- */
-function getImageName(name) {
-  // Most images match the theme name, but some have variations
-  // The site uses the name without the .minimal suffix for images
-  return name;
-}
-
-/**
  * Fetch themes from GitHub API
  */
 async function fetchThemesFromGitHub() {
@@ -169,7 +159,6 @@ function generateManifest(themes) {
       file: theme.file,
       isMinimal: isMinimalTheme(theme.name),
       tags: inferTags(theme.name, theme.file),
-      imageUrl: `https://ohmyposh.dev/img/themes/${getImageName(theme.name)}.png`,
       githubUrl: `https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/${theme.file}`
     })).sort((a, b) => a.name.localeCompare(b.name))
   };
