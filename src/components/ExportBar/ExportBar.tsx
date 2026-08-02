@@ -7,6 +7,7 @@ import { exportConfig, downloadConfig, copyToClipboard } from '../../utils/confi
 import { ImportDialog } from '../ImportDialog';
 import { ShareDialog } from '../ShareDialog';
 import { SaveConfigDialog } from '../SaveConfigDialog';
+import { ConfigCodePreview } from './ConfigCodePreview';
 import type { ExportFormat } from '../../types/ohmyposh';
 
 const formatOptions: { value: ExportFormat; label: string; iconName: string }[] = [
@@ -200,9 +201,7 @@ export function ExportBar() {
 
       {showCode && (
         <div className="border-t border-[#0f3460] max-h-64 overflow-auto">
-          <pre className="p-4 text-xs font-mono text-gray-300 whitespace-pre-wrap">
-            {configContent}
-          </pre>
+          <ConfigCodePreview content={configContent} format={exportFormat} />
         </div>
       )}
 

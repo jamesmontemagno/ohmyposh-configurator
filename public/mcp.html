@@ -5,9 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCP Server - Oh My Posh Configurator</title>
     <meta name="description" content="Model Context Protocol server for AI-powered Oh My Posh configuration. Use with Claude Desktop, GitHub Copilot, VS Code, and more.">
+    <meta name="theme-color" content="#ffffff">
+    <script>
+        let theme = 'light';
+        try {
+            theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+        } catch {
+            // Use the light default when browser storage is unavailable.
+        }
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute(
+            'content',
+            theme === 'dark' ? '#1b1b1d' : '#ffffff'
+        );
+    </script>
     
     <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     
     <style>
         * {
@@ -152,7 +167,7 @@
         .tool-card:hover {
             border-color: #e94560;
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(233, 69, 96, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
         }
 
         .tool-card h4 {
@@ -348,18 +363,228 @@
             background: rgba(233, 69, 96, 0.1);
             padding: 25px;
             border-radius: 8px;
-            border-left: 4px solid #e94560;
+            border: 1px solid #0f3460;
             margin: 20px 0;
         }
 
         .highlight strong {
             color: #e94560;
         }
+
+        :root {
+            --mcp-primary: #1f6fd0;
+            --mcp-primary-hover: #1c64bb;
+            --mcp-primary-solid: #1f6fd0;
+            --mcp-background: #ffffff;
+            --mcp-surface: #f5f6f7;
+            --mcp-elevated: #ffffff;
+            --mcp-control: #ebf2fc;
+            --mcp-border: #ebedf0;
+            --mcp-border-strong: #dadde1;
+            --mcp-text: #1c1e21;
+            --mcp-muted: #606770;
+            --mcp-success: #15803d;
+            --mcp-success-solid: #15803d;
+            color-scheme: light;
+        }
+
+        html[data-theme="dark"] {
+            --mcp-primary: #5c9fee;
+            --mcp-primary-hover: #164e92;
+            --mcp-primary-solid: #1f6ed4;
+            --mcp-background: #1b1b1d;
+            --mcp-surface: #242526;
+            --mcp-elevated: #2e2f30;
+            --mcp-control: #343b48;
+            --mcp-border: #444950;
+            --mcp-border-strong: #606770;
+            --mcp-text: #f5f6f7;
+            --mcp-muted: #bec3c9;
+            --mcp-success: #4ade80;
+            --mcp-success-solid: #166534;
+            color-scheme: dark;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--mcp-background);
+            color: var(--mcp-text);
+        }
+
+        header {
+            position: relative;
+            border-bottom: 1px solid var(--mcp-border);
+        }
+
+        header h1,
+        .card h2,
+        .highlight strong {
+            color: var(--mcp-primary);
+        }
+
+        header .subtitle,
+        .card p,
+        .card li,
+        .tool-card p,
+        .feature-item span,
+        footer {
+            color: var(--mcp-muted);
+        }
+
+        .back-link,
+        .card h3,
+        .tool-card h4,
+        .setup-section h2,
+        .setup-step h3,
+        footer a {
+            color: var(--mcp-primary);
+        }
+
+        .back-link:hover,
+        footer a:hover {
+            color: var(--mcp-primary-hover);
+        }
+
+        .card,
+        .setup-section {
+            background: var(--mcp-elevated);
+            border-color: var(--mcp-border);
+            box-shadow: 0 8px 16px rgb(0 0 0 / 8%);
+        }
+
+        .tool-card,
+        .feature-item,
+        code,
+        pre {
+            background: var(--mcp-surface);
+            border-color: var(--mcp-border);
+        }
+
+        .card li {
+            border-color: var(--mcp-border);
+        }
+
+        .card li::before {
+            color: var(--mcp-primary);
+        }
+
+        .tool-card:hover {
+            border-color: var(--mcp-primary);
+            box-shadow: 0 6px 16px rgb(0 0 0 / 12%);
+        }
+
+        .feature-item strong,
+        code,
+        pre code {
+            color: var(--mcp-success);
+        }
+
+        .setup-section {
+            border-width: 1px;
+        }
+
+        .setup-step::before {
+            background: var(--mcp-primary-solid);
+        }
+
+        .cta {
+            background: var(--mcp-primary-solid);
+        }
+
+        .btn {
+            background: var(--mcp-elevated);
+            color: var(--mcp-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        footer {
+            border-color: var(--mcp-border);
+        }
+
+        .badge {
+            background: var(--mcp-success-solid);
+            color: #ffffff;
+        }
+
+        .badge-count {
+            background: var(--mcp-primary-solid);
+        }
+
+        .highlight {
+            background: color-mix(in srgb, var(--mcp-primary) 10%, var(--mcp-elevated));
+            border: 1px solid color-mix(in srgb, var(--mcp-primary) 35%, var(--mcp-border));
+        }
+
+        [style*="color: #61AFEF"] {
+            color: var(--mcp-primary) !important;
+        }
+
+        [style*="color: #98C379"] {
+            color: var(--mcp-success) !important;
+        }
+
+        [style*="color: #d8d8e8"],
+        [style*="color: #b8b8c8"] {
+            color: var(--mcp-muted) !important;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid var(--mcp-border);
+            border-radius: 0.4rem;
+            background: var(--mcp-control);
+            color: var(--mcp-text);
+            cursor: pointer;
+            font-size: 1.15rem;
+            transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--mcp-primary);
+            color: var(--mcp-primary);
+        }
+
+        .theme-toggle:focus-visible {
+            outline: 2px solid var(--mcp-primary);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding-top: 4.5rem;
+            }
+
+            .theme-toggle {
+                top: 1.25rem;
+                right: 50%;
+                transform: translateX(50%);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Use dark theme" title="Use dark theme">
+                <span aria-hidden="true"></span>
+            </button>
             <a href="/" class="back-link">← Back to Configurator</a>
             <h1>🤖 MCP Server</h1>
             <p class="subtitle">AI-Powered Oh My Posh Configuration</p>
@@ -593,5 +818,38 @@ npm run build:mcp</code></pre>
             </p>
         </footer>
     </div>
+    <script>
+        (() => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleIcon = themeToggle?.querySelector('span');
+            const themeColor = document.querySelector('meta[name="theme-color"]');
+
+            if (!themeToggle || !themeToggleIcon || !themeColor) {
+                return;
+            }
+
+            const updateThemeToggle = () => {
+                const isDark = document.documentElement.dataset.theme === 'dark';
+                const nextTheme = isDark ? 'light' : 'dark';
+                themeToggleIcon.textContent = isDark ? '☀' : '☾';
+                themeToggle.setAttribute('aria-label', `Use ${nextTheme} theme`);
+                themeToggle.setAttribute('title', `Use ${nextTheme} theme`);
+                themeColor.setAttribute('content', isDark ? '#1b1b1d' : '#ffffff');
+            };
+
+            themeToggle.addEventListener('click', () => {
+                const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = nextTheme;
+                try {
+                    window.localStorage.setItem('theme', nextTheme);
+                } catch {
+                    // Keep the selected theme for the current page when storage is unavailable.
+                }
+                updateThemeToggle();
+            });
+
+            updateThemeToggle();
+        })();
+    </script>
 </body>
 </html>

@@ -13,6 +13,11 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Kept reset, settings, and theme actions icon-only below the desktop workspace breakpoint to preserve room for compact editing controls.
 - Reordered compact header actions so the theme control is separated from Settings by the Theme Library button.
 
+### Added
+
+- Added theme-aware syntax highlighting for JSON, YAML, and TOML in the exported configuration viewer.
+- Added a persistent light/dark mode toggle to the standalone MCP Server page.
+
 ### Changed: Site Theme Alignment
 
 - Aligned the configurator with the official Oh My Posh light and dark theme palette, including a persistent header toggle and matching Inter typography.
@@ -24,6 +29,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Matched Studio Beta setup, loading, and error states to the configurator panel background while preserving the selected terminal background for rendered prompts.
 - Updated Theme Library modal surfaces, tabs, cards, and controls to follow the active light or dark theme.
 - Corrected Theme Library badge icon and label contrast in light and dark modes.
+- Rethemed the standalone MCP Server page to match the official Oh My Posh light and dark palettes.
 
 ### Changed: Workspace Panel Controls
 
