@@ -2,6 +2,12 @@
 
 All notable changes to the Oh My Posh Visual Configurator project will be documented in this file.
 
+## [2026-08-02]
+
+### Fixed
+
+- Accepted Studio's legacy `#nonce=` fragment alias for secure configuration handoffs while rejecting duplicate or ambiguous nonce parameters.
+
 ## [2026-08-01]
 
 ### Added

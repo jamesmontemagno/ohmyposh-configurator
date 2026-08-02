@@ -1,6 +1,7 @@
 export const STUDIO_ORIGIN = 'https://ohmyposh.dev';
 export const STUDIO_CONFIG_PROTOCOL_VERSION = 1;
 export const STUDIO_CONFIG_NONCE_FRAGMENT_KEY = 'omp-configurator-nonce';
+const legacyStudioConfigNonceFragmentKey = 'nonce';
 
 export type StudioConfigFormat = 'json' | 'yaml' | 'toml';
 
@@ -40,12 +41,18 @@ export function getStudioConfigHandoffNonce(hash: string): string | null {
   }
 
   const parameters = new URLSearchParams(hash.slice(1));
-  const nonces = parameters.getAll(STUDIO_CONFIG_NONCE_FRAGMENT_KEY);
-  if (nonces.length !== 1 || !noncePattern.test(nonces[0])) {
+  const canonicalNonces = parameters.getAll(STUDIO_CONFIG_NONCE_FRAGMENT_KEY);
+  const legacyNonces = parameters.getAll(legacyStudioConfigNonceFragmentKey);
+  if (
+    canonicalNonces.length > 1 ||
+    legacyNonces.length > 1 ||
+    (canonicalNonces.length === 1 && legacyNonces.length === 1)
+  ) {
     return null;
   }
 
-  return nonces[0];
+  const nonce = canonicalNonces[0] ?? legacyNonces[0];
+  return nonce !== undefined && noncePattern.test(nonce) ? nonce : null;
 }
 
 export function createStudioConfigReadyMessage(nonce: string): StudioConfigReadyMessage {
