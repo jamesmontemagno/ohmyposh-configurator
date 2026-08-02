@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="193.94" viewBox="0 0 730.24 193.94" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 189.94 A 4,4 0 0 1 726.24,193.94 H 4 A 4,4 0 0 1 0,189.94 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="192.94" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<text xml:space="preserve" x="16" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<rect x="24.73" y="45.39" width="157.1" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="24.73" y="62.96" textLength="157.1" lengthAdjust="spacingAndGlyphs" fill="#3ec669"> ~/dev/oh-my-posh</text>
+<text xml:space="preserve" x="181.83" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="190.56" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="208.02" y="45.39" width="226.93" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="208.02" y="62.96" textLength="226.93" lengthAdjust="spacingAndGlyphs" fill="#ff9248"> main ↑1  +2 ~1 |  +1 </text>
+<text xml:space="preserve" x="434.94" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="443.67" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="461.13" y="45.39" width="122.19" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="461.13" y="62.96" textLength="122.19" lengthAdjust="spacingAndGlyphs" fill="#e4f34a"> .venv 3.12.4</text>
+<text xml:space="preserve" x="583.32" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="592.05" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="609.5" y="45.39" width="61.1" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="609.5" y="62.96" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#7fd5ea">1.23.4</text>
+<text xml:space="preserve" x="670.6" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="679.33" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="696.78" y="45.39" width="17.46" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="696.78" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#42e66c">2</text>
+<rect x="16" y="72.44" width="52.37" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="16" y="90.01" textLength="52.37" lengthAdjust="spacingAndGlyphs" fill="#42e66c">4.12.0</text>
+<text xml:space="preserve" x="68.37" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="77.1" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="94.55" y="72.44" width="52.37" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="94.55" y="90.01" textLength="52.37" lengthAdjust="spacingAndGlyphs" fill="#e64747">3.3.6</text>
+<text xml:space="preserve" x="146.92" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="155.65" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="173.1" y="72.44" width="61.1" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="173.1" y="90.01" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#e64747">21.0.5</text>
+<text xml:space="preserve" x="234.2" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="242.93" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="260.38" y="72.44" width="69.82" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="260.38" y="90.01" textLength="69.82" lengthAdjust="spacingAndGlyphs" fill="#9b6bdf">1.11.2 </text>
+<text xml:space="preserve" x="330.21" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="338.94" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#4063d8"> </text>
+<rect x="356.39" y="72.44" width="69.82" height="22.78" fill="#4063d8"/>
+<text xml:space="preserve" x="356.39" y="90.01" textLength="69.82" lengthAdjust="spacingAndGlyphs" fill="#ffffff"> 8.4.1 </text>
+<text xml:space="preserve" x="426.22" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#4063d8"></text>
+<text xml:space="preserve" x="434.94" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<rect x="452.4" y="72.44" width="17.46" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="452.4" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#40c4ff">70</text>
+<text xml:space="preserve" x="469.86" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="16" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<rect x="24.73" y="99.5" width="43.64" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="24.73" y="117.07" textLength="43.64" lengthAdjust="spacingAndGlyphs" fill="#aea4bf">734ms</text>
+<text xml:space="preserve" x="68.37" y="117.07" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<text xml:space="preserve" x="85.82" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<rect x="94.55" y="99.5" width="61.1" height="22.78" fill="#29315a"/>
+<text xml:space="preserve" x="94.55" y="117.07" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#e64747">alice ❯</text>
+<text xml:space="preserve" x="155.65" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"></text>
+<text xml:space="preserve" x="164.38" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#29315a"> </text>
+<text xml:space="preserve" x="173.1" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="171.18" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="166.88" viewBox="0 0 730.24 166.88" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 162.88 A 4,4 0 0 1 726.24,166.88 H 4 A 4,4 0 0 1 0,162.88 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="165.88" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<text xml:space="preserve" x="16" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#c386f1"></text>
+<rect x="24.73" y="45.39" width="61.1" height="22.78" fill="#c386f1"/>
+<text xml:space="preserve" x="24.73" y="62.96" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#ffffff"> alice </text>
+<text xml:space="preserve" x="85.82" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#c386f1"></text>
+<rect x="94.55" y="45.39" width="8.73" height="22.78" fill="#ff479c"/>
+<text xml:space="preserve" x="94.55" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#1e1e1e"></text>
+<rect x="103.28" y="45.39" width="183.29" height="22.78" fill="#ff479c"/>
+<text xml:space="preserve" x="103.28" y="62.96" textLength="183.29" lengthAdjust="spacingAndGlyphs" fill="#ffffff">   ~/dev/oh-my-posh </text>
+<rect x="286.57" y="45.39" width="8.73" height="22.78" fill="#ff9248"/>
+<text xml:space="preserve" x="286.57" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ff479c"></text>
+<rect x="295.3" y="45.39" width="226.93" height="22.78" fill="#ff9248"/>
+<text xml:space="preserve" x="295.3" y="62.96" textLength="226.93" lengthAdjust="spacingAndGlyphs" fill="#193549"> main ↑1  +2 ~1 |  +1 </text>
+<text xml:space="preserve" x="522.22" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ff9248"></text>
+<rect x="530.95" y="45.39" width="8.73" height="22.78" fill="#83769c"/>
+<text xml:space="preserve" x="530.95" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#1e1e1e"></text>
+<rect x="539.68" y="45.39" width="69.82" height="22.78" fill="#83769c"/>
+<text xml:space="preserve" x="539.68" y="62.96" textLength="69.82" lengthAdjust="spacingAndGlyphs" fill="#ffffff"> 734ms⠀</text>
+<rect x="609.5" y="45.39" width="104.74" height="22.78" fill="#28a745"/>
+<text xml:space="preserve" x="609.5" y="62.96" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff"> Morning Rid</text>
+<rect x="16" y="72.44" width="61.1" height="22.78" fill="#28a745"/>
+<text xml:space="preserve" x="16" y="90.01" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#ffffff">e 2h  </text>
+<rect x="77.1" y="72.44" width="8.73" height="22.78" fill="#00897b"/>
+<text xml:space="preserve" x="77.1" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#28a745"></text>
+<rect x="85.82" y="72.44" width="26.18" height="22.78" fill="#00897b"/>
+<text xml:space="preserve" x="85.82" y="90.01" textLength="26.18" lengthAdjust="spacingAndGlyphs" fill="#ffffff">  </text>
+<text xml:space="preserve" x="112.01" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#00897b"></text>
+<text xml:space="preserve" x="120.74" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#00897b"> </text>
+<text xml:space="preserve" x="129.46" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="144.12" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

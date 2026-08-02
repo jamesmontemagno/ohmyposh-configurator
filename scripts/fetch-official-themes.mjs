@@ -16,7 +16,6 @@ const __dirname = path.dirname(__filename);
 
 const GITHUB_API_URL = 'https://api.github.com/repos/JanDeDobbeleer/oh-my-posh/contents/themes';
 const OUTPUT_PATH = path.join(__dirname, '..', 'public', 'configs', 'official', 'manifest.json');
-const PREVIEWS_PATH = path.join(__dirname, '..', 'public', 'configs', 'official', 'previews');
 
 /**
  * Infer tags from theme filename and common patterns
@@ -122,11 +121,6 @@ function isMinimalTheme(name) {
   return lowerName.includes('minimal') || lowerName.includes('.minimal');
 }
 
-function getLocalPreviewUrl(name) {
-  const previewPath = path.join(PREVIEWS_PATH, `${name}.png`);
-  return fs.existsSync(previewPath) ? `configs/official/previews/${name}.png` : undefined;
-}
-
 /**
  * Fetch themes from GitHub API
  */
@@ -160,18 +154,13 @@ function generateManifest(themes) {
   const manifest = {
     version: '1.0.0',
     lastUpdated: new Date().toISOString(),
-    themes: themes.map(theme => {
-      const imageUrl = getLocalPreviewUrl(theme.name);
-
-      return {
-        name: theme.name,
-        file: theme.file,
-        isMinimal: isMinimalTheme(theme.name),
-        tags: inferTags(theme.name, theme.file),
-        ...(imageUrl ? { imageUrl } : {}),
-        githubUrl: `https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/${theme.file}`
-      };
-    }).sort((a, b) => a.name.localeCompare(b.name))
+    themes: themes.map(theme => ({
+      name: theme.name,
+      file: theme.file,
+      isMinimal: isMinimalTheme(theme.name),
+      tags: inferTags(theme.name, theme.file),
+      githubUrl: `https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/${theme.file}`
+    })).sort((a, b) => a.name.localeCompare(b.name))
   };
 
   return manifest;

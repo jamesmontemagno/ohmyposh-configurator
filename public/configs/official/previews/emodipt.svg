@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="139.83" viewBox="0 0 730.24 139.83" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 135.83 A 4,4 0 0 1 726.24,139.83 H 4 A 4,4 0 0 1 0,135.83 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="138.83" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<text xml:space="preserve" x="16" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#e5c07b">[]</text>
+<text xml:space="preserve" x="33.46" y="62.96" textLength="26.18" lengthAdjust="spacingAndGlyphs" fill="#b5b50d">  </text>
+<text xml:space="preserve" x="59.64" y="62.96" textLength="174.56" lengthAdjust="spacingAndGlyphs" fill="#61afef"> ~/dev/oh-my-posh on</text>
+<text xml:space="preserve" x="234.2" y="62.96" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#f3c267"> main </text>
+<text xml:space="preserve" x="295.3" y="62.96" textLength="26.18" lengthAdjust="spacingAndGlyphs" fill="#c94a16">x0 </text>
+<text xml:space="preserve" x="321.48" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#e06c75">❯ </text>
+<text xml:space="preserve" x="338.94" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="117.07" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

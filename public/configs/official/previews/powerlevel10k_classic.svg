@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="166.88" viewBox="0 0 730.24 166.88" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 162.88 A 4,4 0 0 1 726.24,166.88 H 4 A 4,4 0 0 1 0,162.88 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="165.88" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<rect x="16" y="45.39" width="34.91" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="16" y="62.96" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#26c6da">  </text>
+<rect x="50.91" y="45.39" width="26.18" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="50.91" y="62.96" textLength="26.18" lengthAdjust="spacingAndGlyphs" fill="#26c6da">  </text>
+<rect x="77.1" y="45.39" width="157.1" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="77.1" y="62.96" textLength="157.1" lengthAdjust="spacingAndGlyphs" fill="#26c6da"> ~/dev/oh-my-posh </text>
+<rect x="234.2" y="45.39" width="17.46" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="234.2" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#26c6da"> </text>
+<rect x="251.66" y="45.39" width="52.37" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="251.66" y="62.96" textLength="52.37" lengthAdjust="spacingAndGlyphs" fill="#d4e157">main </text>
+<text xml:space="preserve" x="304.02" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#546e7a"></text>
+<text xml:space="preserve" x="312.75" y="62.96" textLength="148.38" lengthAdjust="spacingAndGlyphs" fill="#546e7a">                 </text>
+<text xml:space="preserve" x="461.13" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#546e7a"></text>
+<rect x="469.86" y="45.39" width="192.02" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="469.86" y="62.96" textLength="192.02" lengthAdjust="spacingAndGlyphs" fill="#d4e157"> alice@contoso-devbox </text>
+<rect x="661.87" y="45.39" width="8.73" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="661.87" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#26c6da"></text>
+<rect x="670.6" y="45.39" width="8.73" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="670.6" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#d4e157"> </text>
+<rect x="679.33" y="45.39" width="34.91" height="22.78" fill="#546e7a"/>
+<text xml:space="preserve" x="679.33" y="62.96" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#d4e157">   </text>
+<text xml:space="preserve" x="16" y="90.01" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#d4e157">❯ </text>
+<text xml:space="preserve" x="33.46" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="144.12" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

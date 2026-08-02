@@ -12,7 +12,7 @@ interface OfficialThemeCardProps {
 export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeCardProps) {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const imageUrl = getThemePreviewUrl(theme);
+  const imageUrl = getThemePreviewUrl(theme.file);
   const hasPreviewImage = Boolean(imageUrl) && !imageError;
 
   return (
@@ -37,7 +37,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
               loading="lazy"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
-              className={`w-full h-full object-cover object-left transition-opacity ${
+              className={`w-full h-full object-contain object-left transition-opacity ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
             />

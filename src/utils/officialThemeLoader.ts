@@ -10,7 +10,6 @@ export interface OfficialTheme {
   file: string;
   isMinimal: boolean;
   tags: string[];
-  imageUrl?: string;
   githubUrl: string;
 }
 
@@ -140,20 +139,9 @@ export async function fetchOfficialTheme(filename: string): Promise<OhMyPoshConf
   return promise;
 }
 
-/**
- * Get the preview image URL for a theme
- * Returns the local preview image path from the manifest when one exists.
- */
-export function getThemePreviewUrl(theme: OfficialTheme): string | undefined {
-  if (!theme.imageUrl) {
-    return undefined;
-  }
-
-  if (/^https?:\/\//.test(theme.imageUrl)) {
-    return theme.imageUrl;
-  }
-
-  return `${BASE_PATH}${theme.imageUrl.replace(/^\//, '')}`;
+export function getThemePreviewUrl(filename: string): string {
+  const previewName = filename.replace(/\.omp\.(json|yaml|yml)$/, '');
+  return `${BASE_PATH}configs/official/previews/${previewName}.svg`;
 }
 
 /**

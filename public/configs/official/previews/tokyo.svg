@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="730.24" height="275.1" viewBox="0 0 730.24 275.1" font-family="Victor Mono" font-size="16px"><style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>
+<path class="omp-window-header" fill="#343434" d="M 4,0 H 726.24 A 4,4 0 0 1 730.24,4 V 26.67 H 0 V 4 A 4,4 0 0 1 4,0 Z"/>
+<path class="omp-window-content" fill="#1e1e1e" d="M 0,26.67 H 730.24 V 271.1 A 4,4 0 0 1 726.24,275.1 H 4 A 4,4 0 0 1 0,271.1 Z"/>
+<rect class="omp-window" x="0.5" y="0.5" width="729.24" height="274.1" rx="4" fill="none" stroke="#404040" stroke-width="1"/>
+<text xml:space="preserve" class="omp-window-control" x="652.91" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">−</text>
+<text xml:space="preserve" class="omp-window-control" x="683.57" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">▢</text>
+<text xml:space="preserve" class="omp-window-control" x="714.24" y="18.47" font-size="14.67px" fill="#cfcfcf" text-anchor="middle">×</text>
+<text xml:space="preserve" x="16" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">┏</text>
+<text xml:space="preserve" x="24.73" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="33.46" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="42.18" y="62.96" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> ]</text>
+<text xml:space="preserve" x="59.64" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="68.37" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="77.1" y="62.96" textLength="87.28" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> alice :: </text>
+<text xml:space="preserve" x="164.38" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="173.1" y="62.96" textLength="139.65" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> contoso-devbox]</text>
+<text xml:space="preserve" x="312.75" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#be9ddf">[</text>
+<text xml:space="preserve" x="321.48" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="330.21" y="62.96" textLength="122.19" lengthAdjust="spacingAndGlyphs" fill="#be9ddf"> RAM: 20/32GB]</text>
+<text xml:space="preserve" x="452.4" y="62.96" textLength="43.64" lengthAdjust="spacingAndGlyphs" fill="#40c4ff">[70]</text>
+<text xml:space="preserve" x="496.04" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#be9ddf">[</text>
+<text xml:space="preserve" x="504.77" y="62.96" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="513.5" y="62.96" textLength="69.82" lengthAdjust="spacingAndGlyphs" fill="#be9ddf"> 734mss]</text>
+<text xml:space="preserve" x="16" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">┣</text>
+<text xml:space="preserve" x="24.73" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="33.46" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="42.18" y="90.01" textLength="130.92" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> Subscription: </text>
+<text xml:space="preserve" x="173.1" y="90.01" textLength="157.1" lengthAdjust="spacingAndGlyphs" fill="#ffff00">Contoso Production</text>
+<text xml:space="preserve" x="330.21" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">]</text>
+<text xml:space="preserve" x="338.94" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="347.66" y="90.01" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="356.39" y="90.01" textLength="296.75" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> Azure Developer CLI Environment: </text>
+<text xml:space="preserve" x="653.14" y="90.01" textLength="61.1" lengthAdjust="spacingAndGlyphs" fill="#ffff00">zava-pr</text>
+<text xml:space="preserve" x="16" y="117.07" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#ffff00">od</text>
+<text xml:space="preserve" x="33.46" y="117.07" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> :: </text>
+<text xml:space="preserve" x="68.37" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffff00">1</text>
+<text xml:space="preserve" x="77.1" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">]</text>
+<text xml:space="preserve" x="85.82" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="94.55" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="103.28" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> </text>
+<text xml:space="preserve" x="112.01" y="117.07" textLength="130.92" lengthAdjust="spacingAndGlyphs" fill="#ffff00">anycompany-prod</text>
+<text xml:space="preserve" x="242.93" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">@</text>
+<text xml:space="preserve" x="251.66" y="117.07" textLength="78.55" lengthAdjust="spacingAndGlyphs" fill="#ffff00">us-east-1</text>
+<text xml:space="preserve" x="330.21" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">]</text>
+<text xml:space="preserve" x="338.94" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="347.66" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="356.39" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> </text>
+<text xml:space="preserve" x="365.12" y="117.07" textLength="139.65" lengthAdjust="spacingAndGlyphs" fill="#ffff00">cymbal-bank-prod</text>
+<text xml:space="preserve" x="504.77" y="117.07" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> :: </text>
+<text xml:space="preserve" x="539.68" y="117.07" textLength="148.38" lengthAdjust="spacingAndGlyphs" fill="#ffff00">alice@contoso.com</text>
+<text xml:space="preserve" x="688.06" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">]</text>
+<text xml:space="preserve" x="696.78" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">[</text>
+<text xml:space="preserve" x="705.51" y="117.07" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">󱃾</text>
+<text xml:space="preserve" x="16" y="144.12" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8"> </text>
+<text xml:space="preserve" x="24.73" y="144.12" textLength="96.01" lengthAdjust="spacingAndGlyphs" fill="#ffff00">kind-cymbal</text>
+<text xml:space="preserve" x="120.74" y="144.12" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">]</text>
+<text xml:space="preserve" x="129.46" y="144.12" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">[</text>
+<text xml:space="preserve" x="138.19" y="144.12" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="146.92" y="144.12" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8"> oh-my-posh]</text>
+<text xml:space="preserve" x="16" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">┣</text>
+<text xml:space="preserve" x="24.73" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">[</text>
+<text xml:space="preserve" x="33.46" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="42.18" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da"> </text>
+<text xml:space="preserve" x="50.91" y="171.18" textLength="139.65" lengthAdjust="spacingAndGlyphs" fill="#98bfad">~/dev/oh-my-posh</text>
+<text xml:space="preserve" x="190.56" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">]</text>
+<text xml:space="preserve" x="199.29" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">[</text>
+<text xml:space="preserve" x="208.02" y="171.18" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#ffffff"> </text>
+<text xml:space="preserve" x="225.47" y="171.18" textLength="78.55" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">main ↑1 </text>
+<text xml:space="preserve" x="304.02" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="312.75" y="171.18" textLength="78.55" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8"> +2 ~1 | </text>
+<text xml:space="preserve" x="391.3" y="171.18" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="400.03" y="171.18" textLength="34.91" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8"> +1]</text>
+<text xml:space="preserve" x="16" y="198.23" textLength="17.46" lengthAdjust="spacingAndGlyphs" fill="#7eb8da">└─</text>
+<text xml:space="preserve" x="33.46" y="198.23" textLength="26.18" lengthAdjust="spacingAndGlyphs" fill="#ffff00">[#]</text>
+<text xml:space="preserve" x="59.64" y="198.23" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8">[</text>
+<text xml:space="preserve" x="68.37" y="198.23" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff"></text>
+<text xml:space="preserve" x="77.1" y="198.23" textLength="235.66" lengthAdjust="spacingAndGlyphs" fill="#ffa5d8"> Error, check your command]</text>
+<text xml:space="preserve" x="312.75" y="198.23" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#cccccc">&gt;</text>
+<text xml:space="preserve" x="321.48" y="198.23" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#cccccc"> </text>
+<text xml:space="preserve" x="330.21" y="198.23" textLength="8.73" lengthAdjust="spacingAndGlyphs" fill="#ffffff">_</text>
+<text xml:space="preserve" x="16" y="252.34" textLength="104.74" lengthAdjust="spacingAndGlyphs" fill="#ffffff" font-weight="bold">ohmyposh.dev</text>
+</svg>

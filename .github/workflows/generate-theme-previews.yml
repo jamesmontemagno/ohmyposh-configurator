@@ -1,0 +1,52 @@
+name: Generate Theme Previews
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'public/configs/samples/*.json'
+      - 'public/configs/community/*.json'
+      - 'scripts/fetch-official-themes.mjs'
+      - 'scripts/generate-theme-previews.mjs'
+      - 'public/studio/segment_data.json'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Install Oh My Posh renderer
+        env:
+          OMP_VERSION: v30.0.0
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/${OMP_VERSION}/posh-linux-amd64" \
+            --output "${RUNNER_TEMP}/oh-my-posh"
+          chmod +x "${RUNNER_TEMP}/oh-my-posh"
+
+      - name: Generate previews
+        env:
+          OMP_BIN: ${{ runner.temp }}/oh-my-posh
+        run: node scripts/generate-theme-previews.mjs
+
+      - name: Commit updated previews
+        run: |
+          git add public/configs
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: regenerate theme previews"
+          git push
