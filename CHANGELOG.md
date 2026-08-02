@@ -6,6 +6,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Fixed
 
+- Open a pull request for automated theme-preview updates so protected-branch rules no longer reject regeneration runs.
 - Rethemed save, import, share, and code-export flows plus the Advanced Features summary so light mode uses clear, theme-aligned surfaces instead of legacy dark gray fills.
 - Replaced retired official-theme images with server-generated SVG previews for official, sample, and community configurations.
 - Render generated previews inline so they inherit the bundled Victor Mono Nerd Font and preserve prompt icons.
