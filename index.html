@@ -14,8 +14,17 @@
     <meta name="author" content="James Montemagno" />
     <meta name="theme-color" content="#ffffff" />
     <script>
-      const theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      let theme = 'light';
+      try {
+        theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      } catch {
+        // Use the light theme when persistent storage is unavailable.
+      }
       document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]')?.setAttribute(
+        'content',
+        theme === 'dark' ? '#1b1b1d' : '#ffffff'
+      );
     </script>
     
     <!-- Canonical URL -->

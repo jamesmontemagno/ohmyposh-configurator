@@ -50,7 +50,11 @@ export function Header() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem('theme', theme);
+    try {
+      window.localStorage.setItem('theme', theme);
+    } catch {
+      // Keep the selected theme active when persistent storage is unavailable.
+    }
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
       theme === 'dark' ? '#1b1b1d' : '#ffffff'
