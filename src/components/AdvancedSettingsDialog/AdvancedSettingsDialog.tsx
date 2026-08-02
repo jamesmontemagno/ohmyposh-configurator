@@ -192,7 +192,7 @@ export function AdvancedSettingsDialog({ isOpen, onClose }: AdvancedSettingsDial
         </div>
 
         {/* Master Toggle */}
-        <div className="p-4 border-b border-[#0f3460] bg-[#1a1a2e]/50">
+        <div className="advanced-settings-summary p-4 border-b border-[#0f3460]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-[#e94560]/20 rounded-lg">
