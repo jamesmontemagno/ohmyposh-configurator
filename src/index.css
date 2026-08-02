@@ -120,6 +120,47 @@ body {
   font-family: 'Victor Mono', monospace;
 }
 
+.config-code-preview {
+  color: var(--omp-text-muted);
+}
+
+.config-token-key {
+  color: var(--omp-primary-hover);
+}
+
+.config-token-string {
+  color: var(--omp-warning);
+}
+
+.config-token-number {
+  color: #6d28d9;
+}
+
+.config-token-boolean {
+  color: #a21caf;
+}
+
+.config-token-comment,
+.config-token-punctuation {
+  color: var(--omp-text-subtle);
+}
+
+html[data-theme='dark'] .config-token-key {
+  color: #a3cbf7;
+}
+
+html[data-theme='dark'] .config-token-string {
+  color: #fbbf24;
+}
+
+html[data-theme='dark'] .config-token-number {
+  color: #c4b5fd;
+}
+
+html[data-theme='dark'] .config-token-boolean {
+  color: #f9a8d4;
+}
+
 .theme-library {
   background-color: var(--omp-elevated);
   border-color: var(--omp-border);
