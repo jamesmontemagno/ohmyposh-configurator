@@ -12,6 +12,7 @@ import {
 } from '../studioConfigProtocol';
 
 const nonce = 'Q2hhdEdQVC1jb25maWd1cmF0b3ItaGFuZG9mZi0xMjM0NTY';
+const legacyNonce = '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';
 const initialFeatures = { ...useAdvancedFeaturesStore.getState().features };
 const clearLastLoadedId = useSavedConfigsStore.getState().clearLastLoadedId;
 
@@ -62,18 +63,28 @@ describe('Studio Configurator handoff', () => {
     useSavedConfigsStore.setState({ clearLastLoadedId });
   });
 
-  it('reads one valid base64url nonce from the expected hash parameter', () => {
+  it('reads one valid nonce from the canonical hash parameter', () => {
     expect(
       getStudioConfigHandoffNonce(`#${STUDIO_CONFIG_NONCE_FRAGMENT_KEY}=${nonce}`)
     ).toBe(nonce);
   });
 
-  it('ignores missing, duplicate, and malformed hash nonce values', () => {
+  it('reads one valid nonce from the legacy hash parameter', () => {
+    expect(getStudioConfigHandoffNonce(`#nonce=${legacyNonce}`)).toBe(legacyNonce);
+  });
+
+  it('rejects missing, duplicate, malformed, and ambiguous hash nonce values', () => {
     expect(getStudioConfigHandoffNonce('')).toBeNull();
     expect(getStudioConfigHandoffNonce(`#${STUDIO_CONFIG_NONCE_FRAGMENT_KEY}=short`)).toBeNull();
     expect(
       getStudioConfigHandoffNonce(
         `#${STUDIO_CONFIG_NONCE_FRAGMENT_KEY}=${nonce}&${STUDIO_CONFIG_NONCE_FRAGMENT_KEY}=${nonce}`
+      )
+    ).toBeNull();
+    expect(getStudioConfigHandoffNonce(`#nonce=${legacyNonce}&nonce=${legacyNonce}`)).toBeNull();
+    expect(
+      getStudioConfigHandoffNonce(
+        `#${STUDIO_CONFIG_NONCE_FRAGMENT_KEY}=${nonce}&nonce=${legacyNonce}`
       )
     ).toBeNull();
   });
