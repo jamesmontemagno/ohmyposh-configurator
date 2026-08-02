@@ -13,8 +13,6 @@ const segmentDataPath = join(projectRoot, 'public', 'studio', 'segment_data.json
 const renderer = process.env.OMP_BIN || 'oh-my-posh';
 const categories = ['samples', 'community'];
 const concurrency = 8;
-const SVG_FONT_STYLE =
-  '<style>@font-face{font-family:"Victor Mono";src:url("/studio/VictorMono.ttf") format("truetype");}</style>';
 
 function previewFileName(filename) {
   return basename(filename).replace(/\.omp\.(json|yaml|yml)$/, '').replace(/\.json$/, '') + '.svg';
@@ -60,7 +58,6 @@ async function renderPreview(configPath, outputPath) {
     );
   }
 
-  await writeFile(outputPath, svg.replace(/^(<svg[^>]*>)/, `$1${SVG_FONT_STYLE}`));
 }
 
 async function mapInBatches(entries, callback) {

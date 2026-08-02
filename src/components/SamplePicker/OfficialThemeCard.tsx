@@ -1,7 +1,7 @@
 import { NerdIcon } from '../NerdIcon';
 import type { OfficialTheme } from '../../utils/officialThemeLoader';
 import { getThemePreviewUrl } from '../../utils/officialThemeLoader';
-import { useState } from 'react';
+import { GeneratedPreview } from './GeneratedPreview';
 
 interface OfficialThemeCardProps {
   theme: OfficialTheme;
@@ -10,10 +10,7 @@ interface OfficialThemeCardProps {
 }
 
 export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeCardProps) {
-  const [imageError, setImageError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const imageUrl = getThemePreviewUrl(theme.file);
-  const hasPreviewImage = Boolean(imageUrl) && !imageError;
 
   return (
     <button
@@ -23,30 +20,7 @@ export function OfficialThemeCard({ theme, onSelect, isLoading }: OfficialThemeC
     >
       {/* Preview Image Container - 16:9 aspect ratio */}
       <div className="relative aspect-video w-full bg-gray-900 overflow-hidden">
-        {hasPreviewImage ? (
-          <>
-            {/* Loading skeleton */}
-            {!imageLoaded && (
-              <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
-                <NerdIcon icon="dev-terminal" size={32} className="text-gray-600" />
-              </div>
-            )}
-            <img
-              src={imageUrl}
-              alt={`${theme.name} theme preview`}
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-              className={`w-full h-full object-contain object-left transition-opacity ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
-          </>
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
-            <NerdIcon icon="dev-terminal" size={32} className="text-gray-500" />
-          </div>
-        )}
+        <GeneratedPreview src={imageUrl} label={theme.name} />
         
         {/* Minimal badge */}
         {theme.isMinimal && (
