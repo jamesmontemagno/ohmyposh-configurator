@@ -7,8 +7,17 @@
     <meta name="description" content="Model Context Protocol server for AI-powered Oh My Posh configuration. Use with Claude Desktop, GitHub Copilot, VS Code, and more.">
     <meta name="theme-color" content="#ffffff">
     <script>
-        const theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+        let theme = 'light';
+        try {
+            theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+        } catch {
+            // Use the light default when browser storage is unavailable.
+        }
         document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute(
+            'content',
+            theme === 'dark' ? '#1b1b1d' : '#ffffff'
+        );
     </script>
     
     <!-- Favicons -->
@@ -511,16 +520,16 @@
             border: 1px solid color-mix(in srgb, var(--mcp-primary) 35%, var(--mcp-border));
         }
 
-        [style*="#61AFEF"] {
+        [style*="color: #61AFEF"] {
             color: var(--mcp-primary) !important;
         }
 
-        [style*="#98C379"] {
+        [style*="color: #98C379"] {
             color: var(--mcp-success) !important;
         }
 
-        [style*="#d8d8e8"],
-        [style*="#b8b8c8"] {
+        [style*="color: #d8d8e8"],
+        [style*="color: #b8b8c8"] {
             color: var(--mcp-muted) !important;
         }
 
@@ -810,29 +819,37 @@ npm run build:mcp</code></pre>
         </footer>
     </div>
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeToggleIcon = themeToggle.querySelector('span');
+        (() => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggleIcon = themeToggle?.querySelector('span');
+            const themeColor = document.querySelector('meta[name="theme-color"]');
 
-        const updateThemeToggle = () => {
-            const isDark = document.documentElement.dataset.theme === 'dark';
-            const nextTheme = isDark ? 'light' : 'dark';
-            themeToggleIcon.textContent = isDark ? '☀' : '☾';
-            themeToggle.setAttribute('aria-label', `Use ${nextTheme} theme`);
-            themeToggle.setAttribute('title', `Use ${nextTheme} theme`);
-            document.querySelector('meta[name="theme-color"]').setAttribute(
-                'content',
-                isDark ? '#1b1b1d' : '#ffffff'
-            );
-        };
+            if (!themeToggle || !themeToggleIcon || !themeColor) {
+                return;
+            }
 
-        themeToggle.addEventListener('click', () => {
-            const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-            document.documentElement.dataset.theme = nextTheme;
-            window.localStorage.setItem('theme', nextTheme);
+            const updateThemeToggle = () => {
+                const isDark = document.documentElement.dataset.theme === 'dark';
+                const nextTheme = isDark ? 'light' : 'dark';
+                themeToggleIcon.textContent = isDark ? '☀' : '☾';
+                themeToggle.setAttribute('aria-label', `Use ${nextTheme} theme`);
+                themeToggle.setAttribute('title', `Use ${nextTheme} theme`);
+                themeColor.setAttribute('content', isDark ? '#1b1b1d' : '#ffffff');
+            };
+
+            themeToggle.addEventListener('click', () => {
+                const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = nextTheme;
+                try {
+                    window.localStorage.setItem('theme', nextTheme);
+                } catch {
+                    // Keep the selected theme for the current page when storage is unavailable.
+                }
+                updateThemeToggle();
+            });
+
             updateThemeToggle();
-        });
-
-        updateThemeToggle();
+        })();
     </script>
 </body>
 </html>
