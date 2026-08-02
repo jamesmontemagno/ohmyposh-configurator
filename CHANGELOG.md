@@ -20,6 +20,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Fixed
 
+- Kept theme initialization and switching functional when browser local storage is unavailable, while keeping the browser theme color synchronized.
 - Improved light and dark theme contrast across settings, supporting copy, and legacy accent utilities to meet WCAG AA text contrast requirements.
 - Matched Studio Beta setup, loading, and error states to the configurator panel background while preserving the selected terminal background for rendered prompts.
 - Updated Theme Library modal surfaces, tabs, cards, and controls to follow the active light or dark theme.
