@@ -12,11 +12,13 @@ import { ToastContainer, useToastStore } from './components/Toast';
 import { preloadSegments } from './utils/segmentLoader';
 import { useSavedConfigsStore, setupDraftAutoSave } from './store/savedConfigsStore';
 import { useMediaQuery } from './hooks/useMediaQuery';
+import { useStudioConfigHandoff } from './hooks/useStudioConfigHandoff';
 import { NerdIcon } from './components/NerdIcon';
 
 function App() {
   const showToast = useToastStore((state) => state.showToast);
   const initializedRef = useRef(false);
+  const [restorationComplete, setRestorationComplete] = useState(false);
   const [activeCompactPanel, setActiveCompactPanel] = useState<'segments' | 'canvas' | 'preview' | 'properties'>('canvas');
   const [segmentsCollapsed, setSegmentsCollapsed] = useState(false);
   const [propertiesCollapsed, setPropertiesCollapsed] = useState(false);
@@ -36,14 +38,16 @@ function App() {
       // Load saved configs from storage
       await useSavedConfigsStore.getState().loadFromStorage();
       
-      // Check if there's a last loaded config to restore
+      // Restore saved config state and load any draft before accepting a Studio handoff.
       const restoredConfigName = await useSavedConfigsStore.getState().autoRestoreLastConfig();
+      await useSavedConfigsStore.getState().loadDraft();
       if (restoredConfigName) {
         showToast(`Restored "${restoredConfigName}"`, 'info');
       }
       
       // Setup draft auto-save AFTER config is restored
       unsubscribe = setupDraftAutoSave();
+      setRestorationComplete(true);
     };
     
     initializeApp();
@@ -52,6 +56,8 @@ function App() {
       if (unsubscribe) unsubscribe();
     };
   }, [showToast]);
+
+  useStudioConfigHandoff(restorationComplete, showToast);
 
   return (
     <div className="flex flex-col h-screen bg-[#0f0f23]">
