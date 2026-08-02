@@ -9,6 +9,10 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Kept reset, settings, and theme actions icon-only below the desktop workspace breakpoint to preserve room for compact editing controls.
 - Reordered compact header actions so the theme control is separated from Settings by the Theme Library button.
 
+### Added
+
+- Added theme-aware syntax highlighting for JSON, YAML, and TOML in the exported configuration viewer.
+
 ### Changed: Site Theme Alignment
 
 - Aligned the configurator with the official Oh My Posh light and dark theme palette, including a persistent header toggle and matching Inter typography.
