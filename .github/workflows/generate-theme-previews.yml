@@ -13,6 +13,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   generate:
@@ -40,7 +41,10 @@ jobs:
           OMP_BIN: ${{ runner.temp }}/oh-my-posh
         run: node scripts/generate-theme-previews.mjs
 
-      - name: Commit updated previews
+      - name: Create preview update pull request
+        env:
+          BRANCH: automation/theme-preview-${{ github.run_id }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add public/configs
           if git diff --cached --quiet; then
@@ -48,5 +52,11 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
           git commit -m "chore: regenerate theme previews"
-          git push
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore: regenerate theme previews" \
+            --body "Automated preview regeneration from $GITHUB_SHA."
