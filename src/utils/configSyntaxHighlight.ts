@@ -70,7 +70,6 @@ function findCommentIndex(value: string, requiresWhitespace: boolean): number {
       return index;
     }
   }
-
   return -1;
 }
 
