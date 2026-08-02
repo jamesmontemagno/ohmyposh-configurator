@@ -7,6 +7,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 ### Fixed
 
 - Replaced retired official-theme images with server-generated SVG previews for official, sample, and community configurations.
+- Render generated previews inline so they inherit the bundled Victor Mono Nerd Font and preserve prompt icons.
 - Accepted Studio's legacy `#nonce=` fragment alias for secure configuration handoffs while rejecting duplicate or ambiguous nonce parameters.
 
 ### Changed
