@@ -37,8 +37,10 @@
   --omp-primary-soft: #ebf2fc;
   --omp-background: #ffffff;
   --omp-surface: #f5f6f7;
+  --omp-surface-hover: #e8eaee;
   --omp-elevated: #ffffff;
   --omp-control: #ebf2fc;
+  --omp-control-hover: #dce9f9;
   --omp-border: #ebedf0;
   --omp-border-strong: #dadde1;
   --omp-text: #1c1e21;
@@ -59,8 +61,10 @@ html[data-theme='dark'] {
   --omp-primary-soft: #1f6ed4;
   --omp-background: #1b1b1d;
   --omp-surface: #242526;
+  --omp-surface-hover: #343638;
   --omp-elevated: #2e2f30;
   --omp-control: #343b48;
+  --omp-control-hover: #404957;
   --omp-border: #444950;
   --omp-border-strong: #606770;
   --omp-text: #f5f6f7;
@@ -145,6 +149,27 @@ body {
   color: var(--omp-text-subtle);
 }
 
+.advanced-settings-summary {
+  background-color: color-mix(in srgb, var(--omp-primary) 8%, var(--omp-elevated));
+}
+
+.dialog-subtle-surface {
+  background-color: var(--omp-surface) !important;
+}
+
+.dialog-input.dialog-input,
+.dialog-inline-code {
+  background-color: var(--omp-control) !important;
+}
+
+.dialog-inline-code {
+  color: var(--omp-text);
+}
+
+.export-code-preview {
+  background-color: var(--omp-elevated);
+}
+
 html[data-theme='dark'] .config-token-key {
   color: #a3cbf7;
 }
@@ -170,12 +195,6 @@ html[data-theme='dark'] .config-token-boolean {
 .theme-library [class~="bg-[#16172e]"],
 .theme-library [class~="hover:bg-[#16172e]"]:hover {
   background-color: var(--omp-elevated) !important;
-}
-
-.theme-library [class~="bg-gray-700"],
-.theme-library [class~="hover:bg-gray-700"]:hover,
-.theme-library [class~="hover:bg-gray-600"]:hover {
-  background-color: var(--omp-control) !important;
 }
 
 .theme-library [class~="border-gray-700"],
@@ -210,6 +229,10 @@ html[data-theme='dark'] .config-token-boolean {
 }
 
 [class~="bg-[#1a1a2e]"] {
+  background-color: var(--omp-elevated) !important;
+}
+
+[class~="bg-[#1a1b2e]"] {
   background-color: var(--omp-elevated) !important;
 }
 
@@ -254,6 +277,34 @@ html[data-theme='dark'] .config-token-boolean {
 
 [class~="hover:bg-[#e94560]/80"]:hover {
   background-color: color-mix(in srgb, var(--omp-primary) 80%, var(--omp-background)) !important;
+}
+
+[class~="bg-gray-800"] {
+  background-color: var(--omp-control) !important;
+}
+
+[class~="bg-gray-700"] {
+  background-color: var(--omp-surface) !important;
+}
+
+[class~="hover:bg-gray-700"]:hover {
+  background-color: var(--omp-surface-hover) !important;
+}
+
+[class~="hover:bg-gray-600"]:hover {
+  background-color: var(--omp-control-hover) !important;
+}
+
+[class~="disabled:bg-gray-700"]:disabled {
+  background-color: var(--omp-surface) !important;
+}
+
+[class~="border-gray-700"] {
+  border-color: var(--omp-border) !important;
+}
+
+[class~="border-gray-600"] {
+  border-color: var(--omp-border-strong) !important;
 }
 
 .peer:checked ~ [class~="peer-checked:bg-[#e94560]"] {
