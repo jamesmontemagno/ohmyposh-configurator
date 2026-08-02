@@ -43,6 +43,37 @@ function tokenizeScalar(value: string): ConfigToken[] {
   return tokens;
 }
 
+function findCommentIndex(value: string, requiresWhitespace: boolean): number {
+  let quote: '"' | "'" | undefined;
+
+  for (let index = 0; index < value.length; index++) {
+    const character = value[index];
+
+    if (quote === '"') {
+      if (character === '\\') {
+        index++;
+      } else if (character === quote) {
+        quote = undefined;
+      }
+    } else if (quote === "'") {
+      if (character === "'" && value[index + 1] === "'") {
+        index++;
+      } else if (character === quote) {
+        quote = undefined;
+      }
+    } else if (character === '"' || character === "'") {
+      quote = character;
+    } else if (
+      character === '#' &&
+      (!requiresWhitespace || (index > 0 && /\s/.test(value[index - 1])))
+    ) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
 function tokenizeJson(content: string): ConfigToken[] {
   const tokens: ConfigToken[] = [];
   const pattern = /("(?:\\.|[^"\\])*")(?=\s*:)|("(?:\\.|[^"\\])*")|(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)|\b(true|false|null)\b|([{}[\],:])/g;
@@ -84,7 +115,7 @@ function tokenizeYamlLine(line: string): ConfigToken[] {
   if (!match) return tokenizeScalar(line);
 
   const [, prefix, key, separator, value] = match;
-  const commentIndex = value.indexOf('#');
+  const commentIndex = findCommentIndex(value, true);
   const scalar = commentIndex === -1 ? value : value.slice(0, commentIndex);
   const comment = commentIndex === -1 ? '' : value.slice(commentIndex);
 
@@ -114,7 +145,7 @@ function tokenizeTomlLine(line: string): ConfigToken[] {
   if (!match) return tokenizeScalar(line);
 
   const [, prefix, key, separator, value] = match;
-  const commentIndex = value.indexOf('#');
+  const commentIndex = findCommentIndex(value, false);
   const scalar = commentIndex === -1 ? value : value.slice(0, commentIndex);
   const comment = commentIndex === -1 ? '' : value.slice(commentIndex);
 
