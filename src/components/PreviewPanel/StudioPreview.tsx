@@ -24,13 +24,16 @@ function getStudioColumns(availableWidth: number): number {
 export function StudioPreview({ backgroundColor, textColor, active }: StudioPreviewProps) {
   const config = useConfigStore((state) => state.config);
   const setPreviewRenderer = useConfigStore((state) => state.setPreviewRenderer);
+  const studioRuntimeEnabled = useConfigStore((state) => state.studioRuntimeEnabled);
+  const enableStudioRuntime = useConfigStore((state) => state.enableStudioRuntime);
   const previewRef = useRef<HTMLDivElement>(null);
   const [columns, setColumns] = useState(DEFAULT_STUDIO_COLUMNS);
   const { status, progress, svg, error, initialize } = useStudioRenderer(
     config,
     backgroundColor,
     active,
-    columns
+    columns,
+    active && studioRuntimeEnabled
   );
 
   useEffect(() => {
@@ -63,7 +66,10 @@ export function StudioPreview({ backgroundColor, textColor, active }: StudioPrev
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <button
                 type="button"
-                onClick={initialize}
+                onClick={() => {
+                  enableStudioRuntime();
+                  initialize();
+                }}
                 className="px-3 py-2 rounded-md bg-[#e94560] text-white text-xs font-semibold hover:bg-[#ff5874] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e94560] transition-colors"
               >
                 Initialize Studio
@@ -77,7 +83,7 @@ export function StudioPreview({ backgroundColor, textColor, active }: StudioPrev
               </button>
             </div>
             <p className="mt-3 text-[11px] text-gray-500">
-              You will be asked to initialize Studio again after reloading the page.
+              Studio will load automatically on future visits after you initialize it.
             </p>
           </div>
         </div>

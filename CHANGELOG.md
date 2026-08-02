@@ -8,6 +8,10 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 - Accepted Studio's legacy `#nonce=` fragment alias for secure configuration handoffs while rejecting duplicate or ambiguous nonce parameters.
 
+### Changed
+
+- Remember Studio WebAssembly initialization approval and automatically restore the real preview on later visits, using the browser's cached runtime when available.
+
 ## [2026-08-01]
 
 ### Added

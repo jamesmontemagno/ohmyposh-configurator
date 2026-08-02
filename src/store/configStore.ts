@@ -15,6 +15,7 @@ interface ConfigState {
   previewBackground: 'dark' | 'light';
   previewRenderer: 'studio' | 'legacy';
   previewPaletteName: string | undefined;
+  studioRuntimeEnabled: boolean;
 
   // Actions
   setConfig: (config: OhMyPoshConfig) => void;
@@ -69,6 +70,7 @@ interface ConfigState {
   // Preview
   setPreviewBackground: (bg: 'dark' | 'light') => void;
   setPreviewRenderer: (renderer: 'studio' | 'legacy') => void;
+  enableStudioRuntime: () => void;
 }
 
 const defaultConfig: OhMyPoshConfig = {
@@ -123,6 +125,7 @@ export const useConfigStore = create<ConfigState>()(
       previewBackground: 'dark',
       previewRenderer: 'studio',
       previewPaletteName: undefined,
+      studioRuntimeEnabled: false,
 
       setConfig: (config) => set({ config }),
 
@@ -515,6 +518,7 @@ export const useConfigStore = create<ConfigState>()(
 
       setPreviewBackground: (bg) => set({ previewBackground: bg }),
       setPreviewRenderer: (renderer) => set({ previewRenderer: renderer }),
+      enableStudioRuntime: () => set({ studioRuntimeEnabled: true }),
     }),
     {
       name: 'ohmyposh-config',
@@ -523,6 +527,7 @@ export const useConfigStore = create<ConfigState>()(
         exportFormat: state.exportFormat,
         previewBackground: state.previewBackground,
         previewRenderer: state.previewRenderer,
+        studioRuntimeEnabled: state.studioRuntimeEnabled,
       }),
     }
   )
