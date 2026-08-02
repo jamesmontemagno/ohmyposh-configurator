@@ -4,6 +4,23 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-08-01]
 
+### Changed: Compact Header Controls
+
+- Kept reset, settings, and theme actions icon-only below the desktop workspace breakpoint to preserve room for compact editing controls.
+- Reordered compact header actions so the theme control is separated from Settings by the Theme Library button.
+
+### Changed: Site Theme Alignment
+
+- Aligned the configurator with the official Oh My Posh light and dark theme palette, including a persistent header toggle and matching Inter typography.
+
+### Fixed
+
+- Kept theme initialization and switching functional when browser local storage is unavailable, while keeping the browser theme color synchronized.
+- Improved light and dark theme contrast across settings, supporting copy, and legacy accent utilities to meet WCAG AA text contrast requirements.
+- Matched Studio Beta setup, loading, and error states to the configurator panel background while preserving the selected terminal background for rendered prompts.
+- Updated Theme Library modal surfaces, tabs, cards, and controls to follow the active light or dark theme.
+- Corrected Theme Library badge icon and label contrast in light and dark modes.
+
 ### Changed: Workspace Panel Controls
 
 - Added desktop controls that collapse the Segments and Properties sidebars into compact restore rails, giving the canvas more room without hiding either panel's access point

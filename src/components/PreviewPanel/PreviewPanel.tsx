@@ -57,7 +57,7 @@ export function PreviewPanel({ active = true }: PreviewPanelProps) {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              Studio <span className="ml-0.5 opacity-80">Beta</span>
+              Studio <span className="ml-0.5">Beta</span>
             </button>
             <button
               type="button"
@@ -124,6 +124,7 @@ export function PreviewPanel({ active = true }: PreviewPanelProps) {
       <div className={previewRenderer === 'studio' ? 'contents' : 'hidden'}>
         <StudioPreview
           backgroundColor={bgColor}
+          textColor={textColor}
           active={active && previewRenderer === 'studio'}
         />
       </div>
