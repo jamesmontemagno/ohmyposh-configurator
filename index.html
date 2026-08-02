@@ -12,7 +12,11 @@
     <meta name="description" content="Design and customize your Oh My Posh terminal prompt visually. Drag and drop segments, preview in real-time, and export your configuration instantly. Perfect for PowerShell, Bash, Zsh, and more." />
     <meta name="keywords" content="oh my posh, terminal, prompt, shell, customization, powerline, configuration, powershell, bash, zsh, fish, visual editor, terminal theme" />
     <meta name="author" content="James Montemagno" />
-    <meta name="theme-color" content="#0f3460" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+      const theme = window.localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = theme;
+    </script>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://configurator.ohmyposh.dev/" />
@@ -53,6 +57,7 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Preload subset Nerd Font for performance -->

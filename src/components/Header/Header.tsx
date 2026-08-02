@@ -10,6 +10,9 @@ import { useRef, useState, useEffect } from 'react';
 export function Header() {
   const [showGitHubDropdown, setShowGitHubDropdown] = useState(false);
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+  );
   const githubDropdownRef = useRef<HTMLDivElement>(null);
   const resetConfig = useConfigStore((state) => state.resetConfig);
   const { lastLoadedId, configs, hasUnsavedChanges, clearLastLoadedId } = useSavedConfigsStore();
@@ -45,6 +48,15 @@ export function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('theme', theme);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      theme === 'dark' ? '#1b1b1d' : '#ffffff'
+    );
+  }, [theme]);
+
   return (
     <header className="bg-[#16213e] border-b border-[#0f3460] px-2 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2 flex-wrap relative">
       <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
@@ -77,13 +89,24 @@ export function Header() {
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <button
           onClick={handleResetConfig}
-          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-red-400 hover:bg-red-900/20 rounded transition-colors"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-red-500 hover:text-red-200 hover:bg-red-900/20 rounded transition-colors"
           title="Reset to default configuration"
         >
           <NerdIcon icon="action-refresh" size={16} />
-          <span className="hidden sm:inline">Reset</span>
+          <span className="hidden xl:inline">Reset</span>
         </button>
         
+        <button
+          type="button"
+          onClick={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')}
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 text-sm text-gray-300 hover:text-white hover:bg-[#0f3460] rounded transition-colors"
+          aria-label={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}
+          title={`Use ${theme === 'light' ? 'dark' : 'light'} theme`}
+        >
+          <NerdIcon icon={theme === 'light' ? 'misc-moon' : 'weather-sunny'} size={16} />
+          <span className="hidden xl:inline">{theme === 'light' ? 'Dark' : 'Light'}</span>
+        </button>
+
         <SamplePicker />
         
         <button
@@ -92,7 +115,7 @@ export function Header() {
           title="Settings & Tools"
         >
           <NerdIcon icon="tool-settings" size={16} />
-          <span className="hidden sm:inline">Settings</span>
+          <span className="hidden xl:inline">Settings</span>
         </button>
 
         <div className="relative" ref={githubDropdownRef}>

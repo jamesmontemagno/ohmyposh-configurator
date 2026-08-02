@@ -11,6 +11,7 @@ const HORIZONTAL_PADDING_PX = 32;
 
 interface StudioPreviewProps {
   backgroundColor: string;
+  textColor: string;
   active: boolean;
 }
 
@@ -20,7 +21,7 @@ function getStudioColumns(availableWidth: number): number {
   return Math.min(MAX_STUDIO_COLUMNS, Math.max(MIN_STUDIO_COLUMNS, columns));
 }
 
-export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
+export function StudioPreview({ backgroundColor, textColor, active }: StudioPreviewProps) {
   const config = useConfigStore((state) => state.config);
   const setPreviewRenderer = useConfigStore((state) => state.setPreviewRenderer);
   const previewRef = useRef<HTMLDivElement>(null);
@@ -48,10 +49,7 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
 
   if (status === 'idle') {
     return (
-      <div
-        className="flex-1 min-h-0 overflow-y-auto px-5 py-6 flex items-center justify-center"
-        style={{ backgroundColor }}
-      >
+      <div className="flex-1 min-h-0 overflow-y-auto px-5 py-6 flex items-center justify-center bg-[#16213e]">
         <div className="max-w-lg w-full flex items-start gap-4">
           <div className="mt-0.5 p-2 rounded-md bg-[#0f3460] text-blue-100 flex-shrink-0">
             <NerdIcon icon="misc-rocket" size={18} />
@@ -91,8 +89,7 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
     const percent = Math.round(progress * 100);
     return (
       <div
-        className="flex-1 min-h-0 px-5 py-6 flex items-center justify-center"
-        style={{ backgroundColor }}
+        className="flex-1 min-h-0 px-5 py-6 flex items-center justify-center bg-[#16213e]"
         role="status"
         aria-live="polite"
       >
@@ -129,8 +126,7 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
   if (status === 'error' && !svg) {
     return (
       <div
-        className="flex-1 min-h-0 px-5 py-6 flex items-center justify-center"
-        style={{ backgroundColor }}
+        className="flex-1 min-h-0 px-5 py-6 flex items-center justify-center bg-[#16213e]"
         role="alert"
       >
         <div className="w-full max-w-lg">
@@ -188,7 +184,7 @@ export function StudioPreview({ backgroundColor, active }: StudioPreviewProps) {
           dangerouslySetInnerHTML={{ __html: svg }}
         />
       ) : (
-        <p className="text-xs text-gray-400" role="status">
+        <p className="text-xs" style={{ color: textColor }} role="status">
           Rendering your prompt…
         </p>
       )}
