@@ -19,7 +19,7 @@ export function ConfigCodePreview({ content, format }: ConfigCodePreviewProps) {
   const tokens = tokenizeConfig(content, format);
 
   return (
-    <pre className="config-code-preview p-4 text-xs font-mono whitespace-pre-wrap" aria-label={`${format.toUpperCase()} configuration code`}>
+    <pre className="config-code-preview export-code-preview p-4 text-xs font-mono whitespace-pre-wrap" aria-label={`${format.toUpperCase()} configuration code`}>
       {tokens.map((token, index) => (
         <span
           key={`${token.type}-${index}`}

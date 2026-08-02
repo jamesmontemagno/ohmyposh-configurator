@@ -190,7 +190,7 @@ export function ShareDialog() {
                     value={configName}
                     onChange={(e) => setConfigName(e.target.value)}
                     placeholder="e.g., My Awesome Theme"
-                    className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+                    className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
                   />
                 </div>
 
@@ -203,7 +203,7 @@ export function ShareDialog() {
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Brief description of your configuration..."
                     rows={3}
-                    className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 resize-none"
+                    className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 resize-none"
                   />
                 </div>
 
@@ -216,7 +216,7 @@ export function ShareDialog() {
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     placeholder="e.g., John Doe or @johndoe"
-                    className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+                    className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
                   />
                 </div>
 
@@ -227,7 +227,7 @@ export function ShareDialog() {
                   <button
                     type="button"
                     onClick={() => setIsIconPickerOpen(!isIconPickerOpen)}
-                    className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white hover:border-purple-500 focus:outline-none focus:border-purple-500 transition-colors flex items-center justify-between"
+                    className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white hover:border-purple-500 focus:outline-none focus:border-purple-500 transition-colors flex items-center justify-between"
                   >
                     <div className="flex items-center gap-2">
                       <NerdIcon icon={icon} size={18} />
@@ -236,7 +236,7 @@ export function ShareDialog() {
                     <NerdIcon icon="ui-chevron-down" size={16} className="text-gray-400" />
                   </button>
                   {isIconPickerOpen && (
-                    <div className="absolute z-10 w-full mt-1 bg-[#0f0f23] border border-gray-700 rounded-lg shadow-xl max-h-96 overflow-y-auto">
+                    <div className="dialog-input absolute z-10 w-full mt-1 bg-[#0f0f23] border border-gray-700 rounded-lg shadow-xl max-h-96 overflow-y-auto">
                       <div className="p-3 space-y-4">
                         {Object.entries(iconsByCategory).map(([category, icons]) => (
                           <div key={category}>
@@ -275,7 +275,7 @@ export function ShareDialog() {
                     value={tags}
                     onChange={(e) => setTags(e.target.value)}
                     placeholder="e.g., minimal, developer, colorful"
-                    className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
+                    className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
                   />
                 </div>
               </div>
@@ -296,16 +296,16 @@ export function ShareDialog() {
                       repository
                     </a>
                   </li>
-                  <li>Click "Copy Configuration" and create a new file in <code className="bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/your-theme-name.json</code></li>
+                  <li>Click "Copy Configuration" and create a new file in <code className="dialog-inline-code bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/your-theme-name.json</code></li>
                   <li>Paste the configuration into that file</li>
-                  <li>Click "Copy Manifest Entry" and add it to <code className="bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/manifest.json</code></li>
+                  <li>Click "Copy Manifest Entry" and add it to <code className="dialog-inline-code bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/manifest.json</code></li>
                   <li>Submit a pull request with your changes</li>
                 </ol>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="p-6 border-t border-gray-700 bg-[#0f0f23] space-y-4">
+            <div className="dialog-subtle-surface p-6 border-t border-gray-700 space-y-4">
               <a
                 href="https://github.com/jamesmontemagno/ohmyposh-configurator/blob/main/CONTRIBUTING.md"
                 target="_blank"

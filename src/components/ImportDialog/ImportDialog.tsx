@@ -128,7 +128,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-gray-700 bg-[#0f0f23] px-6">
+        <div className="dialog-subtle-surface flex border-b border-gray-700 px-6">
           <button
             onClick={() => {
               setActiveMethod('file');
@@ -222,7 +222,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
                 <label className="block text-sm font-medium text-gray-300 mb-2">
                   Configuration Format
                 </label>
-                <div className="flex items-center gap-2 bg-[#0f0f23] rounded p-0.5">
+                <div className="dialog-input flex items-center gap-2 rounded p-0.5">
                   <button
                     onClick={() => setFormat('json')}
                     className={`px-3 py-1.5 text-sm rounded transition-colors ${
@@ -268,7 +268,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
                   }}
                   placeholder={`Paste your ${format.toUpperCase()} configuration here...`}
                   rows={12}
-                  className="w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 resize-none font-mono text-sm"
+                  className="dialog-input w-full px-3 py-2 bg-[#0f0f23] border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 resize-none font-mono text-sm"
                 />
               </div>
 
@@ -305,7 +305,7 @@ export function ImportDialog({ isOpen, onClose, initialMethod = 'file' }: Import
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-gray-700 bg-[#0f0f23]">
+        <div className="dialog-subtle-surface p-4 border-t border-gray-700">
           <p className="text-xs text-gray-500 text-center">
             Importing will replace your current configuration
           </p>
