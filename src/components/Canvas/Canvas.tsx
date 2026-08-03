@@ -232,6 +232,7 @@ export function Canvas() {
               isSelected={false}
               onSelect={() => {}}
               onRemove={() => {}}
+              onDuplicate={() => {}}
               isDragging
             />
           )}
