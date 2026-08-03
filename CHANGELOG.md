@@ -4,6 +4,10 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-08-02]
 
+### Added
+
+- Added one-click MCP server installation links for VS Code, VS Code Insiders, and Visual Studio.
+
 ### Fixed
 
 - Open a pull request for automated theme-preview updates so protected-branch rules no longer reject regeneration runs.
