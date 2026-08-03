@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
 import { useSavedConfigsStore } from '../../store/savedConfigsStore';
 
@@ -12,34 +12,30 @@ interface SaveConfigDialogProps {
 const MAX_CONFIGS = 50;
 
 export function SaveConfigDialog({ isOpen, onClose, editingId, onSaveSuccess }: SaveConfigDialogProps) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState<string[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+  if (!isOpen) return null;
 
+  return (
+    <SaveConfigDialogForm
+      key={editingId ?? 'new'}
+      onClose={onClose}
+      editingId={editingId}
+      onSaveSuccess={onSaveSuccess}
+    />
+  );
+}
+
+function SaveConfigDialogForm({ onClose, editingId, onSaveSuccess }: Omit<SaveConfigDialogProps, 'isOpen'>) {
   const { configs, saveConfig, updateConfig } = useSavedConfigsStore();
-  
   const isEditing = editingId !== null && editingId !== undefined;
   const editingConfig = isEditing ? configs.find(c => c.id === editingId) : null;
   const isAtLimit = configs.length >= MAX_CONFIGS && !isEditing;
 
-  // Populate form when editing
-  useEffect(() => {
-    if (isOpen && editingConfig) {
-      setName(editingConfig.name);
-      setDescription(editingConfig.description || '');
-      setTags(editingConfig.tags || []);
-    } else if (isOpen) {
-      // Reset form for new config
-      setName('');
-      setDescription('');
-      setTags([]);
-    }
-    setError(null);
-    setTagInput('');
-  }, [isOpen, editingConfig]);
+  const [name, setName] = useState(() => editingConfig?.name ?? '');
+  const [description, setDescription] = useState(() => editingConfig?.description ?? '');
+  const [tagInput, setTagInput] = useState('');
+  const [tags, setTags] = useState<string[]>(() => editingConfig?.tags ?? []);
+  const [error, setError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleAddTag = () => {
     const trimmed = tagInput.trim().toLowerCase();
@@ -157,8 +153,6 @@ export function SaveConfigDialog({ isOpen, onClose, editingId, onSaveSuccess }: 
       setIsSaving(false);
     }
   };
-
-  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">

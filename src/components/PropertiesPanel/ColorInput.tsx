@@ -52,14 +52,9 @@ export function ColorInput({ label, value, onChange, allowEmpty = false }: Color
   const palette = getActivePalette(config, previewPaletteName);
   const paletteKeys = Object.keys(config.palette || {});
   
-  const [mode, setMode] = useState<ColorMode>(getColorMode(value));
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
-  // Update mode when value changes externally
-  useEffect(() => {
-    setMode(getColorMode(value));
-  }, [value]);
+  const mode = getColorMode(value);
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -76,7 +71,6 @@ export function ColorInput({ label, value, onChange, allowEmpty = false }: Color
   const resolved = resolvePaletteColor(value, palette);
   
   const handleModeChange = (newMode: ColorMode) => {
-    setMode(newMode);
     setShowDropdown(false);
     // Reset to a default value for the new mode
     if (newMode === 'hex') {
@@ -319,4 +313,3 @@ export function ColorInput({ label, value, onChange, allowEmpty = false }: Color
     </div>
   );
 }
-
