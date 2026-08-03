@@ -19,6 +19,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Changed
 
+- Expanded the Theme Library modal to use more of the available desktop width, giving its two-column previews substantially more room.
 - Remember Studio WebAssembly initialization approval and automatically restore the real preview on later visits, using the browser's cached runtime when available.
 
 ## [2026-08-01]
