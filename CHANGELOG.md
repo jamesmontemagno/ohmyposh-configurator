@@ -6,6 +6,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Added
 
+- Streamlined community theme submissions: the Share dialog now opens a prefilled GitHub issue, and maintainer-approved submissions are validated into draft pull requests automatically.
 - Added one-click MCP server installation links for VS Code, VS Code Insiders, and Visual Studio.
 
 ### Fixed
