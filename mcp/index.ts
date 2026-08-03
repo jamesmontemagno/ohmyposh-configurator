@@ -170,6 +170,10 @@ function jsonToolResult(value: unknown, structuredContent: Record<string, unknow
   };
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
 // Cache loaded app HTML
 const appHtmlCache = new Map<string, string>();
 async function loadAppHtml(name: string): Promise<string> {
@@ -464,8 +468,14 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
               type: 'string',
               description: 'The Oh My Posh configuration to render as a JSON string',
             },
+            acknowledgeRisk: {
+              type: 'boolean',
+              const: true,
+              description:
+                'Must be true to confirm that rendering executes the local Oh My Posh CLI against this configuration.',
+            },
           },
-          required: ['config'],
+          required: ['config', 'acknowledgeRisk'],
         },
         outputSchema: LIVE_PREVIEW_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
@@ -620,13 +630,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         try {
           config = JSON.parse(configStr);
         } catch (parseError) {
+          const validation = {
+            valid: false,
+            errors: [
+              {
+                path: '$',
+                message: `Invalid JSON: ${getErrorMessage(parseError)}`,
+                severity: 'error' as const,
+              },
+            ],
+            warnings: [],
+          };
+
           return {
             content: [
               {
                 type: 'text',
-                text: 'Error: Invalid JSON\n' + (parseError as Error).message,
+                text: formatValidationResult(validation),
               },
             ],
+            structuredContent: { validation },
             isError: true,
           };
         }
@@ -846,13 +869,45 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'render_live_preview': {
-        const { config: configStr } = args as { config: string };
+        const { config: configStr, acknowledgeRisk } = args as {
+          config: string;
+          acknowledgeRisk?: unknown;
+        };
+        if (acknowledgeRisk !== true) {
+          const reason = 'Live preview execution requires acknowledgeRisk: true.';
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Error: ${reason}`,
+              },
+            ],
+            structuredContent: {
+              available: false,
+              reason,
+            },
+            isError: true,
+          };
+        }
 
         let config: unknown;
         try {
           config = JSON.parse(configStr);
-        } catch {
-          throw new Error('Invalid JSON configuration');
+        } catch (parseError) {
+          const message = getErrorMessage(parseError);
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Error: Invalid JSON\n${message}`,
+              },
+            ],
+            structuredContent: {
+              available: false,
+              reason: `Invalid JSON configuration: ${message}`,
+            },
+            isError: true,
+          };
         }
 
         const result = await renderWithOhMyPosh(config);

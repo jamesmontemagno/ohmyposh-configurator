@@ -13,6 +13,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Fixed
 
+- Required explicit `acknowledgeRisk: true` confirmation before the MCP live-preview tool executes the local Oh My Posh CLI.
 - Avoided effect-driven state resets in color selection and saved-configuration editing flows.
 - Updated MCP segment documentation links and inferred prompt generation to cover the complete current segment catalog.
 

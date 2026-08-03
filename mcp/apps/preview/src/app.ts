@@ -42,7 +42,7 @@ function parseToolText(result: { content?: Array<{ type: string; text?: string }
 }
 
 async function checkCliStatus() {
-  if (cliStatus === 'checking' || typeof cliStatus === 'object') return;
+  if (cliStatus === 'checking' || (typeof cliStatus === 'object' && cliStatus.available)) return;
 
   cliStatus = 'checking';
   cliStatusError = null;
@@ -59,7 +59,7 @@ async function checkCliStatus() {
 }
 
 async function renderLivePreview() {
-  if (!currentConfig || !('available' in cliStatus) || !cliStatus.available) return;
+  if (!currentConfig || livePreview === 'loading' || !('available' in cliStatus) || !cliStatus.available) return;
 
   const requestedConfigVersion = configVersion;
   const config = currentConfig;
@@ -69,7 +69,7 @@ async function renderLivePreview() {
   try {
     const result = await app.callServerTool({
       name: 'render_live_preview',
-      arguments: { config: JSON.stringify(config) },
+      arguments: { config: JSON.stringify(config), acknowledgeRisk: true },
     });
     const text = parseToolText(result);
     if (!text) throw new Error('Oh My Posh did not return a preview.');
@@ -101,7 +101,7 @@ function render() {
     html += `<button class="preview-btn" disabled>Checking CLI...</button>`;
   } else if (typeof cliStatus === 'object' && cliStatus.available) {
     const version = escapeHtml(cliStatus.version);
-    html += `<button id="btn-live-preview" class="preview-btn" title="Render using local Oh My Posh ${version}">${livePreview === 'loading' ? 'Rendering...' : 'Live preview'}</button>`;
+    html += `<button id="btn-live-preview" class="preview-btn" title="Render using local Oh My Posh ${version}"${livePreview === 'loading' ? ' disabled' : ''}>${livePreview === 'loading' ? 'Rendering...' : 'Live preview'}</button>`;
   }
   html += `<button id="toggle-bg" class="preview-btn" title="Toggle light/dark terminal background">${darkMode ? '☀️' : '🌙'}</button>`;
   html += `<button id="btn-export-json" class="preview-btn" title="Export as JSON">JSON</button>`;
