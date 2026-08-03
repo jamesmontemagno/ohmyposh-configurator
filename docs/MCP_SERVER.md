@@ -251,6 +251,16 @@ Get the official Oh My Posh documentation for a specific segment type from https
 Get official documentation for the git segment
 ```
 
+### get_ohmyposh_cli_status
+
+Check whether the local MCP server can find the `oh-my-posh` executable.
+
+### render_live_preview
+
+Explicitly render a configuration with the locally installed Oh My Posh CLI. The MCP preview app offers this as an opt-in action when the executable is available; otherwise it keeps using the built-in mock renderer.
+
+The CLI runs on the user's machine and evaluates the supplied configuration against that local environment. Use it only for configurations the user intends to render.
+
 ## Available Resources
 
 Resources are read-only data sources that Claude can access:

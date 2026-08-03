@@ -10,6 +10,7 @@ export type BlockAlignment = 'left' | 'right';
 export type SegmentType =
   | 'angular'
   | 'argocd'
+  | 'aspire'
   | 'aurelia'
   | 'aws'
   | 'az'
@@ -46,6 +47,7 @@ export type SegmentType =
   | 'git'
   | 'gitversion'
   | 'go'
+  | 'gradle'
   | 'haskell'
   | 'helm'
   | 'http'
@@ -62,6 +64,7 @@ export type SegmentType =
   | 'mojo'
   | 'mvn'
   | 'nbgv'
+  | 'nba'
   | 'nightscout'
   | 'nim'
   | 'nix-shell'
@@ -82,6 +85,7 @@ export type SegmentType =
   | 'python'
   | 'quasar'
   | 'r'
+  | 'ramadan'
   | 'react'
   | 'root'
   | 'ruby'
@@ -98,10 +102,12 @@ export type SegmentType =
   | 'swift'
   | 'sysinfo'
   | 'talosctl'
+  | 'taskwarrior'
   | 'tauri'
   | 'terraform'
   | 'text'
   | 'time'
+  | 'todoist'
   | 'ui5tooling'
   | 'umbraco'
   | 'uno'
@@ -109,6 +115,7 @@ export type SegmentType =
   | 'upgrade'
   | 'v'
   | 'vala'
+  | 'vimode'
   | 'wakatime'
   | 'winget'
   | 'winreg'
@@ -116,7 +123,8 @@ export type SegmentType =
   | 'xmake'
   | 'yarn'
   | 'ytm'
-  | 'zig';
+  | 'zig'
+  | 'zvm';
 
 export interface Segment {
   id: string; // For drag-and-drop identification

@@ -36,6 +36,45 @@
   color: #fff;
 }
 
+.preview-btn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.live-preview {
+  margin-top: 12px;
+  border: 1px solid rgba(86, 182, 194, 0.45);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.live-preview-title {
+  padding: 6px 10px;
+  background: rgba(86, 182, 194, 0.12);
+  color: #9ce9f5;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.live-preview-output {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  white-space: pre;
+  background: #1a1a2e;
+  font-family: 'NerdSymbols', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+.live-preview-error {
+  margin-top: 12px;
+  padding: 8px 10px;
+  color: #ffb4b4;
+  background: rgba(239, 83, 80, 0.1);
+  border: 1px solid rgba(239, 83, 80, 0.35);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
 @keyframes blink {
   50% { opacity: 0; }
 }
