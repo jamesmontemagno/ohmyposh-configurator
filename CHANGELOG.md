@@ -14,9 +14,11 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 - Avoided effect-driven state resets in color selection and saved-configuration editing flows.
 
-### Changed
+### Changed: Dependencies
 
 - Updated compatible runtime and development dependencies, including the Model Context Protocol SDK and MCP Apps extension.
+
+### Changed
 
 - Open a pull request for automated theme-preview updates so protected-branch rules no longer reject regeneration runs.
 - Rethemed save, import, share, and code-export flows plus the Advanced Features summary so light mode uses clear, theme-aligned surfaces instead of legacy dark gray fills.

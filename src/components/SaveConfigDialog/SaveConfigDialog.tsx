@@ -26,8 +26,8 @@ export function SaveConfigDialog({ isOpen, onClose, editingId, onSaveSuccess }: 
 
 function SaveConfigDialogForm({ onClose, editingId, onSaveSuccess }: Omit<SaveConfigDialogProps, 'isOpen'>) {
   const { configs, saveConfig, updateConfig } = useSavedConfigsStore();
-  const isEditing = editingId !== null && editingId !== undefined;
-  const editingConfig = isEditing ? configs.find(c => c.id === editingId) : null;
+  const editingConfig = configs.find(c => c.id === editingId);
+  const isEditing = editingConfig !== undefined;
   const isAtLimit = configs.length >= MAX_CONFIGS && !isEditing;
 
   const [name, setName] = useState(() => editingConfig?.name ?? '');
