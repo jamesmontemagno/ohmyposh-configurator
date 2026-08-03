@@ -9,14 +9,18 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 - Streamlined community theme submissions: the Share dialog now opens a prefilled GitHub issue, and maintainer-approved submissions are validated into draft pull requests automatically.
 - Added one-click MCP server installation links for VS Code, VS Code Insiders, and Visual Studio.
 - Added right-click segment action menus with add, configure, duplicate, documentation, and remove actions where relevant.
+- Added opt-in Oh My Posh CLI detection and local terminal previews to the MCP app while retaining the built-in preview as a fallback.
 
 ### Fixed
 
+- Required explicit `acknowledgeRisk: true` confirmation before the MCP live-preview tool executes the local Oh My Posh CLI.
 - Avoided effect-driven state resets in color selection and saved-configuration editing flows.
+- Updated MCP segment documentation links and inferred prompt generation to cover the complete current segment catalog.
 
 ### Changed: Dependencies
 
 - Updated compatible runtime and development dependencies, including the Model Context Protocol SDK and MCP Apps extension.
+- Added structured outputs and JSON Schemas to machine-readable MCP tools while retaining text responses for older clients.
 
 ### Changed
 

@@ -45,6 +45,9 @@ import {
   searchSegments,
   getSegmentCategories,
 } from './lib/segmentLoader.js';
+import { getSegmentDocumentationUrl } from './lib/segmentDocs.js';
+import { inferSegmentsFromDescription } from './lib/segmentInference.js';
+import { getOhMyPoshCliStatus, renderWithOhMyPosh } from './lib/ohMyPoshCli.js';
 import {
   loadConfigById,
   listConfigs,
@@ -67,6 +70,109 @@ const RESOURCE_MIME_TYPE = 'text/html;profile=mcp-app';
 const RESOURCE_URI_META_KEY = 'ui/resourceUri';
 const PREVIEW_RESOURCE_URI = 'ui://ohmyposh-configurator/preview.html';
 const SEGMENTS_RESOURCE_URI = 'ui://ohmyposh-configurator/segments.html';
+
+const CONFIG_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    config: { type: 'object' },
+  },
+  required: ['config'],
+};
+
+const VALIDATION_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    validation: {
+      type: 'object',
+      properties: {
+        valid: { type: 'boolean' },
+        errors: { type: 'array' },
+        warnings: { type: 'array' },
+      },
+      required: ['valid', 'errors', 'warnings'],
+    },
+  },
+  required: ['validation'],
+};
+
+const EXPORT_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    format: { type: 'string', enum: ['json', 'yaml', 'toml'] },
+    output: { type: 'string' },
+  },
+  required: ['format', 'output'],
+};
+
+const SEGMENT_LIST_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    segments: { type: 'array', items: { type: 'object' } },
+  },
+  required: ['segments'],
+};
+
+const SEGMENT_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    segment: { type: 'object' },
+  },
+  required: ['segment'],
+};
+
+const CONFIG_LIST_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    configs: { type: 'array', items: { type: 'object' } },
+  },
+  required: ['configs'],
+};
+
+const SAMPLE_CONFIG_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    config: { type: 'object' },
+    metadata: { type: 'object' },
+  },
+  required: ['config', 'metadata'],
+};
+
+const CLI_STATUS_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    available: { type: 'boolean' },
+    version: { type: 'string' },
+    reason: { type: 'string' },
+  },
+  required: ['available'],
+};
+
+const LIVE_PREVIEW_OUTPUT_SCHEMA = {
+  type: 'object',
+  properties: {
+    available: { type: 'boolean' },
+    version: { type: 'string' },
+    reason: { type: 'string' },
+    output: { type: 'string' },
+  },
+  required: ['available'],
+};
+
+function jsonToolResult(value: unknown, structuredContent: Record<string, unknown>) {
+  return {
+    content: [
+      {
+        type: 'text' as const,
+        text: JSON.stringify(value, null, 2),
+      },
+    ],
+    structuredContent,
+  };
+}
+
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
 
 // Cache loaded app HTML
 const appHtmlCache = new Map<string, string>();
@@ -137,6 +243,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['description'],
         },
+        outputSchema: CONFIG_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
@@ -171,6 +278,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['config', 'segmentType'],
         },
+        outputSchema: CONFIG_OUTPUT_SCHEMA,
       },
       {
         name: 'modify_configuration',
@@ -192,6 +300,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['config', 'modifications'],
         },
+        outputSchema: CONFIG_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
@@ -209,6 +318,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['config'],
         },
+        outputSchema: VALIDATION_OUTPUT_SCHEMA,
       },
       {
         name: 'export_configuration',
@@ -230,6 +340,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['config'],
         },
+        outputSchema: EXPORT_OUTPUT_SCHEMA,
       },
       {
         name: 'list_segments',
@@ -250,6 +361,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
           },
         },
+        outputSchema: SEGMENT_LIST_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: SEGMENTS_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: SEGMENTS_RESOURCE_URI },
       },
       {
@@ -267,6 +379,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['segmentType'],
         },
+        outputSchema: SEGMENT_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: SEGMENTS_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: SEGMENTS_RESOURCE_URI },
       },
       {
@@ -277,6 +390,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           type: 'object',
           properties: {},
         },
+        outputSchema: CONFIG_LIST_OUTPUT_SCHEMA,
       },
       {
         name: 'load_sample_config',
@@ -292,6 +406,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ['configId'],
         },
+        outputSchema: SAMPLE_CONFIG_OUTPUT_SCHEMA,
         _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
       },
       {
@@ -331,6 +446,40 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ['segmentType'],
         },
       },
+      {
+        name: 'get_ohmyposh_cli_status',
+        description:
+          'Check whether Oh My Posh is installed locally for this MCP server and return its version when available.',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+        outputSchema: CLI_STATUS_OUTPUT_SCHEMA,
+      },
+      {
+        name: 'render_live_preview',
+        description:
+          'Explicitly render an Oh My Posh configuration with the locally installed Oh My Posh CLI. ' +
+          'This evaluates the configuration against the local environment and returns terminal ANSI output for the MCP preview app.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            config: {
+              type: 'string',
+              description: 'The Oh My Posh configuration to render as a JSON string',
+            },
+            acknowledgeRisk: {
+              type: 'boolean',
+              const: true,
+              description:
+                'Must be true to confirm that rendering executes the local Oh My Posh CLI against this configuration.',
+            },
+          },
+          required: ['config', 'acknowledgeRisk'],
+        },
+        outputSchema: LIVE_PREVIEW_OUTPUT_SCHEMA,
+        _meta: { ui: { resourceUri: PREVIEW_RESOURCE_URI }, [RESOURCE_URI_META_KEY]: PREVIEW_RESOURCE_URI },
+      },
     ],
   };
 });
@@ -356,7 +505,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         let config = createDefaultConfig();
 
         // Determine which segments to add based on description and explicit list
-        const segmentsToAdd = segments || inferSegmentsFromDescription(description);
+        const segmentsToAdd = segments || inferSegmentsFromDescription(
+          description,
+          await loadAllSegments(SEGMENTS_DIR)
+        );
         const segmentStyle = style || 'powerline';
 
         // Separate status from main segments for better multi-block layout
@@ -406,14 +558,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           config = addBlockToConfig(config, statusBlock);
         }
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(config, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(config, { config });
       }
 
       case 'add_segment': {
@@ -456,14 +601,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         // Add segment to block
         const updatedConfig = addSegmentToBlock(config, blockIndex, segment);
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(updatedConfig, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(updatedConfig, { config: updatedConfig });
       }
 
       case 'modify_configuration': {
@@ -482,14 +620,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         // Apply modifications
         const updatedConfig = updateGlobalSettings(config, modifications);
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(updatedConfig, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(updatedConfig, { config: updatedConfig });
       }
 
       case 'validate_configuration': {
@@ -499,13 +630,27 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         try {
           config = JSON.parse(configStr);
         } catch (parseError) {
+          const validation = {
+            valid: false,
+            errors: [
+              {
+                path: '$',
+                message: `Invalid JSON: ${getErrorMessage(parseError)}`,
+                severity: 'error' as const,
+              },
+            ],
+            warnings: [],
+          };
+
           return {
             content: [
               {
                 type: 'text',
-                text: 'Error: Invalid JSON\n' + (parseError as Error).message,
+                text: formatValidationResult(validation),
               },
             ],
+            structuredContent: { validation },
+            isError: true,
           };
         }
 
@@ -517,6 +662,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               text: formatValidationResult(result),
             },
           ],
+          structuredContent: { validation: result },
         };
       }
 
@@ -542,6 +688,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
               text: output,
             },
           ],
+          structuredContent: { format, output },
         };
       }
 
@@ -581,14 +728,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           description: s.description,
         }));
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(summary, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(summary, { segments: summary });
       }
 
       case 'get_segment_info': {
@@ -599,26 +739,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error(`Unknown segment type: ${segmentType}`);
         }
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(metadata, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(metadata, { segment: metadata });
       }
 
       case 'list_sample_configs': {
         const configs = await listConfigs('samples', CONFIGS_DIR);
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(configs, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(configs, { configs });
       }
 
       case 'load_sample_config': {
@@ -629,14 +755,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error(`Sample configuration not found: ${configId}`);
         }
 
-        return {
-          content: [
-            {
-              type: 'text',
-              text: JSON.stringify(result, null, 2),
-            },
-          ],
-        };
+        return jsonToolResult(result, result);
       }
 
       case 'search_ohmyposh_docs': {
@@ -687,7 +806,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error(`Unknown segment type: ${segmentType}. Use list_segments to see available types.`);
         }
 
-        const docsUrl = `https://ohmyposh.dev/docs/segments/${segmentType.toLowerCase()}`;
+        const docsUrl = getSegmentDocumentationUrl(metadata);
         
         // Build comprehensive response with local metadata and link to official docs
         let response = `# ${metadata.name} Segment\n\n`;
@@ -742,6 +861,57 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             },
           ],
         };
+      }
+
+      case 'get_ohmyposh_cli_status': {
+        const status = await getOhMyPoshCliStatus();
+        return jsonToolResult(status, status);
+      }
+
+      case 'render_live_preview': {
+        const { config: configStr, acknowledgeRisk } = args as {
+          config: string;
+          acknowledgeRisk?: unknown;
+        };
+        if (acknowledgeRisk !== true) {
+          const reason = 'Live preview execution requires acknowledgeRisk: true.';
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Error: ${reason}`,
+              },
+            ],
+            structuredContent: {
+              available: false,
+              reason,
+            },
+            isError: true,
+          };
+        }
+
+        let config: unknown;
+        try {
+          config = JSON.parse(configStr);
+        } catch (parseError) {
+          const message = getErrorMessage(parseError);
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Error: Invalid JSON\n${message}`,
+              },
+            ],
+            structuredContent: {
+              available: false,
+              reason: `Invalid JSON configuration: ${message}`,
+            },
+            isError: true,
+          };
+        }
+
+        const result = await renderWithOhMyPosh(config);
+        return jsonToolResult(result, result);
       }
 
       default:
@@ -987,58 +1157,6 @@ server.setRequestHandler(GetPromptRequestSchema, async (request) => {
       throw new Error(`Unknown prompt: ${name}`);
   }
 });
-
-/**
- * Helper: Infer segments from natural language description
- */
-function inferSegmentsFromDescription(description: string): string[] {
-  const lower = description.toLowerCase();
-  const segments: string[] = ['path']; // Always include path
-
-  // Version control
-  if (lower.includes('git')) segments.push('git');
-
-  // Languages
-  if (lower.includes('node') || lower.includes('javascript') || lower.includes('npm') || lower.includes('typescript'))
-    segments.push('node');
-  if (lower.includes('python')) segments.push('python');
-  if (lower.includes('go') && !lower.includes('google')) segments.push('go');
-  if (lower.includes('rust')) segments.push('rust');
-  if (lower.includes('java') && !lower.includes('javascript')) segments.push('java');
-  if (lower.includes('dotnet') || lower.includes('.net') || lower.includes('c#') || lower.includes('csharp'))
-    segments.push('dotnet');
-  if (lower.includes('ruby')) segments.push('ruby');
-  if (lower.includes('php')) segments.push('php');
-  if (lower.includes('dart') || lower.includes('flutter')) segments.push('dart');
-  if (lower.includes('swift')) segments.push('swift');
-  if (lower.includes('react')) segments.push('react');
-  if (lower.includes('angular')) segments.push('angular');
-
-  // Cloud
-  if (lower.includes('aws')) segments.push('aws');
-  if (lower.includes('azure')) segments.push('az');
-  if (lower.includes('gcp') || lower.includes('google cloud')) segments.push('gcp');
-  if (lower.includes('kubernetes') || lower.includes('kubectl') || lower.includes('k8s')) segments.push('kubectl');
-  if (lower.includes('docker')) segments.push('docker');
-  if (lower.includes('helm')) segments.push('helm');
-
-  // AI tools
-  if (lower.includes('copilot')) segments.push('copilot');
-
-  // System
-  if (lower.includes('time')) segments.push('time');
-  if (lower.includes('battery')) segments.push('battery');
-  if (lower.includes('shell')) segments.push('shell');
-  if (/\bos\b/.test(lower)) segments.push('os');
-
-  // Dev tools
-  if (lower.includes('terraform')) segments.push('terraform');
-
-  // Always include status at the end
-  segments.push('status');
-
-  return segments;
-}
 
 /**
  * Start the server
