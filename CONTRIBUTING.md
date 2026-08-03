@@ -20,16 +20,13 @@ The easiest way to contribute is by sharing your Oh My Posh configuration with t
    - Description
    - Your Name/Username
    - Tags (optional, but helpful)
-5. Click "Copy Configuration" to copy your theme JSON
-6. Follow the submission steps provided in the dialog
+5. Click **"Open Submission Issue"**
+6. Review the prefilled GitHub issue, confirm the MIT contribution acknowledgement, and submit it
 
-**Manual Submission:**
-
-1. Fork this repository
-2. Create a new JSON file in `public/configs/community/` named `your-theme-name.json`
-3. Follow the structure below for your configuration file
-4. Update `public/configs/community/manifest.json` to include your configuration
-5. Submit a pull request
+No fork or manual manifest edit is required. A maintainer reviews the issue and applies the
+`theme:approved` label when it is ready. The automation validates the submission and opens a
+draft pull request containing your configuration and manifest entry. If anything needs correction,
+it leaves an actionable comment on the issue instead.
 
 #### Configuration File Structure
 
@@ -67,9 +64,10 @@ Your configuration file should contain **only** the Oh My Posh configuration (no
 - These metadata fields belong in the `manifest.json` file only
 - Each segment can have `properties` (template variables) and `options` (configuration settings)
 
-#### Updating the Manifest
+#### Theme Metadata
 
-Add your configuration's **metadata** to `public/configs/community/manifest.json`:
+The submission dialog supplies your configuration's **metadata** to the approval workflow, which
+adds it to `public/configs/community/manifest.json`:
 
 ```json
 {
@@ -283,10 +281,10 @@ If you're adding a new segment type to the configurator:
 
 ## Review Process
 
-1. All contributions will be reviewed by maintainers
-2. We may request changes or improvements
-3. Once approved, your contribution will be merged
-4. Community configurations will be visible immediately after the next deployment
+1. All submissions are reviewed by maintainers
+2. We may request changes or improvements on the submission issue
+3. After approval, automation opens a draft pull request for final review
+4. Once that pull request is merged, community configurations are visible after the next deployment
 
 ## Questions?
 

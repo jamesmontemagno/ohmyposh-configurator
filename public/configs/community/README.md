@@ -4,11 +4,10 @@ This directory contains community-contributed Oh My Posh configurations.
 
 ## Submission Guidelines
 
-To submit your configuration:
-
-1. Create a new JSON file in this directory with **only** the Oh My Posh configuration (no metadata wrapper)
-2. Update `manifest.json` to include your configuration's metadata
-3. Submit a pull request using the provided template
+To submit your configuration, use **Share → Add to Theme Library** in the configurator. The dialog
+opens a prefilled GitHub submission issue containing your metadata and configuration. A maintainer
+reviews the issue and applies `theme:approved`; automation then validates the submission and opens
+a draft pull request with the JSON file and manifest entry.
 
 For detailed instructions, see [CONTRIBUTING.md](../../CONTRIBUTING.md)
 

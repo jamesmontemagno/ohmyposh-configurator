@@ -19,8 +19,7 @@ export function ShareDialog() {
   const [tags, setTags] = useState('');
   const [icon, setIcon] = useState('misc-star');
   const [isIconPickerOpen, setIsIconPickerOpen] = useState(false);
-  const [copiedConfig, setCopiedConfig] = useState(false);
-  const [copiedManifest, setCopiedManifest] = useState(false);
+  const [openedSubmission, setOpenedSubmission] = useState(false);
   
   const config = useConfigStore((state) => state.config);
   const { lastLoadedId, configs } = useSavedConfigsStore();
@@ -71,37 +70,39 @@ export function ShareDialog() {
     setMode('gist');
   };
 
-  const handleCopyConfig = () => {
-    const configData = {
-      ...config,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      blocks: config.blocks.map(({ id: _id, ...block }) => ({
-        ...block,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        segments: block.segments.map(({ id: _segId, ...segment }) => segment),
-      })),
-    };
+  const handleOpenSubmissionIssue = () => {
+    const submissionBody = [
+      '## Theme Details',
+      '',
+      `- **Theme Name:** ${configName.trim()}`,
+      `- **Author:** ${author.trim()}`,
+      `- **Description:** ${description.trim().replace(/\s+/g, ' ')}`,
+      `- **Icon:** ${icon}`,
+      `- **Tags:** ${tags.split(',').map((tag) => tag.trim()).filter(Boolean).join(', ')}`,
+      '',
+      '## Configuration',
+      '',
+      '```json',
+      exportConfig(config, 'json'),
+      '```',
+      '',
+      '## License Confirmation',
+      '',
+      '- [x] I confirm this configuration is my original work or is properly attributed, and I contribute it under the MIT License.',
+    ].join('\n');
+    const parameters = new URLSearchParams({
+      template: 'theme-submission.md',
+      title: `[Theme] ${configName.trim()}`,
+      labels: 'theme:submission',
+      body: submissionBody,
+    });
 
-    navigator.clipboard.writeText(JSON.stringify(configData, null, 2));
-    setCopiedConfig(true);
-    setTimeout(() => setCopiedConfig(false), 2000);
-  };
-
-  const handleCopyManifest = () => {
-    const configId = configName.toLowerCase().replace(/\s+/g, '-');
-    const manifestEntry = {
-      id: configId,
-      name: configName,
-      description,
-      icon: icon,
-      author,
-      tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
-      file: `${configId}.json`,
-    };
-
-    navigator.clipboard.writeText(JSON.stringify(manifestEntry, null, 2));
-    setCopiedManifest(true);
-    setTimeout(() => setCopiedManifest(false), 2000);
+    window.open(
+      `https://github.com/jamesmontemagno/ohmyposh-configurator/issues/new?${parameters.toString()}`,
+      '_blank',
+      'noopener,noreferrer',
+    );
+    setOpenedSubmission(true);
   };
 
   const handleClose = () => {
@@ -174,8 +175,8 @@ export function ShareDialog() {
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
               <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4">
                 <p className="text-sm text-blue-300">
-                  <strong>How it works:</strong> Fill in the details below, copy your configuration,
-                  and submit a pull request to add your theme to the community collection!
+                  <strong>How it works:</strong> Fill in the details below and open a prefilled GitHub
+                  issue. A maintainer will review it and create the pull request for you.
                 </p>
               </div>
 
@@ -285,21 +286,9 @@ export function ShareDialog() {
                 <h3 className="text-sm font-semibold text-white">Submission Steps:</h3>
                 <ol className="space-y-2 text-sm text-gray-300 list-decimal list-inside">
                   <li>Fill in all required fields above</li>
-                  <li>
-                    Fork the{' '}
-                    <a
-                      href="https://github.com/jamesmontemagno/ohmyposh-configurator"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-purple-400 hover:text-purple-300 underline"
-                    >
-                      repository
-                    </a>
-                  </li>
-                  <li>Click "Copy Configuration" and create a new file in <code className="dialog-inline-code bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/your-theme-name.json</code></li>
-                  <li>Paste the configuration into that file</li>
-                  <li>Click "Copy Manifest Entry" and add it to <code className="dialog-inline-code bg-gray-900 px-1 py-0.5 rounded text-xs">public/configs/community/manifest.json</code></li>
-                  <li>Submit a pull request with your changes</li>
+                  <li>Click "Open Submission Issue" to review and submit the prefilled issue</li>
+                  <li>A maintainer reviews your submission and applies the approval label</li>
+                  <li>The approved submission is validated and turned into a draft pull request automatically</li>
                 </ol>
               </div>
             </div>
@@ -323,36 +312,19 @@ export function ShareDialog() {
                   Cancel
                 </button>
                 <button
-                  onClick={handleCopyConfig}
+                  onClick={handleOpenSubmissionIssue}
                   disabled={!isFormValid}
                   className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors text-sm"
                 >
-                  {copiedConfig ? (
+                  {openedSubmission ? (
                     <>
                       <NerdIcon icon="ui-check" size={16} />
-                      Copied!
+                      Issue Opened
                     </>
                   ) : (
                     <>
-                      <NerdIcon icon="action-copy" size={16} />
-                      Copy Configuration
-                    </>
-                  )}
-                </button>
-                <button
-                  onClick={handleCopyManifest}
-                  disabled={!isFormValid}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors text-sm"
-                >
-                  {copiedManifest ? (
-                    <>
-                      <NerdIcon icon="ui-check" size={16} />
-                      Copied!
-                    </>
-                  ) : (
-                    <>
-                      <NerdIcon icon="action-copy" size={16} />
-                      Copy Manifest Entry
+                      <NerdIcon icon="vcs-github" size={16} />
+                      Open Submission Issue
                     </>
                   )}
                 </button>

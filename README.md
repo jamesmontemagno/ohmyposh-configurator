@@ -164,8 +164,8 @@ Love your configuration? Share it with the community!
 
 1. Click the **"Share"** button in the header
 2. Fill in your theme details (name, description, author, tags)
-3. Copy the generated JSON configuration
-4. Follow the GitHub PR submission steps
+3. Select **"Open Submission Issue"** and submit the prefilled GitHub issue
+4. A maintainer reviews your theme and automatically generates a draft pull request when approved
 5. See your theme in the Community collection!
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions.

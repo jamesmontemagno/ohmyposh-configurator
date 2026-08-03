@@ -4,6 +4,10 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ## [2026-08-02]
 
+### Added
+
+- Streamlined community theme submissions: the Share dialog now opens a prefilled GitHub issue, and maintainer-approved submissions are validated into draft pull requests automatically.
+
 ### Fixed
 
 - Open a pull request for automated theme-preview updates so protected-branch rules no longer reject regeneration runs.
