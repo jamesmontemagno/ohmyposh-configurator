@@ -1,16 +1,20 @@
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { useState } from 'react';
 import { NerdIcon } from '../NerdIcon';
+import { ContextMenu } from '../ContextMenu';
 import type { Segment } from '../../types/ohmyposh';
 import { useSegmentMetadata } from '../../hooks/useSegmentMetadata';
 import { useConfigStore } from '../../store/configStore';
 import { resolvePaletteColor, getActivePalette } from '../../utils/paletteResolver';
+import { getSegmentDocumentationUrl } from '../../utils/segmentDocumentation';
 
 interface SegmentCardProps {
   segment: Segment;
   isSelected: boolean;
   onSelect: () => void;
   onRemove: () => void;
+  onDuplicate: () => void;
   isDragging?: boolean;
 }
 
@@ -19,8 +23,10 @@ export function SegmentCard({
   isSelected,
   onSelect,
   onRemove,
+  onDuplicate,
   isDragging,
 }: SegmentCardProps) {
+  const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number } | null>(null);
   const metadata = useSegmentMetadata(segment.type);
   const config = useConfigStore((state) => state.config);
   const previewPaletteName = useConfigStore((state) => state.previewPaletteName);
@@ -34,8 +40,8 @@ export function SegmentCard({
   const foregroundColor = resolvedFg.color || '#ffffff';
 
   const tooltipText = metadata?.name && metadata?.description 
-    ? `${metadata.name}\n\n${metadata.description}` 
-    : metadata?.name || segment.type;
+    ? `${metadata.name}\n\n${metadata.description}\n\nRight-click for actions`
+    : `${metadata?.name || segment.type}\n\nRight-click for actions`;
 
   return (
     <div
@@ -54,6 +60,11 @@ export function SegmentCard({
       onClick={(e) => {
         e.stopPropagation();
         onSelect();
+      }}
+      onContextMenu={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        setContextMenuPosition({ x: event.clientX, y: event.clientY });
       }}
       title={tooltipText}
     >
@@ -74,6 +85,33 @@ export function SegmentCard({
       >
         <NerdIcon icon="ui-close" size={12} />
       </button>
+      {contextMenuPosition && (
+        <ContextMenu
+          position={contextMenuPosition}
+          onClose={() => setContextMenuPosition(null)}
+          items={[
+            { label: 'Configure segment', icon: 'tool-settings', onSelect },
+            { label: 'Duplicate segment', icon: 'action-copy', onSelect: onDuplicate },
+            {
+              label: 'View documentation',
+              icon: 'misc-book',
+              onSelect: () => window.open(
+                getSegmentDocumentationUrl(segment.type, metadata?.category),
+                '_blank',
+                'noopener,noreferrer',
+              ),
+              separatorBefore: true,
+            },
+            {
+              label: 'Remove segment',
+              icon: 'action-trash',
+              onSelect: onRemove,
+              destructive: true,
+              separatorBefore: true,
+            },
+          ]}
+        />
+      )}
     </div>
   );
 }

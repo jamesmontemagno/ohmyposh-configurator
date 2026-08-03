@@ -34,6 +34,7 @@ export function Block({ block, isSelected, onSelect, onRemove }: BlockProps) {
   const selectSegment = useConfigStore((state) => state.selectSegment);
   const selectedSegmentId = useConfigStore((state) => state.selectedSegmentId);
   const removeSegment = useConfigStore((state) => state.removeSegment);
+  const duplicateSegment = useConfigStore((state) => state.duplicateSegment);
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -140,6 +141,7 @@ export function Block({ block, isSelected, onSelect, onRemove }: BlockProps) {
               isSelected={selectedSegmentId === segment.id}
               onSelect={() => selectSegment(segment.id)}
               onRemove={() => removeSegment(block.id, segment.id)}
+              onDuplicate={() => duplicateSegment(block.id, segment.id)}
             />
           ))
         )}

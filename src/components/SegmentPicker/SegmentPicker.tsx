@@ -1,9 +1,11 @@
 import { useState, useMemo, useEffect } from 'react';
 import { NerdIcon } from '../NerdIcon';
+import { ContextMenu } from '../ContextMenu';
 import { segmentCategories } from '../../data/segments';
 import { loadSegmentCategory, getSegmentCategories } from '../../utils/segmentLoader';
 import type { SegmentMetadata, Segment } from '../../types/ohmyposh';
 import { useConfigStore, generateId } from '../../store/configStore';
+import { getSegmentDocumentationUrl } from '../../utils/segmentDocumentation';
 
 interface SegmentItemProps {
   segment: SegmentMetadata;
@@ -11,35 +13,60 @@ interface SegmentItemProps {
 }
 
 function SegmentItem({ segment, onAdd }: SegmentItemProps) {
+  const [contextMenuPosition, setContextMenuPosition] = useState<{ x: number; y: number } | null>(null);
+  const documentationUrl = getSegmentDocumentationUrl(segment.type, segment.category);
+
   return (
-    <div
-      className="flex items-center gap-1.5 px-1 py-1 hover:bg-[#1a1a2e] rounded cursor-pointer group transition-colors"
-      onClick={() => onAdd(segment)}
-      draggable
-      onDragStart={(e) => {
-        e.dataTransfer.setData('segment-type', segment.type);
-        e.dataTransfer.effectAllowed = 'copy';
-      }}
-      title={`${segment.name}\n\n${segment.description}`}
-    >
-      <NerdIcon icon="ui-grip-vertical" size={12} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-      <NerdIcon icon={segment.icon} size={16} className="text-gray-400 flex-shrink-0" />
-      <div className="flex-1 min-w-0">
-        <div className="text-[0.95rem] text-gray-200 truncate">{segment.name}</div>
-        {segment.previewText && (
-          <div className="text-[0.8rem] text-gray-500 font-mono truncate">{segment.previewText}</div>
-        )}
-      </div>
-      <button
-        className="text-xs px-1.5 py-0.5 bg-[#0f3460] text-gray-300 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#1a4a7a]"
-        onClick={(e) => {
-          e.stopPropagation();
-          onAdd(segment);
+    <>
+      <div
+        className="flex items-center gap-1.5 px-1 py-1 hover:bg-[#1a1a2e] rounded cursor-pointer group transition-colors"
+        onClick={() => onAdd(segment)}
+        onContextMenu={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setContextMenuPosition({ x: event.clientX, y: event.clientY });
         }}
+        draggable
+        onDragStart={(e) => {
+          e.dataTransfer.setData('segment-type', segment.type);
+          e.dataTransfer.effectAllowed = 'copy';
+        }}
+        title={`${segment.name}\n\n${segment.description}\n\nRight-click for actions`}
       >
-        Add
-      </button>
-    </div>
+        <NerdIcon icon="ui-grip-vertical" size={12} className="text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+        <NerdIcon icon={segment.icon} size={16} className="text-gray-400 flex-shrink-0" />
+        <div className="flex-1 min-w-0">
+          <div className="text-[0.95rem] text-gray-200 truncate">{segment.name}</div>
+          {segment.previewText && (
+            <div className="text-[0.8rem] text-gray-500 font-mono truncate">{segment.previewText}</div>
+          )}
+        </div>
+        <button
+          className="text-xs px-1.5 py-0.5 bg-[#0f3460] text-gray-300 rounded opacity-0 group-hover:opacity-100 transition-opacity hover:bg-[#1a4a7a]"
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(segment);
+          }}
+        >
+          Add
+        </button>
+      </div>
+      {contextMenuPosition && (
+        <ContextMenu
+          position={contextMenuPosition}
+          onClose={() => setContextMenuPosition(null)}
+          items={[
+            { label: 'Add segment', icon: 'ui-plus', onSelect: () => onAdd(segment) },
+            {
+              label: 'View documentation',
+              icon: 'misc-book',
+              onSelect: () => window.open(documentationUrl, '_blank', 'noopener,noreferrer'),
+              separatorBefore: true,
+            },
+          ]}
+        />
+      )}
+    </>
   );
 }
 
