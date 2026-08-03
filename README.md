@@ -98,6 +98,10 @@ npm run preview
 
 Want to create Oh My Posh configurations using natural language with AI assistants? The Oh My Posh Configurator includes a Model Context Protocol (MCP) server that works with **VS Code** and **GitHub Copilot**.
 
+[![Install in VS Code](https://img.shields.io/badge/Install_in-VS_Code-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect/mcp/install?name=ohmyposh-configurator&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22ohmyposh-configurator%22%5D%2C%22env%22%3A%7B%7D%7D)
+[![Install in VS Code Insiders](https://img.shields.io/badge/Install_in-VS_Code_Insiders-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=ohmyposh-configurator&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22ohmyposh-configurator%22%5D%2C%22env%22%3A%7B%7D%7D&quality=insiders)
+[![Install in Visual Studio](https://img.shields.io/badge/Install_in-Visual_Studio-C16FDE?style=flat-square&logo=visualstudio&logoColor=white)](https://vs-open.link/mcp-install?%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22ohmyposh-configurator%22%5D%2C%22env%22%3A%7B%7D%7D)
+
 **Quick Setup for VS Code:**
 
 1. Add to your workspace `.vscode/mcp.json`:
