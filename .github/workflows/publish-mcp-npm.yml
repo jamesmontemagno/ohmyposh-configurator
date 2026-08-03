@@ -62,3 +62,22 @@ jobs:
         run: npm publish --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create registry manifest
+        run: |
+          jq --arg version "${{ steps.version.outputs.version }}" \
+            '.version = $version | .packages |= map(.version = $version)' \
+            server.json > registry-server.json
+
+      - name: Install MCP Registry publisher
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Authenticate with the MCP Registry
+        run: ./mcp-publisher login github-oidc
+
+      - name: Validate registry manifest
+        run: ./mcp-publisher validate registry-server.json
+
+      - name: Publish to the MCP Registry
+        run: ./mcp-publisher publish registry-server.json

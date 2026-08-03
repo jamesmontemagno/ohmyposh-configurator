@@ -6,6 +6,7 @@ All notable changes to the Oh My Posh Visual Configurator project will be docume
 
 ### Added
 
+- Added official MCP Registry publishing metadata and GitHub OIDC release automation for the Oh My Posh Configurator MCP server.
 - Added a gated MCP TypeScript SDK v2 migration plan covering the MCP Apps v2 prerequisite, v2 high-level APIs, one-release legacy support, stdio-only transport, VS Code and Copilot CLI acceptance, and a `next` prerelease.
 - Streamlined community theme submissions: the Share dialog now opens a prefilled GitHub issue, and maintainer-approved submissions are validated into draft pull requests automatically.
 - Added one-click MCP server installation links for VS Code, VS Code Insiders, and Visual Studio.

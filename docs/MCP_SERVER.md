@@ -30,6 +30,10 @@ Or install globally:
 npm install -g ohmyposh-configurator
 ```
 
+### Official MCP Registry
+
+The server is registered with the [official MCP Registry](https://registry.modelcontextprotocol.io/) as `io.github.jamesmontemagno/ohmyposh-configurator` by the next `mcp-v*` release. Registry metadata and the npm package are published together, so clients discover the same version they install with `npx`.
+
 ### From Source
 
 #### Prerequisites
