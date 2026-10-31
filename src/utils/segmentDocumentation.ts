@@ -3,7 +3,9 @@ import type { SegmentCategory, SegmentType } from '../types/ohmyposh';
 const DOCUMENTATION_BASE_URL = 'https://ohmyposh.dev/docs/segments';
 
 const documentationPathOverrides: Partial<Record<SegmentType, string>> = {
-  copilot_cli: 'cli/copilot-cli',
+  claude: 'agents/claude',
+  copilot: 'agents/copilot',
+  copilot_cli: 'agents/copilot-cli',
   gitversion: 'cli/gitversion',
   go: 'languages/golang',
   kubectl: 'cli/kubectl',

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-02T18:17:14.234Z",
+  "lastUpdated": "2026-10-31T14:21:53.801Z",
   "themes": [
     {
       "name": "1_shell",
@@ -543,6 +543,16 @@
         "git"
       ],
       "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jandedobbeleer.omp.json"
+    },
+    {
+      "name": "jandedobbeleer-accessible",
+      "file": "jandedobbeleer-accessible.omp.json",
+      "isMinimal": false,
+      "tags": [
+        "powerline",
+        "git"
+      ],
+      "githubUrl": "https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/jandedobbeleer-accessible.omp.json"
     },
     {
       "name": "jblab_2021",

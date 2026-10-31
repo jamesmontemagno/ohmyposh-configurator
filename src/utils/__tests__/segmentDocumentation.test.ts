@@ -13,7 +13,9 @@ describe('getSegmentDocumentationUrl', () => {
   });
 
   it.each([
-    ['copilot_cli', 'cli', 'cli/copilot-cli'],
+    ['claude', 'cli', 'agents/claude'],
+    ['copilot', 'cli', 'agents/copilot'],
+    ['copilot_cli', 'cli', 'agents/copilot-cli'],
     ['gitversion', 'scm', 'cli/gitversion'],
     ['go', 'languages', 'languages/golang'],
     ['kubectl', 'cloud', 'cli/kubectl'],
