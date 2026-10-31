@@ -2,6 +2,111 @@
 
 This directory contains utility scripts for the Oh My Posh Configurator project.
 
+## audit-theme-gallery.mjs
+
+Read-only JSON inventory of official theme filename drift, missing gallery previews,
+and open community submissions. It does not execute templates, update catalogs,
+approve issues or create pull requests. The CLI can be run locally; the proposed
+workflow extension below reuses the existing weekly completion instead of adding a cron.
+
+```bash
+node scripts/audit-theme-gallery.mjs \
+  --upstream-dir=../oh-my-posh \
+  --upstream-ref=<40-character-commit-sha> \
+  --submissions-file=../submissions.json
+```
+
+The upstream checkout HEAD must match the supplied immutable ref. Theme names are
+read from that commit's `themes/` tree, not from segment metadata or the schema.
+The schema is read with `git show` from the same commit, never from a submitted URL.
+The optional submissions file is a captured, paginated GitHub REST issues array;
+this legacy mode reports labels only and its caller owns capture time/completeness.
+Use `--snapshot-file` instead for static validation and PR checks. Approval labels
+are reported, not inferred from a valid-looking config. Preview existence does not prove source
+parity: older official manifest entries have no recorded preview content hashes.
+Use the existing approved-contribution and preview workflows as writers, not this audit.
+
+### Weekly read-only audit extension (local review patch; not activated)
+
+Owner-approved local implementation lives in `.github/workflows/generate-theme-previews.yml`,
+with capture in `scripts/capture-theme-gallery.mjs`. After separately authorized publication,
+its `workflow_run: completed` listener would follow the existing Monday 02:07 UTC
+`Weekly Oh My Posh Segment Synchronization`, including setup failures. It requires the exact
+repository, workflow ID `325089338`, lock path, `main` default/head branch, scheduled
+predecessor and first run attempt. It does not dispatch or rerun that workflow.
+The job and capture script both enforce the event boundary.
+
+The audit checks out the trusted default-branch `github.sha`, **not** predecessor/head-PR
+code, with persisted credentials disabled. It resolves upstream `main` once, checks out that
+immutable SHA as data only, and never runs upstream code or renders submissions.
+Its token has only `contents: read`, `issues: read`, and `pull-requests: read`.
+The workflow has no inherited write grants. The pre-existing writer has its original
+write grants, steps and push/manual paths, but is explicitly unreachable from **every**
+`workflow_run` event. No new writer or scheduler is introduced.
+
+Capture uses authenticated `gh api --method GET` on the upstream commit and paginated
+open labeled issues/open PRs (100 per page, maximum 100 pages, ascending creation order).
+API/JSON errors, duplicate numbers during pagination, incomplete snapshots, invalid refs,
+missing inputs and schema compilation failures fail explicitly. The limit is a failed
+capture, not a truncated successful report. Pagination is not transactional; re-read
+labels, body/update hashes and PRs before any later promotion.
+
+The snapshot file is intermediate, not uploaded. The JSON report artifact contains refs,
+raw schema/input SHA-256 hashes, canonical manifest hashes, source worktree state,
+capture times/page counts, official drift/missing previews and each submission's labels,
+body/update/config hashes, metadata/schema findings and existing open-PR references.
+Ajv validates Draft 2020-12 synchronously without network schema loading; `format`
+annotations are not asserted (upstream's custom color pattern still is). Configs must
+also satisfy the contribution workflow's object/blocks/no-metadata-wrapper rules.
+Metadata uses canonical `- **Field:** value` lines and the checked MIT acknowledgement.
+Formatting deviations are human-review findings, not proof the existing agent would reject them.
+Passing validation never grants `theme:approved`, creates files or renders a template.
+
+```bash
+# In the guarded workflow, with its normal GitHub event environment and read-only GH_TOKEN:
+node scripts/capture-theme-gallery.mjs > "$RUNNER_TEMP/gallery-snapshot.json"
+node scripts/audit-theme-gallery.mjs \
+  --upstream-dir=.gallery-upstream \
+  --upstream-ref=<captured-40-character-sha> \
+  --snapshot-file="$RUNNER_TEMP/gallery-snapshot.json" > "$RUNNER_TEMP/gallery-audit.json"
+
+npm run test:run -- scripts/audit-theme-gallery.test.mjs scripts/capture-theme-gallery.test.mjs
+```
+
+Watermark: repository/upstream commits, schema/tooling/manifest hashes and canonical
+submission/PR data form `fingerprint`, excluding capture time and predecessor ID.
+Body, update timestamp, labels and referenced PR changes invalidate it. Keep the last
+reviewed fingerprint and revisit on changes, missing previews, invalid submissions,
+approval changes or capture failures; unchanged queues need no new issue/comment.
+No automatic prior-artifact retrieval or persistent dedup store is introduced.
+Predecessor rerun attempts are skipped; exact duplicate completion deliveries or audit
+reruns may regenerate the same fingerprint, but never invoke a writer. Artifacts are
+scoped to predecessor ID, audit attempt and fingerprint, retained 30 days. This consciously
+uses content-addressed review deduplication rather than extra Actions read permissions
+or downloading previous potentially untrusted artifacts.
+
+Local event/permission truth-table tests exercise the actual YAML guard strings and both
+successful/failed predecessors; they are not hosted activation evidence. The workflow
+extension is unpushed and unactivated in this delivery. Publication/activation/dispatch
+remain separately gated. Existing AW/compiler/Auto-model access blockers are independent
+of this non-agentic audit and are not changed or retried by it.
+
+### Accessible official theme preview provenance
+
+`jandedobbeleer-accessible.omp.json` was added from upstream commit
+`b4d54a5cb40b1c37868fb5a9ace380cb2b6a9e99`.
+Its config SHA-256 is `39ef14eff771712fda5901f91fa4eb5b4694fb50d0b629ba37c9fad450f2a109`.
+The preview uses the existing generator's image flags, repository studio data
+(SHA-256 `1a67e716ce805fdf2f94e09c3a39c115f66deb71dd0f9a1d31ec1761037b433d`),
+and Oh My Posh v30.0.0 Linux amd64
+(SHA-256 `0d2c218a1e02c0fa0d3b44edbc8bcbe65fb87df96598a9e9aca4f412a0cf2645`),
+with `--data-only`. This is a recorded-data SVG, not a live-shell execution test.
+The gallery retains its existing live-main theme fetching convention.
+
+The segment audit maps upstream `agents/` documentation to the existing `cli`
+display category. Moving documentation must not classify supported runtime IDs
+as removals; UI and MCP documentation links use the upstream `agents/` paths.
+
 ## validate-configs.js
 
 Validates all configuration files in the `public/configs/` directory.

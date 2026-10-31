@@ -17,6 +17,12 @@ describe('getSegmentDocumentationUrl', () => {
   it('uses an official name override when the runtime type differs', () => {
     expect(
       getSegmentDocumentationUrl({ type: 'copilot_cli', category: 'cli' })
-    ).toBe('https://ohmyposh.dev/docs/segments/cli/copilot-cli');
+    ).toBe('https://ohmyposh.dev/docs/segments/agents/copilot-cli');
+  });
+
+  it.each(['claude', 'copilot'] as const)('keeps %s documentation independent of display category', (type) => {
+    expect(getSegmentDocumentationUrl({ type, category: 'cli' })).toBe(
+      `https://ohmyposh.dev/docs/segments/agents/${type}`,
+    );
   });
 });

@@ -1,7 +1,35 @@
 import { describe, expect, it } from 'vitest';
-import { extractDocPageId, extractRuntimeType, extractSampleConfigurationValue } from './segment-upstream-sync.mjs';
+import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { extractDocPageId, extractRuntimeType, extractSampleConfigurationValue, loadUpstreamInventory } from './segment-upstream-sync.mjs';
 
 describe('segment upstream sync identifiers', () => {
+  it('retains moved agent types and discovers new ones without changing display categories', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'segment-agent-docs-'));
+    try {
+      const docs = join(directory, 'website/docs/segments/agents');
+      await mkdir(docs, { recursive: true });
+      for (const type of ['claude', 'copilot', 'copilot_cli', 'antigravity']) {
+        const page = type.replace('_', '-');
+        await writeFile(join(docs, `${page}.mdx`), `---
+id: ${page}
+---
+## Sample Configuration
+<Config data={{ type: "${type}" }} />
+`);
+      }
+      const { inventory } = await loadUpstreamInventory({ upstreamDir: directory });
+      expect([...inventory.keys()].sort()).toEqual(['antigravity', 'claude', 'copilot', 'copilot_cli']);
+      for (const entry of inventory.values()) {
+        expect(entry.category).toBe('cli');
+        expect(entry.evidence.repoDocPath).toContain('/agents/');
+      }
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
   it('uses the documented configuration type instead of the page ID', () => {
     const content = `---
 id: copilot-cli

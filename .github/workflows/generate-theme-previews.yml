@@ -2,6 +2,10 @@ name: Generate Theme Previews
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Weekly Oh My Posh Segment Synchronization']
+    types: [completed]
+    branches: [main]
   push:
     branches: [main]
     paths:
@@ -11,13 +15,93 @@ on:
       - 'scripts/generate-theme-previews.mjs'
       - 'public/studio/segment_data.json'
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 jobs:
-  generate:
+  audit:
+    if: >-
+      github.event_name == 'workflow_run' &&
+      github.repository == 'jamesmontemagno/ohmyposh-configurator' &&
+      github.event.action == 'completed' &&
+      github.event.repository.full_name == 'jamesmontemagno/ohmyposh-configurator' &&
+      github.event.repository.default_branch == 'main' &&
+      github.event.workflow_run.repository.full_name == 'jamesmontemagno/ohmyposh-configurator' &&
+      github.event.workflow_run.head_repository.full_name == 'jamesmontemagno/ohmyposh-configurator' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.event == 'schedule' &&
+      github.event.workflow_run.status == 'completed' &&
+      github.event.workflow_run.name == 'Weekly Oh My Posh Segment Synchronization' &&
+      github.event.workflow_run.workflow_id == 325089338 &&
+      github.event.workflow_run.path == '.github/workflows/weekly-segment-sync.lock.yml' &&
+      github.event.workflow_run.run_attempt == 1
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: read
+    concurrency:
+      group: gallery-audit-${{ github.event.workflow_run.id }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout trusted default-branch revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: jamesmontemagno/ohmyposh-configurator
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+
+      - name: Install locked audit dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Capture paginated submissions and open pull requests
+        id: capture
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/capture-theme-gallery.mjs > "$RUNNER_TEMP/gallery-snapshot.json"
+          upstream_ref=$(node -e 'process.stdout.write(require(process.argv[1]).upstream.ref)' "$RUNNER_TEMP/gallery-snapshot.json")
+          printf 'upstream_ref=%s\n' "$upstream_ref" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout pinned upstream data only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: JanDeDobbeleer/oh-my-posh
+          ref: ${{ steps.capture.outputs.upstream_ref }}
+          path: .gallery-upstream
+          persist-credentials: false
+
+      - name: Audit gallery and statically validate submissions
+        id: audit
+        env:
+          UPSTREAM_REF: ${{ steps.capture.outputs.upstream_ref }}
+        run: |
+          node scripts/audit-theme-gallery.mjs \
+            --upstream-dir=.gallery-upstream \
+            --upstream-ref="$UPSTREAM_REF" \
+            --snapshot-file="$RUNNER_TEMP/gallery-snapshot.json" > "$RUNNER_TEMP/gallery-audit.json"
+          fingerprint=$(node -e 'process.stdout.write(require(process.argv[1]).fingerprint)' "$RUNNER_TEMP/gallery-audit.json")
+          printf 'fingerprint=%s\n' "$fingerprint" >> "$GITHUB_OUTPUT"
+
+      - name: Upload read-only audit report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: gallery-audit-${{ github.event.workflow_run.id }}-${{ github.run_attempt }}-${{ steps.audit.outputs.fingerprint }}
+          path: ${{ runner.temp }}/gallery-audit.json
+          if-no-files-found: error
+          retention-days: 30
+
+  generate:
+    if: github.event_name != 'workflow_run' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v5

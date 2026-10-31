@@ -17,6 +17,7 @@ const DOCS_BASE_URL = 'https://ohmyposh.dev/docs/segments';
 
 const CATEGORY_ORDER = ['system', 'scm', 'languages', 'cloud', 'cli', 'web', 'music', 'health'];
 const DOC_CATEGORY_TO_LOCAL = {
+  agents: 'cli',
   language: 'languages',
   languages: 'languages',
   system: 'system',
@@ -520,7 +521,7 @@ function extractSampleCache(content) {
   return duration && strategy ? { duration, strategy } : null;
 }
 
-async function loadUpstreamInventory(args) {
+export async function loadUpstreamInventory(args) {
   const source = await loadUpstreamSource(args);
 
   const upstream = new Map();
