@@ -45,6 +45,21 @@
       "file": "graphite-based.json"
     },
     {
+      "id": "gotham",
+      "name": "Gotham",
+      "description": "Gotham-inspired theme with a black/signal-yellow powerline layout. Execution time and status segments turn Joker green on success, red on failure. Includes session, path, git and upgrade-check segments.",
+      "icon": "misc-star",
+      "author": "@bsarrazin",
+      "tags": [
+        "dark",
+        "powerline",
+        "gotham",
+        "batman",
+        "status-colors"
+      ],
+      "file": "gotham.json"
+    },
+    {
       "id": "space-invaders",
       "name": "Space Invaders",
       "description": "Retro arcade theme, black and green, no powerline glyphs needed.",
