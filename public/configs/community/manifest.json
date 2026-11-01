@@ -60,6 +60,24 @@
       "file": "gotham.json"
     },
     {
+      "id": "shihao",
+      "name": "shihao",
+      "description": "A simple theme.",
+      "icon": "misc-star",
+      "author": "@ShihaoShen-Creator",
+      "tags": [
+        "developer",
+        "python",
+        "dotnet",
+        "node",
+        "spotify",
+        "colorful",
+        "powerline",
+        "multiline"
+      ],
+      "file": "shihao.json"
+    },
+    {
       "id": "space-invaders",
       "name": "Space Invaders",
       "description": "Retro arcade theme, black and green, no powerline glyphs needed.",
