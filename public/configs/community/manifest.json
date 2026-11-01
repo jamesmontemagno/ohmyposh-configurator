@@ -44,6 +44,18 @@
         "green"
       ],
       "file": "space-invaders.json"
+    },
+    {
+      "id": "v-s-pastel-minimal",
+      "name": "V's Pastel.minimal",
+      "description": "a minimal pastel config",
+      "icon": "status-bolt",
+      "author": "Vanilama",
+      "tags": [
+        "minimal",
+        "pastel"
+      ],
+      "file": "v-s-pastel-minimal.json"
     }
   ]
 }
