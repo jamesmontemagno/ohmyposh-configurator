@@ -1,0 +1,75 @@
+name: Create Approved Community Theme PR
+
+on:
+  issues:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Already approved submission issue to retry
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: community-theme-manifest-writer
+  cancel-in-progress: false
+
+jobs:
+  contribution:
+    if: >-
+      github.repository == 'jamesmontemagno/ohmyposh-configurator' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event_name == 'issues' && github.event.action == 'labeled' &&
+        github.event.label.name == 'theme:approved' &&
+        github.event.issue.state == 'open' && !github.event.issue.pull_request))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      issues: read
+      pull-requests: write
+    steps:
+      - name: Checkout trusted main revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Checkout pinned schema as data only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: JanDeDobbeleer/oh-my-posh
+          ref: b4d54a5cb40b1c37868fb5a9ace380cb2b6a9e99
+          path: .theme-schema
+          persist-credentials: false
+
+      - name: Validate approved submission and prepare two-file patch
+        id: prepare
+        env:
+          GH_TOKEN: ${{ github.token }}
+          THEME_ACTOR: ${{ github.triggering_actor }}
+          THEME_PLAN: ${{ runner.temp }}/community-theme-plan.json
+        run: node scripts/create-theme-contribution.mjs prepare
+
+      - name: Validate repository configs and icons
+        if: steps.prepare.outputs.prepared == 'true'
+        run: npm run validate
+
+      - name: Recheck approval and create one draft PR
+        if: steps.prepare.outputs.prepared == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          THEME_ACTOR: ${{ github.triggering_actor }}
+          THEME_PLAN: ${{ runner.temp }}/community-theme-plan.json
+        run: node scripts/create-theme-contribution.mjs publish

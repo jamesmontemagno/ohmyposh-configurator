@@ -26,7 +26,13 @@ The easiest way to contribute is by sharing your Oh My Posh configuration with t
 No fork or manual manifest edit is required. A maintainer reviews the issue and applies the
 `theme:approved` label when it is ready. The automation validates the submission and opens a
 draft pull request containing your configuration and manifest entry. If anything needs correction,
-it leaves an actionable comment on the issue instead.
+the **Create Approved Community Theme PR** Actions run fails with actionable validation
+details; it does not create a PR or automatically change approval labels.
+
+Maintainers can retry an already-approved issue using that workflow's **Run workflow**
+button on `main`, supplying its issue number. This is also how to recover approvals
+applied before the replacement workflow was installed. Submission edits are revalidated;
+approval remains a human decision. Review the draft and run required checks before merging.
 
 #### Configuration File Structure
 
