@@ -111,6 +111,15 @@
         "pastel"
       ],
       "file": "v-s-pastel-minimal.json"
+    },
+    {
+      "id": "xinglu-s-theme",
+      "name": "XingLu's theme",
+      "description": "for python user",
+      "icon": "lang-python",
+      "author": "XingLu",
+      "tags": [],
+      "file": "xinglu-s-theme.json"
     }
   ]
 }

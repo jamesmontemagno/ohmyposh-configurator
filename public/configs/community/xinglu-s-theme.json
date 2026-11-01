@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "patch_pwsh_bleed": true,
+  "async": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": false,
+      "segments": [
+        {
+          "type": "path",
+          "style": "powerline",
+          "foreground": "p:text-light",
+          "background": "p:path-bg",
+          "template": "  {{ .Path }} ",
+          "powerline_symbol": "",
+          "options": {
+            "style": "agnoster_short",
+            "max_depth": 2
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "foreground": "p:text-light",
+          "background": "p:git-bg",
+          "template": "  {{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ",
+          "powerline_symbol": ""
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "foreground": "p:text-light",
+          "background": "#46b970",
+          "template": "  {{ .Full }}{{ if .Venv }} · {{ .Venv }}{{ end }} ",
+          "powerline_symbol": "",
+          "options": {
+            "tooling": [
+              "uv",
+              "python"
+            ]
+          }
+        },
+        {
+          "type": "docker",
+          "style": "powerline",
+          "foreground": "p:text-light",
+          "background": "p:docker-bg",
+          "template": "  ",
+          "powerline_symbol": ""
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "newline": false,
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:status",
+          "template": " {{ if eq .Code 0 }}{{ else }} {{ .Code }}{{ end }} "
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:status",
+          "template": " {{ .FormattedMs }} "
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "p:status",
+          "template": " {{ .CurrentDate | date \"15:04:05\" }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:prompt",
+          "template": "└─➜ "
+        }
+      ]
+    }
+  ],
+  "palette": {
+    "text-light": "#F8FAFC",
+    "text-dark": "#0F172A",
+    "path-bg": "#4B6B88",
+    "git-bg": "#6D28D9",
+    "python-bg": "#3B8C5A",
+    "docker-bg": "#0891B2",
+    "status": "#94A3B8",
+    "prompt": "#34D399"
+  }
+}
