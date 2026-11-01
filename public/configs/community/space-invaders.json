@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "console_title_template": "{{ .Shell }} in {{ .Folder }}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "p:Green",
+          "background": "p:Void",
+          "template": " 👾 {{ .UserName }} "
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:Void",
+          "background": "p:Green",
+          "template": " {{ .Path }} ",
+          "options": {
+            "style": "folder"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:Pink",
+          "background": "p:Slate",
+          "template": " {{ .HEAD }}{{ if .Working.Changed }} ▓{{ .Working.String }}{{ end }}{{ if .Staging.Changed }} ▒{{ .Staging.String }}{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:Dim",
+          "template": "▒{{ .FormattedMs }}s",
+          "options": {
+            "threshold": 500
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:Green",
+          "foreground_templates": [
+            "{{ if ne .Code 0 }}p:Pink{{ end }}"
+          ],
+          "template": " {{ if eq .Code 0 }}✓{{ else }}✕ {{ .Code }}{{ end }}",
+          "options": {
+            "always_enabled": true
+          }
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "foreground": "p:Green",
+    "background": "transparent",
+    "template": "👾 ❯ "
+  },
+  "secondary_prompt": {
+    "foreground": "p:Pink",
+    "background": "transparent",
+    "template": "▓▒░❯ "
+  },
+  "palette": {
+    "Void": "#050507",
+    "Green": "#39FF6A",
+    "Pink": "#FF2ECC",
+    "Slate": "#1a1a1e",
+    "Dim": "#3a3a3f"
+  }
+}

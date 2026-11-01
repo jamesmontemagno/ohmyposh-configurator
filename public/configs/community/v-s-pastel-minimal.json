@@ -1,0 +1,63 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "patch_pwsh_bleed": true,
+  "async": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "template": "  {{ .Path }} ",
+          "foreground": "#ffffff",
+          "background": "#7e3a3a",
+          "trailing_diamond": ""
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "sysinfo",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "template": "  {{ round .PhysicalPercentUsed .Precision }}% ",
+          "foreground": "#ffffff",
+          "background": "#4c4860"
+        },
+        {
+          "type": "os",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "foreground": "#ffffff",
+          "background": "#c27a5b"
+        },
+        {
+          "type": "shell",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "template": "  {{ .Name }} ",
+          "foreground": "#ffffff",
+          "background": "#788165",
+          "trailing_diamond": ""
+        }
+      ],
+      "newline": true,
+      "force": false
+    }
+  ],
+  "palette": {
+    "blue": "#61AFEF",
+    "green": "#98C379",
+    "yellow": "#E5C07B",
+    "red": "#E06C75"
+  }
+}
