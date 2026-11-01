@@ -32,6 +32,87 @@
       "file": "dotnet-azure-developer.json"
     },
     {
+      "id": "graphite-based",
+      "name": "Graphite-Based",
+      "description": "Theme based on the colors of the Graphite GTK theme",
+      "icon": "misc-moon",
+      "author": "002405",
+      "tags": [
+        "mono",
+        "monochrome",
+        "dark"
+      ],
+      "file": "graphite-based.json"
+    },
+    {
+      "id": "gotham",
+      "name": "Gotham",
+      "description": "Gotham-inspired theme with a black/signal-yellow powerline layout. Execution time and status segments turn Joker green on success, red on failure. Includes session, path, git and upgrade-check segments.",
+      "icon": "misc-star",
+      "author": "@bsarrazin",
+      "tags": [
+        "dark",
+        "powerline",
+        "gotham",
+        "batman",
+        "status-colors"
+      ],
+      "file": "gotham.json"
+    },
+    {
+      "id": "pino",
+      "name": "Pino",
+      "description": "Minimal",
+      "icon": "misc-star",
+      "author": "Hannah",
+      "tags": [],
+      "file": "pino.json"
+    },
+    {
+      "id": "shihao",
+      "name": "shihao",
+      "description": "A simple theme.",
+      "icon": "misc-star",
+      "author": "@ShihaoShen-Creator",
+      "tags": [
+        "developer",
+        "python",
+        "dotnet",
+        "node",
+        "spotify",
+        "colorful",
+        "powerline",
+        "multiline"
+      ],
+      "file": "shihao.json"
+    },
+    {
+      "id": "space-invaders",
+      "name": "Space Invaders",
+      "description": "Retro arcade theme, black and green, no powerline glyphs needed.",
+      "icon": "misc-star",
+      "author": "@bsarrazin",
+      "tags": [
+        "retro",
+        "arcade",
+        "minimal",
+        "green"
+      ],
+      "file": "space-invaders.json"
+    },
+    {
+      "id": "v-s-pastel-minimal",
+      "name": "V's Pastel.minimal",
+      "description": "a minimal pastel config",
+      "icon": "status-bolt",
+      "author": "Vanilama",
+      "tags": [
+        "minimal",
+        "pastel"
+      ],
+      "file": "v-s-pastel-minimal.json"
+    },
+    {
       "id": "xinglu-s-theme",
       "name": "XingLu's theme",
       "description": "for python user",

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": false,
+  "patch_pwsh_bleed": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "force": false,
+      "segments": [
+        {
+          "type": "upgrade",
+          "style": "powerline",
+          "foreground": "p:Black",
+          "background": "p:Green",
+          "template": "  {{ .Latest }} ",
+          "powerline_symbol": ""
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "foreground": "p:Yellow",
+          "background": "p:Slate-gray",
+          "template": " {{ .UserName }}@{{ .HostName }} ",
+          "powerline_symbol": "",
+          "leading_powerline_symbol": ""
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "foreground": "p:Black",
+          "background": "p:Yellow",
+          "template": " {{ .Path }} ",
+          "powerline_symbol": "",
+          "options": {
+            "folder_icon": "",
+            "folder_separator_icon": "  ",
+            "home_icon": "",
+            "style": "agnoster"
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "foreground": "p:Yellow",
+          "background": "p:Black",
+          "template": " {{ .HEAD }} ",
+          "powerline_symbol": ""
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "foreground": "p:Black",
+          "background": "p:Green",
+          "background_templates": [
+            "{{ if ne .Code 0 }}p:Red{{ end }}"
+          ],
+          "template": "{{ .FormattedMs }} ",
+          "powerline_symbol": "",
+          "leading_diamond": ""
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "foreground": "p:Black",
+          "background": "p:Green",
+          "background_templates": [
+            "{{ if ne .Code 0 }}p:Red{{ end }}"
+          ],
+          "template": " {{ if eq .Code 0 }}{{ else }} {{ .Code }}{{ end }} ",
+          "powerline_symbol": "",
+          "trailing_diamond": "",
+          "options": {
+            "always_enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": []
+    }
+  ],
+  "palette": {
+    "Black": "#1a1a1e",
+    "Yellow": "#f5c244",
+    "Dark-gray": "#444441",
+    "Slate-gray": "#2b2b30",
+    "Red": "#e24b4a",
+    "Green": "#00A651"
+  }
+}
