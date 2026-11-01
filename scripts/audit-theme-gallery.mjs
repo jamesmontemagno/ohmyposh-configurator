@@ -15,7 +15,7 @@ export function createSchemaValidator(schema) {
   return new Ajv2020({ strict: false, allErrors: true, validateFormats: false }).compile(schema);
 }
 
-export function validateSubmission(body, { validateSchema, iconIds, communityEntries }) {
+export function validateSubmission(body, { validateSchema, iconIds, communityEntries, includeContent = false }) {
   const errors = [];
   const sections = new Map();
   const text = body.replace(/\r\n/g, '\n');
@@ -50,6 +50,7 @@ export function validateSubmission(body, { validateSchema, iconIds, communityEnt
   const fences = [...configuration.matchAll(/^```([^\n]*)\n([\s\S]*?)^```[ \t]*$/gm)];
   let schema = { status: 'not-evaluated', errors: [] };
   let configHash = null;
+  let parsedConfig;
   if (fences.length !== 1 || fences[0][1].trim() !== 'json' ||
     [...configuration.matchAll(/^```/gm)].length !== 2) {
     errors.push('Configuration must contain exactly one fenced json object');
@@ -62,6 +63,7 @@ export function validateSubmission(body, { validateSchema, iconIds, communityEnt
       errors.push(`Configuration JSON is invalid: ${error.message}`);
     }
     if (config !== undefined) {
+      parsedConfig = config;
       if (!config || typeof config !== 'object' || Array.isArray(config)) {
         errors.push('Configuration must be a top-level object');
       } else {
@@ -78,7 +80,20 @@ export function validateSubmission(body, { validateSchema, iconIds, communityEnt
       }
     }
   }
-  return { id, configHash, metadata: { status: errors.length ? 'invalid' : 'valid', errors }, schema };
+  return {
+    id, configHash, metadata: { status: errors.length ? 'invalid' : 'valid', errors }, schema,
+    ...(includeContent ? { details: metadata, configuration: parsedConfig } : {}),
+  };
+}
+
+export function findSubmissionPullRequests(pulls, number) {
+  return pulls.filter((pr) => {
+    const text = `${pr.title}\n${pr.body ?? ''}`;
+    const localReference = new RegExp(`(^|[^\\w/.-])#${number}(?!\\d)`);
+    const fullReference = new RegExp(`https://github\\.com/${repository}/issues/${number}(?!\\d)|\\b${repository}#${number}(?!\\d)`);
+    return localReference.test(text) || fullReference.test(text) ||
+      pr.head?.ref === `automation/theme-submission-${number}`;
+  });
 }
 
 function assertSnapshot(snapshot, upstreamRef) {
@@ -114,13 +129,7 @@ export function auditSubmissions(snapshot, upstreamRef, validation) {
     const body = issue.body ?? '';
     const url = `https://github.com/${repository}/issues/${issue.number}`;
     const labels = issue.labels.map(({ name }) => name).sort();
-    const existingPullRequests = snapshot.pulls.items.filter((pr) => {
-      const text = `${pr.title}\n${pr.body ?? ''}`;
-      const localReference = new RegExp(`(^|[^\\w/.-])#${issue.number}(?!\\d)`);
-      const fullReference = new RegExp(`https://github\\.com/${repository}/issues/${issue.number}(?!\\d)|\\b${repository}#${issue.number}(?!\\d)`);
-      return localReference.test(text) || fullReference.test(text) ||
-        pr.head?.ref === `automation/theme-submission-${issue.number}`;
-    }).map((pr) => ({
+    const existingPullRequests = findSubmissionPullRequests(snapshot.pulls.items, issue.number).map((pr) => ({
       number: pr.number, url: `https://github.com/${repository}/pull/${pr.number}`,
       updatedAt: pr.updated_at, contentHash: sha256(JSON.stringify([pr.title, pr.body, pr.head?.ref])),
     })).sort((a, b) => a.number - b.number);

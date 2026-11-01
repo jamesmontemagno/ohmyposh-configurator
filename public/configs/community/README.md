@@ -9,6 +9,11 @@ opens a prefilled GitHub submission issue containing your metadata and configura
 reviews the issue and applies `theme:approved`; automation then validates the submission and opens
 a draft pull request with the JSON file and manifest entry.
 
+The ingestion uses standard GitHub Actions, not an agentic-workflow compiler. Invalid
+metadata or configuration produces actionable errors in the Actions run without
+approving, rendering or promoting the submission. Maintainers can manually retry an
+already-approved issue on `main` through **Create Approved Community Theme PR**.
+
 For detailed instructions, see [CONTRIBUTING.md](../../CONTRIBUTING.md)
 
 ## File Structure

@@ -107,6 +107,67 @@ The segment audit maps upstream `agents/` documentation to the existing `cli`
 display category. Moving documentation must not classify supported runtime IDs
 as removals; UI and MCP documentation links use the upstream `agents/` paths.
 
+## create-theme-contribution.mjs
+
+The community ingestion writer uses standard Actions in
+`.github/workflows/create-theme-contribution-pr.yml`. It replaces the broken
+community agentic `.md`/`.lock.yml` pair, which is removed to prevent two ingestion
+writers or accidental regeneration of the obsolete path. The weekly segment
+agentic source, lock, model configuration and cloud setup are unchanged.
+
+After installation on `main`, a maintainer applying `theme:approved` to an open
+`theme:submission` triggers ingestion. There is no automatic approval. For labels
+already applied, or corrections after a failed run, a maintainer can run the workflow
+manually on `main` with `issue_number`. No scheduler, automatic retry or dispatch of
+other workflows is added. This change does not itself replay existing approvals.
+
+The job verifies the triggering actor's current write/maintain/admin permission
+(including the actor requesting a rerun), live labels/state/content, trusted main
+SHA and all paginated open PR references. Stale main or submission state fails
+explicitly. It reuses the static audit validator against schema commit
+`b4d54a5cb40b1c37868fb5a9ace380cb2b6a9e99`, fetched as data only. Neither a
+submitted schema URL nor a template is executed. Canonical metadata lines and a
+checked MIT acknowledgement are required; format corrections need human review.
+
+`prepare` writes exactly a new community JSON and the sorted manifest into the
+ephemeral checkout; tags are trimmed/de-duplicated and existing manifest fields
+are preserved. `npm run validate` must succeed before `publish`. Publication
+rechecks actor/labels/content/main/PRs and the prepared file contents, uses a
+bounded two-file Git tree, creates a stable `automation/theme-submission-<number>`
+branch and one draft PR linking (not closing) the issue. Existing open PRs are
+no-ops; an existing branch without an open PR fails for manual recovery rather
+than force-pushing or blindly repeating uncertain publication. A final recheck
+precedes branch creation; a race after that check still requires human PR review.
+
+The writer is serialized with `community-theme-manifest-writer`, never auto-merges,
+and does not render previews. Separate PRs may need conflict resolution if other
+community manifest changes merge first. GitHub concurrency can replace older
+pending runs in a burst of approvals; recover those issues using the explicit
+manual retry, not a competing writer. Future human merges use the existing preview
+workflow's push path; this script never dispatches it.
+
+Permissions are `contents: write`, `issues: read`, `pull-requests: write`; no issue
+comments, label writes or model credits are needed. Validation/access/API errors
+fail visibly in Actions logs rather than posting a success-shaped result. Repository
+policy must permit Actions to create PRs. PRs created with `GITHUB_TOKEN` do not
+automatically trigger downstream `pull_request` workflows: maintainers must ensure
+required checks are run using their authorized review process before merging.
+Do not substitute a broader token or change repository settings silently.
+
+Tests mock all mutations; no publication, approval or hosted dispatch is required
+for local validation:
+
+```bash
+npm run test:run -- scripts/create-theme-contribution.test.mjs \
+  scripts/audit-theme-gallery.test.mjs scripts/capture-theme-gallery.test.mjs
+actionlint -shellcheck= .github/workflows/create-theme-contribution-pr.yml
+```
+
+`create-theme-contribution.mjs prepare|publish` is the workflow entrypoint, not a
+local dry-run command. It expects the normal GitHub event environment,
+`THEME_ACTOR`, `THEME_PLAN`, and an authorized `GH_TOKEN`; **publish makes external
+writes**. Use exported pure functions and mocked tests for local analysis.
+
 ## validate-configs.js
 
 Validates all configuration files in the `public/configs/` directory.
