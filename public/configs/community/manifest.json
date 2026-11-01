@@ -60,6 +60,15 @@
       "file": "gotham.json"
     },
     {
+      "id": "pino",
+      "name": "Pino",
+      "description": "Minimal",
+      "icon": "misc-star",
+      "author": "Hannah",
+      "tags": [],
+      "file": "pino.json"
+    },
+    {
       "id": "shihao",
       "name": "shihao",
       "description": "A simple theme.",
