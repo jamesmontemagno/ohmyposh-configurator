@@ -60,6 +60,17 @@
       "file": "gotham.json"
     },
     {
+      "id": "my-1st-theem",
+      "name": "my 1st theem",
+      "description": "for all yo needs",
+      "icon": "os-linux",
+      "author": "discord @pizzacode6742",
+      "tags": [
+        "usefull"
+      ],
+      "file": "my-1st-theem.json"
+    },
+    {
       "id": "pino",
       "name": "Pino",
       "description": "Minimal",
@@ -118,7 +129,7 @@
       "description": "for python user",
       "icon": "lang-python",
       "author": "XingLu",
-      "tags": [],
+      "tags": [      ],
       "file": "xinglu-s-theme.json"
     }
   ]
