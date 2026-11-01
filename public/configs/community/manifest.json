@@ -3,6 +3,20 @@
   "lastUpdated": "2025-12-30",
   "configs": [
     {
+      "id": "cinnamon-1_shell",
+      "name": "Cinnamon 1_shell",
+      "description": "Kayla Cinnamon's mod of the original 1_shell theme including the WinGet and GitHub Copilot segments. Already includes Git integration",
+      "icon": "ui-code",
+      "author": "Kayla Cinnamon",
+      "tags": [
+        "developer",
+        "copilot",
+        "winget",
+        "git"
+      ],
+      "file": "cinnamon-1_shell.json"
+    },
+    {
       "id": "dotnet-azure-developer",
       "name": ".NET & Azure Developer",
       "description": "Perfect for .NET developers working with Azure cloud services, featuring Azure CLI, .NET SDK, Docker, and Git integration",
@@ -18,18 +32,15 @@
       "file": "dotnet-azure-developer.json"
     },
     {
-      "id": "cinnamon-1_shell",
-      "name": "Cinnamon 1_shell",
-      "description": "Kayla Cinnamon's mod of the original 1_shell theme including the WinGet and GitHub Copilot segments. Already includes Git integration",
-      "icon": "ui-code",
-      "author": "Kayla Cinnamon",
+      "id": "my-1st-theem",
+      "name": "my 1st theem",
+      "description": "for all yo needs",
+      "icon": "os-linux",
+      "author": "discord @pizzacode6742",
       "tags": [
-        "developer",
-        "copilot",
-        "winget",
-        "git"
+        "usefull"
       ],
-      "file": "cinnamon-1_shell.json"
+      "file": "my-1st-theem.json"
     }
   ]
 }
