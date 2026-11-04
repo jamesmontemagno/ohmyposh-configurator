@@ -1,0 +1,197 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+    "palette": {
+    "green": "#98C379",
+    "blue": "#61AFEF",
+    "violet": "#C678DD",
+    "cyan": "#56B6C2",
+    "orange": "#D19A66",
+    "red": "#E06C75",
+    "red-alert": "#BE5046",
+    "yellow": "#E5C07B",
+    "grey": "#ABB2BF",
+    "grey-dim": "#5C6370",
+    "white": "#ffffff"
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "p:green",
+          "template": "{{ if not .Error }}\ue781 {{.Full}}{{ end }} "
+        },
+        {
+          "type": "react",
+          "style": "plain",
+          "foreground": "p:blue",
+          "template": "{{ if not .Error }}\ue625 {{.Full}}{{ end }} ",
+          "options": {
+            "cache_duration": "30m"
+          }
+        },
+        {
+          "type": "angular",
+          "style": "plain",
+          "foreground": "p:red",
+          "template": "{{ if not .Error }}\ue753 {{.Full}}{{ end }} ",
+          "options": {
+            "cache_duration": "30m"
+          }
+        },
+        {
+          "type": "svelte",
+          "style": "plain",
+          "foreground": "p:orange",
+          "template": "{{ if not .Error }}\ue697 {{.Full}}{{ end }} ",
+          "options": {
+            "cache_duration": "30m"
+          }
+        },
+        {
+          "type": "php",
+          "style": "plain",
+          "foreground": "p:violet",
+          "template": "{{ if not .Error }}\ue73d {{ .Full }} {{ end }}"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:yellow",
+          "template": "{{ if not .Error }}\ue73c {{.Full}}{{ end }} "
+        },
+        {
+          "type": "dotnet",
+          "style": "plain",
+          "foreground": "p:violet",
+          "template": "{{ if not .Error }}\ue77f {{.Full}}{{ end }} "
+        },
+        {
+          "type": "java",
+          "style": "plain",
+          "foreground": "p:red",
+          "template": "{{ if not .Error }}\ue738 {{.Full}}{{ end }} "
+        },
+        {
+          "type": "kotlin",
+          "style": "plain",
+          "foreground": "p:violet",
+          "template": "{{ if not .Error }}\ue634 {{.Full}}{{ end }} "
+        },
+        {
+          "type": "go",
+          "style": "plain",
+          "foreground": "p:cyan",
+          "template": "{{ if not .Error }}\ue724 {{.Full}}{{ end }} "
+        },
+        {
+          "type": "swift",
+          "style": "plain",
+          "foreground": "p:orange",
+          "template": "{{ if not .Error }}\ue755 {{.Full}}{{ end }} "
+        },
+        {
+          "type": "flutter",
+          "style": "plain",
+          "foreground": "p:blue",
+          "template": "{{ if not .Error }}\ue7dd {{.Full}}{{ end }} ",
+          "options": {
+            "cache_duration": "30m"
+          }
+        },
+        {
+          "type": "project",
+          "style": "plain",
+          "foreground": "p:grey",
+          "template": "{{ if not .Error }}{{ if .Name }}<p:orange>\ue601</> {{.Name }}{{ end }} {{ if .Version }}\uf487 {{.Version}}{{ end }}{{ end }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "p:white",
+          "template": "\uf252 {{ .FormattedMs }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "foreground": "p:white",
+          "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "p:green",
+          "foreground_templates": [
+            "{{ if .Root }}p:red{{ end }}"
+          ],
+          "template": "{{ .UserName }} "
+        },
+        {
+          "type": "root",
+          "style": "plain",
+          "foreground": "p:red",
+          "template": "\uf0e7 "
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:cyan",
+          "template": "{{ .Path }} ",
+          "options": {
+            "folder_icon": "\udb80\ude4b",
+            "folder_separator_icon": "<p:grey-dim>\\</>",
+            "home_icon": "<p:orange>\uf4e2</>",
+            "max_depth": 2,
+            "style": "agnoster_short"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "p:violet",
+          "template": "git:{{ if or (.Working.Changed) (.Staging.Changed) (gt .StashCount 0) }}<p:yellow>{{ .HEAD }}</>{{ else }}{{ .HEAD }}{{ end }}{{ if .Staging.Changed }} <p:green>{{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }} <p:red>{{ .Working.String }}</>{{ end }} ",
+          "options": {
+            "branch_icon": ""
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:red-alert",
+          "template": "{{ if .Executed }}\uf00d {{ end }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:orange",
+          "template": "\u279c "
+        }
+      ]
+    }
+  ],
+  "final_space": true
+}

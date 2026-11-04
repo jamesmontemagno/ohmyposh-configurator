@@ -131,6 +131,21 @@
       "author": "XingLu",
       "tags": [      ],
       "file": "xinglu-s-theme.json"
+    },
+    {
+      "id": "loiza-one-dark",
+      "name": "Loiza One Dark",
+      "description": "Theme inspired by One Dark. Support for multiple programming languages, project information, operating system, session user, current path, Git status colors, and execution time.",
+      "icon": "dev-terminal",
+      "author": "JoaquinLoiza",
+      "tags": [
+        "dark",
+        "one-dark",
+        "multi-language",
+        "developer",
+        "minimal"
+      ],
+      "file": "loiza-one-dark.json"
     }
   ]
 }
